@@ -1,0 +1,997 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  TRADER
+  VIP
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum ExperienceLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum CourseAccessTier {
+  FREE
+  STARTER
+  PRO
+  VIP
+  ONE_TIME
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  VIP_ELITE
+}
+
+model User {
+  id                String             @id @default(cuid())
+  email             String             @unique
+  passwordHash      String
+  fullName          String
+  phoneNumber       String?
+  experienceLevel   ExperienceLevel    @default(BEGINNER)
+  dateOfBirth       DateTime?
+  role              Role               @default(USER)
+  isActive          Boolean            @default(true)
+  refreshTokens     RefreshToken[]
+  courseEnrollments CourseEnrollment[]
+  lessonProgress    LessonProgress[]
+  quizAttempts      QuizAttempt[]
+  liveChatMessages  LiveChatMessage[]
+  liveSessionAccessCodes LiveSessionAccessCode[]
+  subscriptions     UserSubscription[]
+  orders            Order[]
+  activationCodes   ActivationCode[]
+  entitlements      Entitlement[]
+  tradingAccounts   TradingAccount[]
+  securityAuditLogs SecurityAuditLog[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  @@index([email])
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model Course {
+  id               String             @id @default(cuid())
+  slug             String             @unique
+  title            String
+  subtitle         String?
+  description      String
+  thumbnailUrl     String?
+  promoVideoUrl    String?
+  price            Decimal            @default(0.0) @db.Decimal(10, 2)
+  discountPrice    Decimal?           @db.Decimal(10, 2)
+  currency         String             @default("USD")
+  accessTier       CourseAccessTier   @default(FREE)
+  adminRating      Float              @default(4.9)
+  adminReviewCount Int                @default(0)
+  releaseDate      DateTime           @default(now())
+  difficulty       CourseLevel        @default(BEGINNER)
+  category         String             @default("Forex Trading")
+  isPublished      Boolean            @default(false)
+  sections         CourseSection[]
+  enrollments      CourseEnrollment[]
+  coupons          Coupon[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([isPublished])
+}
+
+model CourseSection {
+  id          String         @id @default(cuid())
+  courseId    String
+  course      Course         @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  orderIndex  Int            @default(0)
+  lessons     CourseLesson[]
+  quizzes     Quiz[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([courseId])
+  @@index([orderIndex])
+}
+
+model CourseLesson {
+  id                   String           @id @default(cuid())
+  sectionId            String
+  section              CourseSection    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  title                String
+  description          String?
+  orderIndex           Int              @default(0)
+  durationSeconds      Int              @default(0)
+  videoUrl             String?
+  videoQualities       Json?
+  isFreePreview        Boolean          @default(false)
+  requiredWatchPercent Int              @default(80)
+  captions             LessonCaption[]
+  resources            LessonResource[]
+  quiz                 Quiz?            @relation("LessonQuiz")
+  progress             LessonProgress[]
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  @@index([sectionId])
+  @@index([orderIndex])
+}
+
+model LessonCaption {
+  id        String       @id @default(cuid())
+  lessonId  String
+  lesson    CourseLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  language  String
+  label     String
+  url       String
+  isDefault Boolean      @default(false)
+  createdAt DateTime     @default(now())
+
+  @@index([lessonId])
+}
+
+model LessonResource {
+  id        String       @id @default(cuid())
+  lessonId  String
+  lesson    CourseLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  title     String
+  fileType  String       @default("PDF")
+  fileUrl   String
+  fileSize  String?
+  createdAt DateTime     @default(now())
+
+  @@index([lessonId])
+}
+
+model Quiz {
+  id           String         @id @default(cuid())
+  sectionId    String?
+  section      CourseSection? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  lessonId     String?        @unique
+  lesson       CourseLesson?  @relation("LessonQuiz", fields: [lessonId], references: [id], onDelete: Cascade)
+  title        String
+  description  String?
+  passingScore Int            @default(70)
+  maxAttempts  Int            @default(3)
+  questions    QuizQuestion[]
+  attempts     QuizAttempt[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@index([lessonId])
+  @@index([sectionId])
+}
+
+model QuizQuestion {
+  id          String       @id @default(cuid())
+  quizId      String
+  quiz        Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  question    String
+  orderIndex  Int          @default(0)
+  points      Int          @default(1)
+  explanation String?
+  choices     QuizChoice[]
+  createdAt   DateTime     @default(now())
+
+  @@index([quizId])
+}
+
+model QuizChoice {
+  id         String       @id @default(cuid())
+  questionId String
+  question   QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  text       String
+  isCorrect  Boolean      @default(false)
+
+  @@index([questionId])
+}
+
+model QuizAttempt {
+  id            String   @id @default(cuid())
+  quizId        String
+  quiz          Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  score         Float
+  isPassed      Boolean
+  answers       Json
+  attemptNumber Int      @default(1)
+  createdAt     DateTime @default(now())
+
+  @@index([quizId])
+  @@index([userId])
+}
+
+model CourseEnrollment {
+  id                String    @id @default(cuid())
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId          String
+  course            Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  paidAmount        Decimal?  @db.Decimal(10, 2)
+  currency          String    @default("USD")
+  paymentMethod     String?   @default("USDT_TRC20")
+  couponCode        String?
+  discountAmount    Decimal?  @db.Decimal(10, 2)
+  txId              String?
+  status            String    @default("COMPLETED")
+  buyerName         String?
+  buyerEmail        String?
+  buyerPhone        String?
+  enrolledAt        DateTime  @default(now())
+  completedAt       DateTime?
+  certificateIssued Boolean   @default(false)
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@index([couponCode])
+}
+
+model LessonProgress {
+  id                   String       @id @default(cuid())
+  userId               String
+  user                 User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId             String
+  lesson               CourseLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  watchedSeconds       Int          @default(0)
+  maxWatchPosition     Int          @default(0)
+  isCompleted          Boolean      @default(false)
+  completionVerifiedAt DateTime?
+  lastHeartbeatAt      DateTime     @default(now())
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@index([lessonId])
+}
+
+enum LiveSessionStatus {
+  SCHEDULED
+  LIVE
+  ENDED
+  CANCELLED
+}
+
+model LiveSession {
+  id                   String            @id @default(cuid())
+  slug                 String            @unique
+  title                String
+  description          String
+  coverImage           String?
+  streamUrl            String?
+  streamType           String            @default("HLS") // HLS, YOUTUBE, OBS, CUSTOM
+  streamKey            String?
+  status               LiveSessionStatus @default(SCHEDULED)
+  scheduledStartTime   DateTime
+  scheduledEndTime     DateTime?
+  actualStartTime      DateTime?
+  actualEndTime        DateTime?
+  minTier              CourseAccessTier  @default(FREE)
+  isFree               Boolean           @default(true)
+  price                Decimal           @default(0.0) @db.Decimal(10, 2)
+  currency             String            @default("USD")
+  isRecordingAvailable Boolean           @default(false)
+  replayUrl            String?
+  instructorName       String            @default("FxEngin Market Analyst")
+  maxParticipants      Int               @default(500)
+  messages             LiveChatMessage[]
+  accessCodes          LiveSessionAccessCode[]
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+
+  @@index([status])
+  @@index([scheduledStartTime])
+}
+
+model LiveChatMessage {
+  id            String      @id @default(cuid())
+  liveSessionId String
+  liveSession   LiveSession @relation(fields: [liveSessionId], references: [id], onDelete: Cascade)
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  senderName    String
+  message       String
+  isModerator   Boolean     @default(false)
+  isPinned      Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+
+  @@index([liveSessionId])
+  @@index([createdAt])
+}
+
+model LiveSessionAccessCode {
+  id            String       @id @default(cuid())
+  liveSessionId String
+  liveSession   LiveSession  @relation(fields: [liveSessionId], references: [id], onDelete: Cascade)
+  userId        String?
+  user          User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  email         String
+  fullName      String?
+  phone         String?
+  accessCode    String       @unique
+  isPaid        Boolean      @default(true)
+  paidAmount    Decimal?     @db.Decimal(10, 2)
+  currency      String       @default("USD")
+  source        String       @default("CHECKOUT") // "CHECKOUT", "MANUAL_ADMIN"
+  notes         String?
+  isRevoked     Boolean      @default(false)
+  usageCount    Int          @default(0)
+  lastUsedAt    DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([liveSessionId])
+  @@index([accessCode])
+  @@index([email])
+  @@index([userId])
+}
+
+enum BillingPeriod {
+  MONTHLY
+  QUARTERLY
+  SEMI_ANNUAL
+  ANNUAL
+  LIFETIME
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+  TRIAL
+}
+
+model SubscriptionPlan {
+  id             String             @id @default(cuid())
+  slug           String             @unique
+  name           String
+  description    String
+  price          Decimal            @default(0.0) @db.Decimal(10, 2)
+  currency       String             @default("USD")
+  billingPeriod  BillingPeriod      @default(MONTHLY)
+  badge          String?
+  highlightColor String?            @default("#FC8702")
+  isActive       Boolean            @default(true)
+  sortOrder      Int                @default(0)
+  features       Json               // Marketing bullet points string[]
+  permissions    Json               // Technical feature keys string[]
+  subscriptions  UserSubscription[]
+  coupons        Coupon[]
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@index([slug])
+  @@index([isActive])
+}
+
+model UserSubscription {
+  id               String             @id @default(cuid())
+  userId           String
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planId           String
+  plan             SubscriptionPlan   @relation(fields: [planId], references: [id], onDelete: Cascade)
+  status           SubscriptionStatus @default(ACTIVE)
+  startDate        DateTime           @default(now())
+  endDate          DateTime?
+  autoRenew        Boolean            @default(true)
+  paymentReference String?
+  paidAmount       Decimal?           @db.Decimal(10, 2)
+  currency         String             @default("USD")
+  paymentMethod    String?            @default("USDT_TRC20")
+  couponCode       String?
+  discountAmount   Decimal?           @db.Decimal(10, 2)
+  txId             String?
+  buyerName        String?
+  buyerEmail       String?
+  buyerPhone       String?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  @@index([userId])
+  @@index([planId])
+  @@index([status])
+  @@index([couponCode])
+}
+
+model Coupon {
+  id            String            @id @default(cuid())
+  code          String            @unique
+  discountType  String            @default("PERCENTAGE") // "PERCENTAGE" or "FIXED"
+  discountValue Decimal           @db.Decimal(10, 2)
+  minPurchase   Decimal?          @default(0.0) @db.Decimal(10, 2)
+  maxDiscount   Decimal?          @db.Decimal(10, 2)
+  courseId      String?
+  course        Course?           @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  planId        String?
+  plan          SubscriptionPlan? @relation(fields: [planId], references: [id], onDelete: SetNull)
+  expiresAt     DateTime?
+  maxUses       Int?              @default(100)
+  usedCount     Int               @default(0)
+  isActive      Boolean           @default(true)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@index([code])
+  @@index([isActive])
+}
+
+model OtpVerification {
+  id        String   @id @default(cuid())
+  email     String
+  code      String
+  purpose   String   @default("LOGIN") // "LOGIN" | "REGISTER" | "RESET_PASSWORD"
+  expiresAt DateTime
+  attempts  Int      @default(0)
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([email, purpose])
+  @@index([code])
+}
+
+enum AdPlacement {
+  SKYSCRAPER_RIGHT   // الشريط الجانبي الأيمن
+  SKYSCRAPER_LEFT    // الشريط الجانبي الأيسر
+  HORIZONTAL_BANNER  // بنر أفقي بين الأقسام
+  MOBILE_TOP_BAR     // شريط الموبايل العلوي
+  POPUP_MODAL        // نافذة ترويجية منبثقة
+}
+
+model Advertisement {
+  id          String       @id @default(cuid())
+  titleAr     String
+  titleEn     String?
+  descAr      String?
+  descEn      String?
+  badge       String?      // e.g. "VIP SIGNALS", "PRO ACADEMY"
+  badgeColor  String?      @default("#FB8704")
+  tag         String?      // e.g. "92% WIN RATE"
+  imageUrl    String?      // Banner image (MinIO/S3 or external)
+  targetUrl   String       @default("#")
+  btnTextAr   String?      @default("انضم الآن")
+  btnTextEn   String?      @default("Join Now")
+  placement   AdPlacement  @default(SKYSCRAPER_RIGHT)
+  isActive    Boolean      @default(true)
+  sortOrder   Int          @default(0)
+  clicksCount Int          @default(0)
+  viewsCount  Int          @default(0)
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([placement, isActive])
+  @@index([sortOrder])
+}
+
+model GoogleAdSenseConfig {
+  id             String   @id @default("default")
+  isEnabled      Boolean  @default(false)
+  publisherId    String   @default("") // e.g. "ca-pub-1234567890123456"
+  autoAds        Boolean  @default(true) // Google Auto Ads
+  slotHorizontal String?  // Specific AdSense Unit Slot ID for Horizontal Banner
+  slotRightBar   String?  // Specific AdSense Unit Slot ID for Right Skyscraper
+  slotLeftBar    String?  // Specific AdSense Unit Slot ID for Left Skyscraper
+  slotMobileBar  String?  // Specific AdSense Unit Slot ID for Mobile Top Bar
+  adsTxtCustom   String?  // Custom additional entries for ads.txt
+  testMode       Boolean  @default(false) // If true, adds data-adtest="on"
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+enum SignalDirection {
+  BUY
+  SELL
+  BUY_LIMIT
+  SELL_LIMIT
+}
+
+enum SignalStatus {
+  ACTIVE
+  HIT_TP1
+  HIT_TP2
+  HIT_TP3
+  HIT_SL
+  CLOSED
+  CANCELLED
+}
+
+model Signal {
+  id          String          @id @default(cuid())
+  symbol      String          // e.g. "XAU/USD", "EUR/USD"
+  direction   SignalDirection @default(BUY)
+  entryPrice  Float
+  stopLoss    Float
+  takeProfit1 Float
+  takeProfit2 Float?
+  takeProfit3 Float?
+  status      SignalStatus    @default(ACTIVE)
+  notes       String?
+  timeframe   String?         @default("1H") // e.g. "15M", "1H", "4H", "1D"
+  riskReward  String?         @default("1:3")
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([symbol])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum MessageStatus {
+  UNREAD
+  READ
+  RESOLVED
+}
+
+model ContactMessage {
+  id        String        @id @default(cuid())
+  fullName  String
+  email     String
+  phone     String?
+  topic     String?       @default("support") // support, partnership, billing, academy
+  subject   String?
+  message   String        @db.Text
+  status    MessageStatus @default(UNREAD)
+  replyNote String?       @db.Text
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model NewsletterSubscriber {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  isActive     Boolean  @default(true)
+  subscribedAt DateTime @default(now())
+
+  @@index([email])
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  clientName  String
+  location    String?
+  roleTitle   String?  @default("متداول معتمد")
+  avatarText  String?  @default("FX")
+  category    String?  @default("courses") // webinars, funding, analytics, courses
+  rating      Int      @default(5)
+  metricText  String?  // e.g. "+34% نمو المحفظة"
+  reviewAr    String   @db.Text
+  reviewEn    String?  @db.Text
+  courseName  String?
+  isApproved  Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isApproved])
+  @@index([sortOrder])
+}
+
+model SystemSetting {
+  id              String   @id @default("global")
+  siteName        String   @default("FXENGIN Core Terminal")
+  currency        String   @default("USD")
+  maintenanceMode Boolean  @default(false)
+  contactEmail    String   @default("support@fxengin.com")
+  supportPhone    String   @default("+971 4 380 0000")
+  telegramChannel String   @default("https://t.me/fxengin_official")
+  whatsappNumber  String   @default("+971 50 123 4567")
+  metaTitle       String?  @default("FXENGIN — منصة الفوركس والتعليم المالي العالمية")
+  metaDescription String?  @default("منصة التحليل والتعليم المالي الذكية")
+  updatedAt       DateTime @updatedAt
+}
+
+model Article {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  titleAr        String
+  titleEn        String?
+  excerptAr      String?
+  excerptEn      String?
+  contentAr      String?  @db.Text
+  contentEn      String?  @db.Text
+  coverImage     String?
+  authorName     String   @default("م. سليمان داود")
+  authorRole     String?  @default("كبير محللي الأسواق")
+  categoryKey    String   @default("strategies") // strategies, technical, risk, algo, psychology
+  categoryAr     String?  @default("استراتيجيات التداول")
+  categoryEn     String?  @default("Trading Strategies")
+  tags           String[] @default(["Forex", "Trading"])
+  viewsCount     Int      @default(0)
+  readTimeMinutes Int     @default(5)
+  isFeatured     Boolean  @default(false)
+  status         String   @default("PUBLISHED") // DRAFT, PUBLISHED
+  tradingViewUrl String?
+  symbol         String?
+  sectionsData   Json?
+  faqsData       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([slug])
+  @@index([status])
+  @@index([categoryKey])
+  @@index([isFeatured])
+}
+
+model Broker {
+  id              String   @id @default(cuid())
+  brokerSlug      String   @unique
+  name            String
+  category        String   @default("forex") // forex, prop
+  categoryLabelAr String?  @default("وسيط فوركس وعقود فروقات مرخص")
+  categoryLabelEn String?  @default("Regulated Forex & CFD Broker")
+  badgeAr         String?  @default("وسيط معتمد وموثوق")
+  badgeEn         String?  @default("Verified Official Partner")
+  badgeColor      String?  @default("#0488F8")
+  logoUrl         String   @default("/assets/Images/brokers/xm.png")
+  logoBg          String?  @default("#000000")
+  rating          Float    @default(4.9)
+  clientsCount    String?  @default("100K+ متداول")
+  clientsCountEn  String?  @default("100K+ Traders")
+  accentColor     String?  @default("#0488F8")
+  glowBorder      String?  @default("rgba(4, 136, 248, 0.25)")
+  descriptionAr   String?  @db.Text
+  descriptionEn   String?  @db.Text
+  specsData       Json?
+  featuresAr      String[] @default([])
+  featuresEn      String[] @default([])
+  couponCode      String?
+  perksAr         String?
+  perksEn         String?
+  liveUrl         String   @default("#")
+  demoUrl         String   @default("#")
+  sortOrder       Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([brokerSlug])
+  @@index([category])
+  @@index([isActive])
+}
+
+model CmsPage {
+  id          String   @id @default(cuid())
+  slug        String   @unique // about, privacy, terms, help, contact, news, etc.
+  category    String   @default("company") // company, legal
+  titleAr     String
+  titleEn     String?
+  subtitleAr  String?
+  subtitleEn  String?
+  badgeAr     String?
+  badgeEn     String?
+  contentData Json     // Dynamic page structure (stats, mission, vision, values, faqs, changelog)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+  @@index([isPublished])
+}
+
+enum ProductType {
+  RECORDED_COURSE
+  LIVE_COURSE
+  COMMUNITY_GROUP
+  CUSTOM
+}
+
+enum OrderStatus {
+  PENDING
+  PAYMENT_SUBMITTED
+  UNDER_REVIEW
+  PAID
+  FAILED
+  CANCELLED
+  REFUNDED
+  EXPIRED
+}
+
+enum PaymentMethodType {
+  CRYPTO_USDT_TRC20
+  BANK_TRANSFER
+  INSTAPAY
+  VODAFONE_CASH
+  CREDIT_CARD
+  MANUAL_SUPPORT
+  ACCESS_CODE
+}
+
+enum ActivationCodeStatus {
+  UNUSED
+  ACTIVATED
+  REVOKED
+  EXPIRED
+}
+
+enum EntitlementStatus {
+  ACTIVE
+  SUSPENDED
+  EXPIRED
+  REVOKED
+}
+
+model Order {
+  id              String            @id @default(cuid())
+  orderNumber     String            @unique // e.g. "FX-2026-98124"
+  userId          String
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productType     ProductType
+  productId       String            // Course ID, LiveSession ID, or Plan ID
+  productTitle    String            // Snapshot of product name
+  basePrice       Decimal           @db.Decimal(10, 2)
+  discountAmount  Decimal           @default(0.0) @db.Decimal(10, 2)
+  finalAmount     Decimal           @db.Decimal(10, 2)
+  currency        String            @default("USD")
+  couponCode      String?
+  paymentMethod   PaymentMethodType @default(CRYPTO_USDT_TRC20)
+  status          OrderStatus       @default(PENDING)
+  txId            String?
+  paymentProofUrl String?
+  customerNotes   String?
+  adminNotes      String?
+  paidAt          DateTime?
+  expiresAt       DateTime?         // Order completion deadline
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  payments        Payment[]
+  activationCodes ActivationCode[]
+  entitlements    Entitlement[]
+  events          PaymentEvent[]
+
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+  @@index([productId, productType])
+  @@index([createdAt])
+}
+
+model Payment {
+  id              String            @id @default(cuid())
+  orderId         String
+  order           Order             @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  transactionRef  String            @unique // Network TxHash or Gateway Reference
+  amount          Decimal           @db.Decimal(10, 2)
+  currency        String            @default("USD")
+  method          PaymentMethodType
+  status          String            @default("COMPLETED") // COMPLETED, REFUNDED, DISPUTED
+  receiptUrl      String?
+  verifiedBy      String?           // Admin User ID or 'SYSTEM_WEBHOOK'
+  metadata        Json?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([orderId])
+  @@index([transactionRef])
+}
+
+model ActivationCode {
+  id                 String               @id @default(cuid())
+  codeHash           String               @unique // HMAC-SHA256 Hash of Code
+  displayPrefix      String               // "FXG-****" for safe admin UI display
+  userId             String               // Bound Buyer User ID
+  user               User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderId            String
+  order              Order                @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId          String
+  productType        ProductType
+  status             ActivationCodeStatus @default(UNUSED)
+  maxActivations     Int                  @default(1)
+  activationCount    Int                  @default(0)
+  activatedAt        DateTime?
+  activatedByIpHash  String?
+  expiresAt          DateTime?
+  revokedAt          DateTime?
+  revocationReason   String?
+  metadata           Json?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+
+  entitlements       Entitlement[]
+  tradingAccounts    TradingAccount[]
+
+  @@index([codeHash])
+  @@index([userId])
+  @@index([orderId])
+  @@index([productId, productType])
+  @@index([status])
+}
+
+model Entitlement {
+  id               String            @id @default(cuid())
+  userId           String
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productType      ProductType
+  productId        String
+  orderId          String?
+  order            Order?            @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  activationCodeId String?
+  activationCode   ActivationCode?   @relation(fields: [activationCodeId], references: [id], onDelete: SetNull)
+  status           EntitlementStatus @default(ACTIVE)
+  validFrom        DateTime          @default(now())
+  validUntil       DateTime?         // Null means Lifetime Access
+  accessPayload    Json?             // E.g., single-use Telegram link, stream token, etc.
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@unique([userId, productType, productId])
+  @@index([userId])
+  @@index([productId, productType])
+  @@index([status])
+}
+
+model PaymentEvent {
+  id              String   @id @default(cuid())
+  idempotencyKey  String   @unique
+  orderId         String?
+  order           Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  source          String   // 'TELEGRAM_BOT', 'BINANCE_PAY', 'MANUAL_ADMIN'
+  eventType       String   // 'PAYMENT_APPROVED', 'PAYMENT_REJECTED', 'PAYMENT_RECEIVED'
+  payload         Json
+  processedAt     DateTime @default(now())
+
+  @@index([idempotencyKey])
+  @@index([orderId])
+}
+
+model SecurityAuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String   // ORDER_CREATED, PAYMENT_SUBMITTED, PAYMENT_APPROVED, CODE_ACTIVATED, CODE_REVOKED
+  entityType String   // ORDER, ACTIVATION_CODE, ENTITLEMENT
+  entityId   String
+  ipHash     String?
+  userAgent  String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([entityId])
+  @@index([createdAt])
+}
+
+model TradingCompetitionPlan {
+  id                 String           @id @default(cuid())
+  titleAr            String
+  titleEn            String
+  targetProductType  ProductType?
+  targetProductId    String?
+  initialBalance     Decimal          @default(10000.0) @db.Decimal(12, 2)
+  leverage           Int              @default(100)
+  brokerServer       String           @default("FXENGIN Prime ECN")
+  maxDailyDrawdown   Float            @default(5.0)
+  maxTotalDrawdown   Float            @default(10.0)
+  pointsPerPip       Float            @default(1.0)
+  badgeName          String?          @default("PRO TRADER")
+  descriptionAr      String?
+  descriptionEn      String?
+  isActive           Boolean          @default(true)
+  accounts           TradingAccount[]
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@index([targetProductType, targetProductId])
+  @@index([isActive])
+}
+
+model TradingAccount {
+  id                 String                  @id @default(cuid())
+  accountNumber      String                  @unique
+  accountName        String                  @default("Trader Demo")
+  userId             String
+  user               User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activationCodeId   String?
+  activationCode     ActivationCode?         @relation(fields: [activationCodeId], references: [id], onDelete: SetNull)
+  competitionPlanId  String?
+  competitionPlan    TradingCompetitionPlan? @relation(fields: [competitionPlanId], references: [id], onDelete: SetNull)
+  brokerServer       String                  @default("FXENGIN Prime ECN")
+  initialBalance     Decimal                 @default(10000.0) @db.Decimal(12, 2)
+  balance            Decimal                 @default(10000.0) @db.Decimal(12, 2)
+  equity             Decimal                 @default(10000.0) @db.Decimal(12, 2)
+  margin             Decimal                 @default(0.0) @db.Decimal(12, 2)
+  freeMargin         Decimal                 @default(10000.0) @db.Decimal(12, 2)
+  marginLevel        Decimal                 @default(0.0) @db.Decimal(8, 2)
+  leverage           Int                     @default(100)
+  points             Decimal                 @default(0.0) @db.Decimal(12, 2)
+  totalPips          Decimal                 @default(0.0) @db.Decimal(12, 2)
+  winTrades          Int                     @default(0)
+  lossTrades         Int                     @default(0)
+  totalTrades        Int                     @default(0)
+  status             String                  @default("ACTIVE") // ACTIVE, DISQUALIFIED, COMPLETED
+  positions          TradingPosition[]
+  history            TradingHistory[]
+  createdAt          DateTime                @default(now())
+  updatedAt          DateTime                @updatedAt
+
+  @@index([userId])
+  @@index([accountNumber])
+  @@index([points])
+  @@index([status])
+}
+
+model TradingPosition {
+  id                 String          @id @default(cuid())
+  ticket             Int             @unique
+  accountId          String
+  account            TradingAccount  @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  symbol             String
+  type               String          // BUY, SELL
+  lots               Decimal         @db.Decimal(8, 2)
+  openPrice          Decimal         @db.Decimal(14, 5)
+  currentPrice       Decimal         @db.Decimal(14, 5)
+  stopLoss           Decimal?        @db.Decimal(14, 5)
+  takeProfit         Decimal?        @db.Decimal(14, 5)
+  profit             Decimal         @default(0.0) @db.Decimal(12, 2)
+  pips               Decimal         @default(0.0) @db.Decimal(10, 2)
+  swap               Decimal         @default(0.0) @db.Decimal(8, 2)
+  commission         Decimal         @default(0.0) @db.Decimal(8, 2)
+  openedAt           DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  @@index([accountId])
+  @@index([symbol])
+}
+
+model TradingHistory {
+  id                 String          @id @default(cuid())
+  ticket             Int             @unique
+  accountId          String
+  account            TradingAccount  @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  symbol             String
+  type               String          // BUY, SELL
+  lots               Decimal         @db.Decimal(8, 2)
+  openPrice          Decimal         @db.Decimal(14, 5)
+  closePrice         Decimal         @db.Decimal(14, 5)
+  stopLoss           Decimal?        @db.Decimal(14, 5)
+  takeProfit         Decimal?        @db.Decimal(14, 5)
+  profit             Decimal         @db.Decimal(12, 2)
+  pips               Decimal         @db.Decimal(10, 2)
+  swap               Decimal         @default(0.0) @db.Decimal(8, 2)
+  commission         Decimal         @default(0.0) @db.Decimal(8, 2)
+  closeReason        String          @default("MANUAL") // MANUAL, SL_HIT, TP_HIT, MARGIN_CALL
+  openedAt           DateTime
+  closedAt           DateTime        @default(now())
+
+  @@index([accountId])
+}
+
+
+
+
