@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <rect width="320" height="80" fill="#ffffff" rx="12"/>
+  <g transform="translate(30, 16)">
+    <!-- ING in deep purple/indigo -->
+    <text x="10" y="38" font-family="'Inter', 'Montserrat', 'Segoe UI', sans-serif" font-size="34" font-weight="900" fill="#2E1065" letter-spacing="1">ING</text>
+    <!-- OT in vibrant emerald green -->
+    <text x="82" y="38" font-family="'Inter', 'Montserrat', 'Segoe UI', sans-serif" font-size="34" font-weight="900" fill="#10B981" letter-spacing="1">OT</text>
+    <!-- Accent dot/symbol -->
+    <circle cx="145" cy="20" r="4.5" fill="#10B981"/>
+  </g>
+</svg>
