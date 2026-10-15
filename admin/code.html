@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; } .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-secondary": "#273048", "bullish-up": "#16C784", "surface-elevated": "#0A1B3D", "primary-container": "#2a91ff", "text-secondary": "#A7AFBF", "text-primary": "#F5F7FA", "secondary-fixed-dim": "#bec6e5", "on-secondary-fixed": "#121b32", "tertiary-fixed-dim": "#ffb780", "bearish-down": "#F6465D", "surface-container": "#121f3a", "secondary-container": "#3e4660", "on-secondary-container": "#acb4d3", "primary": "#a6c8ff", "primary-fixed-dim": "#a6c8ff", "surface-variant": "#283451", "on-tertiary": "#4e2600", "secondary-fixed": "#dbe1ff", "tertiary-container": "#dc7500", "surface-container-high": "#1d2945", "surface-tint": "#a6c8ff", "surface-container-highest": "#283451", "canvas-deep": "#00030D", "primary-fixed": "#d5e3ff", "on-tertiary-fixed": "#2f1400", "accent-hover": "#FA5A04", "on-secondary-fixed-variant": "#3e4660", "error": "#ffb4ab", "surface-container-low": "#0d1b36", "background": "#05122d", "on-primary": "#00315f", "border-structural": "#12315C", "on-primary-fixed": "#001c3b", "error-container": "#93000a", "on-surface": "#d9e2ff", "secondary": "#bec6e5", "primary-gradient-start": "#0458EC", "on-surface-variant": "#c0c7d6", "surface-dim": "#05122d", "inverse-on-surface": "#23304c", "inverse-primary": "#005fb0", "warning": "#FBBF24", "inverse-surface": "#d9e2ff", "on-background": "#d9e2ff", "surface": "#05122d", "accent-pressed": "#E67300", "outline-variant": "#404753", "text-muted": "#687287", "surface-container-lowest": "#010d28", "surface-bright": "#2c3955", "tertiary-fixed": "#ffdcc4", "on-primary-fixed-variant": "#004786", "on-tertiary-fixed-variant": "#6f3800", "on-tertiary-container": "#442000", "tertiary": "#ffb780", "outline": "#8a919f", "on-error-container": "#ffdad6", "on-error": "#690005", "on-primary-container": "#002a53" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "space-xl": "2rem", "margin-tablet": "2.5rem", "margin-desktop": "5rem", "gutter-desktop": "1.5rem", "space-3xl": "3rem", "space-sm": "0.75rem", "space-md": "1rem", "space-lg": "1.5rem", "space-4xl": "4rem", "space-xs": "0.5rem", "space-2xs": "0.25rem", "gutter-mobile": "1rem", "margin-mobile": "1.25rem", "space-5xl": "5rem", "space-2xl": "2.5rem" }, fontFamily: { "body-lg": ["Noto Sans Arabic"], "telemetry-value": ["Inter"], "headline-lg": ["Noto Sans Arabic"], "headline-hero-mobile": ["Noto Sans Arabic"], "headline-sm": ["Noto Sans Arabic"], "headline-hero": ["Noto Sans Arabic"], "headline-lg-mobile": ["Noto Sans Arabic"], "body-sm": ["Noto Sans Arabic"], "telemetry-micro": ["Inter"], "headline-md": ["Noto Sans Arabic"], "label-sm": ["Noto Sans Arabic"], "label-md": ["Noto Sans Arabic"], "telemetry-stat": ["Inter"], "label-lg": ["Noto Sans Arabic"], "body-md": ["Noto Sans Arabic"] }, fontSize: { "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }], "telemetry-value": ["14px", { lineHeight: "18px", fontWeight: "500" }], "headline-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-hero-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-sm": ["18px", { lineHeight: "26px", fontWeight: "600" }], "headline-hero": ["52px", { lineHeight: "60px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg-mobile": ["26px", { lineHeight: "34px", letterSpacing: "0em", fontWeight: "700" }], "body-sm": ["13px", { lineHeight: "19px", fontWeight: "400" }], "telemetry-micro": ["12px", { lineHeight: "14px", fontWeight: "600" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }], "label-md": ["13px", { lineHeight: "16px", fontWeight: "500" }], "telemetry-stat": ["32px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-lg": ["15px", { lineHeight: "20px", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }] } } } };</script></head><body class="bg-surface-container-lowest font-body-md text-on-surface antialiased"><aside class="fixed right-0 top-0 h-full w-72 bg-surface-container-low border-l border-border-structural z-50 flex flex-col justify-between select-none"><div class="flex flex-col flex-1"><div class="h-20 px-space-lg flex items-center justify-between border-b border-border-structural/60"><div class="flex items-center gap-space-sm"><img alt="FXENGIN Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WGjDbwp-sk4YK7TsuxtYTIXmUGNGqRIx6QQyxo9xwLmUD-iwYf0wvdUD4NbQbh2NWNVSi_bXMw2Tt4eclmt4mTtsxA2SOmwf8Dn27zHY8hU3NS5RrvMP0R6D3UGoZD9K6xg-SXiCqVBcFO7uifq2Xitk3qImc6M1FCtIJ8u9f1VmnukAWjJuOFmgFErOxpOK7lYR9t97Cm9zBYy3iApo52BC28npkTQl47AuHs2Qbqd_oS-Z3GP65U6QY"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-bold">FXENGIN</span><span class="font-telemetry-micro text-telemetry-micro text-primary uppercase tracking-wider">Forex Engineer v3.4</span></div></div><div class="flex items-center gap-space-2xs px-space-xs py-0.5 rounded bg-surface-elevated border border-border-structural"><span class="w-1.5 h-1.5 rounded-full bg-bullish-up animate-pulse"></span><span class="font-telemetry-micro text-telemetry-micro text-bullish-up dir-ltr">LIVE</span></div></div><div class="px-space-md py-space-sm"><span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider px-space-xs">بوابات التحكم الفني</span></div><nav class="flex-1 px-space-xs space-y-1 overflow-y-auto" data-active-classes="bg-surface-elevated text-primary font-bold border-r-2 border-primary-container shadow-[inset_-2px_0_0_0_#2a91ff]"><a aria-current="page" class="group flex items-center justify-between px-space-md py-space-sm rounded-xl transition-all duration-150 bg-surface-elevated text-primary font-bold border-r-2 border-primary-container shadow-[inset_-2px_0_0_0_#2a91ff]" data-path="overview" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">grid_view</span><span class="font-label-lg text-label-lg font-medium">نظرة عامة</span></div><span class="font-telemetry-micro text-telemetry-micro text-text-muted px-1.5 py-0.5 rounded bg-surface-container-high/40 dir-ltr">01</span></a><a class="group flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-elevated hover:text-on-surface transition-all duration-150" data-path="users-and-traders" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">group</span><span class="font-label-lg text-label-lg font-medium">المستخدمون والتجار</span></div><span class="font-telemetry-micro text-telemetry-micro text-text-muted px-1.5 py-0.5 rounded bg-surface-container-high/40 dir-ltr">02</span></a><a class="group flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-elevated hover:text-on-surface transition-all duration-150" data-path="courses-and-lessons" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">school</span><span class="font-label-lg text-label-lg font-medium">الكورسات والدروس</span></div><span class="font-telemetry-micro text-telemetry-micro text-text-muted px-1.5 py-0.5 rounded bg-surface-container-high/40 dir-ltr">03</span></a><a class="group flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-elevated hover:text-on-surface transition-all duration-150" data-path="articles-and-news" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">newspaper</span><span class="font-label-lg text-label-lg font-medium">المقالات والأخبار</span></div><span class="font-telemetry-micro text-telemetry-micro text-text-muted px-1.5 py-0.5 rounded bg-surface-container-high/40 dir-ltr">04</span></a><a class="group flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-elevated hover:text-on-surface transition-all duration-150" data-path="market-analysis-and-signals" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">monitoring</span><span class="font-label-lg text-label-lg font-medium">التحليلات والإشارات</span></div><span class="font-telemetry-micro text-telemetry-micro text-bullish-up px-1.5 py-0.5 rounded bg-bullish-up/10 dir-ltr">ACT</span></a><a class="group flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-elevated hover:text-on-surface transition-all duration-150" data-path="subscriptions-and-plans" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">credit_card</span><span class="font-label-lg text-label-lg font-medium">الاشتراكات والفوترة</span></div><span class="font-telemetry-micro text-telemetry-micro text-text-muted px-1.5 py-0.5 rounded bg-surface-container-high/40 dir-ltr">06</span></a><a class="group flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-elevated hover:text-on-surface transition-all duration-150" data-path="media-and-settings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">settings</span><span class="font-label-lg text-label-lg font-medium">الوسائط والإعدادات</span></div><span class="font-telemetry-micro text-telemetry-micro text-text-muted px-1.5 py-0.5 rounded bg-surface-container-high/40 dir-ltr">07</span></a></nav></div><div class="p-space-md border-t border-border-structural/60"><div class="p-space-md rounded-xl bg-surface-container border border-border-structural flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-text-muted">خادم التداول المالي</span><span class="font-telemetry-micro text-telemetry-micro text-bullish-up dir-ltr">99.98% OK</span></div><div class="w-full bg-surface-container-highest h-1 rounded overflow-hidden"><div class="bg-bullish-up h-full w-[99.98%]"></div></div><div class="flex items-center justify-between text-text-muted font-telemetry-micro text-telemetry-micro"><span class="dir-ltr">Ping: 12ms</span><span class="dir-ltr">LDN-EQ4</span></div></div></div></aside><div class="pr-72"><header class="fixed top-0 right-72 left-0 h-20 bg-canvas-deep/85 backdrop-blur-xl border-b border-border-structural z-40 flex flex-col"><div class="h-7 bg-canvas-deep border-b border-border-structural/60 px-space-md flex items-center justify-between text-telemetry-micro font-telemetry-micro overflow-x-auto select-none"><div class="flex items-center gap-space-md shrink-0"><span class="text-text-muted uppercase tracking-wider text-[10px]">TICKER STREAM:</span><div class="flex items-center gap-space-xs"><span class="text-text-primary font-bold">EUR/USD</span><span class="text-text-secondary dir-ltr">1.08452</span><span class="text-bullish-up dir-ltr">+0.24%</span></div><span class="text-border-structural">|</span><div class="flex items-center gap-space-xs"><span class="text-text-primary font-bold">GBP/USD</span><span class="text-text-secondary dir-ltr">1.26710</span><span class="text-bearish-down dir-ltr">-0.12%</span></div><span class="text-border-structural">|</span><div class="flex items-center gap-space-xs"><span class="text-text-primary font-bold">XAU/USD</span><span class="text-text-secondary dir-ltr">2,342.15</span><span class="text-bullish-up dir-ltr">+0.85%</span></div><span class="text-border-structural">|</span><div class="flex items-center gap-space-xs"><span class="text-text-primary font-bold">USD/JPY</span><span class="text-text-secondary dir-ltr">155.430</span><span class="text-bearish-down dir-ltr">-0.08%</span></div></div><div class="hidden xl:flex items-center gap-space-xs text-text-muted dir-ltr"><span class="w-1.5 h-1.5 rounded-full bg-bullish-up"></span><span>ECN BRIDGE: ACTIVE</span></div></div><div class="h-[52px] px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1.5 bg-surface-container rounded-xl border border-border-structural text-text-muted hover:border-primary-container transition-all cursor-pointer"><span class="material-symbols-outlined text-[18px] text-primary">terminal</span><span class="font-label-sm text-label-sm text-text-secondary">لوحة الأوامر السريعة</span><kbd class="font-telemetry-micro text-telemetry-micro px-1.5 py-0.5 rounded bg-surface-elevated border border-border-structural text-text-muted dir-ltr">⌘K</kbd></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-2xs px-space-sm py-1 rounded-xl bg-surface-container border border-border-structural text-text-secondary hover:text-on-surface hover:border-primary transition-all" type="button"><span class="material-symbols-outlined text-[18px]">translate</span><span class="font-label-sm text-label-sm font-bold">العربية</span></button><div class="relative"><button class="w-9 h-9 flex items-center justify-center rounded-xl bg-surface-container border border-border-structural text-text-secondary hover:text-on-surface hover:border-primary transition-all relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 left-1.5 w-2 h-2 rounded-full bg-accent-hover border border-canvas-deep"></span></button></div><div class="h-6 w-px bg-border-structural"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-text-primary font-bold">م. طارق الحكيم</span><span class="font-telemetry-micro text-telemetry-micro text-primary dir-ltr">Chief Architect</span></div><img alt="Profile" class="w-9 h-9 rounded-full object-cover border border-primary-container/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLHlFKZ4CWfn5O70HTfAr0HwlTaJmg22w-fuN799kdGl6eBrVUabfEf7CQXVf0vmkpXa66fgCxkHl07QLBbsFk650CfRkjmQm4neurqMabrHo7_ZYMzO5JY6G-TLK3De9epd7YF9b9gIBH447h70BF202ueMQP8cEFmCwl_TQypCTJtacYPVQk8fDD-lhimqYlY-6WAjMJfvKTwsnTAxcKy8FnaEwy1CUFhMm5Z64yX-tikZaqfpww"/></div></div></div></header><main class="relative pt-20 bg-canvas-deep min-h-screen w-full px-space-lg py-space-md"><div class="flex flex-col w-full space-y-space-xl text-on-surface">
+<!-- 1. Live Market Ticker Strip -->
+<div class="w-full bg-surface-container-low rounded-xl shadow-lg p-space-sm flex flex-col md:flex-row items-center justify-between gap-space-sm relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent-hover/5 pointer-events-none"></div>
+<div class="flex items-center gap-space-sm shrink-0 z-10">
+<div class="flex items-center gap-space-2xs px-space-xs py-1 rounded bg-surface-elevated">
+<span class="w-2 h-2 rounded-full bg-bullish-up animate-ping"></span>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up">LIVE FEED</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted">موجز الأسعار العالمي</span>
+</div>
+<!-- Ticker Items Carousel/Track -->
+<div class="flex items-center gap-space-lg overflow-x-auto w-full md:w-auto py-1 z-10 select-none">
+<!-- Gold -->
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded">
+<span class="font-label-md text-label-md text-text-primary font-bold">XAU/USD</span>
+<span class="font-telemetry-value text-telemetry-value text-on-surface dir-ltr">2,748.50</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1 rounded flex items-center gap-0.5 dir-ltr">
+          ▲ +1.42%
+        </span>
+</div>
+<!-- EURUSD -->
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded">
+<span class="font-label-md text-label-md text-text-primary font-bold">EUR/USD</span>
+<span class="font-telemetry-value text-telemetry-value text-on-surface dir-ltr">1.0842</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bearish-down bg-bearish-down/10 px-1 rounded flex items-center gap-0.5 dir-ltr">
+          ▼ -0.18%
+        </span>
+</div>
+<!-- GBPUSD -->
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded">
+<span class="font-label-md text-label-md text-text-primary font-bold">GBP/USD</span>
+<span class="font-telemetry-value text-telemetry-value text-on-surface dir-ltr">1.2985</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1 rounded flex items-center gap-0.5 dir-ltr">
+          ▲ +0.35%
+        </span>
+</div>
+<!-- BTCUSDT -->
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded">
+<span class="font-label-md text-label-md text-text-primary font-bold">BTC/USDT</span>
+<span class="font-telemetry-value text-telemetry-value text-on-surface dir-ltr">67,820.00</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1 rounded flex items-center gap-0.5 dir-ltr">
+          ▲ +3.20%
+        </span>
+</div>
+<!-- USOIL -->
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded">
+<span class="font-label-md text-label-md text-text-primary font-bold">USOIL</span>
+<span class="font-telemetry-value text-telemetry-value text-on-surface dir-ltr">71.45</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bearish-down bg-bearish-down/10 px-1 rounded flex items-center gap-0.5 dir-ltr">
+          ▼ -0.65%
+        </span>
+</div>
+</div>
+<button class="shrink-0 flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg bg-surface-elevated text-primary hover:bg-primary-gradient-start hover:text-on-primary transition-all duration-150 z-10 cursor-pointer group" type="button">
+<span class="material-symbols-outlined text-[16px] group-hover:rotate-180 transition-transform duration-500">sync</span>
+<span class="font-label-sm text-label-sm font-semibold">تحديث فوري</span>
+</button>
+</div>
+<!-- 2. Primary KPI Cockpit (4 Metric Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Card 1: Users -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between space-y-space-md group hover:-translate-y-1 transition-all duration-150">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-text-secondary">المتداولون النشطون</span>
+<div class="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-telemetry-stat text-telemetry-stat text-text-primary dir-ltr">14,850</span>
+<span class="font-body-sm text-body-sm text-text-muted">مستخدم</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs">
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1.5 py-0.5 rounded dir-ltr">+12.4%</span>
+<span class="font-label-sm text-label-sm text-text-muted">مقارنة بالشهر السابق</span>
+</div>
+</div>
+<div class="w-full bg-surface-elevated h-1 rounded overflow-hidden">
+<div class="bg-primary h-full w-[78%] transition-all duration-700"></div>
+</div>
+</div>
+<!-- Card 2: Active Subscriptions -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between space-y-space-md group hover:-translate-y-1 transition-all duration-150">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-text-secondary">الاشتراكات الفعالة</span>
+<div class="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center text-accent-hover group-hover:bg-tertiary-container group-hover:text-on-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-telemetry-stat text-telemetry-stat text-text-primary dir-ltr">3,420</span>
+<span class="font-body-sm text-body-sm text-text-muted">VIP &amp; برو</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs">
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1.5 py-0.5 rounded dir-ltr">+8.6%</span>
+<span class="font-label-sm text-label-sm text-text-muted">معدل الاحتفاظ 94%</span>
+</div>
+</div>
+<div class="w-full bg-surface-elevated h-1 rounded overflow-hidden">
+<div class="bg-accent-hover h-full w-[64%] transition-all duration-700"></div>
+</div>
+</div>
+<!-- Card 3: Live Signals -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between space-y-space-md group hover:-translate-y-1 transition-all duration-150">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-text-secondary">إشارات التداول النشطة</span>
+<div class="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center text-bullish-up group-hover:bg-bullish-up group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">radar</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-telemetry-stat text-telemetry-stat text-text-primary dir-ltr">18</span>
+<span class="font-body-sm text-body-sm text-text-muted">إشارة مباشرة</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs">
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1.5 py-0.5 rounded dir-ltr">78.5%</span>
+<span class="font-label-sm text-label-sm text-text-muted">نسبة الهدف المحقق</span>
+</div>
+</div>
+<div class="w-full bg-surface-elevated h-1 rounded overflow-hidden">
+<div class="bg-bullish-up h-full w-[78.5%] transition-all duration-700"></div>
+</div>
+</div>
+<!-- Card 4: Total Revenue -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between space-y-space-md group hover:-translate-y-1 transition-all duration-150">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-text-secondary">إجمالي الإيرادات والمبيعات</span>
+<div class="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-telemetry-stat text-telemetry-stat text-text-primary dir-ltr">$184,650</span>
+<span class="font-body-sm text-body-sm text-text-muted">صافي</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs">
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1.5 py-0.5 rounded dir-ltr">+18.2%</span>
+<span class="font-label-sm text-label-sm text-text-muted">عائد التدفق المستمر</span>
+</div>
+</div>
+<div class="w-full bg-surface-elevated h-1 rounded overflow-hidden">
+<div class="bg-primary-container h-full w-[88%] transition-all duration-700"></div>
+</div>
+</div>
+</div>
+<!-- 3. Growth Analytics Chart & Live Execution Radar Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Platform Growth Area Chart (8 Columns) -->
+<div class="lg:col-span-8 bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between space-y-space-lg">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-text-primary font-bold">مؤشرات نمو المنصة ومسار السيولة</span>
+<span class="font-telemetry-micro text-telemetry-micro text-primary bg-surface-elevated px-2 py-0.5 rounded">MOMENTUM</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted">مقارنة العائد التراكمي وتدفق المشتركين الجدد</p>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-elevated p-1 rounded-xl">
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm bg-primary text-on-primary font-bold transition-all shadow-sm" type="button">الإيرادات</button>
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm text-text-secondary hover:text-on-surface transition-all" type="button">الاشتراكات</button>
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm text-text-secondary hover:text-on-surface transition-all" type="button">المتداولون</button>
+</div>
+</div>
+<!-- Chart Metadata Header -->
+<div class="flex items-center justify-between text-telemetry-micro font-telemetry-micro text-text-muted border-b border-border-structural/20 pb-2">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary"></span>
+<span class="text-text-primary">إجمالي التدفق الحالي ($)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-accent-hover"></span>
+<span class="text-text-primary">معدل التحويل المتوقع</span>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded">
+<span class="text-bullish-up">●</span>
+<span>عينة القياس: 180 يوماً</span>
+</div>
+</div>
+<!-- Rich SVG Chart Container -->
+<div class="w-full h-72 relative flex items-end">
+<svg class="w-full h-full overflow-visible" fill="none" preserveaspectratio="none" viewbox="0 0 700 240">
+<defs>
+<lineargradient id="growthAreaGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#2a91ff" stop-opacity="0.38"></stop>
+<stop offset="60%" stop-color="#0458EC" stop-opacity="0.12"></stop>
+<stop offset="100%" stop-color="#0458EC" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient id="lineGrad" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" stop-color="#0458EC"></stop>
+<stop offset="70%" stop-color="#2a91ff"></stop>
+<stop offset="100%" stop-color="#FA5A04"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<line opacity="0.3" stroke="#12315C" stroke-dasharray="3 3" x1="0" x2="700" y1="40" y2="40"></line>
+<line opacity="0.3" stroke="#12315C" stroke-dasharray="3 3" x1="0" x2="700" y1="90" y2="90"></line>
+<line opacity="0.3" stroke="#12315C" stroke-dasharray="3 3" x1="0" x2="700" y1="140" y2="140"></line>
+<line opacity="0.3" stroke="#12315C" stroke-dasharray="3 3" x1="0" x2="700" y1="190" y2="190"></line>
+<!-- Secondary Projection Line -->
+<path d="M0,190 Q120,175 220,160 T420,110 T600,75 T700,45" fill="none" opacity="0.65" stroke="#FA5A04" stroke-dasharray="4 4" stroke-width="1.5"></path>
+<!-- Area Fill -->
+<path d="M0,200 C80,180 140,195 210,140 C280,85 360,135 440,80 C520,25 610,65 700,20 L700,230 L0,230 Z" fill="url(#growthAreaGrad)"></path>
+<!-- Primary Curve -->
+<path d="M0,200 C80,180 140,195 210,140 C280,85 360,135 440,80 C520,25 610,65 700,20" fill="none" stroke="url(#lineGrad)" stroke-linecap="round" stroke-width="3.5"></path>
+<!-- Interactive Active Point -->
+<circle cx="440" cy="80" fill="#FA5A04" r="5" stroke="#00030D" stroke-width="2"></circle>
+<circle class="animate-pulse" cx="440" cy="80" fill="#FA5A04" opacity="0.25" r="10"></circle>
+<circle cx="700" cy="20" fill="#2a91ff" r="4"></circle>
+</svg>
+<!-- Floating Data Annotation Tooltip -->
+<div class="absolute left-1/3 top-6 bg-surface-elevated px-space-sm py-1.5 rounded shadow-xl pointer-events-none transform -translate-x-1/2 flex flex-col">
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-hover"></span>
+<span class="font-telemetry-micro text-telemetry-micro text-text-primary dir-ltr font-bold">$142,800.00</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted">الأسبوع 18 (قمة التدفق)</span>
+</div>
+</div>
+<!-- Chart Timestamps -->
+<div class="flex items-center justify-between text-telemetry-micro font-telemetry-micro text-text-muted pt-2">
+<span>يناير 2025</span>
+<span>فبراير</span>
+<span>مارس</span>
+<span>أبريل</span>
+<span>مايو</span>
+<span>يونيو (الآن)</span>
+</div>
+</div>
+<!-- Live Activity & Audit Stream (4 Columns) -->
+<div class="lg:col-span-4 bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-bold">سجل العمليات المباشر</h2>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-2 py-0.5 rounded">AUTO-SYNC</span>
+</div>
+<div class="space-y-space-sm overflow-y-auto max-h-[310px] pr-1">
+<!-- Log Item 1 -->
+<div class="p-space-sm rounded-xl bg-surface-elevated/70 flex items-start justify-between gap-space-sm hover:bg-surface-elevated transition-colors">
+<div class="flex items-start gap-space-xs">
+<div class="w-7 h-7 rounded bg-bullish-up/10 text-bullish-up flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">price_check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-text-primary font-medium">تحقيق الهدف TP2 لصفقة XAU/USD</span>
+<span class="font-body-sm text-body-sm text-bullish-up font-telemetry-micro dir-ltr">+140 Pips (مكسب صافٍ)</span>
+</div>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted shrink-0 dir-ltr">منذ 2 د</span>
+</div>
+<!-- Log Item 2 -->
+<div class="p-space-sm rounded-xl bg-surface-elevated/70 flex items-start justify-between gap-space-sm hover:bg-surface-elevated transition-colors">
+<div class="flex items-start gap-space-xs">
+<div class="w-7 h-7 rounded bg-tertiary-container/20 text-accent-hover flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">stars</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-text-primary font-medium">اشتراك VIP سنوي جديد</span>
+<span class="font-body-sm text-body-sm text-text-secondary">خالد السبيعي (KSA)</span>
+</div>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted shrink-0 dir-ltr">منذ 7 د</span>
+</div>
+<!-- Log Item 3 -->
+<div class="p-space-sm rounded-xl bg-surface-elevated/70 flex items-start justify-between gap-space-sm hover:bg-surface-elevated transition-colors">
+<div class="flex items-start gap-space-xs">
+<div class="w-7 h-7 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-text-primary font-medium">تسوية فاتورة تلقائية</span>
+<span class="font-body-sm text-body-sm text-text-secondary font-telemetry-micro dir-ltr">INV-#FX-9428 ($249.00)</span>
+</div>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted shrink-0 dir-ltr">منذ 18 د</span>
+</div>
+<!-- Log Item 4 -->
+<div class="p-space-sm rounded-xl bg-surface-elevated/70 flex items-start justify-between gap-space-sm hover:bg-surface-elevated transition-colors">
+<div class="flex items-start gap-space-xs">
+<div class="w-7 h-7 rounded bg-surface-container-highest text-text-secondary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">person_add</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-text-primary font-medium">انضمام متداول جديد للمجتمع</span>
+<span class="font-body-sm text-body-sm text-text-secondary">أحمد م. (الإمارات)</span>
+</div>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted shrink-0 dir-ltr">منذ 25 د</span>
+</div>
+</div>
+<button class="w-full py-2 rounded-lg bg-surface-elevated text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-all font-label-sm text-label-sm text-center" type="button">
+        عرض كامل السجل الأمني والمالي
+      </button>
+</div>
+</div>
+<!-- 4. Live Market Signals Radar (3 Live Signal Cards) -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-bullish-up"></span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-bold">رادار إشارات التداول الفورية (Live Signal Matrix)</h2>
+</div>
+<span class="font-label-sm text-label-sm text-primary cursor-pointer hover:underline">عرض جميع الإشارات المفتوحة (18) ←</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Signal Card 1: XAUUSD -->
+<div class="bg-surface-container rounded-xl p-space-lg shadow-md flex flex-col justify-between space-y-space-md relative overflow-hidden group hover:-translate-y-1 transition-all duration-150">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/15 flex items-center justify-center font-bold text-accent-hover font-telemetry-micro">
+              XAU
+            </div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-text-primary font-bold">الذهب / دولار</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1.5 py-0.5 rounded">شراء BUY</span>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted dir-ltr">TF: 1H | Swing Setup</span>
+</div>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-2 py-0.5 rounded-full font-bold">حقق الهدف TP1</span>
+</div>
+<!-- Telemetry Data Grid -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-elevated p-space-sm rounded-xl font-telemetry-value text-telemetry-value">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">نقطة الدخول Entry</span>
+<span class="text-text-primary font-bold dir-ltr">2,741.20</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">وقف الخسارة SL</span>
+<span class="text-bearish-down font-bold dir-ltr">2,732.00</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">الهدف الأول TP1</span>
+<span class="text-bullish-up font-bold dir-ltr">2,748.50 ✓</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">الهدف المفتوح TP2</span>
+<span class="text-primary font-bold dir-ltr">2,758.00</span>
+</div>
+</div>
+<!-- Confidence Gauge -->
+<div class="space-y-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-text-secondary">نسبة الثقة الخوارزمية</span>
+<span class="text-bullish-up font-telemetry-micro dir-ltr">91.4%</span>
+</div>
+<div class="w-full bg-surface-elevated h-1.5 rounded-full overflow-hidden">
+<div class="bg-bullish-up h-full w-[91.4%]"></div>
+</div>
+</div>
+</div>
+<!-- Signal Card 2: EURUSD -->
+<div class="bg-surface-container rounded-xl p-space-lg shadow-md flex flex-col justify-between space-y-space-md relative overflow-hidden group hover:-translate-y-1 transition-all duration-150">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center font-bold text-primary font-telemetry-micro">
+              EUR
+            </div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-text-primary font-bold">اليورو / دولار</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bearish-down bg-bearish-down/10 px-1.5 py-0.5 rounded">بيع SELL</span>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted dir-ltr">TF: 15M | Scalp Setup</span>
+</div>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-primary bg-primary/10 px-2 py-0.5 rounded-full font-bold">نشط في النطاق</span>
+</div>
+<!-- Telemetry Data Grid -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-elevated p-space-sm rounded-xl font-telemetry-value text-telemetry-value">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">نقطة الدخول Entry</span>
+<span class="text-text-primary font-bold dir-ltr">1.0855</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">وقف الخسارة SL</span>
+<span class="text-bearish-down font-bold dir-ltr">1.0878</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">الهدف الأول TP1</span>
+<span class="text-bullish-up font-bold dir-ltr">1.0825</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">الهدف النهائي TP2</span>
+<span class="text-bullish-up font-bold dir-ltr">1.0790</span>
+</div>
+</div>
+<!-- Confidence Gauge -->
+<div class="space-y-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-text-secondary">نسبة الثقة الخوارزمية</span>
+<span class="text-primary font-telemetry-micro dir-ltr">83.0%</span>
+</div>
+<div class="w-full bg-surface-elevated h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[83%]"></div>
+</div>
+</div>
+</div>
+<!-- Signal Card 3: BTCUSDT -->
+<div class="bg-surface-container rounded-xl p-space-lg shadow-md flex flex-col justify-between space-y-space-md relative overflow-hidden group hover:-translate-y-1 transition-all duration-150">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-accent-hover/15 flex items-center justify-center font-bold text-accent-hover font-telemetry-micro">
+              BTC
+            </div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-text-primary font-bold">البيتكوين / تيزر</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up bg-bullish-up/10 px-1.5 py-0.5 rounded">شراء قوي BUY</span>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted dir-ltr">TF: 4H | Trend Breakout</span>
+</div>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-warning bg-warning/10 px-2 py-0.5 rounded-full font-bold">قيد الدخول Entry</span>
+</div>
+<!-- Telemetry Data Grid -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-elevated p-space-sm rounded-xl font-telemetry-value text-telemetry-value">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">نقطة الدخول Entry</span>
+<span class="text-text-primary font-bold dir-ltr">67,650</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">وقف الخسارة SL</span>
+<span class="text-bearish-down font-bold dir-ltr">66,200</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">الهدف الأول TP1</span>
+<span class="text-bullish-up font-bold dir-ltr">68,900</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">الهدف النهائي TP2</span>
+<span class="text-bullish-up font-bold dir-ltr">71,000</span>
+</div>
+</div>
+<!-- Confidence Gauge -->
+<div class="space-y-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-text-secondary">نسبة الثقة الخوارزمية</span>
+<span class="text-bullish-up font-telemetry-micro dir-ltr">88.9%</span>
+</div>
+<div class="w-full bg-surface-elevated h-1.5 rounded-full overflow-hidden">
+<div class="bg-bullish-up h-full w-[88.9%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Enrolled Courses Showcase & Live Platform Pulse -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Most Enrolled Courses (8 Columns) -->
+<div class="lg:col-span-8 bg-surface-container p-space-lg rounded-xl shadow-md space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-bold">الكورسات التدريبية الأكثر إقبالاً</h2>
+<p class="font-body-sm text-body-sm text-text-muted">المسارات التعليمية الفعالة لأكاديمية FXENGIN</p>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline" type="button">إدارة الكورسات (24) ←</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Course 1 -->
+<div class="bg-surface-elevated rounded-xl p-space-sm flex flex-col justify-between space-y-space-sm group hover:-translate-y-1 transition-all duration-150">
+<div class="relative w-full h-36 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High-tech candlestick charts and ICT algorithmic order blocks illuminated on multiple dark monitors in an institutional trading workstation with deep blue ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX8EZbw-sID6C4aqugJkI8QKeno26zYSqpzwM-azbuMPfOnOD4HUidSbFfpblaB8ejMQH2odOBNHQagMtRZ--ivd2bSsgZhOArI1xjCTz8ot2X71LzY6puy2-Cb4-MKrEJSayXMnHBUlTJyS0dqNUx4-VXdNqzSqpVRMv8AVpj831bDOU94yfNi19ljUBL6SkNC2-8dJGMm3yaZkllTVHSG7Tm2qgLX2t7Eiwv9fGrj6mZGFaGdTSX"/>
+<span class="absolute top-2 right-2 bg-canvas-deep/80 backdrop-blur-md px-2 py-0.5 rounded font-label-sm text-label-sm text-accent-hover font-bold">مستوى متقدم</span>
+<span class="absolute bottom-2 left-2 bg-canvas-deep/90 px-1.5 py-0.5 rounded font-telemetry-micro text-telemetry-micro text-bullish-up dir-ltr">★ 4.9 (820 تقييم)</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold">استراتيجيات صناع السوق (SMC / ICT)</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary text-[15px] leading-snug">الهندسة العكسية للسيولة البنكية وإدارة الصفقات الكبرى</h3>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-border-structural/20 font-telemetry-micro text-telemetry-micro text-text-muted">
+<span>المدرب: م. طارق الحكيم</span>
+<span class="text-text-primary dir-ltr">1,840 طالب</span>
+</div>
+</div>
+<!-- Course 2 -->
+<div class="bg-surface-elevated rounded-xl p-space-sm flex flex-col justify-between space-y-space-sm group hover:-translate-y-1 transition-all duration-150">
+<div class="relative w-full h-36 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Algorithmic code, financial math formulas, and automated forex risk calculator displayed on dark sleek cockpit UI screens with glowing cyan vectors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH49YiuSAF81UpONTqgYU_wti8Klonb8u-EZzBNVtEx9Ht-Ry4f2VVksv7wuaunlWsNfFNW_f_V2JnqvW4EUHJj2NvHCUE2yqbIsOok_ZsyxZ_jDe1ptHF34HJhANg2i7DiDxSiwOJ3a20Ds998a5QsxoSWQsOBaEgu-eKjQ9KU2EHBkrZmpRh2aia1rciaTRLzOtgdo1ouyC1d3PZp_ZTW7_HIQPQNGPQiC3yKjjinRPd3q-8Yi8Q"/>
+<span class="absolute top-2 right-2 bg-canvas-deep/80 backdrop-blur-md px-2 py-0.5 rounded font-label-sm text-label-sm text-primary font-bold">شامل واحترافي</span>
+<span class="absolute bottom-2 left-2 bg-canvas-deep/90 px-1.5 py-0.5 rounded font-telemetry-micro text-telemetry-micro text-bullish-up dir-ltr">★ 4.8 (640 تقييم)</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold">إدارة رأس المال الصارمة والسايكولوجي</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary text-[15px] leading-snug">بناء خطة تداول خوارزمية وحماية الحساب من الهبوط الحاد</h3>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-border-structural/20 font-telemetry-micro text-telemetry-micro text-text-muted">
+<span>المدرب: د. وسيم الصالح</span>
+<span class="text-text-primary dir-ltr">1,210 طالب</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Execution Status Widget (4 Columns) -->
+<div class="lg:col-span-4 bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between space-y-space-md">
+<div>
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-bold">حالة شبكة التنفيذ (Execution Latency)</h2>
+<span class="w-2 h-2 rounded-full bg-bullish-up animate-pulse"></span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted">مؤشرات اتصال خوادم الـ Fix Protocol</p>
+</div>
+<div class="space-y-space-sm bg-surface-elevated p-space-md rounded-xl">
+<div class="flex items-center justify-between text-body-sm text-body-sm">
+<span class="text-text-secondary">خادم لندن (LD4 Bridge)</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up dir-ltr">8ms (ممتاز)</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded overflow-hidden">
+<div class="bg-bullish-up h-full w-[95%]"></div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-body-sm pt-2">
+<span class="text-text-secondary">خادم نيويورك (NY4 Equinix)</span>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up dir-ltr">16ms (مستقر)</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded overflow-hidden">
+<div class="bg-bullish-up h-full w-[88%]"></div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-body-sm pt-2">
+<span class="text-text-secondary">معدل الانزلاق السعري (Slippage)</span>
+<span class="font-telemetry-micro text-telemetry-micro text-primary dir-ltr">0.02 Pips Avg</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded overflow-hidden">
+<div class="bg-primary h-full w-[98%]"></div>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-bullish-up text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm text-text-primary">نسخ الصفقات الآلي نشط</span>
+</div>
+<span class="font-telemetry-micro text-telemetry-micro text-bullish-up dir-ltr">420 Copiers</span>
+</div>
+</div>
+</div>
+<!-- 6. Latest Trader Subscriptions / Billing Table -->
+<div class="bg-surface-container rounded-xl p-space-lg shadow-md space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-bold">أحدث عمليات الاشتراك والفوترة (Trader Subscriptions Ledger)</h2>
+<p class="font-body-sm text-body-sm text-text-muted">متابعة الفواتير المحصلة وتجديد باقات المتداولين المباشرة</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-elevated text-text-secondary hover:text-text-primary flex items-center gap-1 text-label-sm font-label-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">filter_alt</span>
+<span>تصفية الفواتير</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-bold flex items-center gap-1 text-label-sm font-label-sm shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>تصدير تقرير CSV</span>
+</button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-surface-elevated text-text-muted text-telemetry-micro font-telemetry-micro uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-r-lg">كود الفاتورة</th>
+<th class="py-space-sm px-space-md">المتداول</th>
+<th class="py-space-sm px-space-md">الخطة البرمجية</th>
+<th class="py-space-sm px-space-md">القيمة</th>
+<th class="py-space-sm px-space-md">وسيلة الدفع</th>
+<th class="py-space-sm px-space-md">الحالة</th>
+<th class="py-space-sm px-space-md rounded-l-lg text-center">إجراءات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-structural/20 font-body-sm text-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-elevated/50 transition-colors">
+<td class="py-space-md px-space-md font-telemetry-micro text-telemetry-micro font-bold text-primary dir-ltr">#FX-9428</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center font-bold text-text-primary text-[11px]">س.ع</div>
+<div class="flex flex-col">
+<span class="text-text-primary font-medium">سعود العتيبي</span>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted">saud.o@gmail.com</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="bg-accent-hover/10 text-accent-hover px-2 py-0.5 rounded font-telemetry-micro text-telemetry-micro font-bold">VIP Signals &amp; Algo</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-value text-telemetry-value text-text-primary font-bold dir-ltr">$249.00</td>
+<td class="py-space-md px-space-md text-text-secondary">
+<div class="flex items-center gap-1 font-telemetry-micro">
+<span class="material-symbols-outlined text-[16px] text-primary">credit_card</span>
+<span>Stripe / Apple Pay</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="bg-bullish-up/10 text-bullish-up px-2 py-0.5 rounded font-telemetry-micro text-telemetry-micro flex items-center gap-1 w-max font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-bullish-up"></span>
+<span>مكتمل ومسدد</span>
+</span>
+</td>
+<td class="py-space-md px-space-md text-center">
+<button class="p-1 rounded hover:bg-surface-container-highest text-text-muted hover:text-primary transition-colors" title="تحميل الفاتورة PDF" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-elevated/50 transition-colors">
+<td class="py-space-md px-space-md font-telemetry-micro text-telemetry-micro font-bold text-primary dir-ltr">#FX-9427</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center font-bold text-text-primary text-[11px]">م.ح</div>
+<div class="flex flex-col">
+<span class="text-text-primary font-medium">مروان الحلواني</span>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted">marwan.fx@outlook.com</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded font-telemetry-micro text-telemetry-micro font-bold">Premium Course Pass</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-value text-telemetry-value text-text-primary font-bold dir-ltr">$180.00</td>
+<td class="py-space-md px-space-md text-text-secondary">
+<div class="flex items-center gap-1 font-telemetry-micro">
+<span class="material-symbols-outlined text-[16px] text-accent-hover">currency_bitcoin</span>
+<span>USDT (TRC20)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="bg-bullish-up/10 text-bullish-up px-2 py-0.5 rounded font-telemetry-micro text-telemetry-micro flex items-center gap-1 w-max font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-bullish-up"></span>
+<span>مكتمل ومسدد</span>
+</span>
+</td>
+<td class="py-space-md px-space-md text-center">
+<button class="p-1 rounded hover:bg-surface-container-highest text-text-muted hover:text-primary transition-colors" title="تحميل الفاتورة PDF" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-elevated/50 transition-colors">
+<td class="py-space-md px-space-md font-telemetry-micro text-telemetry-micro font-bold text-primary dir-ltr">#FX-9426</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center font-bold text-text-primary text-[11px]">ف.د</div>
+<div class="flex flex-col">
+<span class="text-text-primary font-medium">فهد الدوسري</span>
+<span class="font-telemetry-micro text-telemetry-micro text-text-muted">fahad.d@corp.com</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="bg-tertiary-container/10 text-tertiary px-2 py-0.5 rounded font-telemetry-micro text-telemetry-micro font-bold">Institutional Pro</span>
+</td>
+<td class="py-space-md px-space-md font-telemetry-value text-telemetry-value text-text-primary font-bold dir-ltr">$990.00</td>
+<td class="py-space-md px-space-md text-text-secondary">
+<div class="flex items-center gap-1 font-telemetry-micro">
+<span class="material-symbols-outlined text-[16px] text-text-muted">account_balance</span>
+<span>حوالة بنكية SWIFT</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="bg-warning/10 text-warning px-2 py-0.5 rounded font-telemetry-micro text-telemetry-micro flex items-center gap-1 w-max font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-warning animate-pulse"></span>
+<span>قيد التحقق من الحوالة</span>
+</span>
+</td>
+<td class="py-space-md px-space-md text-center">
+<button class="p-1 rounded hover:bg-surface-container-highest text-text-muted hover:text-primary transition-colors" title="تحميل الفاتورة PDF" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="flex flex-col sm:flex-row items-center justify-between pt-space-xs text-telemetry-micro font-telemetry-micro text-text-muted gap-space-sm">
+<span>عرض 3 من أصل 1,480 اشتراك مسجل</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-elevated text-text-secondary hover:text-text-primary" type="button">السابق</button>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-bold" type="button">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-elevated text-text-secondary hover:text-text-primary" type="button">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-elevated text-text-secondary hover:text-text-primary" type="button">3</button>
+<button class="px-2 py-1 rounded bg-surface-elevated text-text-secondary hover:text-text-primary" type="button">التالي</button>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

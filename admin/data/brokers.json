@@ -1,0 +1,559 @@
+[
+  {
+    "id": "xm",
+    "name": "XM Global",
+    "category": "forex",
+    "categoryLabelAr": "وسيط فوركس وعقود فروقات مرخص عالمياً",
+    "categoryLabelEn": "Multi-Regulated Global Forex & CFD Broker",
+    "badgeAr": "الأكثر موثوقية عالمياً • فئة أولى Tier-1",
+    "badgeEn": "Most Trusted Globally • Tier-1 Regulated",
+    "badgeColor": "#10B981",
+    "logo": "/assets/Images/brokers/xm.png",
+    "logoBg": "#000000",
+    "rating": 4.95,
+    "clientsCount": "10M+ المتداولين",
+    "clientsCountEn": "10M+ Traders Worldwide",
+    "accentColor": "#10B981",
+    "glowBorder": "rgba(16, 185, 129, 0.25)",
+    "descriptionAr": "الوسيط العالمي الرائد الحاصل على أرفع التراخيص الدولية (FCA، CySEC، ASIC). يوفر بيئة تداول فائقة الأمان مع عدم وجود إعادة تسعير وسبريد ضيق وتنفيذ صفقات بنسبة 99.35% في أقل من ثانية.",
+    "descriptionEn": "Industry-leading global broker with Tier-1 regulations (FCA, CySEC, ASIC). Zero re-quotes, tight spreads, and 99.35% of orders executed in under one second.",
+    "specs": [
+      {
+        "labelAr": "الحد الأدنى للإيداع",
+        "labelEn": "Min Deposit",
+        "valueAr": "$5 فقط",
+        "valueEn": "$5 Only"
+      },
+      {
+        "labelAr": "أقصى رافعة مالية",
+        "labelEn": "Max Leverage",
+        "valueAr": "تصل إلى 1:1000",
+        "valueEn": "Up to 1:1000"
+      },
+      {
+        "labelAr": "السبريد",
+        "labelEn": "Spread",
+        "valueAr": "من 0.6 نقطة (بدون عمولة)",
+        "valueEn": "From 0.6 pips (Zero Commission)"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Platforms",
+        "valueAr": "MT4, MT5, XM App, Web",
+        "valueEn": "MT4, MT5, XM App, Web"
+      },
+      {
+        "labelAr": "الحساب الإسلامي",
+        "labelEn": "Islamic Account",
+        "valueAr": "متوفر 100% (Swap-Free)",
+        "valueEn": "100% Swap-Free Available"
+      },
+      {
+        "labelAr": "التراخيص الرقابية",
+        "labelEn": "Licenses",
+        "valueAr": "FCA, CySEC, ASIC, FSC",
+        "valueEn": "FCA, CySEC, ASIC, FSC"
+      }
+    ],
+    "featuresAr": [
+      "بونص ترحيبي 100% مضاعف للإيداع حتى 500$",
+      "سحب وإيداع فوري بدون أي رسوم عبر البطاقات والمحافظ الرقمية",
+      "حسابات إسلامية خالية تماماً من الفوائد الربوية ورسوم التبييت",
+      "خادم VPS مجاني لأصحاب التداول الآلي والإكسبيرتات"
+    ],
+    "featuresEn": [
+      "100% Welcome Deposit Bonus up to $500",
+      "Instant zero-fee deposits & withdrawals via Cards & Digital Wallets",
+      "Fully certified swap-free Islamic accounts",
+      "Free VPS hosting for algorithmic and EA traders"
+    ],
+    "couponCode": "KTW63",
+    "fxenginPerksAr": "بونص ترحيبي 100% حتى $500 (كود الشريك: KTW63) + إشارات وتوصيات VIP مجانية فور الإيداع",
+    "fxenginPerksEn": "100% Welcome Deposit Bonus up to $500 (Partner Code: KTW63) + Free Lifetime VIP Signals Channel access",
+    "liveUrl": "https://clicks.pipaffiliates.com/c?c=655286&l=ar&p=0",
+    "demoUrl": "https://clicks.pipaffiliates.com/c?c=655286&l=ar&p=0",
+    "status": "ACTIVE",
+    "order": 1
+  },
+  {
+    "id": "ywo",
+    "name": "YWO Markets",
+    "category": "forex",
+    "categoryLabelAr": "وسيط ECN حديث بحسابات سبريد خام 0.0",
+    "categoryLabelEn": "Ultra-Low Raw ECN Spread Broker",
+    "badgeAr": "سبريد خام 0.0 • رافعة عالية وسرعة فائقة",
+    "badgeEn": "0.0 Raw Spreads • High Leverage Execution",
+    "badgeColor": "#00D06C",
+    "logo": "/assets/Images/brokers/ywo.png",
+    "logoBg": "#02DA77",
+    "rating": 4.88,
+    "clientsCount": "150K+ متداول نشط",
+    "clientsCountEn": "150K+ Active Traders",
+    "accentColor": "#00D06C",
+    "glowBorder": "rgba(0, 208, 108, 0.28)",
+    "descriptionAr": "وسيط تداول مبتكر يقدم أفضل شروط تنفيذ صفقات السكالبينج والتداول اليومي، مع سبريد خام يبدأ من 0.0 نقطة وسيولة بنكية مباشرة من كبرى المؤسسات المالية ومزودي السيولة العالميين.",
+    "descriptionEn": "Next-generation broker optimized for scalpers and day traders, offering raw spreads starting from 0.0 pips and direct institutional Tier-1 liquidity connectivity.",
+    "specs": [
+      {
+        "labelAr": "الحد الأدنى للإيداع",
+        "labelEn": "Min Deposit",
+        "valueAr": "$10 فقط",
+        "valueEn": "$10 Only"
+      },
+      {
+        "labelAr": "أقصى رافعة مالية",
+        "labelEn": "Max Leverage",
+        "valueAr": "تصل إلى 1:1000",
+        "valueEn": "Up to 1:1000"
+      },
+      {
+        "labelAr": "السبريد الخام",
+        "labelEn": "Raw Spread",
+        "valueAr": "يبدأ من 0.0 نقطة",
+        "valueEn": "Starts from 0.0 pips"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Platforms",
+        "valueAr": "MetaTrader 5 (MT5)",
+        "valueEn": "MetaTrader 5 (MT5)"
+      },
+      {
+        "labelAr": "سرعة التنفيذ",
+        "labelEn": "Execution Speed",
+        "valueAr": "أقل من 35 مللي ثانية",
+        "valueEn": "< 35 ms low latency"
+      },
+      {
+        "labelAr": "التراخيص الرقابية",
+        "labelEn": "Regulations",
+        "valueAr": "FSCA, FSC, MISA",
+        "valueEn": "FSCA, FSC, MISA"
+      }
+    ],
+    "featuresAr": [
+      "سبريد خام 0.0 نقطة مخصص لسكالبينج الذهب والمؤشرات والعملات",
+      "تنفيذ مباشر بدون غرفة مقاصة (STP/ECN No Dealing Desk)",
+      "إيداع وسحب فوري عبر USDT (TRC20/ERC20) والتحويلات البنكية",
+      "رافعة مالية مرنة تناسب جميع أحجام المحافظ الاستثمارية"
+    ],
+    "featuresEn": [
+      "0.0 Raw pip spreads tailored for Gold, Indices and Majors",
+      "Direct Non-Dealing Desk (STP/ECN) market execution",
+      "Instant USDT & local bank transfers deposits/withdrawals",
+      "Flexible leverage suited for both small and large accounts"
+    ],
+    "couponCode": "",
+    "fxenginPerksAr": "خصم خاص 25% على عمولة التداول مدى الحياة + إشارات قناص الذهب اللحظية",
+    "fxenginPerksEn": "25% Lifetime commission rebate + Intraday Gold Scalper VIP signals",
+    "liveUrl": "https://portal.ywo.com/links/go/5583",
+    "demoUrl": "https://portal.ywo.com/links/go/5583",
+    "status": "ACTIVE",
+    "order": 2
+  },
+  {
+    "id": "propxp",
+    "name": "PropXP",
+    "category": "prop",
+    "categoryLabelAr": "شركة تمويل المتداولين المحترفين (Prop Firm)",
+    "categoryLabelEn": "Leading Proprietary Funded Trader Firm",
+    "badgeAr": "تمويل حتى $200,000 • نسبة أرباح تصل 95%",
+    "badgeEn": "Funding up to $200K • Up to 95% Profit Split",
+    "badgeColor": "#00A3FF",
+    "logo": "/assets/Images/brokers/propxp.png",
+    "logoBg": "#0E1528",
+    "rating": 4.92,
+    "clientsCount": "تمويل أكثر من 50,000 حساب",
+    "clientsCountEn": "50,000+ Funded Accounts",
+    "accentColor": "#00A3FF",
+    "glowBorder": "rgba(0, 163, 255, 0.25)",
+    "descriptionAr": "الخيار الأول للمتداولين الموهوبين الساعين لإدارة رؤوس أموال ضخمة بدون المخاطرة بأموالهم الخاصة. توفر برامج تقييم مرنة (1-Step أو 2-Step) أو تمويل فوري (Instant Funding) مع سحب أرباح قياسي وسريع.",
+    "descriptionEn": "The premier destination for skilled traders to manage substantial capital without personal downside risk. Features 1-Step, 2-Step evaluations and Instant Funding with rapid payout processing.",
+    "specs": [
+      {
+        "labelAr": "أحجام التمويل",
+        "labelEn": "Account Sizes",
+        "valueAr": "من $5,000 حتى $200,000",
+        "valueEn": "$5,000 to $200,000"
+      },
+      {
+        "labelAr": "نسبة مشاركة الأرباح",
+        "labelEn": "Profit Split",
+        "valueAr": "من 80% حتى 95%",
+        "valueEn": "80% up to 95%"
+      },
+      {
+        "labelAr": "نماذج التمويل",
+        "labelEn": "Funding Models",
+        "valueAr": "خطوة واحدة، خطوتين، وتمويل فوري",
+        "valueEn": "1-Step, 2-Step & Instant"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Trading Platform",
+        "valueAr": "MetaTrader 5 (MT5)",
+        "valueEn": "MetaTrader 5 (MT5)"
+      },
+      {
+        "labelAr": "سرعة سحب الأرباح",
+        "labelEn": "Payout Speed",
+        "valueAr": "معالجة فورية خلال 24 ساعة عبر USDT",
+        "valueEn": "Within 24 Hours via USDT"
+      },
+      {
+        "labelAr": "أيام التداول",
+        "labelEn": "Trading Days",
+        "valueAr": "بدون حد أدنى في باقات مختارة",
+        "valueEn": "No minimum days on select models"
+      }
+    ],
+    "featuresAr": [
+      "تداول برأس مال يصل حتى 200,000 دولار واحتفظ بـ 95% من أرباحك",
+      "شروط تراجع عادلة وشفافة وثابتة (Static Equity Drawdown)",
+      "استرداد كامل لرسوم التحدي بنسبة 100% مع أول سحب للأرباح",
+      "مسموح التداول وقت الأخبار والاحتفاظ بالصفقات خلال عطلة نهاية الأسبوع"
+    ],
+    "featuresEn": [
+      "Trade up to $200,000 capital and retain up to 95% of generated profits",
+      "Transparent and static drawdown parameters",
+      "100% refund of evaluation fees with your first payout",
+      "News trading and weekend holding permitted"
+    ],
+    "couponCode": "ENG",
+    "fxenginPerksAr": "كود خصم حصري على كافة الاختبارات (كوبون: ENG) + استرداد الرسوم 100%",
+    "fxenginPerksEn": "Exclusive discount coupon (Code: ENG) + 100% Fee Refund",
+    "liveUrl": "https://app.propxp.com/register?referral_id=85fdc2fcf727",
+    "demoUrl": "https://app.propxp.com/register?referral_id=85fdc2fcf727",
+    "status": "ACTIVE",
+    "order": 3
+  },
+  {
+    "id": "multibank",
+    "name": "MultiBank Group",
+    "category": "forex",
+    "categoryLabelAr": "مجموعة مالية رائدة عالمياً حاصلة على أكثر من 14 ترخيصاً",
+    "categoryLabelEn": "Multi-Regulated Global Financial Derivatives Group",
+    "badgeAr": "تأسست 2005 • أكثر من 14 ترخيصاً دولياً",
+    "badgeEn": "EST. 2005 • 14+ Global Tier-1 Regulations",
+    "badgeColor": "#D4AF37",
+    "logo": "/assets/Images/brokers/multibank.png",
+    "logoBg": "#FFFFFF",
+    "rating": 4.93,
+    "clientsCount": "1M+ متداول حول العالم",
+    "clientsCountEn": "1M+ Clients Worldwide",
+    "accentColor": "#C5A059",
+    "glowBorder": "rgba(197, 160, 89, 0.28)",
+    "descriptionAr": "مجموعة MultiBank Group إحدى أضخم وأعرق المؤسسات المالية للمشتقات في العالم منذ عام 2005، برأس مال مدفوع يتجاوز 322 مليون دولار وأكثر من 14 ترخيصاً دولياً (ASIC، BaFin، SCA، CIMA). سبريد خام يبدأ من 0.0 نقطة وأمان مصرفي كامل لأموال العملاء.",
+    "descriptionEn": "Established in 2005, MultiBank Group is one of the largest global financial institutions with over $322M paid-up capital and 14+ tier-1 regulators (ASIC, BaFin, SCA). Ultra-low raw spreads from 0.0 pips with institutional segregated security.",
+    "specs": [
+      {
+        "labelAr": "الحد الأدنى للإيداع",
+        "labelEn": "Min Deposit",
+        "valueAr": "$50 فقط",
+        "valueEn": "$50 Only"
+      },
+      {
+        "labelAr": "أقصى رافعة مالية",
+        "labelEn": "Max Leverage",
+        "valueAr": "تصل إلى 1:500",
+        "valueEn": "Up to 1:500"
+      },
+      {
+        "labelAr": "السبريد",
+        "labelEn": "Spread",
+        "valueAr": "يبدأ من 0.0 نقطة على ECN",
+        "valueEn": "From 0.0 pips on ECN"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Platforms",
+        "valueAr": "MT4, MT5, MultiBank-Plus",
+        "valueEn": "MT4, MT5, MultiBank-Plus"
+      },
+      {
+        "labelAr": "الحساب الإسلامي",
+        "labelEn": "Islamic Account",
+        "valueAr": "خالٍ تماماً من الفوائد الربوية",
+        "valueEn": "100% Certified Swap-Free"
+      },
+      {
+        "labelAr": "التراخيص الرقابية",
+        "labelEn": "Regulations",
+        "valueAr": "ASIC, BaFin, FMA, SCA, CIMA",
+        "valueEn": "ASIC, BaFin, FMA, SCA, CIMA"
+      }
+    ],
+    "featuresAr": [
+      "أكثر من 14 هيئة رقابية معتمدة تضمن أقصى معايير الأمان المالي",
+      "بونص إيداع ترحيبي 20% مضاعف لقوة التداول الشرائية",
+      "حسابات إسلامية خالية تماماً من رسوم التبييت والسواب",
+      "تنفيذ فوري للأوامر بنسبة 100% بدون إعادة تسعير أو غرفة مقاصة"
+    ],
+    "featuresEn": [
+      "Regulated by 14+ prestigious international financial authorities",
+      "20% Deposit Bonus to boost your trading leverage",
+      "Certified 100% swap-free Islamic trading accounts",
+      "100% instant market execution with zero slippage or requotes"
+    ],
+    "couponCode": "7711309",
+    "fxenginPerksAr": "بونص إيداع 20% إضافي (رقم الشريك: 7711309) + تأمين كامل للمحفظة + وصول فوري مجاني لقناة إشارات الـ VIP",
+    "fxenginPerksEn": "20% Deposit Bonus (Partner IB: 7711309) + Capital Protection + Free Lifetime VIP Signals access",
+    "liveUrl": "https://multibankfx.com/account/live-account?ibNum=7711309",
+    "demoUrl": "https://multibankfx.com/account/live-account?ibNum=7711309",
+    "status": "ACTIVE",
+    "order": 4
+  },
+  {
+    "id": "hfm",
+    "name": "HFM (HF Markets)",
+    "category": "forex",
+    "categoryLabelAr": "وسيط عالمي رائد حائز على أكثر من 60 جائزة دولية",
+    "categoryLabelEn": "Multi-Award Winning Global Broker (FCA, CySEC, DFSA)",
+    "badgeAr": "بدون حد أدنى للإيداع • رافعة تصل 1:2000",
+    "badgeEn": "Zero Min Deposit • Leverage up to 1:2000",
+    "badgeColor": "#10B981",
+    "logo": "/assets/Images/brokers/hfm.png",
+    "logoBg": "#000000",
+    "rating": 4.9,
+    "clientsCount": "3.5M+ حساب نشط",
+    "clientsCountEn": "3.5M+ Active Accounts",
+    "accentColor": "#10B981",
+    "glowBorder": "rgba(16, 185, 129, 0.25)",
+    "descriptionAr": "وسيط مالي عالمي مرموق منذ 2010 مع أكثر من 3.5 مليون متداول حول العالم وتراخيص كبرى من بريطانيا (FCA)، قبرص (CySEC)، ودبي (DFSA). يوفر حسابات Zero Spread بسبريد منعدم وبدون حد أدنى للإيداع وسرعة سحب فورية.",
+    "descriptionEn": "Trusted by over 3.5 million traders worldwide since 2010. Multi-regulated by FCA (UK), CySEC, and DFSA. Features Zero Spread accounts with zero minimum deposit and rapid automated withdrawals.",
+    "specs": [
+      {
+        "labelAr": "الحد الأدنى للإيداع",
+        "labelEn": "Min Deposit",
+        "valueAr": "$0 (بدون حد أدنى)",
+        "valueEn": "$0 (Zero Minimum)"
+      },
+      {
+        "labelAr": "أقصى رافعة مالية",
+        "labelEn": "Max Leverage",
+        "valueAr": "تصل إلى 1:2000",
+        "valueEn": "Up to 1:2000"
+      },
+      {
+        "labelAr": "السبريد",
+        "labelEn": "Spread",
+        "valueAr": "Zero Spread يبدأ من 0.0 نقطة",
+        "valueEn": "Zero Spread from 0.0 pips"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Platforms",
+        "valueAr": "MT4, MT5, HFM App, Web",
+        "valueEn": "MT4, MT5, HFM App, Web"
+      },
+      {
+        "labelAr": "الحساب الإسلامي",
+        "labelEn": "Islamic Account",
+        "valueAr": "متوفر بدون فوائد تبييت",
+        "valueEn": "Available (Swap-Free)"
+      },
+      {
+        "labelAr": "التراخيص الرقابية",
+        "labelEn": "Regulations",
+        "valueAr": "FCA, CySEC, FSCA, DFSA, CMA",
+        "valueEn": "FCA, CySEC, FSCA, DFSA, CMA"
+      }
+    ],
+    "featuresAr": [
+      "بدون حد أدنى للإيداع - ابدأ التداول بأي مبلغ يناسب خطتك",
+      "رافعة مالية مرنة وقوية تصل حتى 1:2000 لتعظيم العوائد",
+      "تأمين أموال العملاء بحماية إضافية ضد الرصيد السلبي",
+      "تطبيق تداول مخصص ومتطور حائز على جوائز الابتكار التقني"
+    ],
+    "featuresEn": [
+      "Zero minimum deposit - trade on your own terms with any budget",
+      "Flexible leverage up to 1:2000 for maximized trading power",
+      "Civil liability insurance and negative balance protection",
+      "Award-winning native mobile trading app with built-in tools"
+    ],
+    "couponCode": "",
+    "fxenginPerksAr": "استرداد كاش باك حتى 2$ لكل لوت + بونص تداول 20% ووصول كامل لجميع كورسات الأكاديمية",
+    "fxenginPerksEn": "Up to $2/lot cashback rebate + 20% Top-Up bonus and full FXENGIN Academy access",
+    "liveUrl": "https://www.hfm.com",
+    "demoUrl": "https://www.hfm.com",
+    "status": "ACTIVE",
+    "order": 5
+  },
+  {
+    "id": "doo-prime",
+    "brokerSlug": "doo-prime",
+    "name": "Doo Prime",
+    "category": "forex",
+    "categoryLabelAr": "وسيط فوركس وعقود فروقات مرخص عالمياً",
+    "categoryLabelEn": "Multi-Regulated Global Forex & CFD Broker",
+    "badgeAr": "الأكثر موثوقية عالمياً • فئة أولى Tier-1",
+    "badgeEn": "Most Trusted Globally • Tier-1 Regulated",
+    "badgeColor": "#10B981",
+    "logo": "/assets/Images/brokers/dooprime.svg",
+    "logoUrl": "/assets/Images/brokers/dooprime.svg",
+    "logoBg": "#FFFFFF",
+    "rating": 4.95,
+    "clientsCount": "تنوع ضخم +10,000 أداة • دعم TradingView وبونص 100%",
+    "clientsCountEn": "10,000+ Instruments • TradingView & 100% Bonus",
+    "tradersCount": "تنوع ضخم +10,000 أداة • دعم TradingView وبونص 100%",
+    "tradersCountEn": "10,000+ Instruments • TradingView & 100% Bonus",
+    "accentColor": "#10B981",
+    "glowBorder": "rgba(16, 185, 129, 0.25)",
+    "descAr": "وسيط مالي دولي رائد منذ 2014 مع أكثر من 130,000 عميل وتراخيص كبرى من بريطانيا (FCA)، أستراليا (ASIC)، وسيشيل (FSA). يوفر سبريد فائق الانخفاض يبدأ من 0.0 نقطة ورافعة مالية تصل إلى 1:1000 مع ربط مباشر بمنصة TradingView.",
+    "descEn": "Leading international broker established in 2014, multi-regulated by FCA, ASIC, and FSA. Features raw spreads from 0.0 pips, up to 1:1000 leverage, and direct TradingView platform integration.",
+    "descriptionAr": "وسيط مالي دولي رائد منذ 2014 مع أكثر من 130,000 عميل وتراخيص كبرى من بريطانيا (FCA)، أستراليا (ASIC)، وسيشيل (FSA). يوفر سبريد فائق الانخفاض يبدأ من 0.0 نقطة ورافعة مالية تصل إلى 1:1000 مع ربط مباشر بمنصة TradingView.",
+    "descriptionEn": "Leading international broker established in 2014, multi-regulated by FCA, ASIC, and FSA. Features raw spreads from 0.0 pips, up to 1:1000 leverage, and direct TradingView platform integration.",
+    "specs": [
+      {
+        "labelAr": "الحد الأدنى للإيداع",
+        "labelEn": "Min Deposit",
+        "valueAr": "0 فقط",
+        "valueEn": "0 Only",
+        "val": "0"
+      },
+      {
+        "labelAr": "أقصى رافعة مالية",
+        "labelEn": "Max Leverage",
+        "valueAr": "تصل إلى 1:1000",
+        "valueEn": "Up to 1:1000",
+        "val": "1:1000"
+      },
+      {
+        "labelAr": "السبريد",
+        "labelEn": "Spread",
+        "valueAr": "يبدأ من 0.0 نقطة",
+        "valueEn": "From 0.0 pips",
+        "val": "0.0 Pip"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Platforms",
+        "valueAr": "MT4, MT5, TradingView, Web",
+        "valueEn": "MT4, MT5, TradingView, Web",
+        "val": "MT4 / MT5 / TV"
+      },
+      {
+        "labelAr": "الحساب الإسلامي",
+        "labelEn": "Islamic Account",
+        "valueAr": "متوفر 100% (Swap-Free)",
+        "valueEn": "100% Swap-Free Available",
+        "val": "Swap-Free"
+      },
+      {
+        "labelAr": "التراخيص الرقابية",
+        "labelEn": "Regulations",
+        "valueAr": "FCA, ASIC, FSA, FSC",
+        "valueEn": "FCA, ASIC, FSA, FSC",
+        "val": "FCA, ASIC"
+      }
+    ],
+    "featuresAr": [
+      "سبريد خام يبدأ من 0.0 نقطة لسكالبينج الذهب والعملات",
+      "دعم وربط كامل ومباشر مع حسابات TradingView الرسمية",
+      "رافعة مالية مرنة وقوية تصل حتى 1:1000",
+      "سحب وإيداع فوري وآلي بدون أي رسوم لمتداولي المنظومة"
+    ],
+    "featuresEn": [
+      "Ultra-low raw spreads starting from 0.0 pips for Gold & FX",
+      "Full direct integration with official TradingView charts & accounts",
+      "Flexible leverage up to 1:1000 for maximized market positioning",
+      "Instant automated deposits and withdrawals with 0% extra fees"
+    ],
+    "couponCode": "DOO-FXENG",
+    "fxenginPerksAr": "بونص إيداع إضافي + إشارات وتوصيات VIP مجانية فور الإيداع (كود: DOO-FXENG)",
+    "fxenginPerksEn": "Exclusive Deposit Bonus + Instant VIP Signals access (Code: DOO-FXENG)",
+    "perkAr": "بونص إيداع إضافي + إشارات وتوصيات VIP مجانية فور الإيداع (كود: DOO-FXENG)",
+    "perkEn": "Exclusive Deposit Bonus + Instant VIP Signals access (Code: DOO-FXENG)",
+    "liveUrl": "https://user.dooprime.com/register",
+    "demoUrl": "https://user.dooprime.com/register",
+    "status": "ACTIVE",
+    "order": 6
+  },
+  {
+    "id": "ingot",
+    "name": "INGOT",
+    "category": "forex",
+    "categoryLabelAr": "وسيط فوركس وعقود فروقات مرخص عالمياً",
+    "categoryLabelEn": "Multi-Regulated Global Forex & CFD Broker",
+    "badgeAr": "الأكثر موثوقية عالمياً • فئة أولى Tier-1",
+    "badgeEn": "Most Trusted Globally • Tier-1 Regulated",
+    "badgeColor": "#0488F8",
+    "logo": "/assets/Images/brokers/ingot.svg",
+    "logoUrl": "/assets/Images/brokers/ingot.svg",
+    "logoBg": "#FFFFFF",
+    "rating": 4.95,
+    "clientsCount": "100K+ متداول",
+    "clientsCountEn": "100K+ Traders",
+    "accentColor": "#0488F8",
+    "glowBorder": "rgba(4, 136, 248, 0.25)",
+    "descAr": "وسيط تداول عالمي رائد يقدم شروط تداول احترافية وتراخيص رقابية معتمدة من الفئة الأولى، مع رافعة مالية مرنة وسبريد فائق الانخفاض يبدأ من 0.0 نقطة.",
+    "descEn": "Leading global broker offering tier-1 regulated trading conditions, ultra-low raw spreads from 0.0 pips, and flexible leverage.",
+    "descriptionAr": "وسيط تداول عالمي رائد يقدم شروط تداول احترافية وتراخيص رقابية معتمدة من الفئة الأولى، مع رافعة مالية مرنة وسبريد فائق الانخفاض يبدأ من 0.0 نقطة.",
+    "descriptionEn": "Leading global broker offering tier-1 regulated trading conditions, ultra-low raw spreads from 0.0 pips, and flexible leverage.",
+    "specs": [
+      {
+        "labelAr": "الحد الأدنى للإيداع",
+        "labelEn": "Min Deposit",
+        "valueAr": "$10 فقط",
+        "valueEn": "$10 Only",
+        "val": "$10"
+      },
+      {
+        "labelAr": "أقصى رافعة مالية",
+        "labelEn": "Max Leverage",
+        "valueAr": "تصل إلى 1:1000",
+        "valueEn": "Up to 1:1000",
+        "val": "1:1000"
+      },
+      {
+        "labelAr": "السبريد",
+        "labelEn": "Spread",
+        "valueAr": "من 0.0 نقطة",
+        "valueEn": "From 0.0 pips",
+        "val": "0.0 Pip"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Platforms",
+        "valueAr": "MT4, MT5, Web",
+        "valueEn": "MT4, MT5, Web",
+        "val": "MT4 / MT5"
+      },
+      {
+        "labelAr": "الحساب الإسلامي",
+        "labelEn": "Islamic Account",
+        "valueAr": "متوفر 100% (Swap-Free)",
+        "valueEn": "100% Swap-Free Available",
+        "val": "Swap-Free"
+      },
+      {
+        "labelAr": "التراخيص الرقابية",
+        "labelEn": "Regulations",
+        "valueAr": "مرخص فئة أولى Tier-1",
+        "valueEn": "Tier-1 Regulated",
+        "val": "Regulated"
+      }
+    ],
+    "featuresAr": [
+      "بونص إيداع إضافي وسحب وإيداع فوري بدون رسوم",
+      "سبريد فائق الانخفاض يبدأ من 0.0 نقطة على أزواج العملات والذهب",
+      "حسابات إسلامية خالية تماماً من الفوائد الربوية ورسوم التبييت",
+      "رافعة مالية مرنة تصل حتى 1:1000 مع حماية من الرصيد السلبي"
+    ],
+    "featuresEn": [
+      "Deposit bonus with instant fee-free deposits & withdrawals",
+      "Ultra-low raw spreads starting from 0.0 pips on FX & Gold",
+      "100% certified swap-free Islamic accounts",
+      "Flexible leverage up to 1:1000 with negative balance protection"
+    ],
+    "couponCode": "",
+    "fxenginPerksAr": "بونص إيداع إضافي + إشارات وتوصيات VIP مجانية فور الإيداع",
+    "fxenginPerksEn": "Additional Deposit Bonus + Free Lifetime VIP Signals Channel access upon deposit",
+    "perkAr": "بونص إيداع إضافي + إشارات وتوصيات VIP مجانية فور الإيداع",
+    "perkEn": "Additional Deposit Bonus + Free Lifetime VIP Signals Channel access upon deposit",
+    "liveUrl": "https://www.ingotbrokers.com",
+    "demoUrl": "https://www.ingotbrokers.com",
+    "status": "ACTIVE",
+    "order": 7
+  }
+]

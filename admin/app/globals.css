@@ -1,0 +1,265 @@
+@import "tailwindcss";
+@import "react-toastify/dist/ReactToastify.css";
+
+@theme {
+  --color-bullish-up: #16C784;
+  --color-bearish-down: #F6465D;
+  --color-surface-elevated: #0A1B3D;
+  --color-primary-container: #2a91ff;
+  --color-text-secondary: #A7AFBF;
+  --color-text-primary: #F5F7FA;
+  --color-text-muted: #687287;
+  --color-surface-container: #121f3a;
+  --color-surface-container-high: #1d2945;
+  --color-surface-container-highest: #283451;
+  --color-surface-container-low: #0d1b36;
+  --color-surface-container-lowest: #010d28;
+  --color-canvas-deep: #00030D;
+  --color-primary: #a6c8ff;
+  --color-primary-fixed: #d5e3ff;
+  --color-primary-fixed-dim: #a6c8ff;
+  --color-primary-gradient-start: #0458EC;
+  --color-accent-hover: #FA5A04;
+  --color-accent-pressed: #E67300;
+  --color-border-structural: #12315C;
+  --color-warning: #FBBF24;
+  --color-on-surface: #d9e2ff;
+  --color-on-surface-variant: #c0c7d6;
+  --color-surface-variant: #283451;
+  --color-surface-tint: #a6c8ff;
+  --color-tertiary: #ffb780;
+  --color-tertiary-container: #dc7500;
+  --color-on-tertiary: #4e2600;
+  --color-on-tertiary-container: #442000;
+  --color-on-primary: #00315f;
+  --color-on-primary-container: #002a53;
+  --color-on-secondary: #273048;
+  --color-secondary-container: #3e4660;
+  --color-on-secondary-container: #acb4d3;
+  --color-secondary: #bec6e5;
+  --color-secondary-fixed: #dbe1ff;
+  --color-secondary-fixed-dim: #bec6e5;
+  --color-outline: #8a919f;
+  --color-outline-variant: #404753;
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-on-error: #690005;
+  --color-on-error-container: #ffdad6;
+
+  --spacing-space-2xs: 0.25rem;
+  --spacing-space-xs: 0.5rem;
+  --spacing-space-sm: 0.75rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-2xl: 2.5rem;
+  --spacing-space-3xl: 3rem;
+  --spacing-space-4xl: 4rem;
+  --spacing-space-5xl: 5rem;
+
+  --font-body-lg: "Noto Sans Arabic", sans-serif;
+  --font-body-md: "Noto Sans Arabic", sans-serif;
+  --font-body-sm: "Noto Sans Arabic", sans-serif;
+  --font-headline-lg: "Noto Sans Arabic", sans-serif;
+  --font-headline-md: "Noto Sans Arabic", sans-serif;
+  --font-headline-sm: "Noto Sans Arabic", sans-serif;
+  --font-headline-hero: "Noto Sans Arabic", sans-serif;
+  --font-label-lg: "Noto Sans Arabic", sans-serif;
+  --font-label-md: "Noto Sans Arabic", sans-serif;
+  --font-label-sm: "Noto Sans Arabic", sans-serif;
+  --font-telemetry-stat: "Inter", monospace;
+  --font-telemetry-value: "Inter", monospace;
+  --font-telemetry-micro: "Inter", monospace;
+}
+
+/* Material Symbols Outlined Icon Font */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+/* Typography Utility Helpers matching code.html */
+.font-headline-lg { font-family: var(--font-headline-lg); font-size: 36px; line-height: 44px; letter-spacing: -0.01em; font-weight: 700; }
+.font-headline-md { font-family: var(--font-headline-md); font-size: 24px; line-height: 32px; font-weight: 600; }
+.font-headline-sm { font-family: var(--font-headline-sm); font-size: 18px; line-height: 26px; font-weight: 600; }
+.font-body-lg { font-family: var(--font-body-lg); font-size: 16px; line-height: 26px; font-weight: 400; }
+.font-body-md { font-family: var(--font-body-md); font-size: 14px; line-height: 22px; font-weight: 400; }
+.font-body-sm { font-family: var(--font-body-sm); font-size: 13px; line-height: 19px; font-weight: 400; }
+.font-label-lg { font-family: var(--font-label-lg); font-size: 15px; line-height: 20px; font-weight: 600; }
+.font-label-md { font-family: var(--font-label-md); font-size: 13px; line-height: 16px; font-weight: 500; }
+.font-label-sm { font-family: var(--font-label-sm); font-size: 11px; line-height: 14px; letter-spacing: 0.04em; font-weight: 600; }
+.font-telemetry-stat { font-family: var(--font-telemetry-stat); font-size: 32px; line-height: 36px; letter-spacing: -0.02em; font-weight: 700; }
+.font-telemetry-value { font-family: var(--font-telemetry-value); font-size: 14px; line-height: 18px; font-weight: 500; }
+.font-telemetry-micro { font-family: var(--font-telemetry-micro); font-size: 12px; line-height: 14px; font-weight: 600; }
+
+.dir-ltr {
+  direction: ltr !important;
+  display: inline-block;
+}
+
+/* Base resets matching code.html */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: #010d28;
+  color: #d9e2ff;
+  font-family: 'Noto Sans Arabic', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== TICKER BAR (Infinite Seamless Loop) ===== */
+@keyframes ticker-infinite {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.ticker-marquee-wrapper {
+  display: flex;
+  width: max-content;
+  animation: ticker-infinite 35s linear infinite;
+  will-change: transform;
+}
+
+.ticker-marquee-wrapper:hover {
+  animation-play-state: paused;
+}
+
+/* ===== BROKER CORNER TOAST NOTIFICATION KEYFRAME ANIMATIONS ===== */
+@keyframes fxToastBounceInLeft {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-35px) scale(0.88);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-5px) translateX(4px) scale(1.02);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes fxToastBounceOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-6px) translateX(4px) scale(1.02);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(45px) translateX(-60px) scale(0.85);
+    filter: blur(10px);
+  }
+}
+
+@keyframes fxToastBounceInRight {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(35px) scale(0.88);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-5px) translateX(-4px) scale(1.02);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes fxToastBounceOutRight {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-6px) translateX(-4px) scale(1.02);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(45px) translateX(60px) scale(0.85);
+    filter: blur(10px);
+  }
+}
+
+@keyframes fxTestToastEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(0.9);
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes fxTestToastExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.02);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.85);
+    filter: blur(10px);
+  }
+}

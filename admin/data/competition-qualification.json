@@ -1,0 +1,123 @@
+{
+  "participants": [
+    {
+      "userId": "cmu2ovt1d0007wrab7i3z8ydj",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "ga138989@gmail.com",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmu2ovt1d0007wrab7i3z8ydj",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmu2ovt1d0007wrab7i3z8ydj",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmu2ovt1d0007wrab7i3z8ydj",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmu2ovt1d0007wrab7i3z8ydj",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-01T10:06:49.352Z",
+      "updatedAt": "2026-10-01T10:06:49.352Z"
+    },
+    {
+      "userId": "cmu918uej0002wrp8unlb7gia",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "trader_new_test@fxengin.com",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmu918uej0002wrp8unlb7gia",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmu918uej0002wrp8unlb7gia",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmu918uej0002wrp8unlb7gia",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmu918uej0002wrp8unlb7gia",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-01T11:29:55.863Z",
+      "updatedAt": "2026-10-01T11:29:55.863Z"
+    }
+  ],
+  "clicks": []
+}
