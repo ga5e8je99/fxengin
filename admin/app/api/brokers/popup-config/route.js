@@ -79,7 +79,7 @@ const DEFAULT_CONFIG = {
       demoBtnTextEn: 'Demo',
       demoUrl: 'https://www.hfm.com',
       accentColor: '#10B981',
-      customLogo: '/assets/Images/brokers/hfm.png',
+      customLogo: '/assets/Images/brokers/hfm.webp',
       durationSeconds: 12,
     },
     {
@@ -103,7 +103,7 @@ const DEFAULT_CONFIG = {
       demoBtnTextEn: 'Demo',
       demoUrl: 'https://clicks.pipaffiliates.com/c?c=655286&l=ar&p=0',
       accentColor: '#10B981',
-      customLogo: '/assets/Images/brokers/xm.png',
+      customLogo: '/assets/Images/brokers/xm.webp',
       durationSeconds: 12,
     },
     {
@@ -127,7 +127,7 @@ const DEFAULT_CONFIG = {
       demoBtnTextEn: 'Demo',
       demoUrl: 'https://user.ywomarkets.com/register?referral=6058',
       accentColor: '#00D06C',
-      customLogo: '/assets/Images/brokers/ywo.png',
+      customLogo: '/assets/Images/brokers/ywo.webp',
       durationSeconds: 12,
     },
     {
@@ -151,7 +151,7 @@ const DEFAULT_CONFIG = {
       demoBtnTextEn: 'Demo',
       demoUrl: 'https://multibankfx.com/account/demo-account?ib=fxengin',
       accentColor: '#0EA5E9',
-      customLogo: '/assets/Images/brokers/multibank.png',
+      customLogo: '/assets/Images/brokers/multibank.webp',
       durationSeconds: 12,
     },
     {
@@ -175,7 +175,7 @@ const DEFAULT_CONFIG = {
       demoBtnTextEn: 'Demo',
       demoUrl: 'https://propxp.com?aff=fxengin',
       accentColor: '#F59E0B',
-      customLogo: '/assets/Images/brokers/propxp.png',
+      customLogo: '/assets/Images/brokers/propxp.webp',
       durationSeconds: 12,
     },
   ],

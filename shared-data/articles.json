@@ -1,0 +1,572 @@
+[
+  {
+    "id": 1,
+    "slug": "gold-index-daily-timeframe-wave-analysis",
+    "category": "التحليل الفني",
+    "categoryAr": "التحليل الفني",
+    "categoryEn": "Technical Analysis",
+    "categoryKey": "technical",
+    "titleAr": "مؤشر الذهب - فريم يوم : رؤية فنية لانتهاء الموجة التصحيحية ومناطق الشراء والسكالبينج",
+    "titleEn": "Gold Index (XAU/USD) - Daily Timeframe: Wave Exhaustion, Buy Zones & Scalping Setups",
+    "excerptAr": "رؤيتي للذهب أن التصحيح (الهبوط) قد شارف على نهايته واكتمال الموجة الثالثة في القناة التصحيحية، مع خطة التداول المعتمدة لمناطق الشراء بعد 4150، صفقات السكالبينج، والأهداف الصاعدة نحو 4500-5000.",
+    "excerptEn": "Technical wave outlook for Gold on daily timeframe: Wave 3 exhaustion inside the corrective channel, confirmed buy trigger above 4150, short scalping conditions, and long-term expansion toward 4500-5000.",
+    "authorName": "مهندس الفوركس",
+    "authorAr": "مهندس الفوركس",
+    "authorEn": "Forex Engineer",
+    "authorRole": "كبير محللي الأسواق ومؤسس FXENGIN",
+    "authorRoleAr": "كبير محللي الأسواق ومؤسس FXENGIN",
+    "authorRoleEn": "Chief Market Analyst & FXENGIN Founder",
+    "authorImg": "/assets/Images/Avatar/avatar1.webp",
+    "authorBioAr": "محلل فني وخبير أسواق معتمد، متخصص في موجات إليوت وهيكل السيولة البنكية وإدارة المخاطر في تداول الذهب والعملات والسلع.",
+    "authorBioEn": "Certified technical analyst & market strategist specializing in Elliott Wave theory, liquidity structure, and institutional gold setups.",
+    "dateAr": "04 أكتوبر 2026",
+    "dateEn": "Oct 04, 2026",
+    "readTimeMinutes": 5,
+    "readTimeAr": "5 دقائق قراءة",
+    "readTimeEn": "5 min read",
+    "isFeatured": true,
+    "featured": true,
+    "views": "18.5K",
+    "viewsCount": 18500,
+    "tags": [
+      "Gold",
+      "XAUUSD",
+      "الذهب",
+      "سكالبينج",
+      "تحليل_فني",
+      "ElliottWaves",
+      "DailyTimeframe"
+    ],
+    "accentColor": "#FB8704",
+    "coverImage": "/assets/Images/blog/gold-analysis-oct-2026.webp",
+    "chartImage": "/assets/Images/blog/gold-analysis-oct-2026.webp",
+    "symbol": "XAU/USD",
+    "tradingViewUrl": "https://www.tradingview.com/chart/?symbol=FX%3AXAUUSD",
+    "status": "PUBLISHED",
+    "noticeAr": "تنويه: أشارككم هنا رؤيتي الفنية الخاصة. أسواق المال تتطلب حذراً، لذا تداول بوعي، واستخدم إدارة مالية مناسبة، وقرارك الاستثماري يظل مسؤوليتك. نتمنى لكم أرباحاً دائمة!",
+    "noticeEn": "Notice: Here I share my personal technical outlook. Financial markets require caution, so trade mindfully, utilize sound risk management, and your investment decisions remain your own responsibility. Wishing you lasting profits!",
+    "disclaimerAr": "تنويه: أشارككم هنا رؤيتي الفنية الخاصة. أسواق المال تتطلب حذراً، لذا تداول بوعي، واستخدم إدارة مالية مناسبة، وقرارك الاستثماري يظل مسؤوليتك. نتمنى لكم أرباحاً دائمة!",
+    "disclaimerEn": "Notice: Here I share my personal technical outlook. Financial markets require caution, so trade mindfully, utilize sound risk management, and your investment decisions remain your own responsibility. Wishing you lasting profits!",
+    "keyTakeawaysAr": [
+      "التصحيح (الهبوط) للذهب قد شارف على نهايته، والموجة الثالثة في القناة التصحيحية قد انتهت.",
+      "الثبات فوق 4150 يجعلها منطقة شرائية ممتازة، ويجب انتظار تأكيد الثبات فوقها قبل الشراء.",
+      "تستطيع أن تبيع سكالبينج حتى لعنة 4020 ولكن بعد كسر منطقة 4100 فقط.",
+      "طالما يتذبذب الذهب فوق 4120 فالمتوقع استهداف 4150، والإقفال فوقها يحولها لدعم لاستهداف 4200، والثبات فوق 4200 يومياً يفتح المجال نحو 4500-5000.",
+      "الحرب تؤثر حالياً سلباً على الذهب وإيجاباً على النفط، وتطورات الأخبار تحرك المؤشرين بسرعة فائقة.",
+      "نصيحة مهندس الفوركس: اشتغل سكالبينج، التزم بإدارة رأس المال، وتابع الأخبار أولاً بأول."
+    ],
+    "keyTakeawaysEn": [
+      "The corrective decline on Gold is nearing completion as wave 3 inside the channel has ended.",
+      "Holding firmly above 4150 confirms a solid buy zone; wait for verified stabilization before buying.",
+      "Short scalping down to 4020 is only permissible after a confirmed breakdown of 4100.",
+      "Fluctuations above 4120 target 4150; a daily close above 4200 unlocks the path toward 4500-5000.",
+      "Geopolitical war events weigh on Gold while boosting Oil; news headlines move both assets rapidly.",
+      "Forex Engineer's advice: Stick to scalping, enforce sound risk management, and track breaking news."
+    ],
+    "sections": [
+      {
+        "id": "wave-structure",
+        "headingAr": "1. رؤية هيكل السوق: نهاية القناة التصحيحية والموجة الثالثة",
+        "headingEn": "1. Market Structure: End of Corrective Wave 3",
+        "bodyAr": "مؤشر الذهب - فريم يوم :\nرؤيتي للذهب أن التصحيح ( الهبوط ) قد شارف على نهايته، وأرى أن الموجة الثالثة في القناة التصحيحية قد انتهت.\n\nتوضح خريطة الشارت اليومي تراجع الأسعار عبر 3 موجات تصحيحية هابطة متتالية:\n- موجة تصحيح 1\n- موجة تصحيح 2\n- موجة تصحيح 3\n\nومع اكتمال استهداف قاع القناة التصحيحية وبداية الارتكاز الإيجابي، تتهيأ الأسواق لموجة ارتداد وانعكاس صاعدة جديدة.",
+        "bodyEn": "Gold Spot / US Dollar - Daily Timeframe (1D):\nMy technical view is that the corrective pullback (decline) is nearing its final exhaustion, and wave 3 within the descending corrective channel has ended.\n\nThe daily chart maps three clean corrective legs:\n- Corrective Wave 1\n- Corrective Wave 2\n- Corrective Wave 3\n\nWith price action reaching the channel base and showing structural stabilization, the setup prepares the stage for an explosive upward impulse.",
+        "tipAr": "ممنوع التشتت: لا تستبق السوق، بل راقب السلوك السعري عند القيعان المحورية وتأكيد انتهاء الموجة.",
+        "tipEn": "Avoid distractions: Never anticipate turns blindly; observe price action at key structural support.",
+        "image": "/assets/Images/blog/gold-analysis-oct-2026.webp",
+        "imageCaptionAr": "شارت الذهب اليومي 04 أكتوبر 2026: خريطة الموجات التصحيحية ومسار الصعود المتوقع للأهداف"
+      },
+      {
+        "id": "execution-levels",
+        "headingAr": "2. مستويات التداول وقواعد التنفيذ المعتمدة",
+        "headingEn": "2. Approved Execution Levels & Trade Rules",
+        "bodyAr": "وبالتالي : فإنني أرى خارطة التعامل مع المستويات السعرية على النحو التالي بدقة:\n\n1. الثبات فوق 4150:\nالثبات فوق 4150 ، يجعلها منطقة شرائية - لذلك يجب أن تنتظر الثبات فوقها ثم تشتري.\n\n2. بيع السكالبينج (بيع مشروط):\nتستطيع أن تبيع سكالبينج حتى لعنة 4020 ولكن بعد كسر منطقة 4100 فقط.\n\n3. سيناريو الصعود والأهداف الكبرى:\nطالما أن الذهب يتذبذب فوق 4120 فإنني أتوقع استهداف 4150، ولو أقفل فوقها يعني تحولت لدعم ويمكن استهداف 4200 بعدها.\nوعلى فريم اليوم، فإن الثبات فوق 4200 يفتح المجال للصعود نحو مناطق 4500-5000.",
+        "bodyEn": "Consequently, here are my precise rules for key price levels:\n\n1. Holding above 4150:\nStabilizing above 4150 turns it into an optimal buy zone - you must wait for confirmed stabilization above it, then enter long.\n\n2. Scalping Short (Strictly Conditional):\nYou can scalp short down to 4020, but strictly after breaking below the 4100 area only.\n\n3. Upside Targets & Expansion:\nAs long as Gold fluctuates above 4120, I expect targeting 4150. A close above 4150 flips it into dynamic support, unlocking 4200 next.\nOn the daily timeframe, holding above 4200 opens the highway for massive upside expansion toward 4500 - 5000.",
+        "tipAr": "تذكر دائماً: كسر 4100 هو الشرط الحصري لأي صفقة بيع سكالبينج، بينما الثبات فوق 4150 هو إشارة البدء للشراء.",
+        "tipEn": "4100 break is the sole prerequisite for short scalps, whereas staying above 4120 & 4150 supports bullish expansion."
+      },
+      {
+        "id": "geopolitics-oil",
+        "headingAr": "3. المشهد الجيوسياسي والعلاقة بين الذهب والنفط",
+        "headingEn": "3. Geopolitical Drivers & The Gold vs Oil Dynamic",
+        "bodyAr": "- الأمر مرتبط بالتوترات الجيوسياسية وظروف وتطورات الحرب.\n- حالياً أرى أن الحرب تؤثر سلباً على الذهب وإيجاباً على النفط.\n- أي خبر أو تطور جديد فإن المؤشرين يتحركان بسرعة فائقة وعنيفة.\n\nفي ظل الظروف الراهنة، تدفق الأخبار العسكرية والسياسية يخلق تقلبات لحظية حادة، مما يستدعي الانتباه الشديد لأجندة الأخبار العاجلة ومواعيد البيانات الاقتصادية والتصريحات المؤثرة.",
+        "bodyEn": "- Market dynamics are closely tied to geopolitical friction and active war developments.\n- Currently, the conflict pressures Gold downward while acting as a catalyst for Crude Oil.\n- Any breaking news or geopolitical headline drives rapid, aggressive volatility across both assets instantly.\n\nUnder active conflict conditions, newsflow velocity outpaces textbook technicals, requiring vigilant monitoring of breaking wires.",
+        "tipAr": "عند صدور أخبار الحرب العاجلة، خفف أحجام العقود واعتمد أوامر وقف الخسارة الصارمة لحماية رأس مالك.",
+        "tipEn": "During fast-breaking war headlines, reduce position sizes and keep tight stops."
+      },
+      {
+        "id": "expert-advice",
+        "headingAr": "4. نصيحة مهندس الفوركس",
+        "headingEn": "4. Forex Engineer's Recommendation",
+        "bodyAr": "- نصيحتي : اشتغل سكالبينج وتابع الأخبار أولاً بأول.\n- لا تتمسك بصفقات سوينج طويلة المدى في مناطق التذبذب غير المحسومة.\n- احرص على تأمين الأرباح عند كل هدف وحماية رأس المال دائماً.\n\nمع تمنياتي لكم بالتوفيق الدائم،\nمهندس الفوركس",
+        "bodyEn": "- My advice: Focus on scalping and follow breaking news continuously.\n- Avoid stubbornly holding swing positions during unresolved consolidation zones.\n- Lock in profits at predetermined targets and prioritize account safety.\n\nBest regards,\nForex Engineer",
+        "tipAr": "السكالبينج السريع والمتابعة اللحظية للأخبار هما أفضل أسلوب تداول في هذه المرحلة الحساسة.",
+        "tipEn": "Rapid scalping and real-time news monitoring provide the highest statistical edge right now."
+      },
+      {
+        "id": "chart-progression",
+        "headingAr": "5. التسلسل الزمني للشارتات ونماذج التحليل",
+        "headingEn": "5. Chronological Setup Archive",
+        "bodyAr": "تتبع مسار تحليل الذهب خلال الأسابيع الماضية يوضح كيف احترم السعر قنوات الهبوط ومستويات التصحيح خطوة بخطوة، وصولاً إلى مرحلة الارتداد الحالية.",
+        "bodyEn": "Reviewing the progressive technical evolution over past weeks highlights how market structure followed our projected waves with precision.",
+        "tipAr": "مقارنة الشارتات تكشف لك كيف تتشكل دورات الموجات التصحيحية قبل الانفجار الصاعد.",
+        "tipEn": "Studying past chart snapshots reveals how wave cycles accumulate prior to explosive expansions.",
+        "image": "/assets/Images/blog/gold-analysis-sep24.webp",
+        "imageCaptionAr": "شارت المتابعة الفنية السابقة (24 سبتمبر 2026) يوضح تطور الموجات التصحيحية"
+      }
+    ],
+    "links": [
+      {
+        "titleAr": "شارت الذهب الحي على TradingView (XAU/USD)",
+        "titleEn": "Live TradingView Chart for XAU/USD",
+        "url": "https://www.tradingview.com/chart/?symbol=FX%3AXAUUSD",
+        "type": "chart"
+      },
+      {
+        "titleAr": "قناة تلجرام FXENGIN الرسمية للتحديثات اللحظية",
+        "titleEn": "Official FXENGIN Telegram Channel for Real-Time Updates",
+        "url": "https://t.me/fxengin",
+        "type": "telegram"
+      },
+      {
+        "titleAr": "جروب تحليلات الذهب الحصرية (Gold Analysis Group)",
+        "titleEn": "Exclusive Gold Analysis Group (XAU/USD)",
+        "url": "/analyses",
+        "type": "article"
+      }
+    ],
+    "faqs": [
+      {
+        "qAr": "متى أشتري الذهب بحسب تحليل مهندس الفوركس؟",
+        "qEn": "When is the optimal time to buy Gold according to Forex Engineer?",
+        "aAr": "يجب انتظار الثبات والتأكيد السعري فوق مستوى 4150، حيث تتحول المنطقة إلى دعم شرائي قوي يستهدف 4200 ثم 4500 إلى 5000.",
+        "aEn": "You should wait for confirmed price stabilization above 4150, flipping it into solid support targeting 4200 and subsequently 4500-5000."
+      },
+      {
+        "qAr": "ما هو شرط الدخول في صفقات بيع سكالبينج للذهب؟",
+        "qEn": "What is the condition for entering short scalping trades on Gold?",
+        "aAr": "تستطيع البيع سكالبينج حتى مستوى 4020 فقط بعد كسر منطقة 4100 صراحة. لا يُنصح بالبيع قبل حدوث هذا الكسر.",
+        "aEn": "You can scalp short toward 4020 only after a confirmed breakdown below 4100. Selling prior to that break is not recommended."
+      },
+      {
+        "qAr": "كيف تؤثر تطورات الحرب الراهنة على الذهب والنفط؟",
+        "qEn": "How do war headlines currently influence Gold and Oil?",
+        "aAr": "حالياً تؤثر تطورات الحرب سلباً على الذهب وإيجاباً على النفط، وتتسم حركة المؤشرين بالسرعة الشديدة مع أي خبر جديد.",
+        "aEn": "War headlines currently exert negative pressure on Gold and positive momentum on Oil, with violent speed upon each news release."
+      },
+      {
+        "qAr": "ما هي النصيحة الأساسية للمتداولين في هذه المرحلة؟",
+        "qEn": "What is the primary recommendation for traders at this juncture?",
+        "aAr": "التركيز على صفقات السكالبينج السريعة، متابعة الأخبار العاجلة أولاً بأول، وتطبيق إدارة مالية صارمة لحماية الحساب.",
+        "aEn": "Focus on agile scalping trades, follow breaking news wires in real time, and adhere to strict risk management."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "gold-4h-rebound-support-analysis",
+    "category": "التحليل الفني",
+    "categoryAr": "التحليل الفني",
+    "categoryEn": "Technical Analysis",
+    "categoryKey": "technical",
+    "titleAr": "الذهب - 4 ساعات : قراءة حركة التذبذب العنيفة وفرص الشراء والسكالبينج",
+    "titleEn": "Gold (XAU/USD) - 4H Timeframe: Volatility Structure, Key Support & Scalping Setups",
+    "excerptAr": "قراءة فنية على فريم 4 ساعات لمؤشر الذهب: تحليل حركة التذبذب العنيفة بعد اختبار دعم 4120-4100، والرفض الصاعد نحو 4230، ومحفزات الصعود نحو 4200-4220، مع استراتيجية البحث عن فرص الشراء وإدارة الصفقات بالسكالبينج والستوب لوس.",
+    "excerptEn": "Technical deep-dive on Gold 4-Hour timeframe: Assessing violent consolidation after testing 4100-4120 support, aggressive rejection to 4230, buying dips logic, and disciplined scalping risk controls.",
+    "authorName": "مهندس الفوركس",
+    "authorAr": "مهندس الفوركس",
+    "authorEn": "Forex Engineer",
+    "authorRole": "كبير محللي الأسواق ومؤسس FXENGIN",
+    "authorRoleAr": "كبير محللي الأسواق ومؤسس FXENGIN",
+    "authorRoleEn": "Chief Market Analyst & FXENGIN Founder",
+    "authorImg": "/assets/Images/Avatar/avatar1.webp",
+    "authorBioAr": "محلل فني وخبير أسواق معتمد، متخصص في موجات إليوت وهيكل السيولة البنكية وإدارة المخاطر في تداول الذهب والعملات والسلع.",
+    "authorBioEn": "Certified technical analyst & market strategist specializing in Elliott Wave theory, liquidity structure, and institutional gold setups.",
+    "dateAr": "04 أكتوبر 2026",
+    "dateEn": "Oct 04, 2026",
+    "readTimeMinutes": 4,
+    "readTimeAr": "4 دقائق قراءة",
+    "readTimeEn": "4 min read",
+    "isFeatured": false,
+    "featured": false,
+    "views": "15.8K",
+    "viewsCount": 15800,
+    "tags": [
+      "Gold",
+      "XAUUSD",
+      "الذهب",
+      "4H",
+      "سكالبينج",
+      "دعم_ومقاومة",
+      "FXENGIN"
+    ],
+    "accentColor": "#0488F8",
+    "coverImage": "/assets/Images/blog/gold-analysis-4h-oct-2026.webp",
+    "chartImage": "/assets/Images/blog/gold-analysis-4h-oct-2026.webp",
+    "symbol": "XAU/USD",
+    "tradingViewUrl": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD",
+    "status": "PUBLISHED",
+    "noticeAr": "تنويه: أشارككم هنا رؤيتي الفنية الخاصة. أسواق المال تتطلب حذراً، لذا تداول بوعي، واستخدم إدارة مالية مناسبة، وقرارك الاستثماري يظل مسؤوليتك. نتمنى لكم أرباحاً دائمة!",
+    "noticeEn": "Notice: Here I share my personal technical outlook. Financial markets require caution, so trade mindfully, utilize sound risk management, and your investment decisions remain your own responsibility. Wishing you lasting profits!",
+    "disclaimerAr": "تنويه: أشارككم هنا رؤيتي الفنية الخاصة. أسواق المال تتطلب حذراً، لذا تداول بوعي، واستخدم إدارة مالية مناسبة، وقرارك الاستثماري يظل مسؤوليتك. نتمنى لكم أرباحاً دائمة!",
+    "disclaimerEn": "Notice: Here I share my personal technical outlook. Financial markets require caution, so trade mindfully, utilize sound risk management, and your investment decisions remain your own responsibility. Wishing you lasting profits!",
+    "keyTakeawaysAr": [
+      "ارتكاز الذهب عند أقل قاع هبوط في اختبار منطقة 4120-4100 أظهر رفضاً صعودياً قوياً حتى 4220-4230 مما يؤكد قوة مستوى الدعم.",
+      "الثبات السعري فوق 4150 هو المحرك الفني الأساسي الذي يفتح المجال مباشرة لاستهداف 4200-4220.",
+      "استراتيجية التداول المفضلة: البحث عن فرص الشراء مع أي هبوط تصحيحي طالما الدعم صامد.",
+      "احتمالية الهبوط نحو 4020 قائمة ولكنها ستكون حركة مقلقة وبطيئة وحذرة أو خاطفة، لذا البيع مشروط بحذر شديد.",
+      "النصيحة الذهبية: التداول بأسلوب السكالبينج الصارم مع الالتزام التام بوقف الخسارة (Stop Loss).",
+      "الرؤية الشخصية: عودة الذهب للصعود مستهدفاً 4200-4220 مبدئياً."
+    ],
+    "keyTakeawaysEn": [
+      "Gold tested peak decline support at 4100-4120 followed by immediate rejection up to 4220-4230, confirming institutional demand.",
+      "Holding above 4150 acts as the primary catalyst targeting 4200-4220 next.",
+      "Trader stance: Actively seek buying opportunities on dips rather than chasing shorts.",
+      "A drop to 4020 remains possible but represents an alarming, tricky move; proceed with strict caution.",
+      "Core rule: Stick strictly to scalping with firm stop loss adherence.",
+      "Personal outlook: Gold is projected to resume upward expansion toward 4200-4220 initially."
+    ],
+    "sections": [
+      {
+        "id": "4h-volatility-support",
+        "headingAr": "1. قراءة التذبذب العنيفة واختبار دعم 4120-4100",
+        "headingEn": "1. Violent Consolidation & Rejection from 4100-4120",
+        "bodyAr": "الذهب - 4 ساعات :\nلاحظ يا صديقي حركة التذبذب العنيفة التي حصلت بعد ارتكاز المؤشر عند أقل هبوط حصل وهو اختبار منطقة 4120-4100.\n\n- ما الذي حصل بعدها ؟\nحصل رفض شرائي واضح وسريع صعد بالسعر حتى مناطق 4220-4230.\n\n- يعني ..... منطقة ومستوى دعم قوي جداً أثبت كفاءته ومنع كسر الهيكل الهابط نحو قيعان أعمق.",
+        "bodyEn": "Gold Spot / US Dollar - 4-Hour Timeframe (4H):\nObserve closely the violent consolidation that unfolded right after price grounded at its lowest decline, testing the 4120-4100 support zone.\n\n- What happened next?\nAn aggressive buying rejection propelled the price immediately back up to 4220-4230.\n\n- The key takeaway: This represents a formidable institutional support base that firmly held the ground.",
+        "tipAr": "مستويات الرفض السريع (Rejection Wicks) على فريم 4 ساعات تعكس دخول سيولة بنكية قوية للدفاع عن السعر.",
+        "tipEn": "Aggressive 4H rejection wicks indicate institutional bid flow stepping in to defend the baseline.",
+        "image": "/assets/Images/blog/gold-analysis-4h-oct-2026.webp",
+        "imageCaptionAr": "شارت الذهب 4 ساعات (OANDA): منطقة الدعم 4100-4120 والارتداد المتوقع نحو المستهدفات"
+      },
+      {
+        "id": "upside-catalysts",
+        "headingAr": "2. محفزات الصعود ومستهدفات 4200-4220",
+        "headingEn": "2. Bullish Catalysts & Targets at 4200-4220",
+        "bodyAr": "- ما الذي يعزز رؤية الصعووود ؟\nالثبات فوق 4150 يفتح المجال لاستهداف 4200-4220.\n\nطالما أن شمعات الأربع ساعات تغلق وتستقر أعلى 4150، فإن الضغط البيعي ينحسر تدريجياً، ليفسح المجال أمام المشترين لاختبار المقاومات اللحظية الأولى عند 4200 ثم 4220-4240.",
+        "bodyEn": "- What reinforces the bullish outlook?\nStabilizing firmly above 4150 unlocks the path toward 4200-4220.\n\nAs long as 4-hour closes remain steady above 4150, bearish momentum dissipates, granting buyers room to test initial overhead resistance at 4200 and 4220-4240.",
+        "tipAr": "احرص على مراقبة إغلاقات شموع 4 ساعات؛ أي إغلاق صريح فوق 4150 يعطي إشارة انطلاق نحو 4200.",
+        "tipEn": "Monitor 4H candle closures; closing decisively above 4150 offers a reliable launchpad toward 4200."
+      },
+      {
+        "id": "buying-dips-vs-shorting",
+        "headingAr": "3. متى نبيع؟ وخطة الشراء مع كل هبوط",
+        "headingEn": "3. When to Short & Why Buy Dips?",
+        "bodyAr": "- متى نبيع ...؟ اممممممم\n- أنا كمتداول ,,,, سوف أبحث عن فرص الشراء مع أي هبوط لو حصل.\n\n- هل يمكن أن يهبط ل 4020 ؟؟؟\nنعم ممكن، ولكن سيكون هبوطاً مقلقاً، إما سريعاً جداً وخاطفاً أو بطيئاً وحذراً جداً.\n\nلذلك فإن محاولة مطاردة البيع في هذه المناطق تنطوي على مخاطرة عالية، بينما الشراء من الارتكازات يوفر نسبة عائد إلى مخاطرة أفضل بكثير.",
+        "bodyEn": "- When do we sell? Hmm...\n- As a trader, I will actively hunt for buying setups on every corrective pullback.\n\n- Can it drop to 4020?\nYes, it is possible, but it would be an unsettling decline - either extremely fast or agonizingly slow and hesitant.\n\nChasing shorts here carries unfavorable risk-to-reward; buying dips aligned with higher timeframe support offers far greater edge.",
+        "tipAr": "لا تعاند الاتجاه الانعكاسي الصاعد؛ البحث عن الشراء مع التصحيحات أفضل إحصائياً من محاولة صيد قمم البيع.",
+        "tipEn": "Do not fight emerging reversals; buying dips near verified demand zones yields superior expectancy."
+      },
+      {
+        "id": "forex-engineer-verdict",
+        "headingAr": "4. الرؤية الشخصية ونصيحة مهندس الفوركس",
+        "headingEn": "4. Personal Verdict & Execution Advice",
+        "bodyAr": "- لذلك لا أنصح بالتداول - إلا سكالبينج، مع التزامك بالستوب.\n- رؤيتي الشخصية ..... سوف يعود الذهب للصعود نحو 4200-4220 مبدئياً.\n- فلنتابع معاً تطورات الحركة لحظة بلحظة.\n\nمهندس الفوركس",
+        "bodyEn": "- Therefore, my firm recommendation: Do not trade except with disciplined scalping, strictly committing to your stop loss.\n- My personal verdict: Gold will resume its upward trajectory toward 4200-4220 initially.\n- Let's stay tuned and monitor every step.\n\nForex Engineer",
+        "tipAr": "الالتزام بالستوب لوس هو مفتاح البقاء في أسواق الفوركس والذهب شديدة التقلب.",
+        "tipEn": "Unwavering stop-loss discipline is the single most vital factor for longevity in volatile gold markets."
+      }
+    ],
+    "links": [
+      {
+        "titleAr": "شارت الذهب الحي 4H على TradingView",
+        "titleEn": "Live 4H Gold TradingView Chart",
+        "url": "https://www.tradingview.com/chart/?symbol=OANDA%3AXAUUSD",
+        "type": "chart"
+      },
+      {
+        "titleAr": "قناة تلجرام FXENGIN الرسمية للتحديثات اللحظية",
+        "titleEn": "Official FXENGIN Telegram Channel for Real-Time Updates",
+        "url": "https://t.me/fxengin",
+        "type": "telegram"
+      },
+      {
+        "titleAr": "جروب تحليلات الذهب الحصرية (Gold Analysis Group)",
+        "titleEn": "Exclusive Gold Analysis Group (XAU/USD)",
+        "url": "/analyses",
+        "type": "article"
+      }
+    ],
+    "faqs": [
+      {
+        "qAr": "ما الذي يعنيه ارتداد الذهب من منطقة 4120-4100 إلى 4220-4230؟",
+        "qEn": "What does Gold's rebound from 4100-4120 to 4220-4230 indicate?",
+        "aAr": "يعني أن منطقة 4100-4120 تمثل مستوى دعم مؤسسي قوي جداً، حيث دخل المشترون بقوة ورفضوا استمرار الهبوط.",
+        "aEn": "It signals that 4100-4120 is a formidable institutional demand block where buyers aggressively rejected further declines."
+      },
+      {
+        "qAr": "متى يتأكد الصعود نحو 4200-4220 على فريم 4 ساعات؟",
+        "qEn": "When is upward expansion to 4200-4220 confirmed on the 4H timeframe?",
+        "aAr": "يتأكد مع استمرار الثبات السعري وإغلاق شموع 4 ساعات فوق مستوى 4150.",
+        "aEn": "It is confirmed with consistent 4H candle stabilization and closures above 4150."
+      },
+      {
+        "qAr": "هل يُنصح ببيع الذهب حالياً بحسب مهندس الفوركس؟",
+        "qEn": "Is shorting Gold recommended right now by Forex Engineer?",
+        "aAr": "لا يُنصح بالبيع، بل البحث عن فرص الشراء مع أي هبوط تصحيحي، مع قصر التداول على السكالبينج والالتزام الصارم بالستوب لوس.",
+        "aEn": "Shorting is not advised; instead, hunt for dip-buying setups strictly via scalping with disciplined stop-loss execution."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "gold-1h-support-rebound-analysis",
+    "category": "التحليل الفني",
+    "categoryAr": "التحليل الفني",
+    "categoryEn": "Technical Analysis",
+    "categoryKey": "technical",
+    "titleAr": "الذهب - فريم 1 ساعة : التذبذب أسفل 4140 ومناطق الارتكاز والشراء نحو 4220",
+    "titleEn": "Gold (XAU/USD) - 1-Hour Timeframe: Consolidation Below 4140, Support Testing & Long Rebound Targets",
+    "excerptAr": "رؤية فنية على فريم 1 ساعة للذهب: تحليل التذبذب أسفل 4140 والضغط المتوقع نحو مناطق 4100-4120 للبحث عن فرص الشراء، مع سيناريو الثبات فوق 4150 واستهداف 4180 ثم 4200 و 4220.",
+    "excerptEn": "1-Hour technical analysis on Gold (XAU/USD): Assessing intraday pressure below 4140 targeting 4100-4120 support for buy setups, plus direct continuation targets at 4180, 4200, and 4220 upon holding above 4150.",
+    "authorName": "مهندس الفوركس",
+    "authorAr": "مهندس الفوركس",
+    "authorEn": "Forex Engineer",
+    "authorRole": "كبير محللي الأسواق ومؤسس FXENGIN",
+    "authorRoleAr": "كبير محللي الأسواق ومؤسس FXENGIN",
+    "authorRoleEn": "Chief Market Analyst & FXENGIN Founder",
+    "authorImg": "/assets/Images/Avatar/avatar1.webp",
+    "authorBioAr": "محلل فني وخبير أسواق معتمد، متخصص في موجات إليوت وهيكل السيولة البنكية وإدارة المخاطر في تداول الذهب والعملات والسلع.",
+    "authorBioEn": "Certified technical analyst & market strategist specializing in Elliott Wave theory, liquidity structure, and institutional gold setups.",
+    "dateAr": "04 أكتوبر 2026",
+    "dateEn": "Oct 04, 2026",
+    "readTimeMinutes": 3,
+    "readTimeAr": "3 دقائق قراءة",
+    "readTimeEn": "3 min read",
+    "isFeatured": false,
+    "featured": false,
+    "views": "12.3K",
+    "viewsCount": 12300,
+    "tags": [
+      "Gold",
+      "XAUUSD",
+      "الذهب",
+      "1H",
+      "فريم_ساعة",
+      "سكالبينج",
+      "تداول_لحظي"
+    ],
+    "accentColor": "#16C784",
+    "coverImage": "/assets/Images/blog/gold-analysis-1h-oct-2026.webp",
+    "chartImage": "/assets/Images/blog/gold-analysis-1h-oct-2026.webp",
+    "symbol": "XAU/USD",
+    "tradingViewUrl": "https://www.tradingview.com/chart/?symbol=PEPPERSTONE%3AXAUUSD",
+    "status": "PUBLISHED",
+    "noticeAr": "تنويه: أشارككم هنا رؤيتي الفنية الخاصة. أسواق المال تتطلب حذراً، لذا تداول بوعي، واستخدم إدارة مالية مناسبة، وقرارك الاستثماري يظل مسؤوليتك. نتمنى لكم أرباحاً دائمة!",
+    "noticeEn": "Notice: Here I share my personal technical outlook. Financial markets require caution, so trade mindfully, utilize sound risk management, and your investment decisions remain your own responsibility. Wishing you lasting profits!",
+    "disclaimerAr": "تنويه: أشارككم هنا رؤيتي الفنية الخاصة. أسواق المال تتطلب حذراً، لذا تداول بوعي، واستخدم إدارة مالية مناسبة، وقرارك الاستثماري يظل مسؤوليتك. نتمنى لكم أرباحاً دائمة!",
+    "disclaimerEn": "Notice: Here I share my personal technical outlook. Financial markets require caution, so trade mindfully, utilize sound risk management, and your investment decisions remain your own responsibility. Wishing you lasting profits!",
+    "keyTakeawaysAr": [
+      "الذهب يتذبذب حالياً أسفل منطقة 4140 على فريم الساعة، والمتوقع حدوث موجة ضغط على مناطق 4100-4120.",
+      "منطقة 4100-4120 تمثل منطقة دعم جيدة (كويسة) للبحث عن إشارات وتأكيدات الشراء بإذن الله.",
+      "الاستقرار والثبات السعري فوق 4150 يعني دخول شراء مباشر واستهداف 4180 ثم 4200 و 4220 بإذن الله.",
+      "النصيحة الدائمة لمهندس الفوركس: تداول بوعي، اعتمد على السكالبينج، والتزم بإدارة رأس المال والستوب لوس."
+    ],
+    "keyTakeawaysEn": [
+      "Gold is currently consolidating below 4140 on the 1-hour chart, creating temporary pressure toward 4100-4120.",
+      "The 4100-4120 zone forms solid horizontal support where bullish reversal confirmations should be hunted.",
+      "Stabilizing and holding firmly above 4150 triggers long entries targeting 4180, 4200, and 4220.",
+      "Forex Engineer's constant rule: Trade mindfully via scalping, respect stop losses, and guard capital."
+    ],
+    "sections": [
+      {
+        "id": "1h-pressure-support",
+        "headingAr": "1. التذبذب أسفل 4140 واختبار منطقة الدعم 4100-4120",
+        "headingEn": "1. Intraday Pressure Below 4140 & Support Test at 4100-4120",
+        "bodyAr": "على فريم 1 ساعة : الذهب يتذبذب أسفل منطقة 4140.\n\nوبالتالي، فإنني أتوقع موجة ضغط على مناطق 4100-4120 ثم نبحث عن إشارات شراء بإذن الله.\n\nكما هو موضح على شارت Pepperstone فريم الساعة، تشكل منطقة 4114-4123 منطقة دعم جيدة جداً (منطقة دعم كويسة) قابلة لامتصاص الضغط البيعي وبناء قاعدة ارتداد صاعدة.",
+        "bodyEn": "On the 1-Hour Timeframe (1H): Gold is currently consolidating and fluctuating below the 4140 handle.\n\nConsequently, I anticipate a short-term pressure wave targeting the 4100-4120 demand pocket, where we will look for confirmed buying signals, God willing.\n\nAs annotated on the 1H Pepperstone chart, the 4114-4123 zone provides dependable structural support capable of absorbing supply and launching the next upward rotation.",
+        "tipAr": "لا تستعجل الشراء أسفل 4140، بل انتظر إما ملامسة دعم 4100-4120 وظهور برايس أكشن صاعد، أو اختراق 4150.",
+        "tipEn": "Avoid front-running longs below 4140; either wait for test of 4100-4120 demand or confirmed breakout over 4150.",
+        "image": "/assets/Images/blog/gold-analysis-1h-oct-2026.webp",
+        "imageCaptionAr": "شارت الذهب 1 ساعة (Pepperstone): مسار موجة الضغط نحو الدعم والارتداد المستهدف نحو 4220"
+      },
+      {
+        "id": "1h-breakout-targets",
+        "headingAr": "2. سيناريو الثبات فوق 4150 والمستهدفات الصاعدة",
+        "headingEn": "2. Holding Above 4150 & Bullish Targets (4180 - 4200 - 4220)",
+        "bodyAr": "- طيب لو استقر وثبت فوق 4150 ؟\nيعني هنشتري ونستهدف:\n- 4180\n- 4200\n- 4220\nبإذن الله.\n\nالثبات السعري فوق مستوى 4150 يلغي أي احتمالية لضغط هابط إضافي، ويؤكد دخول المشترين بقوة، مما يفتح مساراً سريعاً نحو المستهدفات اللحظية الموضحة في المربع الأخضر على الشارت.",
+        "bodyEn": "- What if price stabilizes and holds firmly above 4150?\nIt means we buy and target consecutively:\n- 4180\n- 4200\n- 4220\nGod willing.\n\nHolding decisively above 4150 neutralizes any residual bearish drag, confirming aggressive bull participation and paving a smooth highway into the green target box.",
+        "tipAr": "تأكيد شمعة ساعة واحدة صاعدة كاملة فوق 4150 كافٍ لبدء تفعيل صفقات الشراء السريعة.",
+        "tipEn": "A clean 1-hour bullish candle close above 4150 is sufficient confirmation to trigger scalping buy orders."
+      },
+      {
+        "id": "1h-execution-summary",
+        "headingAr": "3. خطة العمل اللحظية وخلاصة الرؤية",
+        "headingEn": "3. Intraday Action Plan & Engineer's Guidance",
+        "bodyAr": "الخطة واضحة ومحددة وبدون أي تعقيد:\n1. راقب السلوك السعري بين 4100 و 4120 لاقتناص إشارات الشراء المرتدة.\n2. أو انتظر الثبات فوق 4150 للشراء المباشر نحو 4180 و 4200 و 4220.\n3. تداول بوعي، والتزم دائماً بالسكالبينج وإدارة رأس المال.\n\nبإذن الله،\nمهندس الفوركس",
+        "bodyEn": "The intraday playbook is concise and crystal clear:\n1. Monitor price interaction at 4100-4120 to catch dip-buying signals.\n2. Or wait for confirmed stabilization above 4150 to buy directly toward 4180, 4200, and 4220.\n3. Trade mindfully, prioritize scalping discipline, and manage risk.\n\nGod willing,\nForex Engineer",
+        "tipAr": "احرص على أخذ الأرباح تدريجياً عند كل مستهدف وتأمين الستوب لوس على نقطة الدخول.",
+        "tipEn": "Scale out profits systematically at each objective and trail your stop to breakeven."
+      }
+    ],
+    "links": [
+      {
+        "titleAr": "شارت الذهب الحي 1H على TradingView",
+        "titleEn": "Live 1H Gold TradingView Chart",
+        "url": "https://www.tradingview.com/chart/?symbol=PEPPERSTONE%3AXAUUSD",
+        "type": "chart"
+      },
+      {
+        "titleAr": "قناة تلجرام FXENGIN الرسمية للتحديثات اللحظية",
+        "titleEn": "Official FXENGIN Telegram Channel for Real-Time Updates",
+        "url": "https://t.me/fxengin",
+        "type": "telegram"
+      },
+      {
+        "titleAr": "جروب تحليلات الذهب الحصرية (Gold Analysis Group)",
+        "titleEn": "Exclusive Gold Analysis Group (XAU/USD)",
+        "url": "/analyses",
+        "type": "article"
+      }
+    ],
+    "faqs": [
+      {
+        "qAr": "ما هو المتوقع طالما يتذبذب الذهب أسفل 4140 على فريم الساعة؟",
+        "qEn": "What is expected while Gold consolidates below 4140 on the 1H chart?",
+        "aAr": "يُتوقع حدوث موجة ضغط لحظية لاختبار مناطق الدعم عند 4100-4120، حيث نبحث هناك عن إشارات الشراء.",
+        "aEn": "A brief pressure wave is expected toward 4100-4120 support, where dip-buying setups should be evaluated."
+      },
+      {
+        "qAr": "ماذا نفعل في حال استقر وثبت السعر فوق 4150؟",
+        "qEn": "What is the action plan if price stabilizes firmly above 4150?",
+        "aAr": "نشتري ونستهدف المستويات الصاعدة بالترتيب: 4180 ثم 4200 ثم 4220 بإذن الله.",
+        "aEn": "We enter long targeting 4180, then 4200, and 4220 consecutively, God willing."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "dxy-daily-wave-analysis-and-reversal-targets",
+    "category": "التحليل الفني",
+    "categoryAr": "التحليل الفني",
+    "categoryEn": "Technical Analysis",
+    "categoryKey": "technical",
+    "titleAr": "مؤشر الدولار الأمريكي - فريم يوم : اكتمال الموجة الثالثة وتوقعات الهبوط نحو 99-98",
+    "titleEn": "US Dollar Index (DXY) - Daily Timeframe: Wave 3 Completion & Downside Targets to 99-98",
+    "excerptAr": "استطاع الدولار أن يصعد لمناطق 101-102 مستفيداً من التوترات والتطورات المتسارعة مكملاً الموجة الثالثة؛ تحليل مسار التذبذب عند 102، إشارات الهبوط المتزامنة مع هبوط النفط وصعود الذهب، وأهمية كسر 100 لمواصلة الهبوط نحو 99-98 بإذن الله.",
+    "excerptEn": "The US Dollar advanced to 101-102 riding geopolitical tensions and completing Wave 3; analyzing consolidation at 102, reversal signals aligned with oil drops and gold rallies, and breaking 100 toward 99-98.",
+    "authorName": "مهندس الفوركس",
+    "authorAr": "مهندس الفوركس",
+    "authorEn": "Forex Engineer",
+    "authorRole": "كبير محللي الأسواق",
+    "authorRoleAr": "كبير محللي الأسواق",
+    "authorRoleEn": "Chief Market Strategist",
+    "authorImg": "/assets/Images/blog/gold-analysis-oct-2026.webp",
+    "authorBioAr": "مهندس ومحلل فني لأسواق المال والعملات في منصة FXENGIN، متخصص في التحليل الموجي، هياكل الأسعار اللحظية وإدارة المخاطر الصارمة.",
+    "authorBioEn": "Market analyst and engineer at FXENGIN, specializing in Elliott wave dynamics, price action structures, and risk management.",
+    "dateAr": "04 أكتوبر 2026",
+    "dateEn": "Oct 04, 2026",
+    "readTimeMinutes": 4,
+    "readTimeAr": "4 دقائق قراءة",
+    "readTimeEn": "4 min read",
+    "isFeatured": false,
+    "featured": false,
+    "views": "19.2K",
+    "viewsCount": 19200,
+    "tags": [
+      "DXY",
+      "USDX",
+      "الدولار",
+      "مؤشر_الدولار",
+      "فريم_يوم",
+      "Wave3",
+      "التحليل_الفني",
+      "الذهب",
+      "النفط",
+      "إدارة_رأس_المال"
+    ],
+    "accentColor": "#0488F8",
+    "coverImage": "/assets/Images/blog/dxy-daily-wave-analysis-oct-2026.webp",
+    "chartImage": "/assets/Images/blog/dxy-daily-wave-analysis-oct-2026.webp",
+    "symbol": "DXY",
+    "tradingViewUrl": "https://www.tradingview.com/chart/?symbol=TVC%3ADXY",
+    "status": "PUBLISHED",
+    "noticeAr": "تنويه: أشارككم هنا رؤيتي الفنية الخاصة. أسواق المال تتطلب حذراً، لذا تداول بوعي، واستخدم إدارة مالية مناسبة، وقرارك الاستثماري يظل مسؤوليتك. نتمنى لكم أرباحاً دائمة!",
+    "noticeEn": "Notice: Here I share my personal technical outlook. Financial markets require caution, so trade mindfully, utilize sound risk management, and your investment decisions remain your own responsibility. Wishing you lasting profits!",
+    "disclaimerAr": "تنويه: أشارككم هنا رؤيتي الفنية الخاصة. أسواق المال تتطلب حذراً، لذا تداول بوعي، واستخدم إدارة مالية مناسبة، وقرارك الاستثماري يظل مسؤوليتك. نتمنى لكم أرباحاً دائمة!",
+    "disclaimerEn": "Notice: Here I share my personal technical outlook. Financial markets require caution, so trade mindfully, utilize sound risk management, and your investment decisions remain your own responsibility. Wishing you lasting profits!",
+    "keyTakeawaysAr": [
+      "استطاع مؤشر الدولار الصعود لمناطق 101-102 مستفيداً من التوترات الجيوسياسية والتطورات المتسارعة، محققاً اكتمال الموجة الثالثة (Wave 3).",
+      "المتوقع حالياً حدوث تذبذب عند مستويات 102 والبحث عن إشارات هبوط الدولار.",
+      "هبوط الدولار المتوقع يأتي متزامناً مع هبوط النفط وعودة صعود الذهب.",
+      "مستوى 101.500 مستوى محوري مهم جداً، وكسر مستوى 100.000 يعني مواصلة الهبوط نحو 99 - 98 بإذن الله.",
+      "شعار مهندس الفوركس الدائم: 'إدارة رأس المال سر الإستمرارية' والالتزام بإدارة المخاطر الصارمة."
+    ],
+    "keyTakeawaysEn": [
+      "The US Dollar Index reached 101-102 leveraging ongoing geopolitical escalations, completing Wave 3.",
+      "Expect consolidation around the 102 level while scanning for bearish exhaustion and reversal signals.",
+      "Anticipated Dollar weakness aligns symmetrically with declining oil prices and a bullish resurgence in Gold.",
+      "101.500 is a pivotal intraday level, and breaking below 100.000 triggers continued decline toward 99.00 - 98.00.",
+      "Forex Engineer's golden mantra: 'Risk management is the secret to consistency' across all trades."
+    ],
+    "sections": [
+      {
+        "id": "dxy-wave-3-completion",
+        "headingAr": "1. صعود الدولار نحو 101-102 واكتمال الموجة الثالثة",
+        "headingEn": "1. Dollar Rally to 101-102 & Wave 3 Completion",
+        "bodyAr": "مؤشر الدولار الأمريكي - فريم يوم :\n\nاستطاع الدولار أن يصعد لمناطق 101 - 102 مستفيداً من التوترات التي تحصل والتطورات المتسارعة في المشهد العالمي.\n\nوبالتالي، فإنني أراه قد أكمل الموجة الثالثة (WAVE 3) كما هو موضح أمامكم بالتفصيل على الرسم البياني اليومي، بعد اكتمال الموجة الأولى والثانية وتشكيل الهيكل التصحيحي التوافقي عند مستويات القمة الحالية المحصورة أسفل منطقة العرض الرئيسية (102.837 - 103.000).",
+        "bodyEn": "U.S. Dollar Index (DXY) - Daily Timeframe (1D):\n\nThe greenback managed to advance into the 101 - 102 zone, capitalizing on unfolding geopolitical tensions and rapidly shifting macroeconomic catalysts.\n\nConsequently, I see that it has completed its third cycle wave (WAVE 3) as vividly illustrated on the daily chart, following wave 1 and wave 2 expansions, capping into the formidable overhead supply belt situated beneath 102.837 - 103.000.",
+        "tipAr": "لا تندفع وراء الشراء عند قمم الموجة الثالثة، فالصعود الأخير كان مدفوعاً بالتوترات وهو عرضة للتصحيح الهابط السريع.",
+        "tipEn": "Avoid chasing breakout longs at the peak of Wave 3; geopolitically driven impulses are prone to sharp corrections.",
+        "image": "/assets/Images/blog/dxy-daily-wave-analysis-oct-2026.webp",
+        "imageCaptionAr": "شارت مؤشر الدولار فريم يوم (TVC): اكتمال الموجة الثالثة WAVE 3 والمسار الهابط المتوقع نحو 99-98"
+      },
+      {
+        "id": "dxy-consolidation-correlations",
+        "headingAr": "2. ماذا نتوقع الآن؟ التذبذب عند 102 والترابط مع الذهب والنفط",
+        "headingEn": "2. What's Next? 102 Consolidation & Cross-Market Alignment with Gold and Oil",
+        "bodyAr": "- ماذا نتوقع الآن ؟\nأتوقع تذبذب عند 102 ونبحث عن إشارات هبوط الدولار.\n\nوهذه الإشارات تأتي متزامنة مع:\n- هبوط النفط\n- صعود الذهب\n\nحيث أن انكسار زخم الدولار الأمريكي يمثل العامل المحفز الأكبر لعودة القوة الشرائية إلى الذهب ودفع مؤشر الذهب لاختراق مستويات 4150 واستهداف 4200 - 4220 كما فصلنا في تحليلات الذهب الأخيرة.",
+        "bodyEn": "- What do we anticipate now?\nI expect consolidation and sideways chopping around the 102 mark, where we actively hunt for confirmed top-reversal signals.\n\nThis expected downturn is aligned with:\n- Declining crude oil prices\n- Bullish breakout in Gold\n\nAs US Dollar momentum wanes, institutional capital rotates back into Gold, providing the fundamental push to crack 4150 and target 4200 - 4220 as outlined in our recent gold analyses.",
+        "tipAr": "راقب السلوك السعري عند 102؛ ظهور شموع انعكاسية أو كسر كاذب يعد أول إشارة لبدء موجة الهبوط.",
+        "tipEn": "Monitor price action closely around 102; rejection wicks or failed highs signal the onset of the bearish rotation."
+      },
+      {
+        "id": "dxy-key-levels-and-targets",
+        "headingAr": "3. المستويات المحورية: أهمية 101.500 وكسر 100.000 نحو 99-98",
+        "headingEn": "3. Pivotal Levels: The Significance of 101.500 & Breaking 100.000 Toward 99-98",
+        "bodyAr": "- لاحظ أنني اعتبرت مستوى 101.500 مهم جداً كمستوى دعم أولي.\n\n- وكسر مستوى 100.000 يعني أتوقع مواصلة الهبوط نحو 99 - 98 بإذن الله.\n\nالمستويات المحددة على الشارت خطوة بخطوة:\n1. التذبذب ومقاومة 102.000 - 102.419.\n2. كسر الدعم الأولي 101.500.\n3. التراجع نحو 100.800 ثم 100.382.\n4. كسر الحاجز النفسي 100.000 (99.964).\n5. مواصلة الهبوط نحو 99.546 ثم 99.128 و 98.711 وصولاً لمناطق 98.000 بإذن الله.\n\nتذكر دائماً الشعار الواضح على الشارت:\n\"إدارة رأس المال سر الإستمرارية\"\n\nفلنتابع معاً،\nبإذن الله\nمهندس الفوركس",
+        "bodyEn": "- Note that I considered the 101.500 level crucial as an initial structural support pivot.\n\n- Breaking the major psychological 100.000 level implies a confirmed continuation lower toward 99.00 - 98.00, God willing.\n\nStep-by-step roadmap from the chart:\n1. Resistance test and chopping at 102.000 - 102.419.\n2. Breakdown below intermediate support 101.500.\n3. Decline through 100.800 toward 100.382.\n4. Piercing the psychological round number 100.000 (99.964).\n5. Deep impulse downward across 99.546, 99.128, and 98.711 toward 98.000.\n\nAlways remember the golden motto visible on the chart:\n'Capital Management is the Secret to Longevity'\n\nLet's follow this together,\nForex Engineer",
+        "tipAr": "احرص على تثبيت أمر وقف الخسارة وإدارة لوت التداول بحكمة؛ فالتحليل الفني خارطة طريق تتطلب مرونة والتزاماً صارماً.",
+        "tipEn": "Strictly implement stop losses and position sizing; technical analysis provides the map, but risk management preserves capital."
+      }
+    ],
+    "links": [
+      {
+        "titleAr": "شارت مؤشر الدولار الحي (DXY) على TradingView",
+        "titleEn": "Live U.S. Dollar Index (DXY) Chart on TradingView",
+        "url": "https://www.tradingview.com/chart/?symbol=TVC%3ADXY",
+        "type": "chart"
+      },
+      {
+        "titleAr": "قراءة تحليل الذهب المرتبط (فريم اليوم - اكتمال موجة التصحيح)",
+        "titleEn": "Read Related Gold Analysis (Daily - Wave Exhaustion)",
+        "url": "/blog/gold-index-daily-timeframe-wave-analysis",
+        "type": "article"
+      },
+      {
+        "titleAr": "قناة تلجرام FXENGIN للتحديثات الفنية واللحظية",
+        "titleEn": "FXENGIN Official Telegram Channel for Technical Updates",
+        "url": "https://t.me/fxengin",
+        "type": "telegram"
+      }
+    ],
+    "faqs": [
+      {
+        "qAr": "ما الذي دفع مؤشر الدولار للصعود إلى مناطق 101-102 مؤخراً؟",
+        "qEn": "What propelled the Dollar Index up into the 101-102 range recently?",
+        "aAr": "استفاد الدولار من التوترات الجيوسياسية والتطورات المتسارعة، مما مكنه من إكمال الموجة الثالثة (WAVE 3) على الفريم اليومي.",
+        "aEn": "The Dollar leveraged geopolitical escalation and fast-paced market catalysts, completing Wave 3 on the daily timeframe."
+      },
+      {
+        "qAr": "ما هي التوقعات الحالية لحركة الدولار عند مستوى 102؟",
+        "qEn": "What is expected around the 102 level?",
+        "aAr": "يُتوقع حدوث تذبذب سعري عند مستويات 102 للبحث عن إشارات هبوط الدولار، بالتزامن مع هبوط النفط وصعود الذهب.",
+        "aEn": "Consolidation around 102 is expected while looking for reversal sell signals, concurrent with oil declines and gold gains."
+      },
+      {
+        "qAr": "ما هو الشرط الفني لتأكيد استهداف مناطق 99 و 98؟",
+        "qEn": "What technical condition confirms targets at 99 and 98?",
+        "aAr": "كسر المستوى المحوري 101.500 ثم كسر الدعم النفسي الحاسم عند 100.000 يؤكد استمرار الهبوط نحو 99 و 98 بإذن الله.",
+        "aEn": "Breaking the 101.500 pivot followed by breaking the critical 100.000 support confirms continuation toward 99 and 98, God willing."
+      }
+    ]
+  }
+]

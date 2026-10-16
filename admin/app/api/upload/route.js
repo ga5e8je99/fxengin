@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import sharp from 'sharp';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,21 +21,43 @@ export async function POST(req) {
     }
 
     const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    const originalBuffer = Buffer.from(bytes);
 
     // Save into shared data directory (/app/data in container, ./shared-data on host)
     const baseDataDir = fs.existsSync('/app/data') ? '/app/data' : path.join(process.cwd(), 'data');
     const targetDir = path.join(baseDataDir, 'uploads', folder);
     await fs.promises.mkdir(targetDir, { recursive: true });
 
-    // Generate safe clean unique filename
-    const ext = path.extname(file.name || '').toLowerCase() || '.png';
-    const rawBase = path.basename(file.name || 'upload', ext);
+    const rawExt = path.extname(file.name || '').toLowerCase();
+    const rawBase = path.basename(file.name || 'upload', rawExt);
     const cleanBase = rawBase.replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 35);
-    const filename = `${Date.now()}_${cleanBase}${ext}`;
+
+    // Check if the uploaded file is an image (convert to webp)
+    const mimeType = (file.type || '').toLowerCase();
+    const isImage =
+      (mimeType.startsWith('image/') && !mimeType.includes('svg') && !mimeType.includes('x-icon')) ||
+      ['.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.jfif', '.webp'].includes(rawExt);
+
+    let finalBuffer = originalBuffer;
+    let finalExt = rawExt || '.bin';
+
+    if (isImage) {
+      try {
+        finalBuffer = await sharp(originalBuffer)
+          .webp({ quality: 85, effort: 4 })
+          .toBuffer();
+        finalExt = '.webp';
+      } catch (conversionErr) {
+        console.warn('Sharp WebP conversion fallback:', conversionErr);
+        finalBuffer = originalBuffer;
+        finalExt = rawExt || '.png';
+      }
+    }
+
+    const filename = `${Date.now()}_${cleanBase}${finalExt}`;
     const targetPath = path.join(targetDir, filename);
 
-    await fs.promises.writeFile(targetPath, buffer);
+    await fs.promises.writeFile(targetPath, finalBuffer);
 
     // Public URL served directly or rewritten
     const fileUrl = `https://fxengen.com/uploads/${folder}/${filename}`;
@@ -44,6 +67,7 @@ export async function POST(req) {
       success: true,
       fileUrl,
       fileName: filename,
+      convertedToWebp: finalExt === '.webp',
     });
   } catch (err) {
     console.error('File Upload Error:', err);

@@ -109,7 +109,7 @@ export default function BrokersManagementPage() {
     badgeAr: 'الأكثر موثوقية عالمياً • فئة أولى Tier-1',
     badgeEn: 'Most Trusted Globally • Tier-1 Regulated',
     badgeColor: '#10B981',
-    logo: '/assets/Images/brokers/xm.png',
+    logo: '/assets/Images/brokers/xm.webp',
     logoBg: '#000000',
     rating: 4.95,
     clientsCount: '100K+ متداول',
@@ -670,7 +670,7 @@ export default function BrokersManagementPage() {
                           alt={broker.name}
                           className="max-h-full max-w-full object-contain"
                           onError={(e) => {
-                            e.currentTarget.src = '/assets/Images/brokers/xm.png';
+                            e.currentTarget.src = '/assets/Images/brokers/xm.webp';
                           }}
                         />
                       </div>
@@ -823,7 +823,7 @@ export default function BrokersManagementPage() {
                               alt={broker.name}
                               className="max-h-full max-w-full object-contain"
                               onError={(e) => {
-                                e.currentTarget.src = '/assets/Images/brokers/xm.png';
+                                e.currentTarget.src = '/assets/Images/brokers/xm.webp';
                               }}
                             />
                           </div>
@@ -1155,7 +1155,7 @@ export default function BrokersManagementPage() {
                       type="text"
                       value={formData.logo}
                       onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
-                      placeholder="/assets/Images/brokers/xm.png أو https://..."
+                      placeholder="/assets/Images/brokers/xm.webp أو https://..."
                       className="w-full h-10 px-3 rounded-xl bg-surface-elevated border border-border-structural text-text-primary text-sm font-mono outline-none dir-ltr"
                     />
                   </div>
@@ -1263,7 +1263,7 @@ export default function BrokersManagementPage() {
                         alt="Preview"
                         className="max-h-full max-w-full object-contain"
                         onError={(e) => {
-                          e.currentTarget.src = '/assets/Images/brokers/xm.png';
+                          e.currentTarget.src = '/assets/Images/brokers/xm.webp';
                         }}
                       />
                     </div>

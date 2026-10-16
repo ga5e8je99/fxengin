@@ -1,0 +1,702 @@
+[
+  {
+    "slug": "about",
+    "category": "company",
+    "titleAr": "عن FXENGIN",
+    "titleEn": "About FXENGIN",
+    "subtitleAr": "المنظومة المالية المتكاملة للتعليم والتداول المؤسسي وتقنيات تحليل الأسواق الذكية",
+    "subtitleEn": "The Integrated Financial Ecosystem for Professional Trading, Quantitative Analytics, and Market Intelligence",
+    "badgeAr": "نبذة عن المنصة",
+    "badgeEn": "Platform Overview",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "stats": [
+      {
+        "labelAr": "متداول نشط في المجتمع",
+        "labelEn": "Active Community Traders",
+        "value": "+28,500"
+      },
+      {
+        "labelAr": "نسبة دقة إشارات SMC",
+        "labelEn": "SMC Signal Precision",
+        "value": "89.2%"
+      },
+      {
+        "labelAr": "ساعة تدريبية وبث مباشر",
+        "labelEn": "Accredited Training Hours",
+        "value": "+520"
+      },
+      {
+        "labelAr": "دولة يدعمها النظام",
+        "labelEn": "Global Countries Supported",
+        "value": "45"
+      }
+    ],
+    "missionAr": "تمكين المتداولين والمستثمرين العرب من الوصول إلى أحدث أدوات التحليل المؤسسي وهياكل السيولة المتقدمة (Smart Money Concepts)، وتوفير بيئة تعليمية احترافية خالية من العشوائية، تدعم المتداول في رحلته من المبتدئ إلى الاحتراف وإدارة المحافظ بأسلوب علمي رصين.",
+    "missionEn": "Empowering Arabic traders and global investors with cutting-edge institutional liquidity frameworks (Smart Money Concepts) and rigorous quantitative education, eliminating guesswork to guide market participants from beginners to elite funded portfolio managers.",
+    "visionAr": "أن نكون المحطة المرجعية الأولى والأكثر موثوقية في الشرق الأوسط وشمال أفريقيا في هندسة استراتيجيات التداول الخوارزمي والتحليل المؤسسي، عبر بنية تحتية تقنية فائقة السرعة ومجتمع معرفي رائد.",
+    "visionEn": "To stand as the premier MENA authority in algorithmic trading engineering and institutional market analytics, backed by ultra-low-latency infrastructure and a world-class trading community.",
+    "values": [
+      {
+        "titleAr": "الشفافية المطلقة والنزاهة",
+        "titleEn": "Absolute Transparency & Integrity",
+        "descAr": "نوثق جميع التحليلات والصفقات بدقة ونقدم تقارير أداء حقيقية بلا وعود زائفة أو مضاربات وهمية غير مدروسة.",
+        "descEn": "We audit and record all analyses and signals with zero false promises, ensuring honest and verifiable track records."
+      },
+      {
+        "titleAr": "التعليم المؤسسي المستند للأدلة",
+        "titleEn": "Institutional Evidence-Based Learning",
+        "descAr": "مناهجنا مبنية على تدفق أوامر البنوك وصناع السوق ومناطق السيولة الفعلية وليس المؤشرات الفنية المتأخرة.",
+        "descEn": "Our curriculums are engineered around institutional order flow, bank liquidity pools, and live execution dynamics."
+      },
+      {
+        "titleAr": "الأمان وحماية رأس المال أولاً",
+        "titleEn": "Capital Protection & Risk Control",
+        "descAr": "نضع إدارة المخاطر وقواعد الحفاظ على الحساب قبل أي اعتبارات ربحية لضمان استدامة واستقرار المتداول على المدى الطويل.",
+        "descEn": "Strict risk parameters and drawdown management are prioritized above short-term gains to ensure lifelong trading careers."
+      },
+      {
+        "titleAr": "الابتكار التقني المستمر",
+        "titleEn": "Continuous FinTech Innovation",
+        "descAr": "نطور خوارزميات فحص السيولة وأدوات التنبيه اللحظية وأحدث واجهات المستخدم لتوفير تجربة استثنائية لجميع أعضائنا.",
+        "descEn": "We pioneer proprietary liquidity scanners, low-latency alert bots, and state-of-the-art dashboards for modern traders."
+      }
+    ],
+    "pillars": [
+      {
+        "titleAr": "محرك تحليل السيولة الذكية (SMC Engine)",
+        "titleEn": "Smart Money Concepts (SMC) Engine",
+        "descAr": "رصد دقيق لمناطق تجميع وتصريف صناع السوق (Order Blocks & Fair Value Gaps) بدقة ميلي ثانية."
+      },
+      {
+        "titleAr": "أكاديمية تدريبية معتمدة ومسارات شاملة",
+        "titleEn": "Accredited Academy & Certification",
+        "descAr": "مسارات تعليمية متدرجة من الأساسيات إلى هندسة الخوارزميات مع شهادات إتمام معتمدة برقم تسلسلي موثق."
+      },
+      {
+        "titleAr": "غرفة تداول حية وتغطية افتتاح الجلسات",
+        "titleEn": "Live Trading Room & Multi-Stream",
+        "descAr": "جلسات تفاعلية حية تسبق افتتاح جلستي لندن ونيويورك لمتابعة تدفق السيولة والفرص اللحظية مباشرة."
+      }
+    ]
+  },
+  {
+    "slug": "contact",
+    "category": "company",
+    "titleAr": "تواصل معنا",
+    "titleEn": "Contact Us",
+    "subtitleAr": "فريق الدعم الفني والاستشارات المؤسسية متاح لمساعدتك والإجابة على استفساراتك على مدار الساعة",
+    "subtitleEn": "Our Dedicated Technical Support and Institutional Advisory Team are Available 24/7",
+    "badgeAr": "مركز الاتصال المباشر",
+    "badgeEn": "Direct Support Desk",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "email": "fxengin519@gmail.com",
+    "partnersEmail": "fxengin519@gmail.com",
+    "pressEmail": "fxengin519@gmail.com",
+    "phone": "+971 4 380 0000",
+    "whatsapp": "",
+    "telegram": "https://t.me/FXenginsignals",
+    "workingHoursAr": "فريق الدعم المباشر: الإثنين - الجمعة (24 ساعة) | تليجرام VIP: على مدار الساعة 24/7",
+    "workingHoursEn": "Direct Support: Mon - Fri (24h) | VIP Telegram Desk: 24/7 Continuous",
+    "addressAr": "",
+    "addressEn": "",
+    "departments": [
+      {
+        "id": "support",
+        "nameAr": "الدعم الفني واستفسارات الحسابات",
+        "nameEn": "Technical Support & Accounts",
+        "email": "fxengin519@gmail.com",
+        "descAr": "لحل أي مشكلة تقنية، تفعيل الاشتراكات، ومساعدتك في منصة التعليم.",
+        "descEn": "For account setup, subscription activation, and portal troubleshooting.",
+        "responseTimeAr": "متوسط الرد: 15 دقيقة",
+        "responseTimeEn": "Avg response: 15 mins"
+      },
+      {
+        "id": "partners",
+        "nameAr": "الشراكات والوسطاء المعرفين (IB)",
+        "nameEn": "Partnerships & Introducing Brokers (IB)",
+        "email": "partners@fxengin.com",
+        "descAr": "للشراكات الاستراتيجية، برامج الريبيت، وباقات التوزيع المؤسسي.",
+        "descEn": "For affiliate alliances, IB rebate scaling, and B2B solutions.",
+        "responseTimeAr": "متوسط الرد: ساعتان",
+        "responseTimeEn": "Avg response: 2 hours"
+      },
+      {
+        "id": "press",
+        "nameAr": "العلاقات العامة والمركز الإعلامي",
+        "nameEn": "Media Relations & Press Office",
+        "email": "press@fxengin.com",
+        "descAr": "للمقابلات الصحفية، الرعايات، والتغطيات الإخبارية.",
+        "descEn": "For journalistic inquiries, sponsorships, and official briefings.",
+        "responseTimeAr": "متوسط الرد: 24 ساعة",
+        "responseTimeEn": "Avg response: 24 hours"
+      }
+    ],
+    "faqs": [
+      {
+        "qAr": "كم من الوقت يستغرق الرد على رسالتي أو استفساري؟",
+        "qEn": "How long does it take to receive a response?",
+        "aAr": "يقوم فريق الدعم الفني بالرد على جميع الاستفسارات عبر البريد ونموذج التواصل في غضون 15 إلى 30 دقيقة خلال أوقات العمل الرسمية، وفورياً على مدار الساعة عبر قنوات تليجرام VIP.",
+        "aEn": "Our support desk responds within 15–30 minutes during standard market hours, and instantly 24/7 on VIP Telegram."
+      },
+      {
+        "qAr": "كيف يمكنني تفعيل اشتراكي فور الدفع بالعملات الرقمية (USDT)؟",
+        "qEn": "How is my account activated after USDT crypto checkout?",
+        "aAr": "تتم المزامنة آلياً عبر خوادم التحقق من البلوكشين فور وصول تأكيدات الشبكة، ويتم فتح الكورسات وغرفة التحليلات فوراً في حسابك الشخصي.",
+        "aEn": "System verifies the blockchain transaction automatically upon network confirmation and grants immediate access."
+      },
+      {
+        "qAr": "هل يمكنني طلب جلسة استشارية فردية مع كبار المحللين؟",
+        "qEn": "Can I request a 1-on-1 private mentoring session?",
+        "aAr": "نعم، يحصل مشتركو باقة VIP السنوية والشركاء المؤسسيون على جلسات توجيه فردية شهرية لمراجعة خطط التداول وإدارة المخاطر.",
+        "aEn": "Yes, annual VIP subscribers and institutional partners receive scheduled 1-on-1 strategy and risk consultations."
+      }
+    ]
+  },
+  {
+    "slug": "partners",
+    "category": "company",
+    "titleAr": "برنامج الشركاء والوسطاء المعرفين (IB)",
+    "titleEn": "Partners & Introducing Brokers (IB) Program",
+    "subtitleAr": "انضم إلى أقوى برنامج شراكة استراتيجي في الشرق الأوسط واحصل على أعلى عمولات وعوائد مستدامة",
+    "subtitleEn": "Join the Middle East's Most Lucrative Partnership Network with Tier-1 Rebates and Institutional Infrastructure",
+    "badgeAr": "الشراكات المؤسسية",
+    "badgeEn": "Institutional Alliances",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "commissionHighlightAr": "خصومات وعمولات تصل إلى 70% من السبريد وحصص أرباح شهرية مستدامة",
+    "commissionHighlightEn": "Up to 70% Spread Rebates & Sustainable Monthly Revenue Sharing",
+    "tiers": [
+      {
+        "nameAr": "شريك معتمد (Affiliate Partner)",
+        "nameEn": "Affiliate Partner",
+        "rebateAr": "حتى 40% عمولة مباشرة",
+        "rebateEn": "Up to 40% Direct Commission",
+        "descAr": "مثالي لأصحاب المواقع، صناع المحتوى المالي، وقنوات التيليجرام المهتمة بأسواق المال.",
+        "descEn": "Perfect for financial creators, webmasters, and social trading communities.",
+        "featuresAr": [
+          "رابط إحالة فريد مع تتبع فوري للنقرات والتسجيلات",
+          "سحب أرباح أسبوعي عبر USDT بدون حد أدنى معقد",
+          "حزمة بنرات ومواد إعلانية حصرية متجددة",
+          "دعم مخصص للإجابة على تساؤلات عملائك"
+        ],
+        "featuresEn": [
+          "Unique tracking link with real-time conversion telemetry",
+          "Weekly USDT payouts with zero complicated thresholds",
+          "Custom marketing assets and high-converting banners",
+          "Dedicated partner manager support"
+        ]
+      },
+      {
+        "nameAr": "وسيط معرّف محترف (Pro IB)",
+        "nameEn": "Pro Introducing Broker",
+        "rebateAr": "حتى 60% ريبيت مباشر + حوافز VIP",
+        "rebateEn": "Up to 60% Direct Rebates + VIP Incentives",
+        "descAr": "للمتداولين أصحاب المجتمعات التداولية النشطة، مدربي الفوركس، ومقدمي التوصيات.",
+        "descEn": "For active trading mentors, community leaders, and signal providers.",
+        "featuresAr": [
+          "أعلى نسبة اقتسام عمولات في المنطقة (Revenue Share)",
+          "صفحة هبوط مخصصة باسمك وعلامتك التجارية",
+          "لوحة تحكم متقدمة لمتابعة أحجام التداول (Lots) لحظياً",
+          "كوبونات خصم حصرية وباقات ترحيبية لأعضاء مجتمعك"
+        ],
+        "featuresEn": [
+          "Top-tier regional spread rebates and volume kickbacks",
+          "Co-branded landing pages and personalized funnels",
+          "Advanced sub-IB tree tracking and lots traded insights",
+          "Exclusive discount coupons for your audience"
+        ]
+      },
+      {
+        "nameAr": "شريك استراتيجي / White Label",
+        "nameEn": "Strategic & Institutional Partner",
+        "rebateAr": "تخصيص كامل حتى 75% + واجهات API",
+        "rebateEn": "Fully Customized Up to 75% + API Access",
+        "descAr": "للأكاديميات والشركات المالية وصناديق الاستثمار التي ترغب في دمج حلول FXENGIN.",
+        "descEn": "For trading academies and financial institutions integrating FXENGIN solutions.",
+        "featuresAr": [
+          "تكامل كامل لواجهات برمجة التطبيقات (API Feeds)",
+          "حلول مخصصة بالعلامة البيضاء (White Label)",
+          "مدير حسابات مؤسسي ومستشار تقني مخصص",
+          "عقود شراكة دولية وتسهيلات سحب بنكية مرنة"
+        ],
+        "featuresEn": [
+          "Full API integration for real-time market data & signals",
+          "White-label educational modules and portals",
+          "Dedicated institutional account director",
+          "Tailored SWIFT wire & institutional treasury routing"
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "titleAr": "دفعات أسبوعية فورية وموثوقة",
+        "titleEn": "Automated Weekly Payouts",
+        "descAr": "سحب فوري لأرباحك وعمولاتك عبر USDT (TRC20/BEP20) أو التحويل البنكي دون أي تأخير أو شروط معقدة.",
+        "descEn": "Instant withdrawal of earnings via USDT or direct wire transfers with zero friction."
+      },
+      {
+        "titleAr": "لوحة تحكم وتحليلات في الوقت الفعلي",
+        "titleEn": "Real-Time Partner Analytics",
+        "descAr": "تتبع دقيق لنشاط العملاء المسجلين، أحجام التداول باللوت، معدلات التحويل، وصافي العوائد التراكمية.",
+        "descEn": "Granular dashboard metrics tracking active clients, traded lots, and lifetime commission growth."
+      },
+      {
+        "titleAr": "مواد تسويقية ورعايات حصرية",
+        "titleEn": "High-Converting Marketing Kits",
+        "descAr": "بانرات مصممة باحترافية، صفحات هبوط سريعة، وفيديوهات ترويجية ترفع معدل التسجيل والتحويل إلى أقصى حد.",
+        "descEn": "Premium banners, optimized landing pages, and promotional media designed for peak conversions."
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": "01",
+        "titleAr": "تقديم طلب الانضمام",
+        "titleEn": "Submit Application",
+        "descAr": "املأ استمارة الشراكة في دقيقة واحدة مع توضيح حجم مجتمعك التداولي."
+      },
+      {
+        "stepNumber": "02",
+        "titleAr": "تفعيل حساب الشريك",
+        "titleEn": "Account Activation",
+        "descAr": "يتواصل معك مدير الشركاء خلال ساعات لتفعيل حسابك وتحديد نسبة العمولة الملائمة."
+      },
+      {
+        "stepNumber": "03",
+        "titleAr": "بدء النشر والمشاركة",
+        "titleEn": "Share & Promote",
+        "descAr": "استخدم رابطك التتبعي والمواد التسويقية لجلب العملاء والمتدربين الجدد."
+      },
+      {
+        "stepNumber": "04",
+        "titleAr": "استلام الأرباح أسبوعياً",
+        "titleEn": "Receive Weekly Payouts",
+        "descAr": "استلم عمولاتك مباشرة إلى محفظتك الرقمية أو حسابك البنكي كل أسبوع."
+      }
+    ]
+  },
+  {
+    "slug": "media",
+    "category": "company",
+    "titleAr": "المركز الإعلامي والبيانات الصحفية",
+    "titleEn": "Media Center & Press Releases",
+    "subtitleAr": "الأخبار الرسمية، البيانات الصحفية، وحزمة الهوية البصرية المعتمدة لمنصة FXENGIN",
+    "subtitleEn": "Official Press Announcements, Brand Identity Kit, and Verified Media Resources",
+    "badgeAr": "العلاقات الإعلامية",
+    "badgeEn": "Media Relations",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "pressEmail": "press@fxengin.com",
+    "pressPhone": "+971 4 380 0005",
+    "pressReleases": [
+      {
+        "id": "pr-1",
+        "date": "2026-09-15",
+        "titleAr": "منصة FXENGIN تدشن الجيل الجديد من محرك التحليلات المؤسسية بدقة تتبع فائقة",
+        "titleEn": "FXENGIN Launches Next-Gen Institutional Market Engine with Real-Time Precision",
+        "summaryAr": "أعلنت إدارة FXENGIN عن إطلاق البنية التحتية المحدثة التي تربط تحليلات السيولة الذكية بجلسات التداول المباشرة بدعم من تقنيات الذكاء الاصطناعي وخوادم فائقة السرعة.",
+        "summaryEn": "FXENGIN announced the deployment of upgraded infrastructure linking Smart Money liquidity analytics to live institutional trading streams with sub-second feeds.",
+        "readTime": "3 دقائق قراءة",
+        "category": "Technology & Innovation"
+      },
+      {
+        "id": "pr-2",
+        "date": "2026-08-01",
+        "titleAr": "تجاوز حاجز 28 ألف متداول نشط في مجتمع تداول العملات والمؤشرات الإقليمي",
+        "titleEn": "FXENGIN Surpasses 28,000 Active Community Members Milestone",
+        "summaryAr": "سجلت المنصة نمواً قياسياً بنسبة 140% في عدد المشتركين في البرامج التدريبية المعتمدة وغرفة التداول الاحترافية خلال الربع الثاني من العام الحالي.",
+        "summaryEn": "The platform recorded 140% quarterly subscriber growth across its accredited academy tracks and VIP market intelligence room.",
+        "readTime": "2 دقيقة قراءة",
+        "category": "Corporate Milestone"
+      },
+      {
+        "id": "pr-3",
+        "date": "2026-06-18",
+        "titleAr": "إطلاق برنامج الزمالة والاعتماد المهني للمحللين الفنيين ومديري المحافظ",
+        "titleEn": "Launch of Professional Fellowship & Analyst Certification Program",
+        "summaryAr": "كشفت الأكاديمية عن برنامج الاعتماد الشامل المكون من 12 وحدة تعليمية تفاعلية مع اختبارات تطبيقية تؤهل الخريجين لإدارة الحسابات الممولة.",
+        "summaryEn": "Unveiled an intensive 12-module quantitative certification designed to qualify graduates for institutional prop firm capital management.",
+        "readTime": "4 دقائق قراءة",
+        "category": "Education & Academy"
+      }
+    ],
+    "brandAssets": [
+      {
+        "id": "asset-1",
+        "nameAr": "الشعار الرسمي بدقة فائقة (PNG 4K مع خلفية شفافة)",
+        "nameEn": "Official Primary Logo (PNG 4K Transparent)",
+        "size": "1.4 MB",
+        "type": "PNG Image",
+        "url": "/assets/Images/Logo/logo.webp"
+      },
+      {
+        "id": "asset-2",
+        "nameAr": "دليل الهوية البصرية والألوان الرسمية (PDF)",
+        "nameEn": "Brand Guidelines & Color System (PDF)",
+        "size": "4.8 MB",
+        "type": "PDF Document",
+        "url": "/assets/docs/fxengin-brand-guidelines.pdf"
+      },
+      {
+        "id": "asset-3",
+        "nameAr": "حزمة الأيقونات والعناصر الرسومية المتجهة (SVG Vector)",
+        "nameEn": "Vector UI Icons & Monograms (SVG Pack)",
+        "size": "2.2 MB",
+        "type": "SVG Archive",
+        "url": "/assets/docs/fxengin-vector-kit.zip"
+      }
+    ]
+  },
+  {
+    "slug": "news",
+    "category": "company",
+    "titleAr": "أخبار المنصة وتحديثات النظام",
+    "titleEn": "Platform News & System Changelog",
+    "subtitleAr": "تابع أحدث الميزات المضافة، ترقيات خوادم التحليل، وجداول إشعارات الصيانة الدورية",
+    "subtitleEn": "Track Latest Feature Releases, Market Engine Upgrades, and System Changelogs",
+    "badgeAr": "سجل التحديثات الحية",
+    "badgeEn": "Changelog & System Releases",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "updates": [
+      {
+        "version": "v2.6.4",
+        "date": "2026-09-20",
+        "tagAr": "تحديث أمني ونظامي شامل",
+        "tagEn": "Security & Core Update",
+        "titleAr": "تعزيز أمان الحسابات وإطلاق مركز إدارة الصفحات (CMS) وتحديث التذييل",
+        "titleEn": "Enhanced Account Security Protocols, Dynamic CMS Studio, and Luxury Footer Redesign",
+        "detailsAr": "تم تأمين مسارات المستخدمين بالكامل وتفعيل إدارة محتوى الصفحات الديناميكية من لوحة التحكم، بالإضافة إلى دعم شامل لتوجيه المستخدمين المسجلين وترقية تجربة الهاتف.",
+        "detailsEn": "Fully secured user-scoped dynamic routes, integrated direct CMS management in admin dashboard, and elevated mobile responsiveness across the platform."
+      },
+      {
+        "version": "v2.5.0",
+        "date": "2026-08-20",
+        "tagAr": "إطلاق ميزة استوديو البث الحي",
+        "tagEn": "Major Feature Release",
+        "titleAr": "إطلاق استوديو البث المباشر التفاعلي وتكامل بث تدفق الأسواق الحي",
+        "titleEn": "Launch of Interactive Live Studio with Multi-Stream Capabilities",
+        "detailsAr": "إتاحة الحضور التفاعلي للندوات اليومية وجلسات افتتاح نيويورك مع إمكانية مشاركة الشاشات والدردشة الحية الفورية مع كبار المحللين الفنيين.",
+        "detailsEn": "Weekly interactive trading webinars with live chat and dedicated Q&A breakout rooms for VIP members during key volatility windows."
+      },
+      {
+        "version": "v2.3.1",
+        "date": "2026-07-10",
+        "tagAr": "تحسين الأداء والسرعة",
+        "tagEn": "Performance Optimization",
+        "titleAr": "تسريع أداء التحليلات وتقليل زمن استجابة التنبيهات بنسبة 65%",
+        "titleEn": "65% Speed Optimization for Real-Time Market Feeds and Setups",
+        "detailsAr": "ترقية خوادم التخزين المؤقت وتحسين معمارية استعلامات الأسعار لضمان وصول التنبيهات اللحظية عبر تليجرام بدون أي تأخير زمني.",
+        "detailsEn": "Upgraded cache layers and query optimizations ensuring instant zero-delay market setups across crypto and forex markets."
+      }
+    ]
+  },
+  {
+    "slug": "help",
+    "category": "legal",
+    "titleAr": "مركز المساعدة والدعم الفني",
+    "titleEn": "Help Center & Knowledge Base",
+    "subtitleAr": "إجابات وافية وشاملة لجميع استفساراتك حول الدورات، التوصيات، الحسابات، والدفع",
+    "subtitleEn": "Instant Answers, Step-by-Step Guides, and Direct Support for Accounts, Courses, and Subscriptions",
+    "badgeAr": "قاعدة المعرفة التفاعلية",
+    "badgeEn": "Knowledge Base & FAQs",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "supportEmail": "fxengin519@gmail.com",
+    "supportTelegram": "https://t.me/FXenginsignals",
+    "supportHoursAr": "فريق الدعم الفني متواجد 24 ساعة طوال أيام الأسبوع",
+    "supportHoursEn": "Technical Support Available 24/7",
+    "categories": [
+      {
+        "id": "account",
+        "nameAr": "الحساب والأمان",
+        "nameEn": "Account & Security",
+        "icon": "user"
+      },
+      {
+        "id": "courses",
+        "nameAr": "الكورسات والشهادات",
+        "nameEn": "Courses & Certification",
+        "icon": "book"
+      },
+      {
+        "id": "vip",
+        "nameAr": "باقة VIP والتحليلات",
+        "nameEn": "VIP Pass & Market Insights",
+        "icon": "star"
+      },
+      {
+        "id": "billing",
+        "nameAr": "الاشتراكات والدفع",
+        "nameEn": "Billing & Crypto Checkout",
+        "icon": "card"
+      }
+    ],
+    "faqs": [
+      {
+        "id": "faq-1",
+        "category": "account",
+        "qAr": "كيف يمكنني إنشاء حساب جديد والبدء في المنصة؟",
+        "qEn": "How do I create a new account and get started?",
+        "aAr": "يمكنك النقر على زر 'حساب جديد' في أعلى الموقع، إدخال اسمك وبريدك الإلكتروني وكلمة المرور. بعد تأكيد الحساب ستتمكن فوراً من الوصول إلى الدروس التمهيدية المجانية وقسم التحليلات العامة.",
+        "aEn": "Click 'Create Account' in the header, fill in your details, and verify your email to unlock instant access to free introductory courses and market overviews."
+      },
+      {
+        "id": "faq-2",
+        "category": "account",
+        "qAr": "ماذا أفعل إذا نسيت كلمة المرور الخاصة بحسابي؟",
+        "qEn": "What should I do if I forgot my account password?",
+        "aAr": "انقر على رابط 'نسيت كلمة المرور' في صفحة تسجيل الدخول، أدخل بريدك الإلكتروني المسجل، وسيرسل لك النظام رابطاً آمناً لإعادة تعيين كلمة المرور فوراً.",
+        "aEn": "Click 'Forgot Password' on the login page, enter your registered email, and a secure reset link will be sent to your inbox immediately."
+      },
+      {
+        "id": "faq-3",
+        "category": "courses",
+        "qAr": "هل يحصل المتدرب على شهادة إتمام معتمدة بعد إنهاء الكورس؟",
+        "qEn": "Do I receive an accredited certificate upon course completion?",
+        "aAr": "نعم، فور إتمامك لجميع مقاطع الفيديو واجتياز الاختبار النهائي بنجاح بنسبة 80% أو أعلى، يقوم النظام بإصدار شهادة إتمام رقمية معتمدة برقم تسلسلي فريد يمكن توثيقها ومشاركتها على LinkedIn.",
+        "aEn": "Yes, completing all modules and scoring 80%+ on the final assessment unlocks a verified digital certificate with a unique validation code."
+      },
+      {
+        "id": "faq-4",
+        "category": "courses",
+        "qAr": "هل المحتوى التعليمي مسجل أم مباشر؟",
+        "qEn": "Is course content pre-recorded or live?",
+        "aAr": "تتضمن المنصة مكتبة فيديو مسجلة بدقة 4K متاحة للمشاهدة مدى الحياة في أي وقت، بالإضافة إلى جلسات بث مباشر أسبوعية لمراجعة التطبيقات الحية مع المدربين.",
+        "aEn": "The platform offers full-HD recorded videos with lifetime access alongside weekly interactive live webinars with lead mentors."
+      },
+      {
+        "id": "faq-5",
+        "category": "vip",
+        "qAr": "ما الذي تشمله باقة VIP الاحترافية؟",
+        "qEn": "What is included in the VIP Pro subscription?",
+        "aAr": "تشمل الباقة وصولاً كاملاً لجميع الكورسات الحالية والمستقبلية، التحليلات اليومية الحصرية لـ SMC، التنبيهات اللحظية عبر تليجرام VIP، وحضور جلسات التداول المباشرة الأسبوعية مع المدربين.",
+        "aEn": "Full access to all course tracks, daily proprietary SMC market setups, instant Telegram VIP alerts, and private live trading rooms."
+      },
+      {
+        "id": "faq-6",
+        "category": "billing",
+        "qAr": "ما هي وسائل الدفع المدعومة للاشتراك؟",
+        "qEn": "What payment methods are supported?",
+        "aAr": "ندعم الدفع المباشر عبر العملات الرقمية المستقرة USDT (شبكة TRC20 و BEP20) بشكل آمن وموثوق، بالإضافة إلى البطاقات الائتمانية والتحويلات البنكية المباشرة.",
+        "aEn": "We support USDT (TRC20 / BEP20 network) crypto payments, credit/debit cards, and direct bank wire transfers."
+      }
+    ]
+  },
+  {
+    "slug": "privacy",
+    "category": "legal",
+    "titleAr": "سياسة الخصوصية وحماية البيانات",
+    "titleEn": "Privacy Policy & Data Protection",
+    "subtitleAr": "التزامنا الراسخ بحماية بياناتك وخصوصيتك الرقمية وفق أعلى المعايير الدولية واللائحة العامة لحماية البيانات (GDPR)",
+    "subtitleEn": "Our Uncompromising Commitment to Your Digital Privacy and Data Security (GDPR & CCPA Compliant)",
+    "badgeAr": "الامتثال القانوني والأمان",
+    "badgeEn": "Legal & Privacy Compliance",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "highlights": [
+      {
+        "titleAr": "تشفير تام للبيانات الحساسة",
+        "titleEn": "End-to-End Encryption",
+        "descAr": "حماية جميع بيانات تسجيل الدخول والمعاملات بتشفير SSL/TLS 256-bit وقواعد بيانات معزولة ومحمية."
+      },
+      {
+        "titleAr": "عدم بيع أو مشاركة البيانات إطلاقاً",
+        "titleEn": "Zero Data Monetization",
+        "descAr": "لا نقوم بمشاركة أو بيع بياناتك الشخصية أو نشاطك التداولي لأي طرف ثالث أو شركة إعلانية."
+      },
+      {
+        "titleAr": "الامتثال لإعلانات Google AdSense",
+        "titleEn": "Google AdSense Compliant",
+        "descAr": "إفصاح شفاف عن ملفات تعريف الارتباط وإدارة الإعلانات بما يتوافق مع سياسات جوجل الصارمة وحقوق الزائر."
+      }
+    ],
+    "sections": [
+      {
+        "id": "sec-1",
+        "number": "1",
+        "titleAr": "المعلومات التي نقوم بجمعها",
+        "titleEn": "Information We Collect",
+        "contentAr": "نقوم بجمع المعلومات الضرورية فقط لتقديم خدمات التداول والتحليل والتعليم المالي بأعلى جودة. يشمل ذلك بيانات التسجيل (الاسم والبريد الإلكتروني ورقم الهاتف)، وبيانات السجل التعليمي ونتائج الاختبارات، والبيانات التقنية كعنوان الـ IP ونوع المتصفح لضمان أمان الحساب ومنع الاختراق.",
+        "contentEn": "We collect strictly necessary information to deliver our trading analytics, educational materials, and platform services. This encompasses registration details (name, email, phone), academic progress and assessment records, and technical telemetry (IP address, browser fingerprints) used solely for account defense."
+      },
+      {
+        "id": "sec-2",
+        "number": "2",
+        "titleAr": "ملفات تعريف الارتباط (Cookies) وإعلانات Google AdSense",
+        "titleEn": "Cookies & Third-Party Advertising (Google AdSense)",
+        "contentAr": "تستخدم منصة FXENGIN ملفات تعريف الارتباط لتحسين تجربة التصفح وحفظ تفضيلات اللغة. كما نعتمد شركاء إعلانيين معتمدين مثل Google AdSense الذين قد يستخدمون ملفات تعريف ارتباط (مثل كوكيز DoubleClick) لعرض إعلانات ملائمة لاهتمامات الزوار. يحق للمستخدم تعطيل ملفات تعريف الارتباط في أي وقت من خلال إعدادات المتصفح أو زيارة إعدادات إعلانات جوجل الرسمية.",
+        "contentEn": "FXENGIN utilizes cookies to enhance UX and remember locale settings. We also partner with authorized networks such as Google AdSense, which may utilize cookies (like DoubleClick) to serve contextually relevant advertisements. Users maintain full autonomy to disable cookies via their browser configurations or Google Ads Settings."
+      },
+      {
+        "id": "sec-3",
+        "number": "3",
+        "titleAr": "كيفية استخدام ومعالجة بياناتك",
+        "titleEn": "How We Use & Process Your Data",
+        "contentAr": "تُستخدم البيانات لمعالجة طلبات الاشتراك، تفعيل الوصول للكورسات وغرف التداول، إرسال التنبيهات وإشعارات التحديثات الهامة، وتطوير أداء البنية التحتية لمنع أي محاولات وصول غير مصرح بها لحسابك الشخصي.",
+        "contentEn": "Collected telemetry is utilized to process subscription enrollments, grant access to curriculum assets and VIP setups, dispatch vital system advisories, and reinforce security defenses against brute-force intrusion."
+      },
+      {
+        "id": "sec-4",
+        "number": "4",
+        "titleAr": "أمان التخزين وفترة الاحتفاظ بالبيانات",
+        "titleEn": "Storage Security & Data Retention",
+        "contentAr": "تُحفظ البيانات في مراكز بيانات سحابية متقدمة ومحمية بجدران نارية متطورة وأنظمة مراقبة على مدار الساعة. نحتفظ ببياناتك طالما كان حسابك نشطاً، ونلتزم بحذفها فوراً بناءً على طلب خطي صريح منك.",
+        "contentEn": "Data resides within enterprise cloud tiers secured by high-grade firewalls and real-time threat detection. Information is retained for the active lifecycle of your profile and erased promptly upon formal user request."
+      },
+      {
+        "id": "sec-5",
+        "number": "5",
+        "titleAr": "حقوق المستخدم القانونية وفق نظام GDPR",
+        "titleEn": "Your Legal Rights Under GDPR",
+        "contentAr": "يحق لك في أي وقت: طلب نسخة كاملة من بياناتك المخزنة، تعديل أو تصحيح أي بيان غير دقيق، طلب الحذف النهائي لحسابك (حق النسيان)، والاعتراض على أي نوع من معالجة البيانات غير الأساسية عبر مراسلة مسؤول حماية البيانات على privacy@fxengin.com.",
+        "contentEn": "Under international privacy frameworks, you retain the inalienable right to inspect your data, rectify inaccuracies, enforce permanent profile erasure ('Right to be Forgotten'), or lodge inquiries with our Data Protection Officer at privacy@fxengin.com."
+      }
+    ]
+  },
+  {
+    "slug": "terms",
+    "category": "legal",
+    "titleAr": "الشروط والأحكام واتفاقية الاستخدام",
+    "titleEn": "Terms of Service & User Agreement",
+    "subtitleAr": "القواعد المنظمة لاستخدام منصة FXENGIN وحقوق الملكية الفكرية والتزامات المستخدم",
+    "subtitleEn": "Governing Regulations, User Obligations, and Intellectual Property Protection",
+    "badgeAr": "اتفاقية الاستخدام المعتمدة",
+    "badgeEn": "Terms & Conditions Agreement",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "highlights": [
+      {
+        "titleAr": "حماية الملكية الفكرية الصارمة",
+        "titleEn": "Strict Intellectual Property Rights",
+        "descAr": "جميع المواد التدريبية، التحليلات، والشروحات مسجلة ومحمية ويحظر قطعياً نسخها أو تسجيلها أو إعادة نشرها."
+      },
+      {
+        "titleAr": "الحسابات الفردية الشخصية",
+        "titleEn": "Single-User Account Access",
+        "descAr": "الاشتراك مخصص لمستخدم واحد فقط، ويحظر مشاركة بيانات الحساب مع أطراف أخرى تحت طائلة الإيقاف الفوري."
+      },
+      {
+        "titleAr": "سياسة الاشتراك والفوترة الواضحة",
+        "titleEn": "Clear Billing & Cancellation Terms",
+        "descAr": "شروط شفافة لرسوم الاشتراك وتجديد الخدمات وضمان استمرارية الوصول لكافة الميزات المشتراة."
+      }
+    ],
+    "sections": [
+      {
+        "id": "term-1",
+        "number": "1",
+        "titleAr": "قبول الشروط والامتثال",
+        "titleEn": "Acceptance of Terms",
+        "contentAr": "بمجرد إنشاء حساب أو تصفح موقع FXENGIN أو الاشتراك في أي باقة أو كورس تدريبي، فإنك تقر بأنك قرأت وفهمت ووافقت تماماً على الالتزام بكافة الشروط والأحكام الواردة هنا وسياسة الخصوصية الخاصة بالمنصة.",
+        "contentEn": "By registering, browsing, or subscribing to any courses or membership packages on FXENGIN, you irrevocably acknowledge and agree to abide by all operational terms and policies established herein."
+      },
+      {
+        "id": "term-2",
+        "number": "2",
+        "titleAr": "طبيعة الخدمات التعليمية والتحليلية",
+        "titleEn": "Educational & Analytical Nature",
+        "contentAr": "كافة المواد التعليمية، التحليلات الفنية، صفقات المتابعة، والندوات المباشرة المعروضة في FXENGIN هي لأغراض تعليمية وتدريبية بحتة. المنصة لا تقدم أي نصائح استثمارية شخصية أو إدارة أموال أو وساطة مالية، وتقع مسؤولية اتخاذ قرارات التداول على عاتق المستخدم منفرداً.",
+        "contentEn": "All content, algorithmic signals, course material, and live streams are compiled strictly for academic and educational purposes. FXENGIN is not an asset manager, broker, or financial advisor. All executions remain under the user's sole discretion."
+      },
+      {
+        "id": "term-3",
+        "number": "3",
+        "titleAr": "حقوق الملكية الفكرية وحظر النسخ",
+        "titleEn": "Intellectual Property & Anti-Piracy",
+        "contentAr": "جميع المقاطع المصورة، المذكرات التدريبية، التصاميم، والخوارزميات محمية بموجب قوانين حقوق النشر والملكية الفكرية الدولية. يُحظر تماماً تصوير الشاشة أو تسجيل الفيديوهات أو إعادة بيعها، ويترتب على ذلك حظر فوري للحساب مع الملاحقة القانونية.",
+        "contentEn": "All curricula, visual animations, indicators, and texts represent proprietary FXENGIN intellectual property. Screen capture, video ripping, unauthorized mirroring, or illicit resale will lead to immediate account termination and legal proceedings."
+      },
+      {
+        "id": "term-4",
+        "number": "4",
+        "titleAr": "سياسة الاشتراكات والمدفوعات",
+        "titleEn": "Subscriptions, Billing & Refunds",
+        "contentAr": "يتم دفع رسوم الدورات والاشتراكات مسبقاً عبر الطرق المعتمدة. نظراً لأن المحتوى الرقمي يتم منحه وتفعيله فورياً للمتدرب، فإن المبيعات نهائية ما لم ينص صراحة على ضمان استرداد محدد ضمن شروط الباقة.",
+        "contentEn": "Course tuition and VIP fees are billed upfront. Because direct digital delivery of proprietary assets takes place immediately upon confirmation, fees are final and non-refundable unless specified otherwise in an active guarantee tier."
+      },
+      {
+        "id": "term-5",
+        "number": "5",
+        "titleAr": "إيقاف الخدمة وإنهاء الحسابات",
+        "titleEn": "Account Suspension & Termination",
+        "contentAr": "تحتفظ إدارة FXENGIN بالحق الكامل في إيقاف أو إلغاء أي حساب ينتهك قواعد السلوك الأخلاقي، يشارك بيانات الدخول مع الغير، أو يستخدم أدوات غير قانونية لمحاولة العبث بخوادم المنصة.",
+        "contentEn": "FXENGIN reserves the unilateral prerogative to restrict or terminate accounts found violating community guidelines, credential sharing prohibitions, or engaging in hostile cybersecurity exploits."
+      }
+    ]
+  },
+  {
+    "slug": "disclaimer",
+    "category": "legal",
+    "titleAr": "إخلاء المسؤولية والتحذير من مخاطر التداول",
+    "titleEn": "Risk Disclaimer & Legal Regulatory Notice",
+    "subtitleAr": "بيان قانوني وتنظيمي إلزامي حول طبيعة المحتوى التعليمي ومخاطر المشتقات والرافعة المالية في أسواق المال",
+    "subtitleEn": "Mandatory Regulatory Disclosure Regarding High-Risk Financial Derivatives, Leverage, and Capital Exposure",
+    "badgeAr": "إفصاح المخاطر التنظيمي",
+    "badgeEn": "Risk Disclosure Notice",
+    "lastUpdated": "2026-09-20",
+    "isPublished": true,
+    "highRiskWarningAr": "تحذير عالي الأهمية بشأن الرافعة المالية: ينطوي تداول العملات الأجنبية (Forex) وعقود الفروقات (CFDs) والعملات المشفرة على درجة عالية جداً من المخاطرة برأس المال بسبب استخدام الرافعة المالية. قد لا يكون هذا النوع من الاستثمار مناسباً لجميع المستثمرين، وقد يؤدي إلى خسارة جزء كبير أو كامل رأس مالك المستثمر.",
+    "highRiskWarningEn": "High Leverage Risk Warning: Trading Foreign Exchange (Forex), Contracts for Difference (CFDs), and digital assets involves substantial risk of loss due to leverage dynamics. These instruments may not be suitable for all investors, and rapid market fluctuations can result in losing part or all of your invested capital.",
+    "highlights": [
+      {
+        "titleAr": "طبيعة المحتوى التعليمي والتدريبي",
+        "titleEn": "Educational Nature",
+        "descAr": "كافة التحليلات والدورات والمعلومات هي لأغراض تعليمية بحتة وليست استشارة مالية أو دعوة للاستثمار."
+      },
+      {
+        "titleAr": "مخاطر الرافعة المالية العالية",
+        "titleEn": "High Leverage Risk",
+        "descAr": "الرافعة المالية تضاعف الخسائر كما تضاعف الأرباح، ويجب استخدام أحجام صفقات مدروسة وصارمة."
+      },
+      {
+        "titleAr": "المسؤولية الاستثمارية الشخصية",
+        "titleEn": "Personal Responsibility",
+        "descAr": "القرارات التداولية والتنفيذية يتخذها المتداول بمحض إرادته وتحت مسؤوليته المالية الكاملة."
+      }
+    ],
+    "sections": [
+      {
+        "id": "disc-1",
+        "number": "1",
+        "titleAr": "المحتوى التعليمي والتحليلي العام",
+        "titleEn": "Educational Content & Market Insights",
+        "contentAr": "جميع التحليلات والرسوم البيانية والإشارات الفنية والندوات المباشرة المعروضة على منصة FXENGIN تُقدم لغرض التدريب ومشاركة وجهات نظر المحللين الفنية فقط. لا تشكل هذه المعلومات بأي حال من الأحوال توصية مباشرة أو دعوة لشراء أو بيع أي أداة مالية أو عقد استثماري.",
+        "contentEn": "All technical charts, algorithmic models, setup ideas, and video commentaries disseminated on FXENGIN are compiled strictly for academic enrichment. None of the disseminated materials constitute individualized investment advice or a solicitation to execute financial positions."
+      },
+      {
+        "id": "disc-2",
+        "number": "2",
+        "titleAr": "الأداء السابق لا يضمن النتائج المستقبلية",
+        "titleEn": "Past Performance Disclaimer",
+        "contentAr": "أي نتائج سابقة معلنة لصفقات أو مؤشرات أو نسب نجاح (Win Rate) تمثل تحليلات تاريخية لا تضمن بأي شكل من الأشكال تكرارها مستقبلاً. أسواق المال تخضع لتقلبات جيوسياسية واقتصادية غير متوقعة تؤثر على تدفق السيولة والأسعار.",
+        "contentEn": "Hypothetical or historical trade tracking and win rates do not signify or guarantee future trading performance. Currency and index markets are continually shaped by unforeseen macroeconomic shifts and sovereign policy announcements."
+      },
+      {
+        "id": "disc-3",
+        "number": "3",
+        "titleAr": "المسؤولية الفردية للمتداول",
+        "titleEn": "Individual Financial Accountability",
+        "contentAr": "يتحمل المتداول منفرداً كامل المسؤولية المالية والقانونية المترتبة على قراراته التداولية. تخلي منصة FXENGIN وإدارتها ومحللوها أي مسؤولية مباشرة أو غير مباشرة عن أي خسائر أو أضرار مالية قد تلحق بالمستخدم جراء اعتماده على محتويات المنصة.",
+        "contentEn": "Every client assumes full financial and legal responsibility for their market engagements. FXENGIN, its directors, developers, and analysts decline all liability for direct or consequential capital losses stemming from reliance on platform materials."
+      },
+      {
+        "id": "disc-4",
+        "number": "4",
+        "titleAr": "المخاطر التقنية وزمن الاستجابة",
+        "titleEn": "Technological & Latency Risks",
+        "contentAr": "تعتمد أدوات التداول اللحظية على شبكات الإنترنت وخوادم الربط. لا تضمن المنصة انعدام الأعطال التقنية الخارجة عن إرادتها أو تأخر وصول التنبيهات نتيجة ضعف الاتصال لدى المستخدم أو مزودي خدمة الطرف الثالث.",
+        "contentEn": "Digital execution feeds depend on global telecom links. FXENGIN cannot warrant against network latency, packet loss, or internet disruptions originating on local end-user devices or third-party cloud infrastructure."
+      },
+      {
+        "id": "disc-5",
+        "number": "5",
+        "titleAr": "الامتثال للقوانين والأنظمة المحلية",
+        "titleEn": "Jurisdictional Regulatory Compliance",
+        "contentAr": "يقع على عاتق المستخدم واجب التأكد من أن استخدام خدمات المنصة وتداول عقود الفروقات والعملات لا يتعارض مع القوانين والأنظمة واللوائح المالية السارية في بلده أو محل إقامته القانونية.",
+        "contentEn": "Users are personally responsible for verifying that their engagement with financial learning and CFD analysis conforms to the statutory guidelines and financial regulations of their respective domicile or citizenship."
+      }
+    ]
+  }
+]

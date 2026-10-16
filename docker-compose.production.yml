@@ -1,0 +1,154 @@
+services:
+  fxengin-postgres:
+    image: postgres:16-alpine
+    container_name: fxengin_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: fxengin_db
+      POSTGRES_USER: fxengin_admin
+      POSTGRES_PASSWORD: FxEnginSecure2026!Db
+    ports:
+      - "0.0.0.0:5438:5432"
+    volumes:
+      - fxengin_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fxengin_admin -d fxengin_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fxengin-redis:
+    image: redis:7-alpine
+    container_name: fxengin_redis
+    restart: always
+    command: redis-server --requirepass FxEnginRedis2026!Cache
+    ports:
+      - "0.0.0.0:6380:6379"
+    volumes:
+      - fxengin_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "FxEnginRedis2026!Cache", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fxengin-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fxengin_backend
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://fxengin_admin:FxEnginSecure2026!Db@fxengin-postgres:5432/fxengin_db?schema=public
+      REDIS_HOST: fxengin-redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: FxEnginRedis2026!Cache
+      REDIS_URL: redis://:FxEnginRedis2026!Cache@fxengin-redis:6379
+      JWT_SECRET: fxengin_super_jwt_secret_key_2026_production_grade_998877!@#
+      ENCRYPTION_SECRET_KEY: fxengin_secret_vault_encryption_key_2026
+      SUPER_ADMIN_EMAIL: admin@fxengen.com
+      SUPER_ADMIN_PASSWORD: "FXAdmin#2026!MasterEngine$SecureKey"
+      PROD_FRONTEND_URL: https://fxengen.com
+      PROD_BACKEND_URL: https://core.fxengen.com
+      BOT_STATE_URL: https://bot.fxengen.com/api/v1/state
+      S3_ENDPOINT: https://storage.fxengen.com
+      S3_BUCKET: fxengin-media
+      S3_PUBLIC_URL: https://storage.fxengen.com/fxengin-media
+      GMAIL_USER: ga138989@gmail.com
+      GMAIL_APP_PASSWORD: "juqg itkm ryyb aaez"
+      FRONTEND_URL: https://fxengen.com
+    depends_on:
+      fxengin-postgres:
+        condition: service_healthy
+      fxengin-redis:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fxengin-backend.entrypoints=websecure"
+      - "traefik.http.routers.fxengin-backend.rule=Host(`core.fxengen.com`)"
+      - "traefik.http.routers.fxengin-backend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.fxengin-backend.loadbalancer.server.port=3000"
+
+  fxengin-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: https://core.fxengen.com
+        NEXT_PUBLIC_SITE_NAME: "fxengin — Forex Trading Academy & Bot Ecosystem"
+        NEXT_PUBLIC_SITE_URL: "https://fxengen.com"
+        INTERNAL_BACKEND_URL: "http://fxengin-backend:3000"
+    container_name: fxengin_frontend
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      NEXT_PUBLIC_SITE_NAME: "fxengin — Forex Trading Academy & Bot Ecosystem"
+      NEXT_PUBLIC_SITE_URL: "https://fxengen.com"
+      NEXT_PUBLIC_API_URL: "https://core.fxengen.com"
+      INTERNAL_BACKEND_URL: "http://fxengin-backend:3000"
+    volumes:
+      - ./shared-data:/app/data
+    depends_on:
+      - fxengin-backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fxengin-frontend.entrypoints=websecure"
+      - "traefik.http.routers.fxengin-frontend.rule=Host(`fxengen.com`) || Host(`www.fxengen.com`)"
+      - "traefik.http.routers.fxengin-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.fxengin-frontend.loadbalancer.server.port=3000"
+
+  fxengin-admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: https://core.fxengen.com
+    container_name: fxengin_admin
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      NEXT_PUBLIC_API_URL: "https://core.fxengen.com"
+      INTERNAL_BACKEND_URL: "http://fxengin-backend:3000"
+      DEPOSIT_API_KEY: "0CqRwCDlAK2UPFAnP61aYVXGs8snvp0u"
+      N8N_NEWS_WEBHOOK_URL: "https://n8n-p4oh.srv1867849.hstgr.cloud/webhook/news"
+    volumes:
+      - ./shared-data:/app/data
+    ports:
+      - "0.0.0.0:3005:3001"
+    depends_on:
+      - fxengin-backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fxengin-admin.entrypoints=websecure"
+      - "traefik.http.routers.fxengin-admin.rule=Host(`admin.fxengen.com`) || Host(`dashboard.fxengen.com`) || Host(`admin.srv1867849.hstgr.cloud`) || Host(`dashboard.srv1867849.hstgr.cloud`)"
+      - "traefik.http.routers.fxengin-admin.tls.certresolver=letsencrypt"
+      - "traefik.http.services.fxengin-admin.loadbalancer.server.port=3001"
+
+  fxengin-media-server:
+    container_name: fxengin_media_server
+    image: ossrs/srs:6
+    restart: always
+    ports:
+      - "1935:1935"
+      - "1985:1985"
+      - "8085:8080"
+      - "8000:8000/udp"
+      - "10080:10080/udp"
+    volumes:
+      - ./docker/srs.conf:/usr/local/srs/conf/srs.conf
+      - srs_recordings:/usr/local/srs/objs/nginx/html/recordings
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fxengin-media.rule=Host(`live.fxengen.com`)"
+      - "traefik.http.routers.fxengin-media.entrypoints=websecure"
+      - "traefik.http.routers.fxengin-media.tls.certresolver=letsencrypt"
+      - "traefik.http.services.fxengin-media.loadbalancer.server.port=8080"
+
+volumes:
+  fxengin_postgres_data:
+  fxengin_redis_data:
+  srs_recordings:

@@ -97,7 +97,7 @@ export function formatArticlePayload(article, { event = 'article.created', sourc
     authorEn: article.authorEn || 'Eng. Sleman Daowed',
     authorRole: article.authorRoleAr || 'كبير محللي الأسواق',
     authorRoleEn: article.authorRoleEn || 'Chief Market Strategist',
-    authorImg: article.authorImg || '/assets/Images/Avatar/avatar1.png',
+    authorImg: article.authorImg || '/assets/Images/Avatar/avatar1.webp',
     authorBioAr: article.authorBioAr || '',
     authorBioEn: article.authorBioEn || '',
 

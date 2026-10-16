@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="description"
+      content="FXENGIN Trading Terminal — منصة التحليل الفني والتداول الاحترافية المتكاملة."
+    />
+    <meta name="theme-color" content="#01071E" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FXENGIN Terminal" />
+    <meta property="og:title" content="FXENGIN — Trading Terminal" />
+    <meta
+      property="og:description"
+      content="منصة التحليل الفني والتداول الاحترافية المتكاملة من FXENGIN."
+    />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>FXENGIN — منصة التداول والتحليل الاحترافية</title>
+  </head>
+  <body>
+    <div id="root">
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;width:100vw;background:#01071E;color:#F5F7FA;font-family:system-ui,-apple-system,sans-serif;gap:16px;">
+        <div style="position:relative;width:54px;height:54px;display:flex;align-items:center;justify-content:center;">
+          <div style="position:absolute;inset:0;border:3px solid rgba(4,136,248,0.18);border-top:3px solid #0488F8;border-radius:50%;animation:fxspin 0.8s linear infinite;"></div>
+          <div style="font-weight:900;color:#FB8704;font-size:16px;">FX</div>
+        </div>
+        <div style="font-size:13px;font-weight:700;color:#A7AFBF;letter-spacing:0.5px;">جاري تشغيل منصة التداول والشارت...</div>
+        <style>@keyframes fxspin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}</style>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

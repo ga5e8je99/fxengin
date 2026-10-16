@@ -245,7 +245,7 @@ export async function POST(req) {
       authorEn: 'Eng. Sleman Daowed',
       authorRoleAr: 'كبير محللي الأسواق',
       authorRoleEn: 'Chief Market Strategist',
-      authorImg: '/assets/Images/Avatar/avatar1.png',
+      authorImg: '/assets/Images/Avatar/avatar1.webp',
       authorBioAr: 'خبير أسواق مالية ومحلل فني معتمد لدى منصة FXENGIN بخبرة واسعة في تداول العملات والسلع وتحليل حركة الأسعار.',
       authorBioEn: 'Certified market strategist and technical analyst at FXENGIN, specializing in forex, commodities, and price action dynamics.',
       dateAr,

@@ -248,7 +248,7 @@ export default function ArticlesManagementPage() {
     authorRoleEn: 'Chief Market Strategist',
     authorBioAr: 'خبير أسواق مالية ومحلل فني معتمد لدى منصة FXENGIN بخبرة واسعة في تداول العملات والسلع وتحليل حركة الأسعار.',
     authorBioEn: 'Certified market strategist and technical analyst at FXENGIN, specializing in forex, commodities, and price action dynamics.',
-    authorImg: '/assets/Images/Avatar/avatar1.png',
+    authorImg: '/assets/Images/Avatar/avatar1.webp',
     dateAr: '',
     dateEn: '',
     readTimeAr: '7 دقائق قراءة',

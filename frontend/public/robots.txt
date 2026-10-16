@@ -1,0 +1,44 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /profile
+Disallow: /profile/*
+Disallow: /checkout
+Disallow: /checkout/*
+Disallow: /activate
+Disallow: /activate/*
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /courses/*/learn
+Disallow: /*?*affiliate=*
+Disallow: /*?*ref=*
+Disallow: /*?*source=*
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /profile
+Disallow: /profile/*
+Disallow: /checkout
+Disallow: /checkout/*
+Disallow: /activate
+Disallow: /activate/*
+Disallow: /courses/*/learn
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /profile
+Disallow: /checkout
+Disallow: /activate
+Disallow: /courses/*/learn
+
+User-Agent: Applebot
+Allow: /
+
+User-Agent: DuckDuckBot
+Allow: /
+
+Host: fxengen.com
+Sitemap: https://fxengen.com/sitemap.xml

@@ -132,7 +132,7 @@ export default function Sidebar() {
           <Link href="/dashboard" onClick={handleNavClick} className="flex items-center gap-space-sm">
             <div className="relative h-8 w-8 shrink-0">
               <Image
-                src="/assets/Images/Logo/logo.png"
+                src="/assets/Images/Logo/logo.webp"
                 alt="FXENGIN Brand Logo"
                 fill
                 className="object-contain"

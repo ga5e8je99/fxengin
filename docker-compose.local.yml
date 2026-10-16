@@ -1,0 +1,121 @@
+services:
+  fxengin-postgres:
+    image: postgres:16-alpine
+    container_name: fxengin_postgres_local
+    restart: always
+    environment:
+      POSTGRES_DB: fxengin_db
+      POSTGRES_USER: fxengin_admin
+      POSTGRES_PASSWORD: FxEnginSecure2026!Db
+    ports:
+      - "5438:5432"
+    volumes:
+      - fxengin_postgres_local_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fxengin_admin -d fxengin_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fxengin-redis:
+    image: redis:7-alpine
+    container_name: fxengin_redis_local
+    restart: always
+    command: redis-server --requirepass FxEnginRedis2026!Cache
+    ports:
+      - "6380:6379"
+    volumes:
+      - fxengin_redis_local_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "FxEnginRedis2026!Cache", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fxengin-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fxengin_backend_local
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://fxengin_admin:FxEnginSecure2026!Db@fxengin-postgres:5432/fxengin_db?schema=public
+      REDIS_HOST: fxengin-redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: FxEnginRedis2026!Cache
+      REDIS_URL: redis://:FxEnginRedis2026!Cache@fxengin-redis:6379
+      JWT_SECRET: fxengin_super_jwt_secret_key_2026_production_grade_998877!@#
+      ENCRYPTION_SECRET_KEY: fxengin_secret_vault_encryption_key_2026
+      SUPER_ADMIN_EMAIL: admin@fxengen.com
+      SUPER_ADMIN_PASSWORD: "FXAdmin#2026!MasterEngine$$SecureKey"
+      PROD_FRONTEND_URL: http://localhost:3000
+      PROD_BACKEND_URL: http://localhost:3002
+      FRONTEND_URL: http://localhost:3000
+      BOT_STATE_URL: https://bot.fxengen.com/api/v1/state
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      APPLE_CLIENT_ID: ${APPLE_CLIENT_ID:-}
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./shared-data:/app/shared-data
+    depends_on:
+      fxengin-postgres:
+        condition: service_healthy
+      fxengin-redis:
+        condition: service_healthy
+
+  fxengin-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:3002
+        NEXT_PUBLIC_SITE_NAME: "fxengin — Forex Trading Academy & Bot Ecosystem"
+        NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+        INTERNAL_BACKEND_URL: "http://fxengin-backend:3000"
+        NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${NEXT_PUBLIC_GOOGLE_CLIENT_ID:-""}
+        NEXT_PUBLIC_APPLE_CLIENT_ID: ${NEXT_PUBLIC_APPLE_CLIENT_ID:-""}
+    container_name: fxengin_frontend_local
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      NEXT_PUBLIC_SITE_NAME: "fxengin — Forex Trading Academy & Bot Ecosystem"
+      NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+      NEXT_PUBLIC_API_URL: "http://localhost:3002"
+      INTERNAL_BACKEND_URL: "http://fxengin-backend:3000"
+      NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${NEXT_PUBLIC_GOOGLE_CLIENT_ID:-""}
+      NEXT_PUBLIC_APPLE_CLIENT_ID: ${NEXT_PUBLIC_APPLE_CLIENT_ID:-""}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./shared-data:/app/data
+    depends_on:
+      - fxengin-backend
+
+  fxengin-admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:3002
+    container_name: fxengin_admin_local
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      NEXT_PUBLIC_API_URL: "http://localhost:3002"
+      INTERNAL_BACKEND_URL: "http://fxengin-backend:3000"
+      DEPOSIT_API_KEY: "0CqRwCDlAK2UPFAnP61aYVXGs8snvp0u"
+    volumes:
+      - ./shared-data:/app/data
+    ports:
+      - "3005:3001"
+    depends_on:
+      - fxengin-backend
+
+volumes:
+  fxengin_postgres_local_data:
+  fxengin_redis_local_data:

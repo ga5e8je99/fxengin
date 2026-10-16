@@ -13,13 +13,9 @@ export class AdsService implements OnModuleInit {
 
   async onModuleInit() {
     // Auto-seed default FXENGIN advertisements if database is clean
-    try {
-      const count = await this.prisma.advertisement.count();
-      if (count === 0) {
-        await this.seedDefaultAds();
-      }
-    } catch (err: any) {
-      this.logger.warn(`Could not seed default ads during boot: ${err?.message || err}`);
+    const count = await this.prisma.advertisement.count();
+    if (count === 0) {
+      await this.seedDefaultAds();
     }
   }
 

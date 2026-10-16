@@ -1,0 +1,141 @@
+{
+  "partners": [
+    {
+      "id": "prt-1790499496252-280",
+      "userId": "cmujl4qqg001zmy01bhhuhzh3",
+      "userName": "‫مهندس الفوركس (‪forex engineer‬‏)‬‎",
+      "userEmail": "solomondawoud82@gmail.com",
+      "userPhone": "",
+      "referralCode": "FOR-8629",
+      "termsAccepted": true,
+      "termsAcceptedAt": "2026-09-27T08:58:16.252Z",
+      "totalEarnings": 19.9,
+      "availableBalance": 19.9,
+      "totalClicks": 2,
+      "totalConversions": 1,
+      "totalReferredUsers": 2,
+      "status": "ACTIVE",
+      "createdAt": "2026-09-27T08:58:16.252Z"
+    },
+    {
+      "id": "prt-1790501893309-887",
+      "userId": "cmu2ovt1d0007wrab7i3z8ydj",
+      "userName": "Gamal Ahmed",
+      "userEmail": "ga138989@gmail.com",
+      "userPhone": "+201285645073",
+      "referralCode": "GAM-3789",
+      "termsAccepted": true,
+      "termsAcceptedAt": "2026-09-27T09:38:13.309Z",
+      "totalEarnings": 0,
+      "availableBalance": 0,
+      "totalClicks": 0,
+      "totalConversions": 0,
+      "totalReferredUsers": 0,
+      "status": "ACTIVE",
+      "createdAt": "2026-09-27T09:38:13.309Z"
+    }
+  ],
+  "clicks": [
+    {
+      "id": "clk-1790499559403",
+      "referralCode": "FOR-8629",
+      "partnerId": "prt-1790499496252-280",
+      "path": "/",
+      "timestamp": "2026-09-27T08:59:19.404Z"
+    },
+    {
+      "id": "clk-1790499848459",
+      "referralCode": "FOR-8629",
+      "partnerId": "prt-1790499496252-280",
+      "path": "/",
+      "timestamp": "2026-09-27T09:04:08.459Z"
+    }
+  ],
+  "conversions": [
+    {
+      "id": "conv-1790499592814-414",
+      "referralCode": "FOR-8629",
+      "partnerId": "prt-1790499496252-280",
+      "partnerName": "‫مهندس الفوركس (‪forex engineer‬‏)‬‎",
+      "orderNumber": "FX-2026-81414",
+      "orderAmount": 199,
+      "commissionRate": 0.1,
+      "commissionAmount": 19.9,
+      "currency": "USD",
+      "productType": "COURSE",
+      "productName": "هندسة تدفق السيولة المؤسسية واقتناص كتل الأوامر Order Flow Mastery",
+      "buyerName": "Gamal Ahmed",
+      "buyerEmail": "gamal.ahmed.dev@gmail.com",
+      "buyerPhone": "+201285645073",
+      "buyerId": "cmujfd7wo0004my01zi4q10vj",
+      "status": "CONFIRMED",
+      "confirmedAt": "2026-09-27T08:52:13.000Z",
+      "createdAt": "2026-09-27T08:51:48.000Z"
+    }
+  ],
+  "payouts": [],
+  "referredUsers": [
+    {
+      "id": "ref-1790499592097-912",
+      "referralCode": "FOR-8629",
+      "partnerId": "prt-1790499496252-280",
+      "partnerName": "‫مهندس الفوركس (‪forex engineer‬‏)‬‎",
+      "userId": "cmujl872b0022my01jd5edlvw",
+      "userName": "Solomon Dawoud",
+      "userEmail": "solomondawoud4@gmail.com",
+      "userPhone": "",
+      "registeredAt": "2026-09-27T08:59:52.097Z",
+      "subscriptionsCount": 0,
+      "totalSpent": 0,
+      "totalCommission": 0,
+      "status": "REGISTERED"
+    },
+    {
+      "id": "ref-1790499592814-111",
+      "referralCode": "FOR-8629",
+      "partnerId": "prt-1790499496252-280",
+      "partnerName": "‫مهندس الفوركس (‪forex engineer‬‏)‬‎",
+      "userId": "cmujfd7wo0004my01zi4q10vj",
+      "userName": "Gamal Ahmed",
+      "userEmail": "gamal.ahmed.dev@gmail.com",
+      "userPhone": "+201285645073",
+      "registeredAt": "2026-09-27T08:51:48.000Z",
+      "subscriptionsCount": 1,
+      "totalSpent": 199,
+      "totalCommission": 19.9,
+      "status": "SUBSCRIBED"
+    }
+  ],
+  "creatives": [
+    {
+      "id": "crt-1790600001001",
+      "title": "إعلان كورس تدفق السيولة المؤسسية (Order Flow Mastery)",
+      "badge": "فيسبوك وانستغرام",
+      "imageUrl": "/assets/Images/Main/c1.webp",
+      "caption": "هل تبحث عن نقطة تحول حقيقية في تداولك وتود فهم أسرار صناع السوق؟\n\nدورة \"هندسة تدفق السيولة المؤسسية Order Flow\" مع مهندس الفوركس تشرح لك:\n• قراءة خرائط السيولة الصامتة واقتناص كتل الأوامر (Order Blocks).\n• تجنب مصائد السيولة (Liquidity Traps) التي يقع فيها المتداولون الأفراد.\n• إدارة رأس المال وحساب المخاطرة بنماذج مؤسسية دقيقة.\n\nانضم الآن عبر الرابط واحصل على دعم فني ومتابعة مباشرة:\n{LINK}\n\n#فوركس #تداول #OrderFlow #مهندس_الفوركس #استثمار",
+      "isActive": true,
+      "createdAt": "2026-10-05T08:00:00.000Z",
+      "updatedAt": "2026-10-05T08:00:00.000Z"
+    },
+    {
+      "id": "crt-1790600002002",
+      "title": "إشارات وتوصيات VIP الحية وغرفة التداول اليومية",
+      "badge": "تيليجرام وواتساب",
+      "imageUrl": "/assets/Images/Main/expert1.webp",
+      "caption": "تداول مع المحترفين خطوة بخطوة وحقق أهدافك بثقة!\n\nانضم الآن إلى جروب التوصيات VIP مع مهندس الفوركس وتمتع بـ:\n• توصيات يومية دقيقة بنقاط دخول وأهداف محددة ونسبة مخاطرة منخفضة.\n• تحديثات حية للذهب والعملات والمؤشرات مع تحليلات فنية متقدمة.\n• متابعة وإرشاد مستمر في غرفة التداول الحية.\n\nاضغط على الرابط التالي للاشتراك والبدء فوراً:\n{LINK}\n\n#توصيات_فوركس #ذهب #فوركس_عرب #VIP #تداول",
+      "isActive": true,
+      "createdAt": "2026-10-05T08:00:00.000Z",
+      "updatedAt": "2026-10-05T08:00:00.000Z"
+    },
+    {
+      "id": "crt-1790600003003",
+      "title": "منصة مهندس الفوركس - بوابتك لاحتراف الأسواق المالية",
+      "badge": "منشور عام وتويتر / X",
+      "imageUrl": "/assets/Images/Main/login-visual.webp",
+      "caption": "هل تريد البدء في سوق الفوركس على أسس علمية ومدروسة؟\n\nمنصة مهندس الفوركس توفر لك كل ما تحتاجه للنجاح:\n• كورسات تدريبية احترافية من الصفر حتى الإتقان.\n• توصيات حية وتحليلات يومية دقيقة.\n• أدوات وتطبيقات متطورة لمساعدتك في اتخاذ أفضل القرارات التداولية.\n\nسجل الآن مجاناً عبر الرابط واستكشف المنصة:\n{LINK}\n\n#فوركس #الذهب #تداول_العملات #مهندس_الفوركس",
+      "isActive": true,
+      "createdAt": "2026-10-05T08:00:00.000Z",
+      "updatedAt": "2026-10-05T08:00:00.000Z"
+    }
+  ]
+}

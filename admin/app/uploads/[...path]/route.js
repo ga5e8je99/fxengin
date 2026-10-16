@@ -45,12 +45,18 @@ export async function GET(req, ctx = {}) {
       return new Response('Forbidden', { status: 403 });
     }
 
-    if (!fs.existsSync(resolvedPath)) {
-      return new Response('File Not Found', { status: 404 });
+    let finalPath = resolvedPath;
+    if (!fs.existsSync(finalPath)) {
+      const webpCandidate = finalPath.replace(/\.(png|jpe?g|bmp|tiff)$/i, '.webp');
+      if (fs.existsSync(webpCandidate)) {
+        finalPath = webpCandidate;
+      } else {
+        return new Response('File Not Found', { status: 404 });
+      }
     }
 
-    const fileBuffer = await fs.promises.readFile(resolvedPath);
-    const ext = path.extname(resolvedPath).toLowerCase();
+    const fileBuffer = await fs.promises.readFile(finalPath);
+    const ext = path.extname(finalPath).toLowerCase();
     const contentType = MIME_MAP[ext] || 'application/octet-stream';
 
     return new Response(fileBuffer, {

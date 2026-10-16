@@ -109,7 +109,7 @@ const DEFAULT_POPUP_CARDS = [
     demoBtnTextEn: 'Demo',
     demoUrl: 'https://www.hfm.com',
     accentColor: '#10B981',
-    customLogo: '/assets/Images/brokers/hfm.png',
+    customLogo: '/assets/Images/brokers/hfm.webp',
     durationSeconds: 12,
   },
   {
@@ -133,7 +133,7 @@ const DEFAULT_POPUP_CARDS = [
     demoBtnTextEn: 'Demo',
     demoUrl: 'https://clicks.pipaffiliates.com/c?c=655286&l=ar&p=0',
     accentColor: '#10B981',
-    customLogo: '/assets/Images/brokers/xm.png',
+    customLogo: '/assets/Images/brokers/xm.webp',
     durationSeconds: 12,
   },
   {
@@ -157,7 +157,7 @@ const DEFAULT_POPUP_CARDS = [
     demoBtnTextEn: 'Demo',
     demoUrl: 'https://user.ywomarkets.com/register?referral=6058',
     accentColor: '#00D06C',
-    customLogo: '/assets/Images/brokers/ywo.png',
+    customLogo: '/assets/Images/brokers/ywo.webp',
     durationSeconds: 12,
   },
   {
@@ -181,7 +181,7 @@ const DEFAULT_POPUP_CARDS = [
     demoBtnTextEn: 'Demo',
     demoUrl: 'https://multibankfx.com/account/demo-account?ib=fxengin',
     accentColor: '#0EA5E9',
-    customLogo: '/assets/Images/brokers/multibank.png',
+    customLogo: '/assets/Images/brokers/multibank.webp',
     durationSeconds: 12,
   },
   {
@@ -205,7 +205,7 @@ const DEFAULT_POPUP_CARDS = [
     demoBtnTextEn: 'Demo',
     demoUrl: 'https://propxp.com?aff=fxengin',
     accentColor: '#F59E0B',
-    customLogo: '/assets/Images/brokers/propxp.png',
+    customLogo: '/assets/Images/brokers/propxp.webp',
     durationSeconds: 12,
   },
 ];
@@ -372,7 +372,7 @@ export default function BrokerPopupControlModal({
         id: 'hfm',
         name: 'HFM (HF Markets)',
         accentColor: '#10B981',
-        logo: '/assets/Images/brokers/hfm.png',
+        logo: '/assets/Images/brokers/hfm.webp',
         rating: 4.9,
       };
 
@@ -1026,7 +1026,7 @@ export default function BrokerPopupControlModal({
                             onChange={(e) =>
                               setEditingCardData((prev) => ({ ...prev, customLogo: e.target.value }))
                             }
-                            placeholder="/assets/Images/brokers/hfm.png"
+                            placeholder="/assets/Images/brokers/hfm.webp"
                             className="w-full px-3 py-2 rounded-lg bg-[#091528] border border-white/10 text-white text-xs font-mono focus:border-[#10B981] focus:outline-none text-left"
                           />
                         </div>
@@ -1101,7 +1101,7 @@ export default function BrokerPopupControlModal({
                             style={{ borderColor: cardColor }}
                           >
                             <Image
-                              src={card.customLogo || '/assets/Images/brokers/hfm.png'}
+                              src={card.customLogo || '/assets/Images/brokers/hfm.webp'}
                               alt={card.titleAr || 'Logo'}
                               width={40}
                               height={40}
@@ -1392,7 +1392,7 @@ export default function BrokerPopupControlModal({
                           }}
                         >
                           <Image
-                            src={currentCard.customLogo || '/assets/Images/brokers/hfm.png'}
+                            src={currentCard.customLogo || '/assets/Images/brokers/hfm.webp'}
                             alt="Logo"
                             width={48}
                             height={48}

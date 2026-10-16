@@ -55,7 +55,7 @@ export async function POST(req) {
     let coverImage = '';
     let canonicalUrl = '';
     let authorName = 'TradingView Analyst';
-    let authorAvatar = '/assets/Images/Avatar/avatar1.png';
+    let authorAvatar = '/assets/Images/Avatar/avatar1.webp';
     let symbol = 'FOREX';
 
     // 1. If payload already contains pre-parsed item from feed
@@ -66,7 +66,7 @@ export async function POST(req) {
       coverImage = item.chartImage || '';
       canonicalUrl = item.link || '';
       authorName = item.author || 'TradingView Analyst';
-      authorAvatar = item.authorAvatar || '/assets/Images/Avatar/avatar1.png';
+      authorAvatar = item.authorAvatar || '/assets/Images/Avatar/avatar1.webp';
       symbol = (item.symbol || 'FOREX').toUpperCase();
     } else {
       // 2. Fetch directly from URL
@@ -355,7 +355,7 @@ export async function POST(req) {
       authorEn: 'Eng. Sleman Daowed',
       authorRoleAr: 'كبير محللي الأسواق',
       authorRoleEn: 'Chief Market Strategist',
-      authorImg: '/assets/Images/Avatar/avatar1.png',
+      authorImg: '/assets/Images/Avatar/avatar1.webp',
       authorBioAr: 'خبير أسواق مالية ومحلل فني معتمد بخبرة تزيد عن 14 عاماً في تداول العملات والسلع وإدارة المحافظ الاستثمارية.',
       authorBioEn: 'Certified financial analyst & market strategist with 14+ years of trading experience across global FX, commodities, and asset management.',
       dateAr,

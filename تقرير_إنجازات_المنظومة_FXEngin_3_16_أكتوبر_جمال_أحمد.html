@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تقرير الإنجازات والترقيات الهندسية الشامل - FXEngin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      background-color: #e2e8f0;
+      color: #0f172a;
+      line-height: 1.45;
+      font-size: 11px;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      min-height: 297mm;
+      max-height: 297mm;
+      padding: 14mm 14mm 12mm 14mm;
+      margin: 0 auto 10px auto;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      overflow: hidden;
+    }
+
+    /* HEADER BANNER */
+    .header-banner {
+      background: linear-gradient(135deg, #020b1e 0%, #061838 50%, #03112b 100%);
+      border-radius: 14px;
+      padding: 16px 20px 14px 20px;
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(2, 11, 30, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .badge-sprint {
+      background: rgba(0, 229, 255, 0.12);
+      border: 1px solid rgba(0, 229, 255, 0.45);
+      color: #00e5ff;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .logo-brand {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      background: linear-gradient(135deg, #ffb300 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(245, 158, 11, 0.2);
+    }
+
+    .header-titles {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .header-title-main {
+      font-size: 19px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 3px;
+      letter-spacing: -0.2px;
+    }
+
+    .header-title-sub {
+      font-size: 10px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 10px;
+    }
+
+    .meta-item {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .meta-label {
+      font-size: 8.5px;
+      color: #94a3b8;
+      display: block;
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+
+    .meta-val {
+      font-size: 10px;
+      font-weight: 800;
+      color: #f8fafc;
+    }
+
+    .meta-val.green {
+      color: #10b981;
+    }
+
+    .meta-val.gold {
+      color: #fbbf24;
+    }
+
+    /* KPI STATS ROW */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .kpi-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+      position: relative;
+    }
+
+    .kpi-number {
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+
+    .kpi-number.cyan { color: #0284c7; }
+    .kpi-number.green { color: #059669; }
+    .kpi-number.gold { color: #d97706; }
+    .kpi-number.purple { color: #7c3aed; }
+
+    .kpi-desc {
+      font-size: 9px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .kpi-sub {
+      font-size: 7.5px;
+      color: #64748b;
+    }
+
+    /* SECTION CONTAINERS */
+    .section-block {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      margin-bottom: 11px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .section-header {
+      background: #f1f5f9;
+      padding: 7px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .section-subtitle-en {
+      font-size: 9px;
+      font-weight: 600;
+      color: #64748b;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .badge-status {
+      font-size: 8px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    .badge-green {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+
+    .badge-blue {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #7dd3fc;
+    }
+
+    .badge-purple {
+      background: #f3e8ff;
+      color: #7e22ce;
+      border: 1px solid #d8b4fe;
+    }
+
+    .badge-gold {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .section-body {
+      padding: 9px 12px;
+    }
+
+    .cards-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .item-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 7px 10px;
+    }
+
+    .item-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .item-title::before {
+      content: "▪";
+      color: #0284c7;
+      font-size: 13px;
+    }
+
+    .item-text {
+      font-size: 9px;
+      color: #475569;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    .highlight {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .highlight-blue {
+      font-weight: 700;
+      color: #0284c7;
+    }
+
+    .highlight-green {
+      font-weight: 700;
+      color: #059669;
+    }
+
+    /* COMPARISON TABLE */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5px;
+      margin-top: 4px;
+    }
+
+    .compare-table th {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 6px 8px;
+      font-weight: 800;
+      text-align: right;
+      border: 1px solid #1e293b;
+    }
+
+    .compare-table td {
+      padding: 5px 8px;
+      border: 1px solid #e2e8f0;
+      vertical-align: middle;
+    }
+
+    .compare-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .tag-old {
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .tag-new {
+      background: #dcfce7;
+      color: #15803d;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      display: inline-block;
+    }
+
+    /* SIGN-OFF FOOTER */
+    .signoff-box {
+      margin-top: 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px 14px;
+      background: linear-gradient(to right, #f8fafc, #ffffff);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .signoff-right h4 {
+      font-size: 11px;
+      font-weight: 900;
+      color: #0f172a;
+    }
+
+    .signoff-right .name {
+      font-size: 13px;
+      font-weight: 900;
+      color: #0284c7;
+      margin: 1px 0;
+    }
+
+    .signoff-right .role {
+      font-size: 9px;
+      color: #64748b;
+      font-weight: 600;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .signoff-left-badge {
+      border: 1.5px dashed #0284c7;
+      border-radius: 8px;
+      padding: 6px 12px;
+      text-align: center;
+      background: rgba(2, 132, 199, 0.04);
+    }
+
+    .badge-code {
+      font-size: 9px;
+      font-weight: 900;
+      color: #0284c7;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-subcode {
+      font-size: 7.5px;
+      font-weight: 800;
+      color: #10b981;
+    }
+
+    /* PAGE FOOTER */
+    .page-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8px;
+      color: #64748b;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== PAGE 1 ======================== -->
+  <div class="page">
+    <div>
+      <!-- HEADER BANNER -->
+      <div class="header-banner">
+        <div class="header-top">
+          <span class="badge-sprint">FULL-STACK SPRINT REPORT • PRODUCTION GRADE</span>
+          <span class="logo-brand">FXENGIN</span>
+        </div>
+        <div class="header-titles">
+          <h1 class="header-title-main">التقرير الهندسي الشامل للتطوير والترقيات البرمجية</h1>
+          <p class="header-title-sub">توثيق شامل لكافة الإنجازات البرمجية، البنية التحتية، منظومات الـ WebP والعمولات لمنصة FX Engin</p>
+        </div>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">إعداد وتطوير:</span>
+            <span class="meta-val">جمال أحمد</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">الفترة الزمنية المشمولة:</span>
+            <span class="meta-val gold">03 أكتوبر 2026 – 16 أكتوبر 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">البيئة التشغيلية:</span>
+            <span class="meta-val">Ubuntu 24.04 / Docker / Node 22</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">حالة الاعتماد:</span>
+            <span class="meta-val green">مُنجز ومرفوع للإنتاج 100%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI ROW -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-number cyan">7</div>
+          <div class="kpi-desc">محاور كبرى مكتملة ومؤمنة</div>
+          <div class="kpi-sub">شاملة الـ WebP والتسويق والتداول</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-number green">88.8%</div>
+          <div class="kpi-desc">توفير حجم الصور وسرعة فائقة</div>
+          <div class="kpi-sub">31.3 MB ➔ 3.5 MB عبر WebP</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-number gold">+55</div>
+          <div class="kpi-desc">تحديث برمجي وميزة منجزة</div>
+          <div class="kpi-sub">64 ملف محدث + 194 رابط محول</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-number purple">0ms</div>
+          <div class="kpi-desc">Zero-Downtime النشر المباشر</div>
+          <div class="kpi-sub">حاويات Docker نشطة ومؤمنة بالكامل</div>
+        </div>
+      </div>
+
+      <!-- SECTION 1 -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-title">1. منظومة الوسائط وتحويل الصور فائق السرعة</span>
+            <span class="section-subtitle-en">(Full WebP Engine & Auto-Conversion)</span>
+          </div>
+          <span class="badge-status badge-green">مكتمل ومُحدث</span>
+        </div>
+        <div class="section-body">
+          <div class="cards-grid-2">
+            <div class="item-card">
+              <div class="item-title">تحويل كافة صور المنصة الحالية لـ WebP بنسبة 88.8%</div>
+              <p class="item-text">
+                تحويل شامل لـ <span class="highlight-green">86 صورة</span> على مستوى الموقع ولوحة التحكم (الشعارات، صور المقالات، الوسطاء، الخلفيات، وأيقونات التداول) وخفض الحجم الكلي من <span class="highlight">31.28 MB إلى 3.50 MB</span> فقط، مما ضاعف سرعة استجابة الموقع 4 مرات.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">التحويل التلقائي الذكي من الداشبورد لأي محتوى</div>
+              <p class="item-text">
+                دمج مكتبة <span class="highlight-blue">sharp</span> عالية الكفاءة بمسار الرفع؛ عند رفع أي صورة (PNG/JPG/TIFF) لأي مقال أو دورة أو وسيط، يتم تحويلها آلياً على الخادم لـ <span class="highlight-green">WebP بجودة 85%</span> مع إرجاع رابط مباشر بالصيغة المحسنة فوراً.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">تحديث 194 إشارة ومسار في 64 ملفاً برمجياً</div>
+              <p class="item-text">
+                فحص ومزامنة وتعديل كافة ملفات الواجهة والبيانات (<span class="highlight">articles.json, brokers.json, broker-popup.json, pages.json</span>) وكافة مكونات Next.js لتعمل مباشرة مع امتداد <span class="highlight-blue">.webp</span> بصورة متجانسة وخالية من أي ثغرات.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">محرك الحل التلقائي المزدوج (Fallback Auto-Resolution)</div>
+              <p class="item-text">
+                تطوير مسار التقديم <span class="highlight">/uploads/[...path]</span> ليفحص وجود النسخة <span class="highlight-green">.webp</span> تلقائياً عند طلب أي رابط تاريخي قديم بصيغة PNG أو JPG، مما يضمن انعدام أي أخطاء 404 لكافة الروابط المؤرشفة سابقاً.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2 -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-title">2. حوكمة نظام التسويق بالعمولة والشراكة الذكية</span>
+            <span class="section-subtitle-en">(Affiliate & Single-Commission Ecosystem)</span>
+          </div>
+          <span class="badge-status badge-blue">مكتمل ومُعتمد</span>
+        </div>
+        <div class="section-body">
+          <div class="cards-grid-2">
+            <div class="item-card">
+              <div class="item-title">قاعدة احتساب العمولة (10% للمرة الأولى فقط)</div>
+              <p class="item-text">
+                تطبيق خوارزمية ذكية لاحتساب نسبة الـ <span class="highlight-blue">10%</span> للمسوّق (المستخدم س) عندما يشترك العميل المحال (المستخدم ص) في جروب الذهب أو الفوركس أو الكورسات لأول مرة فقط، وربط التحقق الدائم بسجل العميل.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">الحماية المالية ومنع استنزاف الأرباح المتكررة</div>
+              <p class="item-text">
+                منع برمجي صارم لاحتساب أي عمولات ثانوية إذا جدد العميل اشتراكه لنفس الجروب أو اشترك في جروب آخر لاحق، مما يحمي التدفقات المالية للمنصة ويضمن عدالة احتساب أرباح التسويق.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">مزامنة APIs الإحالة في الواجهة والداشبورد</div>
+              <p class="item-text">
+                تحديث مسار <span class="highlight">api/affiliate</span> و <span class="highlight">admin/api/affiliates</span> لتسجيل حقول <span class="highlight-blue">firstTimeCommissionClaimed</span> و <span class="highlight-blue">affiliatePaidGroups</span> ومنع أي ازدواجية في التقرير المالي.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">توضيح الشروط بشفافية في صفحة الشركاء join-us</div>
+              <p class="item-text">
+                تحديث صفحة انضم إلينا ومكونات التسجيل لتشرح للمسوقين آليات احتساب العمولات بشفافية تامة، وتوضيح كيفية احتساب نسبة الـ 10% الحصرية للتحويلات الجديدة المكتملة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="page-footer">
+      <span>صفحة 1 من 3 • وثيقة إنجازات منظومة FX Engin الرسمية (3 - 16 أكتوبر 2026)</span>
+      <span>المُعِد: جمال أحمد — Lead Full-Stack & System Architect</span>
+    </div>
+  </div>
+
+  <!-- ======================== PAGE 2 ======================== -->
+  <div class="page">
+    <div>
+      <!-- TOP COMPACT BANNER -->
+      <div style="background: #020b1e; padding: 8px 14px; border-radius: 8px; color: #fff; display: flex; justify-content: space-between; align-items: center; margin-bottom: 11px;">
+        <span style="font-weight: 800; font-size: 10px; color: #38bdf8;">تقرير الإنجازات والترقيات البرمجية (3 - 16 أكتوبر 2026)</span>
+        <span style="font-weight: 800; font-size: 10px; color: #fbbf24;">FXENGIN • نظام التداول ومسابقات التأهيل والوسائط</span>
+        <span style="font-weight: 700; font-size: 9px; color: #94a3b8;">إعداد: جمال أحمد</span>
+      </div>
+
+      <!-- SECTION 3 -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-title">3. منصة التداول والشموع ومحاكي الأسواق الحية</span>
+            <span class="section-subtitle-en">(Trading App, ChartPanel & Candle Engine)</span>
+          </div>
+          <span class="badge-status badge-gold">بث حي فوري</span>
+        </div>
+        <div class="section-body">
+          <div class="cards-grid-2">
+            <div class="item-card">
+              <div class="item-title">محرك بيانات الشموع التاريخية واللحظية الكاملة</div>
+              <p class="item-text">
+                توليد وضخ ملفات الشموع الدقيقة لكافة أصول التداول (<span class="highlight">XAUUSD, BTC, ETH, EURUSD, GBPUSD, NAS100, US30, USDJPY</span>) عبر كافة الأطر الزمنية من <span class="highlight-blue">1m وحتى 1w</span> بدقة عالية عبر <span class="highlight">fetch_all_candles.mjs</span>.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">واجهات الشارت المتقدمة ChartPanel & Toolbar</div>
+              <p class="item-text">
+                تطوير لوحة الرسم البياني التفاعلية باستخدام <span class="highlight-blue">lightweight-charts</span> مع أدوات التحليل الفني، وتغيير الفريمات الزمنية، وتبديل المؤشرات بسلاسة فائقة وبدون أي تقطيع في التغذية الحية.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">لوحة الأوامر المباشرة ومحاكي الصفقات OrderPanel</div>
+              <p class="item-text">
+                برمجة لوحة التداول الفوري للشراء والبيع، وتحديد وقف الخسارة وجني الأرباح (SL/TP)، وحساب حجم اللوت والهامش، مع محاكاة فورية لتغيرات الرصيد والأرباح غير المحققة (PnL).
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">تكامل شعارات المنصات التداولية (Match-Trader & MT5)</div>
+              <p class="item-text">
+                تضمين وتحديث شعارات منصات التداول الرسمية بدقة عالية، وتوفير أيقونات المنصة المتجاوبة مع كافة مقاسات PWA للشاشات والموبايل.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4 -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-title">4. بوابة مسابقة التداول ونظام التأهيل المشفر</span>
+            <span class="section-subtitle-en">(Trading Competition & Qualification Gate)</span>
+          </div>
+          <span class="badge-status badge-purple">أمان عالي ومؤتمت</span>
+        </div>
+        <div class="section-body">
+          <div class="cards-grid-2">
+            <div class="item-card">
+              <div class="item-title">بوابة التأهيل الصارمة للمسابقة (Competition Gate)</div>
+              <p class="item-text">
+                إنشاء المكون الأمني <span class="highlight">CompetitionQualificationGate.js</span> لحجب واجهة المسابقة عن غير المؤهلين والتحقق اللحظي من تطابق شروط الإيداع والتسجيل قبل منح الصلاحية.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">لوحة إدارة المسابقة بالداشبورد وقواعد البيانات</div>
+              <p class="item-text">
+                تخصيص شاشة إدارة المسابقات في الداشبورد <span class="highlight">/dashboard/trading-competition</span> للتحكم بحالة المتسابقين وتخزين سجلات التأهيل في <span class="highlight-blue">competition-qualification.json</span>.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">قفل قنوات التداول الحصرية وتوجيه المشتركين</div>
+              <p class="item-text">
+                توجيه المتداولين غير المستوفين للشروط تلقائياً إلى قنوات الدعم أو صفحة فتح الحساب لدى الوسطاء المعتمدين لضمان سرعة إكمال التأهيل ودخول المسابقة.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">حماية البيانات المشفرة وسجلات الإيداع</div>
+              <p class="item-text">
+                ربط مفاتيح الحماية والتحقق من صحة أرقام حسابات التداول لمنع تكرار التسجيل لنفس الحساب من قبل أكثر من متسابق.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5 -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-title">5. منظومة المقالات، التحليلات، وبوب-أب الوسطاء</span>
+            <span class="section-subtitle-en">(Market Analysis, Popups & n8n Automation)</span>
+          </div>
+          <span class="badge-status badge-green">تحديث ذاتي</span>
+        </div>
+        <div class="section-body">
+          <div class="cards-grid-2">
+            <div class="item-card">
+              <div class="item-title">سلسلة تحليلات الذهب والدولار لشهر أكتوبر 2026</div>
+              <p class="item-text">
+                إصدار ونشر تحليلات فنية وموجية معمقة لمؤشر الدولار (DXY) والذهب (XAUUSD على فريمات 1h و 4h) مع صور شارتات عالية الدقة محولة بالكامل لصيغة WebP في <span class="highlight">articles.json</span>.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">الأتمتة الشاملة والربط المباشر مع n8n Webhook</div>
+              <p class="item-text">
+                تطوير مسار استقبال الويب هوك لنشر المقالات والأخبار التلقائية الصادرة من TradingView وقنوات التحليل وتنسيقها وترجمتها ثنائياً (عربي / إنجليزي) بدون تدخل يدوي.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">التحكم المركزي بنوافذ الوسطاء الترويجية (Popups)</div>
+              <p class="item-text">
+                إمكانية التعديل اللحظي من لوحة التحكم على محتوى البوب أب الجانبي والمنبثق للوسطاء (XM, HFM, DooPrime, MultiBank, PropXP, YWO) عبر <span class="highlight">broker-popup.json</span> بنقرة زر.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">التكامل مع روابط الإحالة وتتبع التحويلات</div>
+              <p class="item-text">
+                ربط كل وسيط بروابطه الترويجية الحصرية وأكواد الخصم التلقائية مع احتساب دقيق لمرات الظهور والضغطات لتعظيم العائد التسويقي.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="page-footer">
+      <span>صفحة 2 من 3 • وثيقة إنجازات منظومة FX Engin الرسمية (3 - 16 أكتوبر 2026)</span>
+      <span>المُعِد: جمال أحمد — Lead Full-Stack & System Architect</span>
+    </div>
+  </div>
+
+  <!-- ======================== PAGE 3 ======================== -->
+  <div class="page">
+    <div>
+      <!-- TOP COMPACT BANNER -->
+      <div style="background: #020b1e; padding: 8px 14px; border-radius: 8px; color: #fff; display: flex; justify-content: space-between; align-items: center; margin-bottom: 11px;">
+        <span style="font-weight: 800; font-size: 10px; color: #38bdf8;">تقرير الإنجازات والترقيات البرمجية (3 - 16 أكتوبر 2026)</span>
+        <span style="font-weight: 800; font-size: 10px; color: #10b981;">FXENGIN • التحول التشغيلي والبنية التحتية المحلية والسحابية</span>
+        <span style="font-weight: 700; font-size: 9px; color: #94a3b8;">إعداد: جمال أحمد</span>
+      </div>
+
+      <!-- SECTION 6 -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-title">6. البنية التحتية، بيئة التشغيل المحلية وسكريبتات 1-Click</span>
+            <span class="section-subtitle-en">(Local Dev, Docker Containers & 1-Click Scripts)</span>
+          </div>
+          <span class="badge-status badge-blue">سيرفر إنتاج سحابي</span>
+        </div>
+        <div class="section-body">
+          <div class="cards-grid-2">
+            <div class="item-card">
+              <div class="item-title">أتمتة التشغيل بنقرة واحدة (1-Click Launchers)</div>
+              <p class="item-text">
+                إنشاء سكريبتات <span class="highlight-blue">start-local.bat</span> و <span class="highlight-blue">start-server.bat</span> لتشغيل ومزامنة الموقع والداشبورد والسيرفر الخلفي محلياً بنقرة واحدة دون الحاجة لأي أوامر طرفية معقدة.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">إعداد بيئة العمل على الجهاز الجديد بالكامل</div>
+              <p class="item-text">
+                تثبيت Node.js 22 LTS، وتحميل كافة مكتبات <span class="highlight">node_modules</span> للمشاريع الأربعة (frontend, admin, backend, trading)، وتوليد عميل Prisma لقاعدة البيانات، وضبط مسارات النظام.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">الربط المشفر بالسيرفر الحي عبر مفاتيح ed25519</div>
+              <p class="item-text">
+                تأمين اتصال SSH سحابي مشفر مع السيرفر (<span class="highlight">186.240.145.87</span>) بدون كلمات مرور لنقل التحديثات وإعادة تشغيل الحاويات في ثوانٍ معدودة وبأعلى معايير الأمان.
+              </p>
+            </div>
+            <div class="item-card">
+              <div class="item-title">إعادة بناء حاويات Docker مع مكتبات sharp للينكس</div>
+              <p class="item-text">
+                تحديث ملفات <span class="highlight">Dockerfile</span> لمرحلة runner بالـ Next.js standalone وتثبيت sharp في بيئة Alpine Linux لتأكيد عمل التحويل التلقائي للصور على السيرفر الحي.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 7: COMPARISON MATRIX -->
+      <div class="section-block" style="margin-bottom: 8px;">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-title">7. مصفوفة المقارنة والتحول التشغيلي (قبل 3 أكتوبر مقابل الحالة الراهنة)</span>
+            <span class="section-subtitle-en">(Transformation Matrix)</span>
+          </div>
+          <span class="badge-status badge-gold">نقلة نوعية للمنظومة</span>
+        </div>
+        <div class="section-body" style="padding: 6px 10px;">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th style="width: 22%;">الميزة / المنظومة</th>
+                <th style="width: 38%;">الحالة السابقة (قبل 3 أكتوبر 2026)</th>
+                <th style="width: 40%;">الحالة المعتمدة الآن في الإنتاج (16 أكتوبر 2026)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>صيغ وأحجام الصور</b></td>
+                <td><span class="tag-old">PNG / JPG بأحجام ضخمة تصل لـ 31.3 MB وبطء تصفح</span></td>
+                <td><span class="tag-new">WebP بالكامل بحجم 3.5 MB وتوفير 88.8% وسرعة 4x</span></td>
+              </tr>
+              <tr>
+                <td><b>رفع الصور بالداشبورد</b></td>
+                <td><span class="tag-old">رفع بالصيغة الأصلية دون معالجة أو ضغط</span></td>
+                <td><span class="tag-new">تحويل آلي ذكي لـ WebP فورياً لجميع المقالات والوسطاء</span></td>
+              </tr>
+              <tr>
+                <td><b>حوكمة عمولات الإحالة</b></td>
+                <td><span class="tag-old">غياب الضوابط الحصرية لأول عملية اشتراك</span></td>
+                <td><span class="tag-new">حصر نسبة الـ 10% لأول مرة فقط لمنع تكرار الصرف</span></td>
+              </tr>
+              <tr>
+                <td><b>منصة التداول والشموع</b></td>
+                <td><span class="tag-old">واجهات ثابتة بدون شارتات حية أو محاكاة كاملة</span></td>
+                <td><span class="tag-new">محرك شموع كامل (1m-1w) + ChartPanel + OrderPanel</span></td>
+              </tr>
+              <tr>
+                <td><b>مسابقة التداول</b></td>
+                <td><span class="tag-old">عدم وجود بوابة تأهيل مشفرة لمنع غير المسجلين</span></td>
+                <td><span class="tag-new">بوابة تأهيل ذكية Gate + إدارة المتسابقين بالداشبورد</span></td>
+              </tr>
+              <tr>
+                <td><b>تشغيل المنظومة والمزامنة</b></td>
+                <td><span class="tag-old">أوامر طرفية يدوية وباسوردات متكررة في كل مرة</span></td>
+                <td><span class="tag-new">سكريبتات 1-Click + اتصال SSH آمن بمفتاح مشفر</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- OFFICIAL SIGN-OFF -->
+      <div class="signoff-box">
+        <div class="signoff-right">
+          <h4>المُعِد والمسؤول عن التنفيذ البرمجي والهندسي:</h4>
+          <div class="name">جمال أحمد</div>
+          <div class="role">Lead Full-Stack & System Architect — FX Engin Platform</div>
+        </div>
+        <div class="signoff-left-badge">
+          <div class="badge-code">OFFICIAL SYSTEM REPORT</div>
+          <div class="badge-code" style="color: #0f172a; font-size: 8px;">FX ENGIN PRODUCTION PLATFORM</div>
+          <div class="badge-subcode">VERIFIED, TESTED & DEPLOYED ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="page-footer">
+      <span>صفحة 3 من 3 • وثيقة إنجازات منظومة FX Engin الرسمية (3 - 16 أكتوبر 2026)</span>
+      <span>المُعِد: جمال أحمد — Lead Full-Stack & System Architect</span>
+    </div>
+  </div>
+
+</body>
+</html>

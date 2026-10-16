@@ -262,7 +262,7 @@ export async function POST(req) {
       authorEn: body.authorEn || 'Eng. Sleman Daowed',
       authorRoleAr: body.authorRoleAr || 'كبير محللي الأسواق',
       authorRoleEn: body.authorRoleEn || 'Chief Market Strategist',
-      authorImg: body.authorImg || '/assets/Images/Avatar/avatar1.png',
+      authorImg: body.authorImg || '/assets/Images/Avatar/avatar1.webp',
       authorBioAr: body.authorBioAr || 'خبير أسواق مالية ومحلل فني معتمد لدى منصة FXENGIN بخبرة واسعة في تداول العملات والسلع وتحليل حركة الأسعار.',
       authorBioEn: body.authorBioEn || 'Certified market strategist and technical analyst at FXENGIN, specializing in forex, commodities, and price action dynamics.',
       dateAr: body.dateAr || dateAr,

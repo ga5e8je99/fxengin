@@ -1,0 +1,364 @@
+import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
+
+export const dynamic = 'force-dynamic';
+
+const CONFIG_FILE = path.join(process.cwd(), 'data', 'broker-popup.json');
+const BROKERS_FILE = path.join(process.cwd(), 'data', 'brokers.json');
+
+const DEFAULT_CONFIG = {
+  isEnabled: true,
+  showOnce: true,
+  modalBgTheme: 'broker_logo',
+  intervalSeconds: 60,
+  initialDelaySeconds: 15,
+  mode: 'rotate', // 'rotate' | 'specific'
+  selectedBrokerId: 'xm',
+  headlineAr: 'فرصة تداول حصرية عبر شركاء FXEngin المعتمدين',
+  headlineEn: 'Exclusive Trading Opportunity via FXEngin Verified Partners',
+  subheadlineAr: 'احصل على بونص إيداع 100% وحسابات إسلامية خالية من الفوائد مع وصول فوري لتوصيات وتحليلات مهندس الفوركس',
+  subheadlineEn: 'Claim 100% deposit bonus and swap-free Islamic accounts with instant access to VIP signals',
+  badgeAr: 'شريك وساطة رسمي معتمد • فئة أولى Tier-1',
+  badgeEn: 'Official Verified Partner • Tier-1 Regulated',
+  ctaTextAr: 'افتح حساب حقيقي الآن',
+  ctaTextEn: 'Open Live Account Now',
+  demoBtnTextAr: 'حساب تجريبي مجاني',
+  demoBtnTextEn: 'Free Demo Account',
+  allowDismissMinutes: 1,
+
+  // Side Toast Notification Timing & Settings
+  sidePopupEnabled: true,
+  sidePopupIntervalSeconds: 45,
+  sidePopupDurationSeconds: 12,
+  sidePopupInitialDelaySeconds: 10,
+  sidePopupPosition: 'bottom-left',
+  sidePopupShowOnce: false,
+
+  // Side Toast Notification Content
+  sidePopupMode: 'broker', // 'broker' | 'rotate' | 'custom'
+  sidePopupBrokerId: 'hfm',
+  sidePopupBadgeAr: 'شريك وساطة رسمي معتمد',
+  sidePopupBadgeEn: 'Official Verified Partner',
+  sidePopupCustomTitleAr: 'HFM (HF Markets)',
+  sidePopupCustomTitleEn: 'HFM (HF Markets)',
+  sidePopupCustomSubtitleAr: 'وسيط عالمي رائد حائز على أكثر من 60 جائزة دولية',
+  sidePopupCustomSubtitleEn: 'Multi-Award Winning Global Broker (FCA, CySEC, DFSA)',
+  sidePopupRating: 4.9,
+  sidePopupHighlightAr: 'استرداد كاش باك حتى $2 لكل لوت + بونص تداول 20% ووصول كامل لجميع كورسات الأكاديمية',
+  sidePopupHighlightEn: 'Up to $2/lot cashback rebate + 20% Top-Up bonus and full FXENGIN Academy access',
+  sidePopupLiveBtnTextAr: 'فتح حساب مباشر',
+  sidePopupLiveBtnTextEn: 'Open Live Account',
+  sidePopupLiveUrl: '',
+  sidePopupShowDemo: true,
+  sidePopupDemoBtnTextAr: 'تجريبي',
+  sidePopupDemoBtnTextEn: 'Demo',
+  sidePopupDemoUrl: '',
+  sidePopupAccentColor: '#10B981',
+  sidePopupCustomLogo: '',
+
+  popupCards: [
+    {
+      id: 'card_hfm',
+      isActive: true,
+      brokerId: 'hfm',
+      badgeAr: 'شريك وساطة رسمي معتمد',
+      badgeEn: 'Official Verified Partner',
+      titleAr: 'HFM (HF Markets)',
+      titleEn: 'HFM (HF Markets)',
+      subtitleAr: 'وسيط عالمي رائد حائز على أكثر من 60 جائزة دولية',
+      subtitleEn: 'Multi-Award Winning Global Broker (FCA, CySEC, DFSA)',
+      rating: 4.9,
+      highlightAr: 'استرداد كاش باك حتى $2 لكل لوت + بونص تداول 20% ووصول كامل لجميع كورسات الأكاديمية',
+      highlightEn: 'Up to $2/lot cashback rebate + 20% Top-Up bonus and full FXENGIN Academy access',
+      liveBtnTextAr: 'فتح حساب مباشر',
+      liveBtnTextEn: 'Open Live Account',
+      liveUrl: 'https://www.hfm.com',
+      showDemo: true,
+      demoBtnTextAr: 'تجريبي',
+      demoBtnTextEn: 'Demo',
+      demoUrl: 'https://www.hfm.com',
+      accentColor: '#10B981',
+      customLogo: '/assets/Images/brokers/hfm.webp',
+      durationSeconds: 12,
+    },
+    {
+      id: 'card_xm',
+      isActive: true,
+      brokerId: 'xm',
+      badgeAr: 'فئة أولى Tier-1 • الأكثر موثوقية',
+      badgeEn: 'Tier-1 Regulated • Most Trusted',
+      titleAr: 'XM Global',
+      titleEn: 'XM Global',
+      subtitleAr: 'وسيط فوركس وعقود فروقات مرخص عالمياً (FCA, ASIC)',
+      subtitleEn: 'Multi-Regulated Tier-1 Global Broker',
+      rating: 4.95,
+      highlightAr: 'بونص إيداع 100% حتى 500$ + حسابات إسلامية بدون فوائد تبييت وتوصيات VIP مجانية',
+      highlightEn: '100% Deposit Bonus up to $500 + Swap-Free Islamic Accounts and VIP Signals',
+      liveBtnTextAr: 'افتح حساب حقيقي',
+      liveBtnTextEn: 'Open Live Account',
+      liveUrl: 'https://clicks.pipaffiliates.com/c?c=655286&l=ar&p=0',
+      showDemo: true,
+      demoBtnTextAr: 'تجريبي',
+      demoBtnTextEn: 'Demo',
+      demoUrl: 'https://clicks.pipaffiliates.com/c?c=655286&l=ar&p=0',
+      accentColor: '#10B981',
+      customLogo: '/assets/Images/brokers/xm.webp',
+      durationSeconds: 12,
+    },
+    {
+      id: 'card_ywo',
+      isActive: true,
+      brokerId: 'ywo',
+      badgeAr: 'سبريد خام 0.0 • رافعة 1:1000',
+      badgeEn: '0.0 Raw Spread • 1:1000 Leverage',
+      titleAr: 'YWO Markets',
+      titleEn: 'YWO Markets',
+      subtitleAr: 'وسيط ECN حديث لسكالبينج الذهب والعملات والمؤشرات',
+      subtitleEn: 'Ultra-Low Raw ECN Spread Broker',
+      rating: 4.88,
+      highlightAr: 'سبريد خام يبدأ من 0.0 نقطة مع سيولة بنكية مباشرة لسكالبينج الذهب والعملات',
+      highlightEn: '0.0 Raw Spreads for Gold & FX Scalping + 1:1000 Leverage',
+      liveBtnTextAr: 'ابدأ بسبريد 0.0',
+      liveBtnTextEn: 'Start with 0.0 Spread',
+      liveUrl: 'https://user.ywomarkets.com/register?referral=6058',
+      showDemo: true,
+      demoBtnTextAr: 'تجريبي',
+      demoBtnTextEn: 'Demo',
+      demoUrl: 'https://user.ywomarkets.com/register?referral=6058',
+      accentColor: '#00D06C',
+      customLogo: '/assets/Images/brokers/ywo.webp',
+      durationSeconds: 12,
+    },
+    {
+      id: 'card_multibank',
+      isActive: true,
+      brokerId: 'multibank',
+      badgeAr: '14+ ترخيصاً دولياً • أمان مصرفي',
+      badgeEn: '14+ Regulations • Bank-Grade Safety',
+      titleAr: 'MultiBank Group',
+      titleEn: 'MultiBank Group',
+      subtitleAr: 'مجموعة مالية عالمية عملاقة مع سيولة بنكية عميقة',
+      subtitleEn: 'Global Financial Conglomerate',
+      rating: 4.86,
+      highlightAr: 'ترقية فورية لحساب VIP بدون عمولات إضافية + تحليلات مهندس الفوركس اليومية',
+      highlightEn: 'Instant VIP Account status upgrade + Daily technical forecasts',
+      liveBtnTextAr: 'فتح حساب VIP',
+      liveBtnTextEn: 'Open VIP Account',
+      liveUrl: 'https://multibankfx.com/account/live-account?ib=fxengin',
+      showDemo: true,
+      demoBtnTextAr: 'تجريبي',
+      demoBtnTextEn: 'Demo',
+      demoUrl: 'https://multibankfx.com/account/demo-account?ib=fxengin',
+      accentColor: '#0EA5E9',
+      customLogo: '/assets/Images/brokers/multibank.webp',
+      durationSeconds: 12,
+    },
+    {
+      id: 'card_propxp',
+      isActive: true,
+      brokerId: 'propxp',
+      badgeAr: 'تمويل حسابات حتى $200,000',
+      badgeEn: 'Funded Accounts up to $200K',
+      titleAr: 'PropXP Funding',
+      titleEn: 'PropXP Funding',
+      subtitleAr: 'شركة تقييم وتمويل متداولين مع نسبة أرباح تصل إلى 90%',
+      subtitleEn: 'Premier Trader Evaluation & Funding Firm',
+      rating: 4.92,
+      highlightAr: 'خصم حصري 20% بكود (FXENGIN20) واسترداد كامل لرسوم التقييم 100%',
+      highlightEn: 'Exclusive 20% Discount with (FXENGIN20) + 100% Fee Refund',
+      liveBtnTextAr: 'احصل على تمويلك',
+      liveBtnTextEn: 'Get Funded',
+      liveUrl: 'https://propxp.com?aff=fxengin',
+      showDemo: true,
+      demoBtnTextAr: 'تجريبي',
+      demoBtnTextEn: 'Demo',
+      demoUrl: 'https://propxp.com?aff=fxengin',
+      accentColor: '#F59E0B',
+      customLogo: '/assets/Images/brokers/propxp.webp',
+      durationSeconds: 12,
+    },
+  ],
+
+  updatedAt: new Date().toISOString(),
+};
+
+function readConfig() {
+  try {
+    if (fs.existsSync(CONFIG_FILE)) {
+      const content = fs.readFileSync(CONFIG_FILE, 'utf-8');
+      const parsed = JSON.parse(content);
+      return {
+        ...DEFAULT_CONFIG,
+        ...parsed,
+        popupCards: Array.isArray(parsed.popupCards) && parsed.popupCards.length > 0
+          ? parsed.popupCards
+          : DEFAULT_CONFIG.popupCards,
+      };
+    }
+  } catch (err) {
+    console.error('Error reading broker-popup.json:', err);
+  }
+  return DEFAULT_CONFIG;
+}
+
+function writeConfig(config) {
+  let success = false;
+  try {
+    const dir = path.dirname(CONFIG_FILE);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2), 'utf-8');
+    success = true;
+  } catch (err) {
+    console.error('Error writing broker-popup.json:', err);
+  }
+
+  // Also sync to admin adjacent directory if it exists
+  try {
+    const adminConfigFile = path.resolve(process.cwd(), '..', 'fxengin-admin', 'data', 'broker-popup.json');
+    const adminDir = path.dirname(adminConfigFile);
+    if (fs.existsSync(adminDir)) {
+      fs.writeFileSync(adminConfigFile, JSON.stringify(config, null, 2), 'utf-8');
+    }
+  } catch (err) {
+    // silent fallback
+  }
+
+  return success;
+}
+
+function readActiveBrokers() {
+  try {
+    if (fs.existsSync(BROKERS_FILE)) {
+      const content = fs.readFileSync(BROKERS_FILE, 'utf-8');
+      const list = JSON.parse(content);
+      if (Array.isArray(list)) {
+        return list.filter((b) => b.status === 'ACTIVE' || b.isActive !== false);
+      }
+    }
+  } catch (err) {
+    console.error('Error reading brokers.json in popup route:', err);
+  }
+  return [];
+}
+
+function corsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Accept',
+  };
+}
+
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: corsHeaders() });
+}
+
+// GET /api/brokers/popup-config
+export async function GET() {
+  const config = readConfig();
+  const brokers = readActiveBrokers();
+
+  return NextResponse.json(
+    {
+      success: true,
+      config,
+      brokers,
+    },
+    {
+      status: 200,
+      headers: corsHeaders(),
+    }
+  );
+}
+
+// POST /api/brokers/popup-config
+export async function POST(req) {
+  try {
+    const body = await req.json().catch(() => ({}));
+    const current = readConfig();
+
+    const updated = {
+      ...current,
+      // Center Modal Fields
+      isEnabled: typeof body.isEnabled === 'boolean' ? body.isEnabled : current.isEnabled,
+      showOnce: typeof body.showOnce === 'boolean' ? body.showOnce : current.showOnce,
+      modalBgTheme: body.modalBgTheme || current.modalBgTheme || 'broker_logo',
+      intervalSeconds: Number(body.intervalSeconds) > 0 ? Number(body.intervalSeconds) : current.intervalSeconds,
+      initialDelaySeconds: Number(body.initialDelaySeconds) >= 0 ? Number(body.initialDelaySeconds) : (current.initialDelaySeconds ?? 15),
+      mode: body.mode === 'specific' ? 'specific' : 'rotate',
+      selectedBrokerId: body.selectedBrokerId || current.selectedBrokerId,
+      headlineAr: body.headlineAr !== undefined ? body.headlineAr : current.headlineAr,
+      headlineEn: body.headlineEn !== undefined ? body.headlineEn : current.headlineEn,
+      subheadlineAr: body.subheadlineAr !== undefined ? body.subheadlineAr : current.subheadlineAr,
+      subheadlineEn: body.subheadlineEn !== undefined ? body.subheadlineEn : current.subheadlineEn,
+      badgeAr: body.badgeAr !== undefined ? body.badgeAr : current.badgeAr,
+      badgeEn: body.badgeEn !== undefined ? body.badgeEn : current.badgeEn,
+      ctaTextAr: body.ctaTextAr !== undefined ? body.ctaTextAr : current.ctaTextAr,
+      ctaTextEn: body.ctaTextEn !== undefined ? body.ctaTextEn : current.ctaTextEn,
+      demoBtnTextAr: body.demoBtnTextAr !== undefined ? body.demoBtnTextAr : current.demoBtnTextAr,
+      demoBtnTextEn: body.demoBtnTextEn !== undefined ? body.demoBtnTextEn : current.demoBtnTextEn,
+      allowDismissMinutes: Number(body.allowDismissMinutes) >= 0 ? Number(body.allowDismissMinutes) : current.allowDismissMinutes,
+
+      // Side Toast Notification Timing Fields
+      sidePopupEnabled: typeof body.sidePopupEnabled === 'boolean' ? body.sidePopupEnabled : (current.sidePopupEnabled !== false),
+      sidePopupIntervalSeconds: Number(body.sidePopupIntervalSeconds) > 0 ? Number(body.sidePopupIntervalSeconds) : (current.sidePopupIntervalSeconds || 45),
+      sidePopupDurationSeconds: Number(body.sidePopupDurationSeconds) >= 0 ? Number(body.sidePopupDurationSeconds) : (current.sidePopupDurationSeconds ?? 12),
+      sidePopupInitialDelaySeconds: Number(body.sidePopupInitialDelaySeconds) >= 0 ? Number(body.sidePopupInitialDelaySeconds) : (current.sidePopupInitialDelaySeconds ?? 10),
+      sidePopupPosition: body.sidePopupPosition || current.sidePopupPosition || 'bottom-left',
+      sidePopupShowOnce: typeof body.sidePopupShowOnce === 'boolean' ? body.sidePopupShowOnce : Boolean(current.sidePopupShowOnce),
+
+      // Side Toast Notification Content Fields
+      sidePopupMode: body.sidePopupMode || current.sidePopupMode || 'broker',
+      sidePopupBrokerId: body.sidePopupBrokerId || current.sidePopupBrokerId || 'hfm',
+      sidePopupBadgeAr: body.sidePopupBadgeAr !== undefined ? body.sidePopupBadgeAr : (current.sidePopupBadgeAr || 'شريك وساطة رسمي معتمد'),
+      sidePopupBadgeEn: body.sidePopupBadgeEn !== undefined ? body.sidePopupBadgeEn : (current.sidePopupBadgeEn || 'Official Verified Partner'),
+      sidePopupCustomTitleAr: body.sidePopupCustomTitleAr !== undefined ? body.sidePopupCustomTitleAr : (current.sidePopupCustomTitleAr || 'HFM (HF Markets)'),
+      sidePopupCustomTitleEn: body.sidePopupCustomTitleEn !== undefined ? body.sidePopupCustomTitleEn : (current.sidePopupCustomTitleEn || 'HFM (HF Markets)'),
+      sidePopupCustomSubtitleAr: body.sidePopupCustomSubtitleAr !== undefined ? body.sidePopupCustomSubtitleAr : (current.sidePopupCustomSubtitleAr || 'وسيط عالمي رائد حائز على أكثر من 60 جائزة دولية'),
+      sidePopupCustomSubtitleEn: body.sidePopupCustomSubtitleEn !== undefined ? body.sidePopupCustomSubtitleEn : (current.sidePopupCustomSubtitleEn || 'Multi-Award Winning Global Broker (FCA, CySEC, DFSA)'),
+      sidePopupRating: body.sidePopupRating !== undefined ? body.sidePopupRating : (current.sidePopupRating ?? 4.9),
+      sidePopupHighlightAr: body.sidePopupHighlightAr !== undefined ? body.sidePopupHighlightAr : (current.sidePopupHighlightAr || 'استرداد كاش باك حتى $2 لكل لوت + بونص تداول 20% ووصول كامل لجميع كورسات الأكاديمية'),
+      sidePopupHighlightEn: body.sidePopupHighlightEn !== undefined ? body.sidePopupHighlightEn : (current.sidePopupHighlightEn || 'Up to $2/lot cashback rebate + 20% Top-Up bonus and full FXENGIN Academy access'),
+      sidePopupLiveBtnTextAr: body.sidePopupLiveBtnTextAr !== undefined ? body.sidePopupLiveBtnTextAr : (current.sidePopupLiveBtnTextAr || 'فتح حساب مباشر'),
+      sidePopupLiveBtnTextEn: body.sidePopupLiveBtnTextEn !== undefined ? body.sidePopupLiveBtnTextEn : (current.sidePopupLiveBtnTextEn || 'Open Live Account'),
+      sidePopupLiveUrl: body.sidePopupLiveUrl !== undefined ? body.sidePopupLiveUrl : (current.sidePopupLiveUrl || ''),
+      sidePopupShowDemo: typeof body.sidePopupShowDemo === 'boolean' ? body.sidePopupShowDemo : (current.sidePopupShowDemo !== false),
+      sidePopupDemoBtnTextAr: body.sidePopupDemoBtnTextAr !== undefined ? body.sidePopupDemoBtnTextAr : (current.sidePopupDemoBtnTextAr || 'تجريبي'),
+      sidePopupDemoBtnTextEn: body.sidePopupDemoBtnTextEn !== undefined ? body.sidePopupDemoBtnTextEn : (current.sidePopupDemoBtnTextEn || 'Demo'),
+      sidePopupDemoUrl: body.sidePopupDemoUrl !== undefined ? body.sidePopupDemoUrl : (current.sidePopupDemoUrl || ''),
+      sidePopupAccentColor: body.sidePopupAccentColor || current.sidePopupAccentColor || '#10B981',
+      sidePopupCustomLogo: body.sidePopupCustomLogo !== undefined ? body.sidePopupCustomLogo : (current.sidePopupCustomLogo || ''),
+
+      popupCards: Array.isArray(body.popupCards)
+        ? body.popupCards
+        : (Array.isArray(current.popupCards) ? current.popupCards : DEFAULT_CONFIG.popupCards),
+
+      updatedAt: new Date().toISOString(),
+    };
+
+    const saved = writeConfig(updated);
+    if (!saved) {
+      return NextResponse.json({ success: false, error: 'تعذر حفظ ملف الإعدادات' }, { status: 500, headers: corsHeaders() });
+    }
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: 'تم حفظ إعدادات النافذة المنبثقة وإشعار التوست بنجاح',
+        config: updated,
+      },
+      {
+        status: 200,
+        headers: corsHeaders(),
+      }
+    );
+  } catch (err) {
+    return NextResponse.json(
+      { success: false, error: err.message },
+      { status: 500, headers: corsHeaders() }
+    );
+  }
+}

@@ -1,0 +1,437 @@
+{
+  "symbols": [
+    "BTCUSD",
+    "ETHUSD",
+    "SOLUSD",
+    "BNBUSD",
+    "XRPUSD",
+    "ADAUSD",
+    "XAUUSD",
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "US30",
+    "NAS100"
+  ],
+  "timeframes": [
+    "1m",
+    "5m",
+    "15m",
+    "30m",
+    "1h",
+    "4h",
+    "1d",
+    "1w"
+  ],
+  "generatedAt": "2026-10-08T09:49:12.410Z",
+  "stats": {
+    "BTCUSD": {
+      "1m": {
+        "count": 1000,
+        "latest": 83128.23
+      },
+      "5m": {
+        "count": 1000,
+        "latest": 83128.23
+      },
+      "15m": {
+        "count": 1000,
+        "latest": 83128.18
+      },
+      "30m": {
+        "count": 1000,
+        "latest": 83128.23
+      },
+      "1h": {
+        "count": 1000,
+        "latest": 83128.23
+      },
+      "4h": {
+        "count": 1000,
+        "latest": 83124.26
+      },
+      "1d": {
+        "count": 1000,
+        "latest": 83124.25
+      },
+      "1w": {
+        "count": 478,
+        "latest": 83124.25
+      }
+    },
+    "ETHUSD": {
+      "1m": {
+        "count": 1000,
+        "latest": 2568
+      },
+      "5m": {
+        "count": 1000,
+        "latest": 2568
+      },
+      "15m": {
+        "count": 1000,
+        "latest": 2568
+      },
+      "30m": {
+        "count": 1000,
+        "latest": 2568.01
+      },
+      "1h": {
+        "count": 1000,
+        "latest": 2568.12
+      },
+      "4h": {
+        "count": 1000,
+        "latest": 2568.12
+      },
+      "1d": {
+        "count": 1000,
+        "latest": 2567.96
+      },
+      "1w": {
+        "count": 478,
+        "latest": 2567.94
+      }
+    },
+    "SOLUSD": {
+      "1m": {
+        "count": 1000,
+        "latest": 115.19
+      },
+      "5m": {
+        "count": 1000,
+        "latest": 115.19
+      },
+      "15m": {
+        "count": 1000,
+        "latest": 115.19
+      },
+      "30m": {
+        "count": 1000,
+        "latest": 115.18
+      },
+      "1h": {
+        "count": 1000,
+        "latest": 115.19
+      },
+      "4h": {
+        "count": 1000,
+        "latest": 115.18
+      },
+      "1d": {
+        "count": 1000,
+        "latest": 115.15
+      },
+      "1w": {
+        "count": 322,
+        "latest": 115.15
+      }
+    },
+    "BNBUSD": {
+      "1m": {
+        "count": 1000,
+        "latest": 769.51
+      },
+      "5m": {
+        "count": 1000,
+        "latest": 769.51
+      },
+      "15m": {
+        "count": 1000,
+        "latest": 769.51
+      },
+      "30m": {
+        "count": 1000,
+        "latest": 769.5
+      },
+      "1h": {
+        "count": 1000,
+        "latest": 769.5
+      },
+      "4h": {
+        "count": 1000,
+        "latest": 769.51
+      },
+      "1d": {
+        "count": 1000,
+        "latest": 769.49
+      },
+      "1w": {
+        "count": 466,
+        "latest": 769.49
+      }
+    },
+    "XRPUSD": {
+      "1m": {
+        "count": 1000,
+        "latest": 1.4161
+      },
+      "5m": {
+        "count": 1000,
+        "latest": 1.4161
+      },
+      "15m": {
+        "count": 1000,
+        "latest": 1.4159
+      },
+      "30m": {
+        "count": 1000,
+        "latest": 1.416
+      },
+      "1h": {
+        "count": 1000,
+        "latest": 1.416
+      },
+      "4h": {
+        "count": 1000,
+        "latest": 1.416
+      },
+      "1d": {
+        "count": 1000,
+        "latest": 1.416
+      },
+      "1w": {
+        "count": 441,
+        "latest": 1.416
+      }
+    },
+    "ADAUSD": {
+      "1m": {
+        "count": 1000,
+        "latest": 0.2545
+      },
+      "5m": {
+        "count": 1000,
+        "latest": 0.2545
+      },
+      "15m": {
+        "count": 1000,
+        "latest": 0.2545
+      },
+      "30m": {
+        "count": 1000,
+        "latest": 0.2545
+      },
+      "1h": {
+        "count": 1000,
+        "latest": 0.2545
+      },
+      "4h": {
+        "count": 1000,
+        "latest": 0.2545
+      },
+      "1d": {
+        "count": 1000,
+        "latest": 0.2545
+      },
+      "1w": {
+        "count": 443,
+        "latest": 0.2545
+      }
+    },
+    "XAUUSD": {
+      "1m": {
+        "count": 1000,
+        "latest": 4130.23
+      },
+      "5m": {
+        "count": 1000,
+        "latest": 4130.23
+      },
+      "15m": {
+        "count": 1000,
+        "latest": 4130.23
+      },
+      "30m": {
+        "count": 1000,
+        "latest": 4130.23
+      },
+      "1h": {
+        "count": 1000,
+        "latest": 4130.23
+      },
+      "4h": {
+        "count": 1000,
+        "latest": 4130.23
+      },
+      "1d": {
+        "count": 1000,
+        "latest": 4130.23
+      },
+      "1w": {
+        "count": 320,
+        "latest": 4130.23
+      }
+    },
+    "EURUSD": {
+      "1m": {
+        "count": 1000,
+        "latest": 1.119
+      },
+      "5m": {
+        "count": 1000,
+        "latest": 1.119
+      },
+      "15m": {
+        "count": 1000,
+        "latest": 1.119
+      },
+      "30m": {
+        "count": 1000,
+        "latest": 1.119
+      },
+      "1h": {
+        "count": 1000,
+        "latest": 1.119
+      },
+      "4h": {
+        "count": 1000,
+        "latest": 1.119
+      },
+      "1d": {
+        "count": 1000,
+        "latest": 1.119
+      },
+      "1w": {
+        "count": 354,
+        "latest": 1.119
+      }
+    },
+    "GBPUSD": {
+      "1m": {
+        "count": 648,
+        "latest": 1.31898
+      },
+      "5m": {
+        "count": 1265,
+        "latest": 1.31903
+      },
+      "15m": {
+        "count": 423,
+        "latest": 1.31903
+      },
+      "30m": {
+        "count": 1046,
+        "latest": 1.31903
+      },
+      "1h": {
+        "count": 526,
+        "latest": 1.31903
+      },
+      "4h": {
+        "count": 410,
+        "latest": 1.31903
+      },
+      "1d": {
+        "count": 260,
+        "latest": 1.31903
+      },
+      "1w": {
+        "count": 263,
+        "latest": 1.31903
+      }
+    },
+    "USDJPY": {
+      "1m": {
+        "count": 650,
+        "latest": 158.235
+      },
+      "5m": {
+        "count": 1260,
+        "latest": 158.235
+      },
+      "15m": {
+        "count": 422,
+        "latest": 158.23801
+      },
+      "30m": {
+        "count": 1045,
+        "latest": 158.235
+      },
+      "1h": {
+        "count": 525,
+        "latest": 158.235
+      },
+      "4h": {
+        "count": 410,
+        "latest": 158.235
+      },
+      "1d": {
+        "count": 260,
+        "latest": 158.235
+      },
+      "1w": {
+        "count": 263,
+        "latest": 158.23801
+      }
+    },
+    "US30": {
+      "1m": {
+        "count": 338,
+        "latest": 51067
+      },
+      "5m": {
+        "count": 967,
+        "latest": 51065
+      },
+      "15m": {
+        "count": 324,
+        "latest": 51065
+      },
+      "30m": {
+        "count": 1014,
+        "latest": 51065
+      },
+      "1h": {
+        "count": 508,
+        "latest": 51065
+      },
+      "4h": {
+        "count": 402,
+        "latest": 51065
+      },
+      "1d": {
+        "count": 252,
+        "latest": 51065
+      },
+      "1w": {
+        "count": 263,
+        "latest": 51065
+      }
+    },
+    "NAS100": {
+      "1m": {
+        "count": 332,
+        "latest": 31261
+      },
+      "5m": {
+        "count": 965,
+        "latest": 31259.75
+      },
+      "15m": {
+        "count": 325,
+        "latest": 31259.75
+      },
+      "30m": {
+        "count": 1016,
+        "latest": 31259.75
+      },
+      "1h": {
+        "count": 510,
+        "latest": 31259.75
+      },
+      "4h": {
+        "count": 402,
+        "latest": 31259
+      },
+      "1d": {
+        "count": 252,
+        "latest": 31259
+      },
+      "1w": {
+        "count": 263,
+        "latest": 31259
+      }
+    }
+  }
+}

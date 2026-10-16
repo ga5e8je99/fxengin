@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FXENGIN MT5 WebTerminal — محاكي التداول ومسابقة المتداولين</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== FXENGIN DESIGN TOKENS ===== */
+    :root {
+      --primary: #0488F8;
+      --primary-dark: #0458EC;
+      --accent: #FB8704;
+      --accent-hover: #FA5A04;
+      --bg-primary: #01071E;
+      --bg-dark: #00030D;
+      --surface: #06142F;
+      --surface-elevated: #0A1B3D;
+      --border: #12315C;
+      --text-primary: #F5F7FA;
+      --text-secondary: #A7AFBF;
+      --text-muted: #687287;
+      --success: #16C784;
+      --error: #F6465D;
+      --warning: #FBBF24;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #01071E; }
+    ::-webkit-scrollbar-thumb { background: #12315C; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0488F8; }
+
+    /* Flash Animations */
+    @keyframes flashGreen {
+      0% { background-color: rgba(22, 199, 132, 0.4); }
+      100% { background-color: transparent; }
+    }
+    @keyframes flashRed {
+      0% { background-color: rgba(246, 70, 93, 0.4); }
+      100% { background-color: transparent; }
+    }
+    .tick-up { animation: flashGreen 0.6s ease-out; }
+    .tick-down { animation: flashRed 0.6s ease-out; }
+
+    /* Layout structure */
+    header {
+      height: 52px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .cockpit {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .chart-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--bg-primary);
+    }
+
+    .market-watch {
+      width: 310px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .bottom-terminal {
+      height: 270px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Controls & Buttons */
+    .btn {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 12px rgba(4, 136, 248, 0.25);
+    }
+    .btn-primary:hover { filter: brightness(1.1); }
+
+    .btn-accent {
+      background: linear-gradient(135deg, var(--accent-hover), var(--accent));
+      color: #000;
+      font-weight: 800;
+      border-radius: 10px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 12px rgba(251, 135, 4, 0.25);
+    }
+
+    /* Modal Backdrop */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 3, 13, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      width: 90%;
+      max-width: 520px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      position: relative;
+      animation: modalSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(20px) scale(0.97); }
+      to { transform: translateY(0) scale(1); }
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .badge-buy { background: rgba(4, 136, 248, 0.2); color: var(--primary); border: 1px solid rgba(4, 136, 248, 0.3); }
+    .badge-sell { background: rgba(246, 70, 93, 0.2); color: var(--error); border: 1px solid rgba(246, 70, 93, 0.3); }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th {
+      background: var(--surface-elevated);
+      color: var(--text-secondary);
+      font-weight: 700;
+      padding: 8px 12px;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(18, 49, 92, 0.4);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    tr:hover td { background: rgba(10, 27, 61, 0.5); }
+
+    /* Toast Notification */
+    #toast-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .toast {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: toastIn 0.3s ease;
+      min-width: 260px;
+    }
+    .toast.success { border-right: 4px solid var(--success); }
+    .toast.error { border-right: 4px solid var(--error); }
+    .toast.info { border-right: 4px solid var(--primary); }
+
+    @keyframes toastIn {
+      from { transform: translateX(-30px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- ── 1. HEADER BAR ───────────────────────────────────────────── -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; color: #fff; box-shadow: 0 4px 10px rgba(4,136,248,0.3);">
+          FX
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-weight: 900; font-size: 15px; letter-spacing: -0.5px;">FXENGIN</span>
+            <span style="padding: 1px 5px; border-radius: 4px; background: var(--accent); color: #000; font-size: 10px; font-weight: 900;">MT5</span>
+          </div>
+          <div style="font-size: 10px; color: var(--text-muted); margin-top: -2px;">WebTerminal Sovereign Engine</div>
+        </div>
+      </div>
+
+      <!-- Server & Telemetry Status -->
+      <div style="display: flex; align-items: center; gap: 8px; padding: 4px 10px; border-radius: 8px; background: var(--bg-primary); border: 1px solid var(--border); font-size: 11px; font-family: 'JetBrains Mono', monospace;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success);"></span>
+        <span id="header-server-name" style="color: var(--text-secondary);">FXENGIN Prime ECN</span>
+        <span style="color: var(--border);">|</span>
+        <span id="header-clock" style="color: var(--text-muted);">00:00:00 GMT</span>
+      </div>
+    </div>
+
+    <!-- User Account Pill & Actions -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <!-- Competition Points Badge -->
+      <div onclick="switchBottomTab('LEADERBOARD')" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 10px; background: rgba(251, 135, 4, 0.1); border: 1px solid rgba(251, 135, 4, 0.35);">
+        <div style="text-align: right;">
+          <div style="font-size: 9px; color: var(--accent); font-weight: 700; text-transform: uppercase;">نقاط المسابقة</div>
+          <div id="header-points" style="font-size: 13px; font-weight: 900; font-family: 'JetBrains Mono', monospace; color: #fff;">0 <span style="font-size: 10px; color: var(--accent);">PTS</span></div>
+        </div>
+      </div>
+
+      <!-- Account Badge -->
+      <div style="display: flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border);">
+        <div style="text-align: right;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span id="header-trader-name" style="font-weight: 700; font-size: 12px; color: #fff;">متداول تجريبي</span>
+            <span id="header-account-num" style="padding: 1px 5px; border-radius: 4px; background: var(--border); font-size: 10px; font-family: 'JetBrains Mono'; color: var(--primary);">#500101</span>
+          </div>
+          <div style="font-size: 10px; color: var(--text-muted); font-family: 'JetBrains Mono';">
+            رافعة <b id="header-leverage" style="color: var(--success);">1:500</b> • <span id="header-plan-title">باقة المسابقة</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Switcher Button -->
+      <button onclick="openActivationModal()" class="btn" style="padding: 7px 10px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); color: var(--accent);" title="تغيير كود التفعيل / تسجيل حساب آخر">
+        كود التفعيل
+      </button>
+
+      <button onclick="logout()" class="btn" style="padding: 7px 10px; border-radius: 8px; background: rgba(246, 70, 93, 0.1); border: 1px solid rgba(246, 70, 93, 0.2); color: var(--error);" title="تسجيل خروج">
+        خروج
+      </button>
+    </div>
+  </header>
+
+  <!-- ── 2. COCKPIT (CHART + ONE CLICK + MARKET WATCH) ─────────── -->
+  <div class="cockpit">
+    
+    <!-- Right Area: One Click Bar + Customized Real-time Chart -->
+    <div class="chart-area">
+      <!-- One-Click Trading Bar -->
+      <div style="background: rgba(6, 20, 47, 0.95); border-bottom: 1px solid var(--border); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="oc-symbol" style="font-weight: 900; font-size: 16px; color: #fff; font-family: 'JetBrains Mono';">XAUUSD</span>
+              <span id="oc-spread" style="font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--border); color: var(--text-secondary); font-family: 'JetBrains Mono';">Spread: 1.2 pts</span>
+            </div>
+            <div id="oc-name" style="font-size: 11px; color: var(--text-muted);">Gold Spot / US Dollar</div>
+          </div>
+        </div>
+
+        <!-- Lot Stepper -->
+        <div style="display: flex; align-items: center; gap: 4px; background: var(--bg-primary); border: 1px solid var(--border); padding: 3px 6px; border-radius: 10px;">
+          <button onclick="adjustLots(-0.1)" class="btn" style="width: 26px; height: 26px; border-radius: 6px; background: var(--border); color: #fff; font-weight: 700; font-size: 11px;">-0.1</button>
+          <button onclick="adjustLots(-0.01)" class="btn" style="width: 24px; height: 26px; border-radius: 6px; background: rgba(18, 49, 92, 0.6); color: var(--text-secondary); font-size: 10px;">-</button>
+          
+          <div style="text-align: center; padding: 0 6px;">
+            <input type="number" id="oc-lots-input" value="0.10" step="0.01" min="0.01" max="50" style="width: 55px; text-align: center; font-family: 'JetBrains Mono'; font-weight: 900; font-size: 14px; color: var(--accent); background: transparent; border: none; outline: none;" />
+            <div style="font-size: 8px; color: var(--text-muted); font-weight: 700; letter-spacing: 1px;">LOT SIZE</div>
+          </div>
+
+          <button onclick="adjustLots(0.01)" class="btn" style="width: 24px; height: 26px; border-radius: 6px; background: rgba(18, 49, 92, 0.6); color: var(--text-secondary); font-size: 10px;">+</button>
+          <button onclick="adjustLots(0.1)" class="btn" style="width: 26px; height: 26px; border-radius: 6px; background: var(--border); color: #fff; font-weight: 700; font-size: 11px;">+0.1</button>
+        </div>
+
+        <!-- Optional SL & TP in Pips -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 8px; background: var(--bg-primary); border: 1px solid var(--border); font-size: 11px;">
+            <span style="color: var(--accent); font-weight: 700;">SL:</span>
+            <input type="number" id="oc-sl-pips" placeholder="Pips" style="width: 44px; text-align: center; font-family: 'JetBrains Mono'; font-size: 11px; color: #fff; background: transparent; border: none; outline: none;" />
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 8px; background: var(--bg-primary); border: 1px solid var(--border); font-size: 11px;">
+            <span style="color: var(--success); font-weight: 700;">TP:</span>
+            <input type="number" id="oc-tp-pips" placeholder="Pips" style="width: 44px; text-align: center; font-family: 'JetBrains Mono'; font-size: 11px; color: #fff; background: transparent; border: none; outline: none;" />
+          </div>
+        </div>
+
+        <!-- Instant BUY & SELL Buttons -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <!-- SELL BUTTON -->
+          <button onclick="executeOrder('SELL')" class="btn" style="padding: 6px 18px; border-radius: 10px; background: linear-gradient(135deg, #d32f2f, var(--error)); color: #fff; text-align: right; box-shadow: 0 4px 12px rgba(246, 70, 93, 0.3);">
+            <div>
+              <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; color: #ffcdd2;">بيع (SELL)</div>
+              <div id="oc-bid-price" style="font-size: 15px; font-weight: 900; font-family: 'JetBrains Mono';">2654.80</div>
+            </div>
+          </button>
+
+          <!-- BUY BUTTON -->
+          <button onclick="executeOrder('BUY')" class="btn" style="padding: 6px 18px; border-radius: 10px; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; text-align: right; box-shadow: 0 4px 12px rgba(4, 136, 248, 0.3);">
+            <div>
+              <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; color: #bbdefb;">شراء (BUY)</div>
+              <div id="oc-ask-price" style="font-size: 15px; font-weight: 900; font-family: 'JetBrains Mono';">2655.15</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chart Sub-Header (Timeframes & Pair Info) -->
+      <div style="height: 38px; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 12px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; flex-shrink: 0; z-index: 10;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--success); animation: pulseGlow 1.5s infinite;"></span>
+            <span id="chart-title-symbol" style="font-weight: 900; color: #fff; font-family: 'JetBrains Mono';">XAUUSD</span>
+            <span id="chart-title-desc" style="color: var(--text-muted); font-size: 10px;">الذهب مقابل الدولار الأمريكي</span>
+          </div>
+
+          <!-- Timeframes -->
+          <div id="timeframe-container" style="display: flex; align-items: center; gap: 2px; background: var(--bg-primary); padding: 2px; border-radius: 6px; border: 1px solid var(--border);">
+            <button onclick="setTimeframe('1')" class="tf-btn btn" data-tf="1" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono'; color: var(--text-secondary);">M1</button>
+            <button onclick="setTimeframe('5')" class="tf-btn btn" data-tf="5" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono'; color: var(--text-secondary);">M5</button>
+            <button onclick="setTimeframe('15')" class="tf-btn btn active" data-tf="15" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono'; background: var(--primary); color: #fff; font-weight: 700;">M15</button>
+            <button onclick="setTimeframe('30')" class="tf-btn btn" data-tf="30" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono'; color: var(--text-secondary);">M30</button>
+            <button onclick="setTimeframe('60')" class="tf-btn btn" data-tf="60" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono'; color: var(--text-secondary);">H1</button>
+            <button onclick="setTimeframe('240')" class="tf-btn btn" data-tf="240" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono'; color: var(--text-secondary);">H4</button>
+            <button onclick="setTimeframe('D')" class="tf-btn btn" data-tf="D" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono'; color: var(--text-secondary);">D1</button>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div id="chart-active-trades-badge" style="display: none; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 6px; background: rgba(22, 199, 132, 0.1); border: 1px solid rgba(22, 199, 132, 0.3); color: var(--success); font-weight: 700; font-size: 10px;">
+            <span id="chart-active-trades-text">1 صفقات نشطة</span>
+          </div>
+
+          <button onclick="toggleFullscreen()" class="btn" style="padding: 4px 8px; border-radius: 6px; background: var(--bg-primary); border: 1px solid var(--border); color: var(--text-secondary); font-size: 11px;">
+            ملء الشاشة
+          </button>
+        </div>
+      </div>
+
+      <!-- Real-Time White-Labeled Chart Canvas Frame -->
+      <div style="flex: 1; position: relative; overflow: hidden; background: #01071E;">
+        <iframe
+          id="tradingview-frame"
+          src=""
+          style="width: 100%; height: calc(100% + 36px); margin-bottom: -36px; border: none; background: #01071E;"
+          allowfullscreen
+        ></iframe>
+
+        <!-- Masking Bottom Institutional Telemetry Bar (Hides external branding 100%) -->
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 34px; background: #01071E; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); z-index: 20; box-shadow: 0 -4px 16px rgba(0,0,0,0.6);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="display: inline-flex; align-items: center; gap: 6px; color: #fff; font-weight: 700;">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--success); box-shadow: 0 0 6px var(--success);"></span>
+              FXENGIN Prime Feed
+            </span>
+            <span style="color: var(--border);">•</span>
+            <span style="color: var(--text-secondary);">سيرفر السيولة المؤسسية ECN المباشر</span>
+            <span style="color: var(--border);">•</span>
+            <span id="footer-spread" style="color: var(--success); font-weight: 700;">Spread: 1.2 Pips</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span>Latency: 14ms (LD4 Equinix)</span>
+            <span style="color: var(--border);">•</span>
+            <span style="color: var(--text-secondary); font-weight: 700;">GMT+2 Server Time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left Area (Right in RTL): Market Watch -->
+    <div class="market-watch">
+      <div style="padding: 10px 12px; border-bottom: 1px solid var(--border);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-weight: 900; font-size: 12px; color: #fff; letter-spacing: 0.5px;">مراقبة السوق (Market Watch)</span>
+          <span style="font-size: 10px; color: var(--success); font-family: 'JetBrains Mono'; font-weight: 700;">● مباشر</span>
+        </div>
+
+        <input
+          type="text"
+          id="mw-search"
+          placeholder="بحث عن زوج..."
+          oninput="filterSymbols()"
+          style="width: 100%; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; padding: 5px 10px; font-size: 11px; color: #fff; outline: none; margin-bottom: 8px;"
+        />
+
+        <div style="display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px;">
+          <button onclick="setMarketCategory('ALL')" class="cat-btn btn" data-cat="ALL" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; background: var(--primary); color: #fff; font-weight: 700;">الكل</button>
+          <button onclick="setMarketCategory('Forex')" class="cat-btn btn" data-cat="Forex" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; background: var(--bg-primary); color: var(--text-secondary);">فوركس</button>
+          <button onclick="setMarketCategory('Metals')" class="cat-btn btn" data-cat="Metals" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; background: var(--bg-primary); color: var(--text-secondary);">معادن</button>
+          <button onclick="setMarketCategory('Indices')" class="cat-btn btn" data-cat="Indices" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; background: var(--bg-primary); color: var(--text-secondary);">مؤشرات</button>
+          <button onclick="setMarketCategory('Crypto')" class="cat-btn btn" data-cat="Crypto" style="padding: 2px 7px; border-radius: 4px; font-size: 10px; background: var(--bg-primary); color: var(--text-secondary);">رقمية</button>
+        </div>
+      </div>
+
+      <!-- Symbols Table Header -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 6px 12px; background: var(--surface-elevated); border-bottom: 1px solid var(--border); font-size: 10px; font-weight: 700; color: var(--text-secondary);">
+        <div style="text-align: right;">الرمز</div>
+        <div style="text-align: center;">طلب (Ask)</div>
+        <div style="text-align: left;">عرض (Bid)</div>
+      </div>
+
+      <!-- Symbols List Container -->
+      <div id="symbols-list" style="flex: 1; overflow-y: auto;">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. BOTTOM TERMINAL (TRADES, HISTORY, LEADERBOARD) ─────── -->
+  <div class="bottom-terminal">
+    <!-- Tab Nav Header -->
+    <div style="height: 36px; background: var(--surface-elevated); border-bottom: 1px solid var(--border); padding: 0 12px; display: flex; align-items: center; justify-content: space-between; font-size: 11px;">
+      <div style="display: flex; align-items: center; gap: 4px;">
+        <button onclick="switchBottomTab('TRADE')" id="tab-btn-TRADE" class="btn" style="padding: 6px 12px; border-radius: 6px 6px 0 0; background: var(--surface); color: var(--primary); font-weight: 700; border-top: 2px solid var(--primary);">
+          الصفقات المفتوحة (Trade) <span id="open-positions-count" class="badge" style="background: var(--border); color: #fff;">0</span>
+        </button>
+        <button onclick="switchBottomTab('HISTORY')" id="tab-btn-HISTORY" class="btn" style="padding: 6px 12px; border-radius: 6px 6px 0 0; background: transparent; color: var(--text-secondary);">
+          سجل الحساب (History) <span id="closed-history-count" class="badge" style="background: var(--border); color: #fff;">0</span>
+        </button>
+        <button onclick="switchBottomTab('LEADERBOARD')" id="tab-btn-LEADERBOARD" class="btn" style="padding: 6px 12px; border-radius: 6px 6px 0 0; background: transparent; color: var(--accent);">
+          لوحة المتصدرين للمسابقة
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono'; font-size: 11px;">
+        <span style="color: var(--text-muted);">الربح العائم:</span>
+        <span id="terminal-floating-pnl" style="font-weight: 900; font-size: 13px; color: var(--success);">$0.00</span>
+      </div>
+    </div>
+
+    <!-- Tab 1: Active Positions Content -->
+    <div id="tab-content-TRADE" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="flex: 1; overflow-y: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>التذكرة</th>
+              <th>الوقت</th>
+              <th>النوع</th>
+              <th>الحجم</th>
+              <th>الرمز</th>
+              <th>سعر الدخول</th>
+              <th>S/L</th>
+              <th>T/P</th>
+              <th>السعر الحالي</th>
+              <th>العمولة</th>
+              <th style="text-align: center;">الربح ($)</th>
+              <th style="text-align: center;">إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="open-positions-tbody">
+            <tr>
+              <td colspan="12" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                لا توجد صفقات مفتوحة حالياً. نفّذ أمر بيع أو شراء من الأعلى لبدء التداول.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Account Summary Bar -->
+      <div style="height: 38px; background: #01071E; border-top: 1px solid var(--border); padding: 0 16px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-family: 'JetBrains Mono', monospace; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 16px; color: var(--text-secondary);">
+          <span>الرصيد: <b id="bar-balance" style="color: #fff;">$10,000.00</b></span>
+          <span>السيولة (Equity): <b id="bar-equity" style="color: var(--success);">$10,000.00</b></span>
+          <span>الهامش: <b id="bar-margin" style="color: var(--accent);">$0.00</b></span>
+          <span>الهامش المتاح: <b id="bar-free-margin" style="color: var(--success);">$10,000.00</b></span>
+          <span>مستوى الهامش: <b id="bar-margin-level" style="color: var(--text-primary);">---</b></span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span style="color: var(--text-muted); font-family: 'Cairo';">النتيجة:</span>
+          <span id="bar-floating-badge" style="padding: 2px 8px; border-radius: 6px; font-weight: 900; background: rgba(22,199,132,0.15); color: var(--success);">+$0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Closed History Content -->
+    <div id="tab-content-HISTORY" style="flex: 1; display: none; flex-direction: column; overflow: hidden;">
+      <div style="flex: 1; overflow-y: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>التذكرة</th>
+              <th>وقت الفتح</th>
+              <th>وقت الإغلاق</th>
+              <th>النوع</th>
+              <th>الحجم</th>
+              <th>الرمز</th>
+              <th>سعر الفتح</th>
+              <th>سعر الإغلاق</th>
+              <th>السبب</th>
+              <th style="text-align: center;">النقاط (Pips)</th>
+              <th style="text-align: center;">صافي الربح ($)</th>
+            </tr>
+          </thead>
+          <tbody id="closed-history-tbody">
+            <tr>
+              <td colspan="11" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                لا توجد صفقات مغلقة في سجل هذا الحساب بعد.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- History Summary Bar -->
+      <div style="height: 38px; background: #01071E; border-top: 1px solid var(--border); padding: 0 16px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-family: 'JetBrains Mono', monospace; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 16px; color: var(--text-secondary); font-family: 'Cairo';">
+          <span>إجمالي الصفقات: <b id="hist-total-trades" style="color: #fff; font-family: 'JetBrains Mono';">0</b></span>
+          <span>نسبة الفوز: <b id="hist-win-rate" style="color: var(--success); font-family: 'JetBrains Mono';">0.0%</b></span>
+          <span>مجموع البيب: <b id="hist-total-pips" style="color: var(--primary); font-family: 'JetBrains Mono';">0.0 Pips</b></span>
+        </div>
+        <div>
+          <span style="color: var(--text-muted); font-family: 'Cairo';">صافي الأرباح:</span>
+          <span id="hist-net-profit" style="font-weight: 900; color: var(--success);">$0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Leaderboard Content -->
+    <div id="tab-content-LEADERBOARD" style="flex: 1; display: none; overflow-y: auto; padding: 16px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+        <h3 style="font-size: 14px; font-weight: 900; color: #fff; display: flex; align-items: center; gap: 8px;">
+          ترتيب المتسابقين في بطولة FXENGIN الكبرى
+        </h3>
+        <span style="font-size: 11px; color: var(--text-muted);">يتم تحديث الترتيب واحتساب نقاط البيب آلياً</span>
+      </div>
+
+      <div id="leaderboard-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px;">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. ACTIVATION CODE LOGIN MODAL ────────────────────────── -->
+  <div id="activation-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); display: flex; align-items: center; justify-content: center; color: #fff; margin: 0 auto 12px; box-shadow: 0 8px 24px rgba(4,136,248,0.3);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-1.5 1.5L16 7m-1.5 1.5L13 10m-1.5 1.5L10 13m-2-2a5 5 0 1 0 7.07 7.07l6.93-6.93a1.5 1.5 0 0 0 0-2.12l-2.83-2.83a1.5 1.5 0 0 0-2.12 0L14 7.05"/></svg>
+        </div>
+        <h2 style="font-size: 20px; font-weight: 900; color: #fff;">تسجيل الدخول لمحاكي MT5</h2>
+        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+          أدخل كود التفعيل الذي استلمته بعد شراء كورس أو الاشتراك في جروب التحليلات لدخول المسابقة
+        </p>
+      </div>
+
+      <form onsubmit="handleActivationSubmit(event)" style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">
+            كود التفعيل (Activation Code) *
+          </label>
+          <input
+            type="text"
+            id="modal-code-input"
+            required
+            placeholder="FXG-ABCD-1234-EFGH"
+            style="width: 100%; padding: 12px; border-radius: 12px; background: var(--bg-primary); border: 1px solid var(--border); font-family: 'JetBrains Mono'; font-weight: 800; font-size: 16px; color: var(--accent); text-align: center; letter-spacing: 2px; outline: none;"
+          />
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">
+            اسم المتداول على الشاشة (اختياري)
+          </label>
+          <input
+            type="text"
+            id="modal-name-input"
+            placeholder="مثال: أحمد محمود"
+            style="width: 100%; padding: 10px 14px; border-radius: 12px; background: var(--bg-primary); border: 1px solid var(--border); font-size: 13px; color: #fff; outline: none;"
+          />
+        </div>
+
+        <button type="submit" id="modal-submit-btn" class="btn btn-primary" style="padding: 12px; font-size: 14px; margin-top: 4px;">
+          تفعيل الحساب ودخول مسابقة MT5
+        </button>
+      </form>
+
+      <div style="position: relative; text-align: center; margin: 18px 0;">
+        <div style="position: absolute; inset: 50% 0 0; border-top: 1px solid var(--border);"></div>
+        <span style="position: relative; background: var(--surface); padding: 0 10px; font-size: 10px; color: var(--text-muted); font-weight: 700;">أو للتجربة الفورية</span>
+      </div>
+
+      <!-- Instant Guest Demo -->
+      <div style="background: var(--bg-primary); border: 1px solid var(--border); border-radius: 14px; padding: 14px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-size: 12px; font-weight: 700; color: var(--text-secondary);">تجربة فورية بحساب ضيف</span>
+          <span style="font-size: 10px; color: var(--success); font-family: 'JetBrains Mono';">Free Instant</span>
+        </div>
+        <button onclick="handleGuestDemoLogin()" class="btn" style="width: 100%; padding: 10px; border-radius: 10px; background: var(--surface-elevated); color: var(--accent); font-weight: 700; font-size: 12px; border: 1px solid var(--border);">
+          دخول تجريبي فوري ($25,000 Demo)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. JAVASCRIPT ENGINE & TRADING CORE ─────────────────────── -->
+  <script>
+    // Configuration
+    const BACKEND_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:5001' 
+      : 'https://core.fxengen.com';
+
+    // Market Symbols Master List
+    const SYMBOLS = [
+      { symbol: 'XAUUSD', name: 'الذهب مقابل الدولار', category: 'Metals', bid: 2654.80, ask: 2655.15, spread: 3.5, digits: 2, pipSize: 0.10, tv: 'OANDA:XAUUSD' },
+      { symbol: 'EURUSD', name: 'اليورو مقابل الدولار', category: 'Forex', bid: 1.08420, ask: 1.08432, spread: 1.2, digits: 5, pipSize: 0.0001, tv: 'FX:EURUSD' },
+      { symbol: 'GBPUSD', name: 'الجنيه الإسترليني / دولار', category: 'Forex', bid: 1.30450, ask: 1.30465, spread: 1.5, digits: 5, pipSize: 0.0001, tv: 'FX:GBPUSD' },
+      { symbol: 'USDJPY', name: 'الدولار مقابل الين', category: 'Forex', bid: 152.420, ask: 152.435, spread: 1.5, digits: 3, pipSize: 0.01, tv: 'FX:USDJPY' },
+      { symbol: 'BTCUSD', name: 'البيتكوين مقابل الدولار', category: 'Crypto', bid: 64280.00, ask: 64295.00, spread: 15.0, digits: 2, pipSize: 1.0, tv: 'BINANCE:BTCUSDT' },
+      { symbol: 'ETHUSD', name: 'الإيثيريوم مقابل الدولار', category: 'Crypto', bid: 3420.50, ask: 3421.80, spread: 1.3, digits: 2, pipSize: 0.10, tv: 'BINANCE:ETHUSDT' },
+      { symbol: 'US30', name: 'مؤشر داو جونز الصناعي', category: 'Indices', bid: 42120.0, ask: 42123.0, spread: 3.0, digits: 1, pipSize: 1.0, tv: 'CAPITALCOM:US30' },
+      { symbol: 'NAS100', name: 'مؤشر ناسداك 100', category: 'Indices', bid: 20180.5, ask: 20182.0, spread: 1.5, digits: 1, pipSize: 1.0, tv: 'CAPITALCOM:US100' },
+      { symbol: 'XAGUSD', name: 'الفضة مقابل الدولار', category: 'Metals', bid: 31.85, ask: 31.88, spread: 3.0, digits: 2, pipSize: 0.01, tv: 'OANDA:XAGUSD' },
+      { symbol: 'USOIL', name: 'عقود خام النفط WTI', category: 'Commodities', bid: 71.45, ask: 71.48, spread: 3.0, digits: 2, pipSize: 0.01, tv: 'TVC:USOIL' },
+      { symbol: 'AUDUSD', name: 'الدولار الأسترالي / دولار', category: 'Forex', bid: 0.67120, ask: 0.67132, spread: 1.2, digits: 5, pipSize: 0.0001, tv: 'FX:AUDUSD' },
+      { symbol: 'USDCHF', name: 'الدولار / الفرنك السويسري', category: 'Forex', bid: 0.86520, ask: 0.86535, spread: 1.5, digits: 5, pipSize: 0.0001, tv: 'FX:USDCHF' }
+    ];
+
+    // Current State
+    let currentAccount = null;
+    let selectedSymbol = SYMBOLS[0]; // XAUUSD
+    let currentTimeframe = '15';
+    let currentCategory = 'ALL';
+    let openPositions = [];
+    let closedHistory = [];
+    let leaderboard = [];
+
+    // Notifications
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<span>${type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ'}</span> <span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // 1. Clock
+    function startClock() {
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById('header-clock').innerText = 
+          now.toLocaleTimeString('en-GB', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' GMT';
+      }, 1000);
+    }
+
+    // 2. Initialize or Restore Account
+    function initAccount() {
+      const saved = localStorage.getItem('fxengin_trading_account');
+      if (saved) {
+        try {
+          currentAccount = JSON.parse(saved);
+          renderAccountUI();
+          syncWithBackend();
+        } catch {
+          openActivationModal();
+        }
+      } else {
+        openActivationModal();
+      }
+    }
+
+    function renderAccountUI() {
+      if (!currentAccount) return;
+      document.getElementById('header-trader-name').innerText = currentAccount.accountName || 'متداول';
+      document.getElementById('header-account-num').innerText = '#' + currentAccount.accountNumber;
+      document.getElementById('header-leverage').innerText = '1:' + (currentAccount.leverage || 500);
+      document.getElementById('header-server-name').innerText = currentAccount.brokerServer || 'FXENGIN Prime ECN';
+      document.getElementById('header-plan-title').innerText = currentAccount.planTitle || 'حساب المسابقة';
+      document.getElementById('header-points').innerHTML = `${Math.round(currentAccount.points || 0).toLocaleString()} <span style="font-size:10px; color:var(--accent);">PTS</span>`;
+      
+      recalcAccountSummary();
+    }
+
+    // 3. Render Symbols in Market Watch
+    function renderSymbols() {
+      const list = document.getElementById('symbols-list');
+      const search = (document.getElementById('mw-search').value || '').toLowerCase();
+
+      list.innerHTML = '';
+      SYMBOLS.filter(s => {
+        const matchCat = currentCategory === 'ALL' || s.category === currentCategory;
+        const matchSearch = s.symbol.toLowerCase().includes(search) || s.name.toLowerCase().includes(search);
+        return matchCat && matchSearch;
+      }).forEach(item => {
+        const isSelected = selectedSymbol.symbol === item.symbol;
+        const div = document.createElement('div');
+        div.className = `mw-row ${item.tickClass || ''}`;
+        div.style.cssText = `
+          display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 7px 12px; align-items: center;
+          cursor: pointer; border-bottom: 1px solid rgba(18, 49, 92, 0.4);
+          background: ${isSelected ? 'rgba(4, 136, 248, 0.15)' : 'transparent'};
+          border-right: ${isSelected ? '3px solid var(--primary)' : 'none'};
+          transition: background 0.15s ease;
+        `;
+        div.onclick = () => selectSymbol(item);
+
+        div.innerHTML = `
+          <div>
+            <div style="font-weight: 800; font-size: 12px; color: #fff; font-family: 'JetBrains Mono';">${item.symbol}</div>
+            <div style="font-size: 9px; color: var(--text-muted);">${item.name}</div>
+          </div>
+          <div style="text-align: center; font-family: 'JetBrains Mono'; font-size: 11px; font-weight: 800; color: var(--primary);">
+            ${item.ask.toFixed(item.digits)}
+          </div>
+          <div style="text-align: left; font-family: 'JetBrains Mono'; font-size: 11px; font-weight: 700; color: var(--text-primary);">
+            ${item.bid.toFixed(item.digits)}
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function selectSymbol(item) {
+      selectedSymbol = item;
+      renderSymbols();
+      updateOneClickBar();
+      updateChart();
+    }
+
+    function filterSymbols() { renderSymbols(); }
+
+    function setMarketCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.style.background = 'var(--primary)';
+          btn.style.color = '#fff';
+          btn.style.fontWeight = '700';
+        } else {
+          btn.style.background = 'var(--bg-primary)';
+          btn.style.color = 'var(--text-secondary)';
+          btn.style.fontWeight = '400';
+        }
+      });
+      renderSymbols();
+    }
+
+    // 4. Update One-Click Trading Bar
+    function updateOneClickBar() {
+      document.getElementById('oc-symbol').innerText = selectedSymbol.symbol;
+      document.getElementById('oc-name').innerText = selectedSymbol.name;
+      document.getElementById('oc-spread').innerText = `Spread: ${selectedSymbol.spread} pts`;
+      document.getElementById('footer-spread').innerText = `Spread: ${selectedSymbol.spread} Pips`;
+      document.getElementById('oc-bid-price').innerText = selectedSymbol.bid.toFixed(selectedSymbol.digits);
+      document.getElementById('oc-ask-price').innerText = selectedSymbol.ask.toFixed(selectedSymbol.digits);
+      document.getElementById('chart-title-symbol').innerText = selectedSymbol.symbol;
+      document.getElementById('chart-title-desc').innerText = selectedSymbol.name;
+    }
+
+    function adjustLots(delta) {
+      const input = document.getElementById('oc-lots-input');
+      let val = Math.max(0.01, Math.min(50, +(parseFloat(input.value) + delta).toFixed(2)));
+      input.value = val.toFixed(2);
+    }
+
+    // 5. White-Labeled Real-Time Global Chart Update
+    function updateChart() {
+      const frame = document.getElementById('tradingview-frame');
+      const overrides = {
+        "paneProperties.background": "#01071E",
+        "paneProperties.backgroundType": "solid",
+        "paneProperties.vertGridProperties.color": "rgba(18, 49, 92, 0.35)",
+        "paneProperties.horzGridProperties.color": "rgba(18, 49, 92, 0.35)",
+        "scalesProperties.textColor": "#A7AFBF",
+        "scalesProperties.lineColor": "#12315C",
+        "scalesProperties.backgroundColor": "#01071E",
+        "mainSeriesProperties.candleStyle.upColor": "#16C784",
+        "mainSeriesProperties.candleStyle.downColor": "#F6465D",
+        "mainSeriesProperties.candleStyle.borderColor": "#16C784",
+        "mainSeriesProperties.candleStyle.borderUpColor": "#16C784",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#F6465D",
+        "mainSeriesProperties.candleStyle.wickUpColor": "#16C784",
+        "mainSeriesProperties.candleStyle.wickDownColor": "#F6465D"
+      };
+
+      const params = new URLSearchParams({
+        symbol: selectedSymbol.tv,
+        interval: currentTimeframe,
+        theme: 'dark',
+        style: '1',
+        timezone: 'Etc/UTC',
+        locale: 'ar_AE',
+        toolbarbg: '01071E',
+        symboledit: '0',
+        saveimage: '0',
+        details: '0',
+        calendar: '0',
+        hotlist: '0',
+        hideideas: '1',
+        hidesidetoolbar: '0',
+        overrides: JSON.stringify(overrides)
+      });
+
+      frame.src = `https://s.tradingview.com/widgetembed/?${params.toString()}`;
+    }
+
+    function setTimeframe(tf) {
+      currentTimeframe = tf;
+      document.querySelectorAll('.tf-btn').forEach(btn => {
+        if (btn.getAttribute('data-tf') === tf) {
+          btn.style.background = 'var(--primary)';
+          btn.style.color = '#fff';
+          btn.style.fontWeight = '700';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.color = 'var(--text-secondary)';
+          btn.style.fontWeight = '400';
+        }
+      });
+      updateChart();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    // 6. Real-Time Price Simulation Engine (Continuous Ticks)
+    function startPriceStream() {
+      setInterval(() => {
+        // Pick 2 random symbols to tick
+        const count = Math.floor(1 + Math.random() * 2);
+        for (let i = 0; i < count; i++) {
+          const idx = Math.floor(Math.random() * SYMBOLS.length);
+          const sym = SYMBOLS[idx];
+          const isUp = Math.random() > 0.49;
+          const delta = (isUp ? 1 : -1) * sym.pipSize * (1 + Math.random() * 1.5);
+          sym.bid = +(sym.bid + delta).toFixed(sym.digits);
+          sym.ask = +(sym.bid + sym.spread * sym.pipSize).toFixed(sym.digits);
+          sym.tickClass = isUp ? 'tick-up' : 'tick-down';
+        }
+
+        renderSymbols();
+        updateOneClickBar();
+        updateFloatingPositions();
+      }, 1300);
+    }
+
+    // 7. Order Execution (Buy / Sell)
+    function executeOrder(type) {
+      if (!currentAccount) {
+        openActivationModal();
+        return;
+      }
+
+      const lots = parseFloat(document.getElementById('oc-lots-input').value) || 0.10;
+      const slPips = parseFloat(document.getElementById('oc-sl-pips').value);
+      const tpPips = parseFloat(document.getElementById('oc-tp-pips').value);
+
+      const openPrice = type === 'BUY' ? selectedSymbol.ask : selectedSymbol.bid;
+      let stopLoss = null;
+      let takeProfit = null;
+
+      if (!isNaN(slPips) && slPips > 0) {
+        stopLoss = type === 'BUY' ? openPrice - slPips * selectedSymbol.pipSize : openPrice + slPips * selectedSymbol.pipSize;
+        stopLoss = +stopLoss.toFixed(selectedSymbol.digits);
+      }
+      if (!isNaN(tpPips) && tpPips > 0) {
+        takeProfit = type === 'BUY' ? openPrice + tpPips * selectedSymbol.pipSize : openPrice - tpPips * selectedSymbol.pipSize;
+        takeProfit = +takeProfit.toFixed(selectedSymbol.digits);
+      }
+
+      const ticket = Math.floor(100000 + Math.random() * 900000);
+      const newPos = {
+        id: 'pos_' + Date.now(),
+        ticket,
+        symbol: selectedSymbol.symbol,
+        type,
+        lots,
+        openPrice,
+        currentPrice: openPrice,
+        stopLoss,
+        takeProfit,
+        profit: 0.0,
+        pips: 0.0,
+        commission: +(lots * 3.5).toFixed(2),
+        openedAt: new Date().toISOString()
+      };
+
+      openPositions.unshift(newPos);
+      savePositions();
+      renderOpenPositions();
+      showToast(`تم فتح صفقة ${type} ${lots} لوت لـ ${selectedSymbol.symbol} بنجاح!`, 'success');
+
+      // Call Backend API in background if online
+      if (currentAccount.id) {
+        fetch(`${BACKEND_URL}/trading/account/${currentAccount.id}/positions/open`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            symbol: selectedSymbol.symbol,
+            type,
+            lots,
+            executionPrice: openPrice,
+            stopLoss,
+            takeProfit
+          })
+        }).catch(() => {});
+      }
+    }
+
+    // 8. Close Position & Award Points
+    function closePosition(posId) {
+      const idx = openPositions.findIndex(p => p.id === posId);
+      if (idx === -1) return;
+
+      const pos = openPositions[idx];
+      openPositions.splice(idx, 1);
+
+      // Add to closed history
+      const historyItem = {
+        ...pos,
+        closePrice: pos.currentPrice,
+        closedAt: new Date().toISOString(),
+        closeReason: 'MANUAL'
+      };
+      closedHistory.unshift(historyItem);
+
+      // Update account balance and competition points
+      const netProfit = pos.profit;
+      currentAccount.balance = +(currentAccount.balance + netProfit).toFixed(2);
+      currentAccount.points = +(currentAccount.points + (pos.pips * 1.5) + (netProfit > 0 ? netProfit * 0.05 : 0)).toFixed(1);
+      
+      savePositions();
+      saveHistory();
+      saveAccount();
+      renderOpenPositions();
+      renderHistory();
+      renderAccountUI();
+
+      showToast(`تم إغلاق الصفقة #${pos.ticket} بنتيجة ${netProfit >= 0 ? '+' : ''}${netProfit.toFixed(2)}$ (${pos.pips.toFixed(1)} Pips)`, netProfit >= 0 ? 'success' : 'error');
+
+      // Sync close with backend
+      if (currentAccount.id) {
+        fetch(`${BACKEND_URL}/trading/account/${currentAccount.id}/positions/${pos.id}/close`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ closePrice: pos.currentPrice, reason: 'MANUAL' })
+        }).catch(() => {});
+      }
+    }
+
+    // 9. Recalculate Live Profits on Ticks
+    function updateFloatingPositions() {
+      let floatingProfit = 0;
+      openPositions.forEach(pos => {
+        const sym = SYMBOLS.find(s => s.symbol === pos.symbol);
+        if (!sym) return;
+
+        const currentPrice = pos.type === 'BUY' ? sym.bid : sym.ask;
+        const diff = pos.type === 'BUY' ? currentPrice - pos.openPrice : pos.openPrice - currentPrice;
+        const contractSize = pos.symbol.includes('XAU') ? 100 : pos.symbol.includes('BTC') ? 1 : 100000;
+        
+        pos.currentPrice = currentPrice;
+        pos.profit = +(diff * pos.lots * contractSize - pos.commission).toFixed(2);
+        pos.pips = +(diff / sym.pipSize).toFixed(1);
+        floatingProfit += pos.profit;
+      });
+
+      document.getElementById('terminal-floating-pnl').innerText = `${floatingProfit >= 0 ? '+' : ''}$${floatingProfit.toFixed(2)}`;
+      document.getElementById('terminal-floating-pnl').style.color = floatingProfit >= 0 ? 'var(--success)' : 'var(--error)';
+
+      renderOpenPositions();
+      recalcAccountSummary();
+    }
+
+    function recalcAccountSummary() {
+      if (!currentAccount) return;
+      const floating = openPositions.reduce((acc, p) => acc + (p.profit || 0), 0);
+      const balance = currentAccount.balance || 10000;
+      const equity = +(balance + floating).toFixed(2);
+      
+      const totalMargin = openPositions.reduce((acc, p) => acc + (p.lots * 100000 * p.openPrice) / (currentAccount.leverage || 500), 0);
+      const freeMargin = Math.max(0, +(equity - totalMargin).toFixed(2));
+      const marginLevel = totalMargin > 0 ? ((equity / totalMargin) * 100).toFixed(1) + '%' : '---';
+
+      document.getElementById('bar-balance').innerText = '$' + balance.toLocaleString();
+      document.getElementById('bar-equity').innerText = '$' + equity.toLocaleString();
+      document.getElementById('bar-equity').style.color = equity >= balance ? 'var(--success)' : 'var(--error)';
+      document.getElementById('bar-margin').innerText = '$' + totalMargin.toFixed(2);
+      document.getElementById('bar-free-margin').innerText = '$' + freeMargin.toLocaleString();
+      document.getElementById('bar-margin-level').innerText = marginLevel;
+
+      const badge = document.getElementById('bar-floating-badge');
+      badge.innerText = `${floating >= 0 ? '+' : ''}$${floating.toFixed(2)}`;
+      badge.style.background = floating >= 0 ? 'rgba(22,199,132,0.15)' : 'rgba(246,70,93,0.15)';
+      badge.style.color = floating >= 0 ? 'var(--success)' : 'var(--error)';
+    }
+
+    // 10. Render Positions Table
+    function renderOpenPositions() {
+      const tbody = document.getElementById('open-positions-tbody');
+      document.getElementById('open-positions-count').innerText = openPositions.length;
+
+      // Update active trades badge on chart
+      const activeChartTrades = openPositions.filter(p => p.symbol === selectedSymbol.symbol);
+      const chartBadge = document.getElementById('chart-active-trades-badge');
+      if (activeChartTrades.length > 0) {
+        chartBadge.style.display = 'inline-flex';
+        const sumProfit = activeChartTrades.reduce((acc, p) => acc + p.profit, 0);
+        document.getElementById('chart-active-trades-text').innerText = `${activeChartTrades.length} صفقات (${sumProfit >= 0 ? '+' : ''}${sumProfit.toFixed(2)}$)`;
+      } else {
+        chartBadge.style.display = 'none';
+      }
+
+      if (openPositions.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="12" style="text-align: center; color: var(--text-muted); padding: 30px;">لا توجد صفقات مفتوحة حالياً. نفّذ أمر بيع أو شراء من الأعلى لبدء التداول.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = openPositions.map(pos => `
+        <tr>
+          <td style="color: var(--text-muted); font-weight: 700;">#${pos.ticket}</td>
+          <td style="color: var(--text-secondary); font-size: 11px;">${new Date(pos.openedAt).toLocaleTimeString('en-GB')}</td>
+          <td><span class="badge ${pos.type === 'BUY' ? 'badge-buy' : 'badge-sell'}">${pos.type}</span></td>
+          <td style="color: #fff; font-weight: 800;">${pos.lots}</td>
+          <td style="color: var(--accent); font-weight: 800;">${pos.symbol}</td>
+          <td style="color: var(--text-secondary);">${pos.openPrice}</td>
+          <td style="color: var(--accent);">${pos.stopLoss || '---'}</td>
+          <td style="color: var(--primary);">${pos.takeProfit || '---'}</td>
+          <td style="color: #fff; font-weight: 700;">${pos.currentPrice}</td>
+          <td style="color: var(--text-muted);">-$${pos.commission}</td>
+          <td style="text-align: center; font-weight: 800; color: ${pos.profit >= 0 ? 'var(--success)' : 'var(--error)'};">
+            ${pos.profit >= 0 ? '+' : ''}${pos.profit.toFixed(2)}$
+          </td>
+          <td style="text-align: center;">
+            <button onclick="closePosition('${pos.id}')" class="btn" style="padding: 2px 7px; border-radius: 4px; background: rgba(246,70,93,0.2); color: var(--error); font-size: 10px;" title="إغلاق الصفقة">
+              ✕ إغلاق
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 11. Render History Table
+    function renderHistory() {
+      const tbody = document.getElementById('closed-history-tbody');
+      document.getElementById('closed-history-count').innerText = closedHistory.length;
+
+      const totalProfit = closedHistory.reduce((acc, h) => acc + h.profit, 0);
+      const totalPips = closedHistory.reduce((acc, h) => acc + h.pips, 0);
+      const wins = closedHistory.filter(h => h.profit > 0).length;
+      const winRate = closedHistory.length > 0 ? ((wins / closedHistory.length) * 100).toFixed(1) : '0';
+
+      document.getElementById('hist-total-trades').innerText = closedHistory.length;
+      document.getElementById('hist-win-rate').innerText = winRate + '%';
+      document.getElementById('hist-total-pips').innerText = totalPips.toFixed(1) + ' Pips';
+      document.getElementById('hist-net-profit').innerText = `${totalProfit >= 0 ? '+' : ''}$${totalProfit.toFixed(2)}`;
+      document.getElementById('hist-net-profit').style.color = totalProfit >= 0 ? 'var(--success)' : 'var(--error)';
+
+      if (closedHistory.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-muted); padding: 30px;">لا توجد صفقات مغلقة في سجل هذا الحساب بعد.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = closedHistory.map(h => `
+        <tr>
+          <td style="color: var(--text-muted); font-weight: 700;">#${h.ticket}</td>
+          <td style="color: var(--text-muted); font-size: 11px;">${new Date(h.openedAt).toLocaleTimeString('en-GB')}</td>
+          <td style="color: var(--text-muted); font-size: 11px;">${new Date(h.closedAt).toLocaleTimeString('en-GB')}</td>
+          <td><span class="badge ${h.type === 'BUY' ? 'badge-buy' : 'badge-sell'}">${h.type}</span></td>
+          <td style="color: #fff; font-weight: 700;">${h.lots}</td>
+          <td style="color: var(--accent); font-weight: 700;">${h.symbol}</td>
+          <td style="color: var(--text-secondary);">${h.openPrice}</td>
+          <td style="color: #fff; font-weight: 700;">${h.closePrice}</td>
+          <td style="color: var(--text-muted); font-size: 10px;">${h.closeReason}</td>
+          <td style="text-align: center; color: ${h.pips >= 0 ? 'var(--primary)' : 'var(--error)'}; font-weight: 700;">${h.pips >= 0 ? '+' : ''}${h.pips.toFixed(1)}</td>
+          <td style="text-align: center; font-weight: 800; color: ${h.profit >= 0 ? 'var(--success)' : 'var(--error)'};">
+            ${h.profit >= 0 ? '+' : ''}${h.profit.toFixed(2)}$
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 12. Bottom Tab Switching
+    function switchBottomTab(tab) {
+      ['TRADE', 'HISTORY', 'LEADERBOARD'].forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        const content = document.getElementById(`tab-content-${t}`);
+        if (t === tab) {
+          btn.style.background = 'var(--surface)';
+          btn.style.borderTop = '2px solid var(--primary)';
+          btn.style.color = t === 'LEADERBOARD' ? 'var(--accent)' : 'var(--primary)';
+          btn.style.fontWeight = '700';
+          content.style.display = 'flex';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.borderTop = 'none';
+          btn.style.color = 'var(--text-secondary)';
+          btn.style.fontWeight = '400';
+          content.style.display = 'none';
+        }
+      });
+
+      if (tab === 'LEADERBOARD') fetchLeaderboardData();
+    }
+
+    // 13. Leaderboard
+    function fetchLeaderboardData() {
+      fetch(`${BACKEND_URL}/trading/leaderboard`)
+        .then(r => r.json())
+        .then(res => {
+          if (res.success && res.leaderboard) {
+            leaderboard = res.leaderboard;
+            renderLeaderboard();
+          }
+        })
+        .catch(() => {
+          // Fallback sample leaderboard
+          leaderboard = [
+            { rank: 1, traderName: 'Amir FX Pro', accountNumber: '500101', planTitle: 'جروب الذهب VIP', points: 3450, profit: 6420, winRate: 81.8 },
+            { rank: 2, traderName: 'Ahmed Swing Trader', accountNumber: '500102', planTitle: 'جروب توصيات الفوركس', points: 2180, profit: 2850, winRate: 80.0 },
+            { rank: 3, traderName: 'Karim Scalper', accountNumber: '500103', planTitle: 'باقة المحترفين $100k', points: 1840, profit: 1950, winRate: 75.0 },
+            { rank: 4, traderName: 'Tarek Algorithmic', accountNumber: '500104', planTitle: 'أكاديمية المتداول', points: 1420, profit: 1200, winRate: 71.4 }
+          ];
+          renderLeaderboard();
+        });
+    }
+
+    function renderLeaderboard() {
+      const grid = document.getElementById('leaderboard-grid');
+      grid.innerHTML = leaderboard.map(trader => {
+        const isMe = currentAccount && currentAccount.accountNumber === trader.accountNumber;
+        return `
+          <div style="background: ${isMe ? 'rgba(4, 136, 248, 0.15)' : 'var(--bg-primary)'}; border: 1px solid ${isMe ? 'var(--primary)' : 'var(--border)'}; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: ${trader.rank === 1 ? 'var(--accent)' : trader.rank === 2 ? '#b0bec5' : trader.rank === 3 ? '#bcaaa4' : 'var(--border)'}; color: #000; font-weight: 900; font-size: 12px; display: flex; align-items: center; justify-content: center;">
+                ${trader.rank}
+              </div>
+              <div>
+                <div style="font-weight: 800; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 6px;">
+                  <span>${trader.traderName}</span>
+                  ${isMe ? '<span style="font-size: 9px; padding: 1px 4px; border-radius: 4px; background: var(--primary); color: #fff;">أنت</span>' : ''}
+                </div>
+                <div style="font-size: 10px; color: var(--text-muted); font-family: 'JetBrains Mono';">
+                  #${trader.accountNumber} • ${trader.planTitle}
+                </div>
+              </div>
+            </div>
+            <div style="text-align: left; font-family: 'JetBrains Mono';">
+              <div style="font-size: 13px; font-weight: 900; color: var(--accent);">${trader.points.toLocaleString()} PTS</div>
+              <div style="font-size: 10px; color: var(--success); font-weight: 700;">+${trader.profit.toLocaleString()}$ (${trader.winRate}%)</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 14. Modals & Authentication Handlers
+    function openActivationModal() {
+      document.getElementById('activation-modal').classList.add('active');
+    }
+
+    function closeActivationModal() {
+      document.getElementById('activation-modal').classList.remove('active');
+    }
+
+    function handleActivationSubmit(e) {
+      e.preventDefault();
+      const code = document.getElementById('modal-code-input').value.trim();
+      const name = document.getElementById('modal-name-input').value.trim();
+      const btn = document.getElementById('modal-submit-btn');
+
+      btn.innerText = 'جاري التحقق...';
+      btn.disabled = true;
+
+      fetch(`${BACKEND_URL}/trading/auth/activate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ activationCode: code, accountName: name })
+      })
+      .then(r => r.json())
+      .then(res => {
+        if (res.success && res.account) {
+          currentAccount = res.account;
+          localStorage.setItem('fxengin_trading_token', res.token);
+          saveAccount();
+          renderAccountUI();
+          closeActivationModal();
+          showToast(res.message || 'تم تفعيل الحساب ودخول المسابقة بنجاح!', 'success');
+        } else {
+          showToast(res.message || 'كود التفعيل غير صحيح', 'error');
+        }
+      })
+      .catch(() => {
+        // Fallback local account creation if backend is offline
+        currentAccount = {
+          accountNumber: String(500000 + Math.floor(Math.random() * 499999)),
+          accountName: name || 'FX Trader',
+          initialBalance: 25000,
+          balance: 25000,
+          equity: 25000,
+          leverage: 500,
+          points: 100,
+          brokerServer: 'FXENGIN Prime ECN',
+          planTitle: 'باقة المتداول VIP ($25,000)'
+        };
+        saveAccount();
+        renderAccountUI();
+        closeActivationModal();
+        showToast('تم الدخول بحساب تجريبي بنجاح!', 'success');
+      })
+      .finally(() => {
+        btn.innerText = 'تفعيل الحساب ودخول مسابقة MT5';
+        btn.disabled = false;
+      });
+    }
+
+    function handleGuestDemoLogin() {
+      currentAccount = {
+        accountNumber: String(510000 + Math.floor(Math.random() * 399999)),
+        accountName: 'متداول ضيف تجريبي',
+        initialBalance: 25000,
+        balance: 25000,
+        equity: 25000,
+        leverage: 500,
+        points: 0,
+        brokerServer: 'FXENGIN Prime ECN',
+        planTitle: 'باقة المحاكاة التجريبية ($25,000)'
+      };
+      saveAccount();
+      renderAccountUI();
+      closeActivationModal();
+      showToast('مرحباً بك في محاكي MT5 بحساب تجريبي $25,000!', 'info');
+    }
+
+    function logout() {
+      localStorage.removeItem('fxengin_trading_account');
+      localStorage.removeItem('fxengin_trading_token');
+      currentAccount = null;
+      openActivationModal();
+    }
+
+    // Local Storage Helpers
+    function saveAccount() {
+      if (currentAccount) localStorage.setItem('fxengin_trading_account', JSON.stringify(currentAccount));
+    }
+    function savePositions() {
+      localStorage.setItem('fxengin_open_positions', JSON.stringify(openPositions));
+    }
+    function saveHistory() {
+      localStorage.setItem('fxengin_closed_history', JSON.stringify(closedHistory));
+    }
+
+    function loadSavedPositions() {
+      try {
+        const p = localStorage.getItem('fxengin_open_positions');
+        if (p) openPositions = JSON.parse(p);
+        const h = localStorage.getItem('fxengin_closed_history');
+        if (h) closedHistory = JSON.parse(h);
+      } catch {}
+    }
+
+    function syncWithBackend() {
+      if (!currentAccount?.id) return;
+      fetch(`${BACKEND_URL}/trading/account/${currentAccount.id}`)
+        .then(r => r.json())
+        .then(res => {
+          if (res.success && res.account) {
+            currentAccount = res.account;
+            if (res.positions) openPositions = res.positions;
+            renderAccountUI();
+            renderOpenPositions();
+          }
+        })
+        .catch(() => {});
+    }
+
+    // Run on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      startClock();
+      loadSavedPositions();
+      initAccount();
+      renderSymbols();
+      updateOneClickBar();
+      updateChart();
+      renderOpenPositions();
+      renderHistory();
+      startPriceStream();
+    });
+  </script>
+</body>
+</html>

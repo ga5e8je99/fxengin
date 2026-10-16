@@ -322,6 +322,24 @@ export async function POST(req) {
       conv.status = 'CONFIRMED';
       conv.confirmedAt = new Date().toISOString();
 
+      // Check if buyer already had a prior confirmed conversion for this category (Group or Course)
+      const hasPriorConfirmed = (data.conversions || []).some((c) => {
+        if (c.id === conv.id) return false;
+        if (c.status !== 'CONFIRMED') return false;
+        if (c.productType !== conv.productType) return false;
+        const matchId = conv.buyerId && c.buyerId && String(c.buyerId).toLowerCase() === String(conv.buyerId).toLowerCase();
+        const matchEmail = conv.buyerEmail && c.buyerEmail && c.buyerEmail.trim().toLowerCase() === conv.buyerEmail.trim().toLowerCase();
+        const matchPhone = conv.buyerPhone && c.buyerPhone && c.buyerPhone.replace(/\D/g, '').length >= 8 &&
+          c.buyerPhone.replace(/\D/g, '').endsWith(conv.buyerPhone.replace(/\D/g, '').slice(-8));
+        return Boolean(matchId || matchEmail || matchPhone);
+      });
+
+      if (hasPriorConfirmed) {
+        conv.commissionAmount = 0;
+        conv.firstTimeExceeded = true;
+        conv.note = 'لم تُحتسب عمولة لأن المستخدم لديه اشتراك سابق بالفعل في هذه الفئة (أول مرة فقط)';
+      }
+
       // Credit partner
       const pIdx = data.partners.findIndex(
         (p) => p.id === conv.partnerId || p.referralCode === conv.referralCode

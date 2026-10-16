@@ -1,0 +1,1150 @@
+'use client';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import {
+  FiTrendingUp,
+  FiActivity,
+  FiArrowLeft,
+  FiArrowRight,
+  FiBookOpen,
+  FiUser,
+  FiClock,
+  FiVideo,
+  FiCheckCircle,
+  FiAward,
+  FiShield,
+  FiPlayCircle,
+  FiCalendar,
+  FiLock,
+  FiCreditCard,
+} from 'react-icons/fi';
+import { LuGraduationCap } from 'react-icons/lu';
+import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
+import { showToast } from '../utils/toast';
+import { getAppRoute } from '../utils/routes';
+
+const HERO_IMAGES = [
+  { src: '/assets/Images/Main/hero1.webp?v=20261005', alt: 'FXENGIN 1' },
+  { src: '/assets/Images/Main/hero2.webp?v=20261005', alt: 'FXENGIN 2' },
+  { src: '/assets/Images/Main/hero3.webp?v=20261005', alt: 'FXENGIN 3' },
+];
+
+const EXPERT_SLIDES = [
+  {
+    id: 'ecosystem',
+    image: '/assets/Images/Main/expert-slide1.webp?v=20261005',
+    badgeAr: 'المنظومة المالية المتكاملة',
+    badgeEn: 'All-in-One Trading Hub',
+    badgeColor: '#0488f8',
+    titleAr: 'منصة FXENGIN للحلول المالية والتداول',
+    titleEn: 'FXENGIN Financial & Trading Platform',
+    speechAr:
+      'منصة FXENGIN هي بوابتك المالية الشاملة لاحتراف أسواق التداول العالمية، تجمع بين أحدث التقنيات التحليلية اللحظية والبيانات المباشرة لتمكينك من اتخاذ قرارات تداول مدروسة بدقة عالية.',
+    speechEn:
+      'FXENGIN is your premier financial gateway to master global trading markets, combining real-time analytical technology and live market data to empower your high-precision trading decisions.',
+    highlightAr: 'منظومة تداول متكاملة • تحليلات حية • دقة تنفيذية',
+    highlightEn: 'Complete Ecosystem • Live Market Data • Precision Execution',
+  },
+  {
+    id: 'academy',
+    image: '/assets/Images/Main/expert-slide2.webp?v=20261005',
+    badgeAr: 'الأكاديمية والتدريب الحي',
+    badgeEn: 'Academy & Live Mentorship',
+    badgeColor: '#16C784',
+    titleAr: 'أكاديمية معتمدة وبث مباشر مع الخبراء',
+    titleEn: 'Certified Academy & Live Streaming',
+    speechAr:
+      'تمنحك FXENGIN مسارات تعليمية معتمدة تمتد من أساسيات التحليل حتى استراتيجيات السيولة المتقدمة، مع جلسات بث حي وتداول تفاعلي يومي لمتابعة الفرص الحية خطوة بخطوة مع نخبة المحللين.',
+    speechEn:
+      'FXENGIN delivers certified learning tracks ranging from market fundamentals to advanced liquidity strategies, backed by daily live trading rooms with top market analysts.',
+    highlightAr: 'شهادات معتمدة • جلسات بث مباشر • مجتمع تفاعلي',
+    highlightEn: 'Certified Paths • Live Daily Rooms • Active Community',
+  },
+  {
+    id: 'smart-tools',
+    image: '/assets/Images/Main/expert-slide3.webp?v=20261005',
+    badgeAr: 'الأنظمة الذكية والمؤشرات',
+    badgeEn: 'Smart Systems & Indicators',
+    badgeColor: '#FB8704',
+    titleAr: 'مؤشرات فنية احترافية وإدارة المخاطر',
+    titleEn: 'Smart Indicators & Risk Management',
+    speechAr:
+      'تزودك FXENGIN بخوارزميات ذكية ومؤشرات فنية متطورة مخصصة لرصد مناطق السيولة وتحديد نقاط الدخول والخروج، مع أدوات إدارة مخاطر صارمة تضمن حماية رأس مالك واستدامة أرباحك.',
+    speechEn:
+      'FXENGIN equips you with smart algorithms and custom indicators to track institutional liquidity and execution zones, paired with robust risk management to protect your capital.',
+    highlightAr: 'مؤشرات ذكية • إدارة رأس المال • مجتمع المتداولين',
+    highlightEn: 'Smart Indicators • Capital Protection • Elite Community',
+  },
+];
+
+function StatBadge({ label, value, change, positive, icon }) {
+  return (
+    <div style={{
+      background: 'rgba(10, 27, 61, 0.85)',
+      border: '1px solid var(--border)',
+      borderRadius: '0.625rem',
+      padding: '0.375rem 0.625rem',
+      backdropFilter: 'blur(12px)',
+      WebkitBackdropFilter: 'blur(12px)',
+      boxShadow: '0 0.375rem 1.25rem rgba(0, 3, 13, 0.6)',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      zIndex: 10,
+    }}>
+      {icon && (
+        <div style={{
+          width: '1.5rem',
+          height: '1.5rem',
+          borderRadius: '0.375rem',
+          background: 'rgba(255, 255, 255, 0.05)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+        }}>
+          {icon}
+        </div>
+      )}
+      <div>
+        <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)', marginBottom: '0.0625rem', fontWeight: 500, lineHeight: 1 }}>
+          {label}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
+          <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'monospace', lineHeight: 1.1 }}>
+            {value}
+          </span>
+          {change && (
+            <span style={{
+              fontSize: '0.6875rem',
+              fontWeight: 700,
+              color: positive ? 'var(--success)' : 'var(--error)',
+              background: positive ? 'rgba(22, 199, 132, 0.15)' : 'rgba(246, 70, 93, 0.15)',
+              padding: '0.0625rem 0.25rem',
+              borderRadius: '0.2rem',
+              fontFamily: 'monospace',
+              lineHeight: 1,
+            }}>
+              {positive ? '▲' : '▼'} {change}
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Hero() {
+  const { t, isAr } = useLanguage();
+  const { user, isAuthenticated } = useAuth();
+  const [currentImgIdx, setCurrentImgIdx] = useState(0);
+  const [expertSlideIdx, setExpertSlideIdx] = useState(0);
+
+  // Typewriter effect state for expert speech
+  const [displayedSpeech, setDisplayedSpeech] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const [typingComplete, setTypingComplete] = useState(false);
+
+
+
+  const activeSlide = EXPERT_SLIDES[expertSlideIdx];
+  const speechTargetText = isAr ? activeSlide.speechAr : activeSlide.speechEn;
+
+  // Typewriter effect: types out characters when slide changes or language changes
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    setDisplayedSpeech('');
+    setIsTyping(true);
+    setTypingComplete(false);
+
+    let charIdx = 0;
+    const textToType = speechTargetText;
+    const timer = setInterval(() => {
+      charIdx++;
+      if (charIdx <= textToType.length) {
+        setDisplayedSpeech(textToType.slice(0, charIdx));
+      } else {
+        clearInterval(timer);
+        setIsTyping(false);
+        setTypingComplete(true);
+      }
+    }, 18);
+
+    return () => clearInterval(timer);
+  }, [expertSlideIdx, isAr, isAuthenticated, speechTargetText]);
+
+  // Auto-cycle expert speech slides after typing is complete (wait 6s for reading & clicking)
+  useEffect(() => {
+    if (!isAuthenticated || !typingComplete) return;
+    const timer = setTimeout(() => {
+      setExpertSlideIdx((prev) => (prev + 1) % EXPERT_SLIDES.length);
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, [typingComplete, expertSlideIdx, isAuthenticated]);
+
+  // Rotate images for guest hero
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImgIdx((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, []);
+
+
+
+  const getLevelLabel = (level) => {
+    switch (level) {
+      case 'ADVANCED':
+        return isAr ? 'محترف / متقدم' : 'Pro / Advanced';
+      case 'INTERMEDIATE':
+        return isAr ? 'متوسط' : 'Intermediate';
+      default:
+        return isAr ? 'مبتدئ' : 'Beginner';
+    }
+  };
+
+  return (
+    <section
+      className="hero-section"
+      style={{
+        minHeight: 'calc(100dvh - var(--header-height, 4.5rem))',
+        width: '100%',
+        maxWidth: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        padding: 'calc(var(--ticker-height, 2.75rem) + clamp(1.25rem, 2.2vw, 1.75rem)) 0 clamp(2.5rem, 5vw, 3.75rem)',
+        background: 'radial-gradient(ellipse 80% 60% at 50% 10%, rgba(4, 136, 248, 0.08) 0%, transparent 70%), var(--bg-dark)',
+      }}
+    >
+      {/* Background ambient lighting */}
+      <div aria-hidden style={{
+        position: 'absolute',
+        top: '10%',
+        right: '5%',
+        width: 'clamp(15rem, 30vw, 24rem)',
+        height: 'clamp(15rem, 30vw, 24rem)',
+        background: 'radial-gradient(circle, rgba(251, 135, 4, 0.1) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(50px)',
+        pointerEvents: 'none',
+      }} />
+
+      <div aria-hidden style={{
+        position: 'absolute',
+        bottom: '10%',
+        left: '5%',
+        width: 'clamp(12rem, 25vw, 20rem)',
+        height: 'clamp(12rem, 25vw, 20rem)',
+        background: 'radial-gradient(circle, rgba(4, 136, 248, 0.08) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(45px)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Subtle grid pattern */}
+      <div aria-hidden style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        backgroundImage:
+          'linear-gradient(rgba(18, 49, 92, 0.25) 1px, transparent 1px),' +
+          'linear-gradient(90deg, rgba(18, 49, 92, 0.25) 1px, transparent 1px)',
+        backgroundSize: '3rem 3rem',
+        mask: 'radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 80%)',
+        WebkitMask: 'radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 80%)',
+      }} />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%', paddingTop: 'clamp(0.75rem, 2vw, 1.25rem)' }}>
+        
+        {/* ═══════════════════════════════════════════════════════════════════
+            LOGGED-IN USER PERSONALIZED HERO VIEW
+        ═══════════════════════════════════════════════════════════════════ */}
+        {isAuthenticated && user ? (
+          <div className="hero-grid" style={{ gridTemplateColumns: '0.94fr 1.06fr', gap: '32px', alignItems: 'center' }}>
+            {/* Right Column (in RTL): Personalized Greeting + Rich Platform Details + Feature Grid + Quick Actions */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              
+              {/* Top Greeting Badges */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    color: 'var(--accent)',
+                    background: 'rgba(251, 135, 4, 0.12)',
+                    border: '1px solid rgba(251, 135, 4, 0.3)',
+                    padding: '3px 10px',
+                    borderRadius: '20px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 6px var(--accent)' }} />
+                  {isAr ? 'لوحة التحكم والمتابعة المباشرة' : 'Personal Trading Dashboard'}
+                </span>
+
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    color: 'var(--primary)',
+                    background: 'rgba(4, 136, 248, 0.1)',
+                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    padding: '3px 10px',
+                    borderRadius: '20px',
+                  }}
+                >
+                  {isAr ? `المستوى: ${getLevelLabel(user.experienceLevel)}` : `Level: ${getLevelLabel(user.experienceLevel)}`}
+                </span>
+
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    color: '#16C784',
+                    background: 'rgba(22, 199, 132, 0.1)',
+                    border: '1px solid rgba(22, 199, 132, 0.25)',
+                    padding: '3px 10px',
+                    borderRadius: '20px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                  }}
+                >
+                  <FiCheckCircle size={11} />
+                  {isAr ? 'حساب نشط وموثق' : 'Verified Account'}
+                </span>
+              </div>
+
+              {/* Main Welcome Headline & Rich Platform Introduction */}
+              <div>
+                <h1
+                  style={{
+                    fontSize: 'clamp(22px, 2.4vw, 34px)',
+                    fontWeight: 800,
+                    lineHeight: 1.25,
+                    margin: '0 0 8px 0',
+                    color: 'var(--text-primary)',
+                  }}
+                >
+                  {isAr ? (
+                    <>
+                      مرحباً بك، <span className="text-gradient-brand">{user.fullName || 'متداولنا العزيز'}</span>
+                    </>
+                  ) : (
+                    <>
+                      Welcome back, <span className="text-gradient-brand">{user.fullName || 'Trader'}</span>
+                    </>
+                  )}
+                </h1>
+                <p
+                  style={{
+                    fontSize: '13px',
+                    lineHeight: 1.65,
+                    color: 'var(--text-secondary)',
+                    margin: 0,
+                    maxWidth: '560px',
+                  }}
+                >
+                  {isAr
+                    ? 'أهلاً بك مجدداً في مركزك التداولي المتقدم على FXENGIN. منصتك المتكاملة لاحتراف الأسواق العالمية، ومتابعة التحليلات اللحظية، والانضمام لجلسات البث المباشر مع نخبة المحللين لتطبيق أقوى استراتيجيات إدارة رأس المال واقتناص أفضل الفرص الاستثمارية.'
+                    : 'Welcome back to your advanced trading command center on FXENGIN. Your comprehensive gateway to master global financial markets, follow real-time technical analysis, and join live trading rooms with veteran analysts.'}
+                </p>
+              </div>
+
+              {/* 4-Card Feature Grid (2x2 or 1-col on mobile) */}
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+                  gap: '10px',
+                  marginTop: '2px',
+                }}
+              >
+                {/* Feature 1 */}
+                <div
+                  style={{
+                    background: 'rgba(10, 27, 61, 0.65)',
+                    border: '1px solid rgba(4, 136, 248, 0.2)',
+                    borderRadius: '10px',
+                    padding: '10px 12px',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '10px',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '7px',
+                      background: 'rgba(4, 136, 248, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      color: 'var(--primary)',
+                    }}
+                  >
+                    <FiActivity size={15} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
+                      {isAr ? 'تحليلات فنية لحظية' : 'Live Market Analysis'}
+                    </div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                      {isAr ? 'قراءات يومية للسيولة ومناطق الدخول في العملات والذهب.' : 'Daily order flow & liquidity zones for FX and commodities.'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Feature 2 */}
+                <div
+                  style={{
+                    background: 'rgba(10, 27, 61, 0.65)',
+                    border: '1px solid rgba(22, 199, 132, 0.2)',
+                    borderRadius: '10px',
+                    padding: '10px 12px',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '10px',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '7px',
+                      background: 'rgba(22, 199, 132, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      color: '#16C784',
+                    }}
+                  >
+                    <LuGraduationCap size={15} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
+                      {isAr ? 'أكاديمية تدريب معتمدة' : 'Certified Academy'}
+                    </div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                      {isAr ? 'مسارات تدريبية تطبيقية تؤهلك لشهادات التداول المعتمدة.' : 'Hands-on learning tracks leading to accredited certificates.'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Feature 3 */}
+                <div
+                  style={{
+                    background: 'rgba(10, 27, 61, 0.65)',
+                    border: '1px solid rgba(251, 135, 4, 0.2)',
+                    borderRadius: '10px',
+                    padding: '10px 12px',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '10px',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '7px',
+                      background: 'rgba(251, 135, 4, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      color: 'var(--accent)',
+                    }}
+                  >
+                    <FiVideo size={15} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
+                      {isAr ? 'جلسات بث حي تفاعلي' : 'Live Trading Rooms'}
+                    </div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                      {isAr ? 'تداول مباشر واقتناص صفقات حية مع الخبراء في أوقات الذروة.' : 'Daily live trade setups & interactive Q&A during peak sessions.'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Feature 4 */}
+                <div
+                  style={{
+                    background: 'rgba(10, 27, 61, 0.65)',
+                    border: '1px solid rgba(168, 85, 247, 0.25)',
+                    borderRadius: '10px',
+                    padding: '10px 12px',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '10px',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '7px',
+                      background: 'rgba(168, 85, 247, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      color: '#a855f7',
+                    }}
+                  >
+                    <FiShield size={15} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
+                      {isAr ? 'إدارة مخاطر صارمة' : 'Risk Management'}
+                    </div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                      {isAr ? 'نماذج دقيقة لحماية رأس المال وحساب أحجام الصفقات باحتراف.' : 'Capital preservation models and calculated position sizing.'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+            {/* Left Column (in RTL): Expert Interactive Speech Bubble & Character Showcase */}
+            <div
+              className="expert-showcase-column"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                width: '100%',
+                minHeight: '520px',
+              }}
+            >
+              {/* 1. Speech Bubble with Constant Fixed Height (Zero Layout Shift, No Buttons) */}
+              <div
+                className="expert-speech-bubble"
+                style={{
+                  width: '100%',
+                  maxWidth: '430px',
+                  height: '160px',
+                  minHeight: '160px',
+                  maxHeight: '160px',
+                  background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.96) 0%, rgba(1, 7, 30, 0.98) 100%)',
+                  border: '1px solid rgba(4, 136, 248, 0.35)',
+                  borderRadius: '14px',
+                  padding: '12px 16px',
+                  boxShadow: '0 14px 35px rgba(0, 3, 13, 0.85), 0 0 20px rgba(4, 136, 248, 0.15)',
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  zIndex: 10,
+                  boxSizing: 'border-box',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Header row: Badge + Slide Indicators */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span
+                    style={{
+                      fontSize: '10.5px',
+                      fontWeight: 700,
+                      color: EXPERT_SLIDES[expertSlideIdx].badgeColor,
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: `1px solid ${EXPERT_SLIDES[expertSlideIdx].badgeColor}40`,
+                      padding: '2px 8px',
+                      borderRadius: '16px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: '5px',
+                        height: '5px',
+                        borderRadius: '50%',
+                        background: EXPERT_SLIDES[expertSlideIdx].badgeColor,
+                        boxShadow: `0 0 6px ${EXPERT_SLIDES[expertSlideIdx].badgeColor}`,
+                      }}
+                    />
+                    {isAr ? EXPERT_SLIDES[expertSlideIdx].badgeAr : EXPERT_SLIDES[expertSlideIdx].badgeEn}
+                  </span>
+
+                  {/* 3 Slide Progress Indicator Bars */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    {EXPERT_SLIDES.map((_, i) => (
+                      <span
+                        key={i}
+                        style={{
+                          width: i === expertSlideIdx ? '16px' : '6px',
+                          height: '4px',
+                          borderRadius: '2px',
+                          background: i === expertSlideIdx ? EXPERT_SLIDES[expertSlideIdx].badgeColor : 'rgba(255, 255, 255, 0.2)',
+                          transition: 'all 0.3s ease',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 style={{ fontSize: '13.5px', fontWeight: 700, color: 'var(--text-primary)', margin: 0, lineHeight: 1.3 }}>
+                  {isAr ? EXPERT_SLIDES[expertSlideIdx].titleAr : EXPERT_SLIDES[expertSlideIdx].titleEn}
+                </h3>
+
+                {/* Speech text with typewriter typing animation & blinking cursor */}
+                <p
+                  style={{
+                    fontSize: '12px',
+                    color: 'var(--text-secondary)',
+                    lineHeight: 1.55,
+                    margin: 0,
+                    height: '56px',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {displayedSpeech}
+                  {isTyping && (
+                    <span
+                      style={{
+                        display: 'inline-block',
+                        width: '2px',
+                        height: '12px',
+                        background: 'var(--accent)',
+                        marginInlineStart: '4px',
+                        verticalAlign: 'middle',
+                        boxShadow: '0 0 6px var(--accent)',
+                        animation: 'cursorBlink 0.6s infinite',
+                      }}
+                    />
+                  )}
+                </p>
+
+                {/* Bottom Highlight Chip (Statically placed with no layout movement) */}
+                <div
+                  style={{
+                    fontSize: '10.5px',
+                    color: 'var(--accent)',
+                    background: 'rgba(251, 135, 4, 0.08)',
+                    border: '1px solid rgba(251, 135, 4, 0.2)',
+                    padding: '2px 8px',
+                    borderRadius: '5px',
+                    fontWeight: 600,
+                    width: 'fit-content',
+                  }}
+                >
+                  {isAr ? EXPERT_SLIDES[expertSlideIdx].highlightAr : EXPERT_SLIDES[expertSlideIdx].highlightEn}
+                </div>
+
+                {/* Speech Bubble Pointer Arrow */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '-9px',
+                    [isAr ? 'right' : 'left']: '44px',
+                    width: 0,
+                    height: 0,
+                    borderLeft: '9px solid transparent',
+                    borderRight: '9px solid transparent',
+                    borderTop: '9px solid rgba(4, 136, 248, 0.6)',
+                    filter: 'drop-shadow(0 4px 6px rgba(0,3,13,0.8))',
+                  }}
+                />
+              </div>
+
+              {/* 2. Enlarged Expert Cutout Visual with Smooth Cross-Fade & Zero Layout Drop */}
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  maxWidth: '520px',
+                  height: '450px',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                  marginTop: '8px',
+                }}
+              >
+                {/* Ambient Backlight Glow */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: 'absolute',
+                    inset: '15% 15% 0 15%',
+                    background: 'radial-gradient(circle, rgba(251, 135, 4, 0.2) 0%, rgba(4, 136, 248, 0.14) 60%, transparent 80%)',
+                    borderRadius: '50%',
+                    filter: 'blur(36px)',
+                    pointerEvents: 'none',
+                  }}
+                />
+
+                {/* Cutout Container with Soft Feathered Bottom Mask */}
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'center',
+                    maskImage: 'linear-gradient(to bottom, black 0%, black 72%, transparent 98%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 72%, transparent 98%)',
+                  }}
+                >
+                  {/* Cutout Images (Stationary In-Place Cross-Fade) */}
+                  {EXPERT_SLIDES.map((slide, idx) => (
+                    <img
+                      key={slide.id}
+                      src={slide.image}
+                      alt={isAr ? slide.titleAr : slide.titleEn}
+                      style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        height: '100%',
+                        maxHeight: '450px',
+                        objectFit: 'contain',
+                        opacity: idx === expertSlideIdx ? 1 : 0,
+                        transform: isAr ? 'scaleX(-1)' : 'none',
+                        transition: 'opacity 0.5s ease',
+                        willChange: 'opacity',
+                        filter: 'drop-shadow(0 20px 40px rgba(0, 3, 13, 0.95)) drop-shadow(0 0 20px rgba(4, 136, 248, 0.22))',
+                        pointerEvents: 'none',
+                      }}
+                    />
+                  ))}
+
+                  {/* Soft bottom vignette shadow fade */}
+                  <div
+                    aria-hidden
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '80px',
+                      background: 'linear-gradient(to top, var(--bg-dark) 0%, rgba(0, 3, 13, 0.75) 45%, transparent 100%)',
+                      pointerEvents: 'none',
+                      zIndex: 10,
+                    }}
+                  />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* ═══════════════════════════════════════════════════════════════════
+             GUEST / UNAUTHENTICATED HERO VIEW
+          ═══════════════════════════════════════════════════════════════════ */
+          <div className="hero-grid">
+            {/* ── Text Column ──────── */}
+            <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+
+              {/* Badge */}
+              <div style={{ animation: 'heroFadeUp 0.6s ease both' }}>
+                <span className="badge badge-blue" style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '6px 14px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                }}>
+                  <span style={{
+                    width: '7px',
+                    height: '7px',
+                    borderRadius: '50%',
+                    background: 'var(--primary)',
+                    boxShadow: '0 0 8px var(--primary)',
+                  }} />
+                  {t.hero.badge}
+                </span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 style={{
+                fontSize: 'clamp(1.85rem, 4vw + 0.5rem, 3.25rem)',
+                fontWeight: 800,
+                lineHeight: 1.18,
+                margin: 0,
+                color: 'var(--text-primary)',
+                letterSpacing: '-0.03rem',
+                animation: 'heroFadeUp 0.7s ease 0.1s both',
+              }}>
+                {t.hero.titlePart1}{' '}
+                <span className="text-gradient-brand" style={{ display: 'inline-block' }}>
+                  {t.hero.titleHighlight}
+                </span>
+              </h1>
+
+              {/* Subtext */}
+              <p style={{
+                fontSize: 'clamp(0.9375rem, 1.2vw + 0.5rem, 1.125rem)',
+                lineHeight: 1.75,
+                color: 'var(--text-secondary)',
+                margin: 0,
+                maxWidth: '38rem',
+                animation: 'heroFadeUp 0.7s ease 0.2s both',
+              }}>
+                {t.hero.desc}
+              </p>
+
+              {/* CTAs: Primary (Orange) + Secondary (Blue Outline) */}
+              <div style={{
+                display: 'flex',
+                gap: '0.875rem',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                animation: 'heroFadeUp 0.7s ease 0.25s both',
+              }}>
+                <Link href="/register" className="btn-primary" style={{ fontSize: '0.9375rem', textDecoration: 'none' }}>
+                  {t.hero.startFree}
+                  <FiArrowLeft size={16} style={{ transform: isAr ? 'none' : 'rotate(180deg)' }} />
+                </Link>
+                <a href="#courses" className="btn-secondary" style={{ fontSize: '0.9375rem', textDecoration: 'none' }}>
+                  {t.hero.exploreCourses}
+                  <FiBookOpen size={16} />
+                </a>
+              </div>
+
+              {/* Key Statistics Row */}
+              <div className="hero-stats" style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '1.25rem',
+                paddingTop: '1.25rem',
+                marginTop: '0.25rem',
+                animation: 'heroFadeUp 0.7s ease 0.35s both',
+              }}>
+                {[
+                  { num: t.hero.stat1Val, label: t.hero.stat1Label, color: 'var(--accent)' },
+                  { num: t.hero.stat2Val, label: t.hero.stat2Label, color: 'var(--primary)' },
+                  { num: t.hero.stat3Val, label: t.hero.stat3Label, color: 'var(--accent)' },
+                ].map(({ num, label, color }) => (
+                  <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                    <span style={{
+                      fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 1.75rem)',
+                      fontWeight: 700,
+                      color: color,
+                      fontFamily: 'monospace',
+                      lineHeight: 1.1,
+                    }}>
+                      {num}
+                    </span>
+                    <span style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Visual Column with Interactive FXENGIN Trading Vector System ─────── */}
+            <div className="hero-visual" style={{
+              position: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              animation: 'heroFadeIn 0.9s ease 0.25s both',
+            }}>
+              {/* Ambient Backlight Glow */}
+              <div aria-hidden style={{
+                position: 'absolute',
+                inset: '-4% 2% 4% 2%',
+                background: 'radial-gradient(circle, rgba(251, 135, 4, 0.18) 0%, rgba(4, 136, 248, 0.14) 50%, transparent 75%)',
+                borderRadius: '50%',
+                filter: 'blur(42px)',
+                pointerEvents: 'none',
+              }} />
+
+              {/* ═══════════════════════════════════════════════════════════════════
+                  FXENGIN BRAND TRADING VECTOR SYSTEM (Candlesticks, Laser Trendline, Fibonacci Radar)
+              ═══════════════════════════════════════════════════════════════════ */}
+              <svg
+                className="hero-trading-vector-svg"
+                viewBox="0 0 580 520"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  position: 'absolute',
+                  inset: '-10% -12% -6% -12%',
+                  width: '124%',
+                  height: '118%',
+                  pointerEvents: 'none',
+                  zIndex: 2,
+                  overflow: 'visible',
+                }}
+              >
+                <defs>
+                  {/* Laser Trend Line Gradient (Cyan -> Blue -> Brand Orange) */}
+                  <linearGradient id="fxHeroTrendGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.85" />
+                    <stop offset="45%" stopColor="#0488F8" stopOpacity="0.95" />
+                    <stop offset="85%" stopColor="#FB8704" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#FFA033" stopOpacity="1" />
+                  </linearGradient>
+
+                  {/* Area Fill Gradient under Chart */}
+                  <linearGradient id="fxHeroAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="rgba(4, 136, 248, 0.18)" />
+                    <stop offset="55%" stopColor="rgba(4, 136, 248, 0.04)" />
+                    <stop offset="100%" stopColor="transparent" />
+                  </linearGradient>
+
+                  {/* Candlestick Green & Orange Gradients */}
+                  <linearGradient id="fxBullishCandle" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#22C55E" />
+                    <stop offset="100%" stopColor="#16A34A" />
+                  </linearGradient>
+                  <linearGradient id="fxBearishCandle" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#FB8704" />
+                    <stop offset="100%" stopColor="#EA580C" />
+                  </linearGradient>
+
+                  {/* Radial Glow Filter */}
+                  <filter id="fxHeroGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                {/* 1. Concentric Fibonacci & Orbital Technical Radar Rings */}
+                <g opacity="0.45">
+                  {/* Outer Dashed Orbit */}
+                  <circle
+                    cx="290"
+                    cy="255"
+                    r="235"
+                    stroke="#0488F8"
+                    strokeWidth="1.2"
+                    strokeDasharray="6 8"
+                    strokeOpacity="0.35"
+                  />
+                  {/* Mid Orbit */}
+                  <circle
+                    cx="290"
+                    cy="255"
+                    r="180"
+                    stroke="#38BDF8"
+                    strokeWidth="1"
+                    strokeDasharray="4 6"
+                    strokeOpacity="0.25"
+                  />
+                  {/* Inner Subtle Radar */}
+                  <circle
+                    cx="290"
+                    cy="255"
+                    r="125"
+                    stroke="#FB8704"
+                    strokeWidth="0.8"
+                    strokeDasharray="3 5"
+                    strokeOpacity="0.25"
+                  />
+
+                  {/* Crosshair Coordinate Axis Lines */}
+                  <line x1="40" y1="255" x2="540" y2="255" stroke="#0488F8" strokeWidth="0.8" strokeDasharray="3 6" strokeOpacity="0.25" />
+                  <line x1="290" y1="20" x2="290" y2="490" stroke="#0488F8" strokeWidth="0.8" strokeDasharray="3 6" strokeOpacity="0.25" />
+
+                  {/* Coordinate Markers */}
+                  <text x="546" y="259" fill="#0488F8" fontSize="8" fontFamily="monospace" opacity="0.7">360°</text>
+                  <text x="290" y="14" fill="#38BDF8" fontSize="8" fontFamily="monospace" textAnchor="middle" opacity="0.7">90° N</text>
+                  <text x="290" y="506" fill="#FB8704" fontSize="8" fontFamily="monospace" textAnchor="middle" opacity="0.7">270° S</text>
+                  <text x="28" y="259" fill="#0488F8" fontSize="8" fontFamily="monospace" textAnchor="end" opacity="0.7">180°</text>
+                </g>
+
+                {/* 2. Harmonic Wave Grid (X-A-B-C-D Retracement Geometric Lines) */}
+                <g opacity="0.6">
+                  <path
+                    d="M 50 370 L 135 250 L 210 320 L 330 190 L 470 115"
+                    stroke="rgba(4, 136, 248, 0.45)"
+                    strokeWidth="1.2"
+                    strokeDasharray="4 4"
+                    fill="none"
+                  />
+                  {/* Harmonic Ratios */}
+                  <text x="92" y="295" fill="#38BDF8" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.75">0.618</text>
+                  <text x="175" y="300" fill="#FB8704" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.75">0.786</text>
+                  <text x="280" y="240" fill="#00F0FF" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.85">1.272</text>
+                  <text x="400" y="135" fill="#16C784" fontSize="9" fontFamily="monospace" fontWeight="700" opacity="0.95">1.618</text>
+                </g>
+
+                {/* 3. Floating Forex Candlestick Formations (Flanking Cutout) */}
+                <g opacity="0.85">
+                  {/* Left Flank Candles (Accumulation Phase) */}
+                  <line x1="38" y1="320" x2="38" y2="400" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.75" />
+                  <rect x="33" y="340" width="10" height="38" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.9" />
+
+                  <line x1="62" y1="305" x2="62" y2="380" stroke="#FB8704" strokeWidth="1.2" strokeOpacity="0.75" />
+                  <rect x="57" y="320" width="10" height="25" rx="2" fill="url(#fxBearishCandle)" fillOpacity="0.9" />
+
+                  <line x1="86" y1="265" x2="86" y2="355" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.85" />
+                  <rect x="81" y="280" width="10" height="52" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.95" />
+
+                  <line x1="110" y1="240" x2="110" y2="315" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.75" />
+                  <rect x="105" y="255" width="10" height="36" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.9" />
+
+                  {/* Right Flank Candles (Expansion Phase) */}
+                  <line x1="455" y1="125" x2="455" y2="215" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.85" />
+                  <rect x="450" y="140" width="10" height="50" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.95" />
+
+                  <line x1="479" y1="110" x2="479" y2="180" stroke="#FB8704" strokeWidth="1.2" strokeOpacity="0.75" />
+                  <rect x="474" y="125" width="10" height="24" rx="2" fill="url(#fxBearishCandle)" fillOpacity="0.9" />
+
+                  <line x1="503" y1="75" x2="503" y2="165" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.95" />
+                  <rect x="498" y="90" width="10" height="58" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.98" />
+
+                  <line x1="527" y1="55" x2="527" y2="135" stroke="#00F0FF" strokeWidth="1.5" strokeOpacity="0.9" />
+                  <rect x="522" y="70" width="10" height="36" rx="2" fill="#0488F8" fillOpacity="0.95" />
+                </g>
+
+                {/* 4. Ascending Laser Trend Wave & Volatility Corridor */}
+                {/* Area under curve */}
+                <path
+                  d="M 15 425 Q 115 385, 175 325 T 315 235 T 435 145 T 545 65 L 545 490 L 15 490 Z"
+                  fill="url(#fxHeroAreaGrad)"
+                />
+
+                {/* Main Laser Trend Stroke with Glow Filter */}
+                <path
+                  d="M 15 425 Q 115 385, 175 325 T 315 235 T 435 145 T 545 65"
+                  stroke="url(#fxHeroTrendGrad)"
+                  strokeWidth="4.2"
+                  strokeLinecap="round"
+                  fill="none"
+                  filter="url(#fxHeroGlow)"
+                />
+
+                {/* 5. Glowing Precision Data Nodes along the Laser Trend */}
+                <g>
+                  <circle cx="15" cy="425" r="8" fill="rgba(0, 240, 255, 0.2)" />
+                  <circle cx="15" cy="425" r="4.5" fill="#01071E" stroke="#00F0FF" strokeWidth="2.5" />
+                </g>
+                <g>
+                  <circle cx="175" cy="325" r="9" fill="rgba(4, 136, 248, 0.25)" />
+                  <circle cx="175" cy="325" r="5" fill="#01071E" stroke="#0488F8" strokeWidth="2.5" />
+                </g>
+                <g>
+                  <circle cx="315" cy="235" r="9" fill="rgba(251, 135, 4, 0.25)" />
+                  <circle cx="315" cy="235" r="5" fill="#01071E" stroke="#FB8704" strokeWidth="2.5" />
+                </g>
+                <g>
+                  <circle cx="435" cy="145" r="10" fill="rgba(22, 199, 132, 0.3)" />
+                  <circle cx="435" cy="145" r="5.5" fill="#01071E" stroke="#16C784" strokeWidth="2.5" />
+                </g>
+                <g>
+                  <circle cx="545" cy="65" r="12" fill="rgba(0, 240, 255, 0.35)" />
+                  <circle cx="545" cy="65" r="6" fill="#01071E" stroke="#00F0FF" strokeWidth="3" />
+                </g>
+
+                {/* 6. Technical Price Levels (Dashed Horizontal Grid Tags) */}
+                <g opacity="0.6">
+                  <line x1="15" y1="425" x2="545" y2="425" stroke="#12315C" strokeWidth="1" strokeDasharray="3 5" />
+                  <text x="552" y="428" fill="#687287" fontSize="8" fontFamily="monospace">1.0820</text>
+
+                  <line x1="15" y1="325" x2="545" y2="325" stroke="#12315C" strokeWidth="1" strokeDasharray="3 5" />
+                  <text x="552" y="328" fill="#687287" fontSize="8" fontFamily="monospace">1.0940</text>
+
+                  <line x1="15" y1="235" x2="545" y2="235" stroke="#12315C" strokeWidth="1" strokeDasharray="3 5" />
+                  <text x="552" y="238" fill="#687287" fontSize="8" fontFamily="monospace">1.1060</text>
+
+                  <line x1="15" y1="145" x2="545" y2="145" stroke="#12315C" strokeWidth="1" strokeDasharray="3 5" />
+                  <text x="552" y="148" fill="#16C784" fontSize="8" fontFamily="monospace" fontWeight="700">1.1180 ▲</text>
+                </g>
+              </svg>
+
+              {/* Floating StatBadge: Top-End */}
+              <div className="hero-stat-badge-top" style={{ zIndex: 12 }}>
+                <StatBadge
+                  label={t.hero.goldRate}
+                  value="2,341.50"
+                  change="+1.24%"
+                  positive
+                  icon={<FiTrendingUp size={13} color="var(--accent)" />}
+                />
+              </div>
+
+              {/* Floating StatBadge: Bottom-Start */}
+              <div className="hero-stat-badge-bottom" style={{ zIndex: 12 }}>
+                <StatBadge
+                  label={t.hero.activeTrades}
+                  value="128,490"
+                  change="+8.3%"
+                  positive
+                  icon={<FiActivity size={13} color="var(--primary)" />}
+                />
+              </div>
+
+              {/* Person Image Container with Soft Feathered Bottom Fade (No Sharp Cut) */}
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '560px',
+                height: 'clamp(360px, 42vw, 530px)',
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                zIndex: 5,
+                maskImage: 'linear-gradient(to bottom, black 0%, black 72%, transparent 98%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 72%, transparent 98%)',
+              }}>
+                {HERO_IMAGES.map((img, idx) => (
+                  <img
+                    key={img.src}
+                    src={img.src}
+                    alt={img.alt}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      opacity: idx === currentImgIdx ? 1 : 0,
+                      transform: idx === currentImgIdx
+                        ? (isAr ? 'scaleX(-1) scale(1)' : 'scale(1)')
+                        : (isAr ? 'scaleX(-1) scale(1.03)' : 'scale(1.03)'),
+                      transition: 'opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1)',
+                      willChange: 'opacity, transform',
+                      filter: 'drop-shadow(0 20px 40px rgba(0, 3, 13, 0.9)) drop-shadow(0 0 20px rgba(4, 136, 248, 0.2))',
+                    }}
+                  />
+                ))}
+
+                {/* Soft bottom vignette shadow fade */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: '90px',
+                    background: 'linear-gradient(to top, var(--bg-dark) 0%, rgba(0, 3, 13, 0.8) 45%, transparent 100%)',
+                    pointerEvents: 'none',
+                    zIndex: 6,
+                  }}
+                />
+              </div>
+
+            </div>
+          </div>
+        )}
+
+      </div>
+    </section>
+  );
+}

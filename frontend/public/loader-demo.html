@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FXENGIN - Logo Loading Animation</title>
+  <style>
+    /* =========================================
+       1. إعدادات الصفحة وشاشة التحميل (Loader Overlay)
+       ========================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #030816;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    /* الغطاء الشامل لشاشة التحميل */
+    .fx-loader-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: radial-gradient(
+        ellipse 70% 60% at 50% 50%,
+        rgba(6, 20, 47, 0.98) 0%,
+        rgba(1, 7, 30, 0.98) 50%,
+        rgba(0, 3, 13, 0.99) 100%
+      );
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s;
+    }
+
+    .fx-loader-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* التوهج اللوني الخلفي (Ambient Glow) */
+    .ambient-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(
+        circle,
+        rgba(251, 135, 4, 0.18) 0%,
+        rgba(4, 136, 248, 0.12) 45%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      filter: blur(50px);
+      pointer-events: none;
+    }
+
+    /* الحاوية الأساسية لمُجمّع اللوجو */
+    .assembler-root {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      perspective: 1000px;
+      z-index: 10;
+    }
+
+    .stage-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =========================================
+       2. مرحلة الرسوم المتجهة (SVG Vector Stage)
+       ========================================= */
+    .vector-stage {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      z-index: 2;
+      will-change: transform, opacity;
+      animation: fadeVectorLock 0.35s ease 0.9s forwards;
+    }
+
+    @keyframes fadeVectorLock {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* 1. حركة انبثاق الدرع الأزرق ثلاثي الأبعاد */
+    .shield-frame {
+      transform-origin: 50% 55%;
+      animation: shieldPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.02s forwards;
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    }
+
+    @keyframes shieldPopIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-18deg) translateZ(-50px);
+        filter: drop-shadow(0 0 25px rgba(4, 136, 248, 0.9));
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.08) rotate(2deg) translateZ(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg) translateZ(0);
+        filter: drop-shadow(0 2px 12px rgba(4, 136, 248, 0.5));
+      }
+    }
+
+    /* 2. انطلاق الأعمدة البرتقالية للأعلى بتتابع مرن وسريع */
+    .bar-left {
+      transform-origin: 35% 65%;
+      animation: barRiseLeft 0.48s cubic-bezier(0.34, 1.56, 0.64, 1) 0.12s forwards;
+      opacity: 0;
+    }
+
+    @keyframes barRiseLeft {
+      0% {
+        opacity: 0;
+        transform: translateY(35px) scaleY(0.1) scaleX(0.7);
+        filter: brightness(2) drop-shadow(0 0 20px rgba(251, 135, 4, 1));
+      }
+      65% {
+        opacity: 1;
+        transform: translateY(-3px) scaleY(1.1) scaleX(1.03);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1) scaleX(1);
+        filter: brightness(1);
+      }
+    }
+
+    .bar-center {
+      transform-origin: 50% 75%;
+      animation: barRiseCenter 0.52s cubic-bezier(0.34, 1.56, 0.64, 1) 0.18s forwards;
+      opacity: 0;
+    }
+
+    @keyframes barRiseCenter {
+      0% {
+        opacity: 0;
+        transform: translateY(45px) scaleY(0.1) scaleX(0.7);
+        filter: brightness(2.2) drop-shadow(0 0 25px rgba(251, 135, 4, 1));
+      }
+      65% {
+        opacity: 1;
+        transform: translateY(-5px) scaleY(1.14) scaleX(1.04);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1) scaleX(1);
+        filter: brightness(1);
+      }
+    }
+
+    .bar-right {
+      transform-origin: 65% 65%;
+      animation: barRiseRight 0.48s cubic-bezier(0.34, 1.56, 0.64, 1) 0.24s forwards;
+      opacity: 0;
+    }
+
+    @keyframes barRiseRight {
+      0% {
+        opacity: 0;
+        transform: translateY(35px) scaleY(0.1) scaleX(0.7);
+        filter: brightness(2) drop-shadow(0 0 20px rgba(251, 135, 4, 1));
+      }
+      65% {
+        opacity: 1;
+        transform: translateY(-3px) scaleY(1.1) scaleX(1.03);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1) scaleX(1);
+        filter: brightness(1);
+      }
+    }
+
+    /* 3. رسم خط التريند الليزري */
+    .trend-line-path {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: drawTrendLine 0.48s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards;
+      filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.9));
+    }
+
+    @keyframes drawTrendLine {
+      0% {
+        stroke-dashoffset: 400;
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+
+    /* 4. انبثاق نقاط وتيليمتري البيانات المضيئة */
+    .node-point {
+      transform-origin: center;
+      transform-box: fill-box;
+      opacity: 0;
+      animation: popNode 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .node-1 { animation-delay: 0.34s; }
+    .node-2 { animation-delay: 0.40s; }
+    .node-3 { animation-delay: 0.46s; }
+    .node-4 { animation-delay: 0.52s; }
+    .node-5 { animation-delay: 0.58s; }
+
+    @keyframes popNode {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+        filter: drop-shadow(0 0 15px #00F0FF);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.35);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.7));
+      }
+    }
+
+    /* =========================================
+       3. صورة اللوجو النهائية (Master Logo)
+       ========================================= */
+    .master-logo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      z-index: 5;
+      animation: lockMasterFinal 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+      will-change: opacity, transform, filter;
+    }
+
+    @keyframes lockMasterFinal {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 24px rgba(251, 135, 4, 0.8));
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 4px 16px rgba(251, 135, 4, 0.45));
+      }
+    }
+
+    /* زر لإعادة تشغيل الحركة في صفحة التجربة */
+    .controls {
+      position: fixed;
+      bottom: 24px;
+      z-index: 100000;
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      background: #0488F8;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(4, 136, 248, 0.4);
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:hover {
+      background: #0370d0;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاشة التحميل (Loader) -->
+  <div id="pageLoader" class="fx-loader-overlay">
+    <!-- التوهج اللوني المحيط باللوجو -->
+    <div class="ambient-glow" aria-hidden="true"></div>
+
+    <!-- مجمّع اللوجو -->
+    <div id="assemblerRoot" class="assembler-root" title="FXENGIN Loading Animation">
+      <div class="stage-wrapper">
+        
+        <!-- الطبقة 1: الرسوم المتجهة والحركات (SVG Animation) -->
+        <svg
+          class="vector-stage"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <!-- تدرج الأعمدة البرتقالية -->
+            <linearGradient id="fxOrangeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFA41C" />
+              <stop offset="50%" stop-color="#FB8704" />
+              <stop offset="100%" stop-color="#FA5A04" />
+            </linearGradient>
+
+            <!-- تدرج الدرع الأزرق -->
+            <linearGradient id="fxShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38BDF8" />
+              <stop offset="40%" stop-color="#0488F8" />
+              <stop offset="100%" stop-color="#0356C7" />
+            </linearGradient>
+
+            <!-- تدرج خط التريند الليزري -->
+            <linearGradient id="fxTrendGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00F0FF" />
+              <stop offset="60%" stop-color="#0488F8" />
+              <stop offset="100%" stop-color="#38BDF8" />
+            </linearGradient>
+          </defs>
+
+          <!-- 1. إطار الدرع الأزرق -->
+          <g class="shield-frame">
+            <path
+              d="M 50 94 L 20 74 L 14 38 L 22 34 L 26 66 L 50 82 L 74 66 L 78 34 L 86 38 L 80 74 Z"
+              fill="url(#fxShieldGrad)"
+            />
+          </g>
+
+          <!-- 2. الأعمدة البرتقالية الصاعدة الثلاثة -->
+          <g class="bar-left">
+            <path
+              d="M 28 35 L 40 23 L 40 60 C 40 62 38 64 36 64 L 32 64 C 30 64 28 62 28 60 Z"
+              fill="url(#fxOrangeGrad)"
+            />
+          </g>
+          <g class="bar-center">
+            <path
+              d="M 44 17 L 56 5 L 56 70 C 56 72 54 74 52 74 L 48 74 C 46 74 44 72 44 70 Z"
+              fill="url(#fxOrangeGrad)"
+            />
+          </g>
+          <g class="bar-right">
+            <path
+              d="M 60 12 L 72 1 L 72 60 C 72 62 70 64 68 64 L 64 64 C 62 64 60 62 60 60 Z"
+              fill="url(#fxOrangeGrad)"
+            />
+          </g>
+
+          <!-- 3. خط التريند المالي الليزري -->
+          <path
+            d="M 8 74 L 32 62 L 50 76 L 66 62 L 92 48"
+            stroke="url(#fxTrendGrad)"
+            stroke-width="5.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="trend-line-path"
+          />
+
+          <!-- 4. نقاط البيانات المضيئة -->
+          <circle cx="8" cy="74" r="5" fill="#080E1C" stroke="#00F0FF" stroke-width="3" class="node-point node-1" />
+          <circle cx="32" cy="62" r="5" fill="#080E1C" stroke="#00F0FF" stroke-width="3" class="node-point node-2" />
+          <circle cx="50" cy="76" r="5.5" fill="#080E1C" stroke="#00F0FF" stroke-width="3" class="node-point node-3" />
+          <circle cx="66" cy="62" r="5" fill="#080E1C" stroke="#00F0FF" stroke-width="3" class="node-point node-4" />
+          <circle cx="92" cy="48" r="5" fill="#080E1C" stroke="#00F0FF" stroke-width="3" class="node-point node-5" />
+        </svg>
+
+        <!-- الطبقة 2: صورة الشعار النهائي فائق الدقة (استبدل المسار بمسار صورتك) -->
+        <img
+          src="assets/Images/Logo/logo.png"
+          alt="FXENGIN Brand"
+          class="master-logo"
+        />
+
+      </div>
+    </div>
+  </div>
+
+  <!-- أزرار تحكم للتجربة فقط -->
+  <div class="controls">
+    <button class="btn" onclick="replayAnimation()">إعادة تشغيل الحركة</button>
+    <button class="btn" onclick="toggleLoader()">إخفاء / إظهار الشاشة</button>
+  </div>
+
+  <script>
+    // دالة إعادة تشغيل الحركة
+    function replayAnimation() {
+      const root = document.getElementById('assemblerRoot');
+      const clone = root.cloneNode(true);
+      root.parentNode.replaceChild(clone, root);
+    }
+
+    // دالة إخفاء أو إظهار شاشة التحميل
+    function toggleLoader() {
+      const loader = document.getElementById('pageLoader');
+      loader.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+</html>

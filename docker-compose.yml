@@ -49,7 +49,7 @@ services:
       JWT_SECRET: fxengin_super_jwt_secret_key_2026_production_grade_998877!@#
       ENCRYPTION_SECRET_KEY: fxengin_secret_vault_encryption_key_2026
       SUPER_ADMIN_EMAIL: admin@fxengen.com
-      SUPER_ADMIN_PASSWORD: "FXAdmin#2026!MasterEngine$SecureKey"
+      SUPER_ADMIN_PASSWORD: "FXAdmin#2026!MasterEngine$$SecureKey"
       PROD_FRONTEND_URL: https://fxengen.com
       PROD_BACKEND_URL: https://core.fxengen.com
       BOT_STATE_URL: https://bot.fxengen.com/api/v1/state

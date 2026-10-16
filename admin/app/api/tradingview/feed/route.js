@@ -171,7 +171,7 @@ export async function GET(req) {
         link,
         chartImage,
         author,
-        authorAvatar: authorAvatar || '/assets/Images/Avatar/avatar1.png',
+        authorAvatar: authorAvatar || '/assets/Images/Avatar/avatar1.webp',
         pubDate: pubDate ? new Date(pubDate).toLocaleDateString('ar-EG', { day: 'numeric', month: 'short', year: 'numeric' }) : 'اليوم',
         pubDateEn: pubDate ? new Date(pubDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Today',
         rawPubDate: pubDate,

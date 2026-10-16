@@ -1,0 +1,595 @@
+{
+  "participants": [
+    {
+      "userId": "cmu2ovt1d0007wrab7i3z8ydj",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "ga138989@gmail.com",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmu2ovt1d0007wrab7i3z8ydj",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmu2ovt1d0007wrab7i3z8ydj",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmu2ovt1d0007wrab7i3z8ydj",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmu2ovt1d0007wrab7i3z8ydj",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-01T10:06:49.352Z",
+      "updatedAt": "2026-10-01T10:06:49.352Z"
+    },
+    {
+      "userId": "cmu918uej0002wrp8unlb7gia",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "trader_new_test@fxengin.com",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmu918uej0002wrp8unlb7gia",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmu918uej0002wrp8unlb7gia",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmu918uej0002wrp8unlb7gia",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmu918uej0002wrp8unlb7gia",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-01T11:29:55.863Z",
+      "updatedAt": "2026-10-01T11:29:55.863Z"
+    },
+    {
+      "userId": "cmtjryql70000p801b2ozquto",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "ga138989@gmail.com",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmtjryql70000p801b2ozquto",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmtjryql70000p801b2ozquto",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmtjryql70000p801b2ozquto",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmtjryql70000p801b2ozquto",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-08T10:03:44.956Z",
+      "updatedAt": "2026-10-08T10:03:44.956Z"
+    },
+    {
+      "userId": "cmufm78b0000vqm01g18vt1y0",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "alialpop510@gmail.com",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmufm78b0000vqm01g18vt1y0",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmufm78b0000vqm01g18vt1y0",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmufm78b0000vqm01g18vt1y0",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmufm78b0000vqm01g18vt1y0",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-08T10:21:34.715Z",
+      "updatedAt": "2026-10-08T10:21:34.715Z"
+    },
+    {
+      "userId": "cmv10f3na000er701thnc0dxi",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmv10f3na000er701thnc0dxi",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmv10f3na000er701thnc0dxi",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmv10f3na000er701thnc0dxi",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmv10f3na000er701thnc0dxi",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-09T13:37:15.413Z",
+      "updatedAt": "2026-10-09T13:37:15.413Z"
+    },
+    {
+      "userId": "cmub5g21g0008lp01pgro6qvj",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmub5g21g0008lp01pgro6qvj",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmub5g21g0008lp01pgro6qvj",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmub5g21g0008lp01pgro6qvj",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmub5g21g0008lp01pgro6qvj",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-09T13:43:38.325Z",
+      "updatedAt": "2026-10-09T13:43:38.325Z"
+    },
+    {
+      "userId": "cmv2jeren000pr7015g4kdcz2",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmv2jeren000pr7015g4kdcz2",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmv2jeren000pr7015g4kdcz2",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmv2jeren000pr7015g4kdcz2",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmv2jeren000pr7015g4kdcz2",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-10T15:16:38.251Z",
+      "updatedAt": "2026-10-10T15:16:38.251Z"
+    },
+    {
+      "userId": "cmuz9ks3b0010rx01bm8udgye",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmuz9ks3b0010rx01bm8udgye",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmuz9ks3b0010rx01bm8udgye",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmuz9ks3b0010rx01bm8udgye",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmuz9ks3b0010rx01bm8udgye",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-12T13:35:08.301Z",
+      "updatedAt": "2026-10-12T13:35:08.301Z"
+    },
+    {
+      "userId": "cmv94t9ey0016r701n39dipfc",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmv94t9ey0016r701n39dipfc",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmv94t9ey0016r701n39dipfc",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmv94t9ey0016r701n39dipfc",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmv94t9ey0016r701n39dipfc",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-15T06:02:23.130Z",
+      "updatedAt": "2026-10-15T06:02:23.130Z"
+    },
+    {
+      "userId": "cmv9rz6j4001cr701c9p9rjtf",
+      "userName": "متسابق FXENGIN",
+      "userEmail": "",
+      "userPhone": "",
+      "planCategory": "STANDARD",
+      "categoryTitleAr": "حساب المسابقة الأساسي",
+      "categoryTitleEn": "Standard Competition Tier",
+      "assignedBalance": 5000,
+      "tasks": {
+        "telegram": {
+          "channel": "tg",
+          "titleAr": "مشاركة لينك التليجرام لـ 10 مستخدمين",
+          "titleEn": "Share Telegram Link to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/tg/cmv9rz6j4001cr701c9p9rjtf",
+          "targetUrl": "https://t.me/FXENGIN1NEWS"
+        },
+        "instagram": {
+          "channel": "ig",
+          "titleAr": "مشاركة حساب الانستجرام لـ 10 مستخدمين",
+          "titleEn": "Share Instagram to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/ig/cmv9rz6j4001cr701c9p9rjtf",
+          "targetUrl": "https://www.instagram.com/fx_engin/"
+        },
+        "facebook": {
+          "channel": "fb",
+          "titleAr": "مشاركة صفحة الفيسبوك لـ 10 مستخدمين",
+          "titleEn": "Share Facebook to 10 Users",
+          "required": 10,
+          "current": 0,
+          "completed": false,
+          "subLink": "/c/fb/cmv9rz6j4001cr701c9p9rjtf",
+          "targetUrl": "https://www.facebook.com/profile.php?id=61592983707520"
+        },
+        "community": {
+          "channel": "community",
+          "titleAr": "الانضمام لمجتمعنا (ربح 10%) ومشاركة الرابط",
+          "titleEn": "Join 10% Profit Community & Share Link",
+          "required": 1,
+          "current": 0,
+          "joined": false,
+          "shared": false,
+          "completed": false,
+          "subLink": "/c/community/cmv9rz6j4001cr701c9p9rjtf",
+          "targetUrl": "https://fxengen.com/join-us"
+        }
+      },
+      "isQualified": false,
+      "manualApproval": false,
+      "qualifiedAt": null,
+      "createdAt": "2026-10-15T16:50:52.001Z",
+      "updatedAt": "2026-10-15T16:50:52.001Z"
+    }
+  ],
+  "clicks": []
+}
