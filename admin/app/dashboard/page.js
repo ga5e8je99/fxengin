@@ -504,7 +504,24 @@ export default function DashboardOverview() {
           <span>بوابات التحكم والإطلاق السريع</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+          <Link
+            href="/dashboard/offers"
+            className="p-4 rounded-2xl bg-surface-container hover:bg-surface-elevated border border-border-structural/60 hover:border-[#FB8704]/50 transition-all flex items-center gap-3.5 group shadow-sm"
+          >
+            <div className="w-10 h-10 rounded-xl bg-[#FB8704]/15 border border-[#FB8704]/30 flex items-center justify-center text-[#FB8704] group-hover:scale-110 transition-transform shrink-0">
+              <span className="material-symbols-outlined text-[20px]">local_offer</span>
+            </div>
+            <div className="min-w-0">
+              <h3 className="text-xs font-bold text-text-primary group-hover:text-[#FB8704] transition-colors truncate">
+                العروض والخصومات
+              </h3>
+              <p className="text-[11px] text-text-secondary truncate mt-0.5">
+                إدارة البونص وأكواد الخصم
+              </p>
+            </div>
+          </Link>
+
           <Link
             href="/dashboard/live"
             className="p-4 rounded-2xl bg-surface-container hover:bg-surface-elevated border border-border-structural/60 hover:border-accent-hover/50 transition-all flex items-center gap-3.5 group shadow-sm"

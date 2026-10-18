@@ -102,10 +102,10 @@ export default function Sidebar() {
       badgeType: 'active',
     },
     {
-      name: 'المساحات الإعلانية',
-      href: '/dashboard/ads',
-      icon: 'campaign',
-      badge: 'ADS',
+      name: 'العروض والخصومات',
+      href: '/dashboard/offers',
+      icon: 'local_offer',
+      badge: 'OFFERS',
       badgeType: 'active',
     },
     {

@@ -102,6 +102,20 @@ export default function Header() {
               ⌘K
             </kbd>
           </div>
+          {/* Offers Quick Access Link (العروض في الأعلى) */}
+          <Link
+            href="/dashboard/offers"
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-accent-hover/15 hover:bg-accent-hover/25 border border-accent-hover/35 text-accent-hover transition-all cursor-pointer shrink-0 shadow-sm"
+            title="إدارة العروض الترويجية والخصومات"
+          >
+            <span className="material-symbols-outlined text-[17px]">local_offer</span>
+            <span className="font-label-sm text-label-sm font-bold hidden sm:inline">
+              العروض
+            </span>
+            <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-accent-hover/25 text-accent-hover">
+              NEW
+            </span>
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-space-md">

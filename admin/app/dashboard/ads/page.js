@@ -240,6 +240,30 @@ export default function AdsManagementPage() {
         </div>
       </div>
 
+      {/* ── Offers Migration Alert ── */}
+      <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-[#FB8704]/15 via-[#FA5A04]/10 to-transparent border border-[#FB8704]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md">
+        <div className="flex items-center gap-3">
+          <span className="p-2 rounded-xl bg-[#FB8704]/20 text-[#FB8704] shrink-0">
+            <IoSparklesOutline size={22} />
+          </span>
+          <div>
+            <h4 className="text-sm font-bold text-text-primary">
+              تم استبدال الإعلانات الجانبية والعلوية بقسم العروض الترويجية الحصرية
+            </h4>
+            <p className="text-xs text-text-muted mt-0.5">
+              تم إلغاء بنرات الإعلانات الجانبية والعلوية بالموقع واستبدالها بنظام العروض والخصومات والكوبونات الترويجية المباشرة.
+            </p>
+          </div>
+        </div>
+        <Link
+          href="/dashboard/offers"
+          className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#FB8704] to-[#FA5A04] hover:from-[#FA5A04] hover:to-[#FB8704] shadow-md flex items-center gap-1.5 self-start sm:self-auto shrink-0"
+        >
+          <span>الانتقال لإدارة العروض</span>
+          <IoOpenOutline size={15} />
+        </Link>
+      </div>
+
       {/* ── KPI Analytics Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-3.5 my-6">
         {[

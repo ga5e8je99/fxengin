@@ -13,6 +13,7 @@ import {
   IoSettingsOutline,
   IoAddCircleOutline,
   IoShieldCheckmarkOutline,
+  IoSparklesOutline,
 } from 'react-icons/io5';
 
 export default function CommandPalette({ isOpen, onClose }) {
@@ -98,6 +99,17 @@ export default function CommandPalette({ isOpen, onClose }) {
       },
     },
     {
+      id: 'nav-offers',
+      title: 'إدارة العروض الترويجية والخصومات (Offers)',
+      titleEn: 'Promotional Offers & Discounts',
+      icon: IoSparklesOutline,
+      category: 'التنقل المباشر',
+      action: () => {
+        router.push('/dashboard/offers');
+        onClose();
+      },
+    },
+    {
       id: 'nav-settings',
       title: 'إعدادات المنصة وربط الـ API',
       titleEn: 'Platform Settings & API',
@@ -138,6 +150,17 @@ export default function CommandPalette({ isOpen, onClose }) {
       category: 'إجراءات سريعة',
       action: () => {
         router.push('/dashboard/courses?action=new');
+        onClose();
+      },
+    },
+    {
+      id: 'act-new-offer',
+      title: 'إضافة عرض ترويجي أو كود خصم جديد',
+      titleEn: 'Create New Offer or Promo Code',
+      icon: IoAddCircleOutline,
+      category: 'إجراءات سريعة',
+      action: () => {
+        router.push('/dashboard/offers');
         onClose();
       },
     },
