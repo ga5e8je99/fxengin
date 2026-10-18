@@ -66,7 +66,7 @@ const EXPERT_SLIDES = [
     image: '/assets/Images/Main/expert-slide3.webp?v=20261005',
     badgeAr: 'الأنظمة الذكية والمؤشرات',
     badgeEn: 'Smart Systems & Indicators',
-    badgeColor: '#00F0FF',
+    badgeColor: '#FB8704',
     titleAr: 'مؤشرات فنية احترافية وإدارة المخاطر',
     titleEn: 'Smart Indicators & Risk Management',
     speechAr:
@@ -226,7 +226,7 @@ export default function Hero() {
         right: '5%',
         width: 'clamp(15rem, 30vw, 24rem)',
         height: 'clamp(15rem, 30vw, 24rem)',
-        background: 'radial-gradient(circle, rgba(0, 194, 255, 0.12) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(251, 135, 4, 0.14) 0%, transparent 70%)',
         borderRadius: '50%',
         filter: 'blur(50px)',
         pointerEvents: 'none',
@@ -273,15 +273,15 @@ export default function Hero() {
                   style={{
                     fontSize: '11px',
                     fontWeight: 700,
-                    color: '#00F0FF',
-                    background: 'rgba(4, 136, 248, 0.12)',
-                    border: '1px solid rgba(0, 240, 255, 0.35)',
+                    color: 'var(--accent)',
+                    background: 'rgba(251, 135, 4, 0.12)',
+                    border: '1px solid rgba(251, 135, 4, 0.35)',
                     padding: '4px 12px',
                     borderRadius: '20px',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '6px',
-                    boxShadow: '0 0 12px rgba(4, 136, 248, 0.2)',
+                    boxShadow: '0 0 12px rgba(251, 135, 4, 0.25)',
                   }}
                 >
                   <span
@@ -289,8 +289,8 @@ export default function Hero() {
                       width: '6px',
                       height: '6px',
                       borderRadius: '50%',
-                      background: '#00F0FF',
-                      boxShadow: '0 0 8px #00F0FF',
+                      background: 'var(--accent)',
+                      boxShadow: '0 0 8px var(--accent)',
                       animation: 'livePulse 1.8s infinite',
                     }}
                   />
@@ -301,9 +301,9 @@ export default function Hero() {
                   style={{
                     fontSize: '11px',
                     fontWeight: 600,
-                    color: '#94A3B8',
-                    background: 'rgba(4, 136, 248, 0.08)',
-                    border: '1px solid rgba(4, 136, 248, 0.22)',
+                    color: 'var(--primary)',
+                    background: 'rgba(4, 136, 248, 0.1)',
+                    border: '1px solid rgba(4, 136, 248, 0.28)',
                     padding: '4px 11px',
                     borderRadius: '20px',
                   }}
@@ -347,10 +347,11 @@ export default function Hero() {
                       مرحباً بك،{' '}
                       <span
                         style={{
-                          background: 'linear-gradient(135deg, #FFFFFF 20%, #00F0FF 75%, #0488F8 100%)',
+                          background: 'linear-gradient(135deg, #FFB03A 0%, #FB8704 60%, #FA5A04 100%)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
                           display: 'inline-block',
+                          filter: 'drop-shadow(0 2px 10px rgba(251, 135, 4, 0.35))',
                         }}
                       >
                         {user.fullName || 'متداولنا العزيز'}
@@ -361,10 +362,11 @@ export default function Hero() {
                       Welcome back,{' '}
                       <span
                         style={{
-                          background: 'linear-gradient(135deg, #FFFFFF 20%, #00F0FF 75%, #0488F8 100%)',
+                          background: 'linear-gradient(135deg, #FFB03A 0%, #FB8704 60%, #FA5A04 100%)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
                           display: 'inline-block',
+                          filter: 'drop-shadow(0 2px 10px rgba(251, 135, 4, 0.35))',
                         }}
                       >
                         {user.fullName || 'Trader'}
@@ -386,12 +388,12 @@ export default function Hero() {
                     : 'Your advanced trading command center to capture market liquidity, join live streaming rooms with top analysts, and execute pro capital management strategies.'}
                 </p>
 
-                {/* Quick Action CTAs */}
+                {/* Quick Action CTAs (Orange Primary Glow + Blue Glass Outline) */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '14px', flexWrap: 'wrap' }}>
                   <Link
                     href="/analyses"
                     style={{
-                      background: 'linear-gradient(135deg, #0458EC 0%, #0488F8 60%, #00C2FF 100%)',
+                      background: 'linear-gradient(135deg, #FA5A04 0%, #FB8704 100%)',
                       color: '#FFFFFF',
                       padding: '8px 18px',
                       borderRadius: '8px',
@@ -401,16 +403,16 @@ export default function Hero() {
                       alignItems: 'center',
                       gap: '8px',
                       textDecoration: 'none',
-                      boxShadow: '0 6px 20px rgba(4, 136, 248, 0.35)',
+                      boxShadow: '0 6px 22px rgba(251, 135, 4, 0.42)',
                       transition: 'all 0.25s ease',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 194, 255, 0.45)';
+                      e.currentTarget.style.boxShadow = '0 8px 26px rgba(251, 135, 4, 0.55)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'none';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(4, 136, 248, 0.35)';
+                      e.currentTarget.style.boxShadow = '0 6px 22px rgba(251, 135, 4, 0.42)';
                     }}
                   >
                     {isAr ? 'استعراض التحليلات المباشرة' : 'Explore Live Analyses'}
@@ -420,8 +422,8 @@ export default function Hero() {
                   <Link
                     href="/live"
                     style={{
-                      background: 'rgba(6, 20, 47, 0.75)',
-                      border: '1px solid rgba(4, 136, 248, 0.35)',
+                      background: 'rgba(4, 136, 248, 0.12)',
+                      border: '1px solid rgba(4, 136, 248, 0.38)',
                       color: 'var(--text-primary)',
                       padding: '8px 16px',
                       borderRadius: '8px',
@@ -435,12 +437,12 @@ export default function Hero() {
                       transition: 'all 0.25s ease',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = '#00F0FF';
-                      e.currentTarget.style.background = 'rgba(10, 27, 61, 0.9)';
+                      e.currentTarget.style.borderColor = 'var(--primary)';
+                      e.currentTarget.style.background = 'rgba(4, 136, 248, 0.22)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.35)';
-                      e.currentTarget.style.background = 'rgba(6, 20, 47, 0.75)';
+                      e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.38)';
+                      e.currentTarget.style.background = 'rgba(4, 136, 248, 0.12)';
                     }}
                   >
                     <span
@@ -453,14 +455,14 @@ export default function Hero() {
                         animation: 'livePulse 1.5s infinite',
                       }}
                     />
-                    <FiVideo size={14} color="#00F0FF" />
+                    <FiVideo size={14} color="var(--primary)" />
                     {isAr ? 'غرفة البث المباشر' : 'Live Trading Room'}
                   </Link>
                 </div>
               </div>
 
               {/* ═══════════════════════════════════════════════════════════════
-                  FINTECH BENTO GRID (4 Advanced Micro-Interactive Widgets)
+                  FINTECH BENTO GRID (4 Advanced Widgets: Orange & Blue Palette)
               ═══════════════════════════════════════════════════════════════ */}
               <div
                 style={{
@@ -470,13 +472,13 @@ export default function Hero() {
                   marginTop: '4px',
                 }}
               >
-                {/* ── Bento Widget 1: Live SMC Technical Analysis ── */}
+                {/* ── Bento Widget 1: Live SMC Technical Analysis (Blue & Orange Accent) ── */}
                 <Link
                   href="/analyses"
                   style={{
                     textDecoration: 'none',
-                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.85) 0%, rgba(10, 27, 61, 0.65) 100%)',
-                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.88) 0%, rgba(10, 27, 61, 0.65) 100%)',
+                    border: '1px solid rgba(4, 136, 248, 0.28)',
                     borderRadius: '12px',
                     padding: '12px 14px',
                     display: 'flex',
@@ -490,12 +492,12 @@ export default function Hero() {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.borderColor = '#00F0FF';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.22)';
+                    e.currentTarget.style.borderColor = 'var(--primary)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.25)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'none';
-                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.25)';
+                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.28)';
                     e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
                   }}
                 >
@@ -507,13 +509,13 @@ export default function Hero() {
                           width: '28px',
                           height: '28px',
                           borderRadius: '8px',
-                          background: 'rgba(4, 136, 248, 0.18)',
-                          border: '1px solid rgba(4, 136, 248, 0.3)',
+                          background: 'rgba(4, 136, 248, 0.16)',
+                          border: '1px solid rgba(4, 136, 248, 0.32)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          color: '#00F0FF',
+                          color: 'var(--primary)',
                         }}
                       >
                         <FiTrendingUp size={14} />
@@ -539,36 +541,36 @@ export default function Hero() {
                     </span>
                   </div>
 
-                  {/* Micro Candlestick & Sparkline Chart Vector */}
+                  {/* Micro Candlestick & Sparkline Chart Vector (Blue + Orange Retracement) */}
                   <div style={{ position: 'relative', width: '100%', height: '38px', margin: '2px 0' }}>
                     <svg viewBox="0 0 200 42" fill="none" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                       <defs>
-                        <linearGradient id="bentoSparkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="rgba(0, 240, 255, 0.28)" />
+                        <linearGradient id="bentoSparkGradOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="rgba(4, 136, 248, 0.28)" />
                           <stop offset="100%" stopColor="transparent" />
                         </linearGradient>
                       </defs>
                       {/* Area Fill */}
-                      <path d="M 0 36 Q 30 28, 60 30 T 110 20 T 155 12 T 200 4 L 200 42 L 0 42 Z" fill="url(#bentoSparkGrad)" />
+                      <path d="M 0 36 Q 30 28, 60 30 T 110 20 T 155 12 T 200 4 L 200 42 L 0 42 Z" fill="url(#bentoSparkGradOrange)" />
                       {/* Trendline */}
                       <path
                         d="M 0 36 Q 30 28, 60 30 T 110 20 T 155 12 T 200 4"
-                        stroke="#00F0FF"
+                        stroke="#0488F8"
                         strokeWidth="2.2"
                         strokeLinecap="round"
                       />
-                      {/* Mini Candlestick 1 */}
+                      {/* Mini Candlestick 1 (Green) */}
                       <line x1="45" y1="22" x2="45" y2="36" stroke="#16C784" strokeWidth="1" />
                       <rect x="42.5" y="25" width="5" height="8" rx="1" fill="#16C784" />
-                      {/* Mini Candlestick 2 (Bearish/Correction) */}
-                      <line x1="85" y1="18" x2="85" y2="32" stroke="#38BDF8" strokeWidth="1" />
-                      <rect x="82.5" y="21" width="5" height="7" rx="1" fill="#0488F8" />
-                      {/* Mini Candlestick 3 (Bullish Expansion) */}
+                      {/* Mini Candlestick 2 (Orange Brand Retracement) */}
+                      <line x1="85" y1="18" x2="85" y2="32" stroke="#FB8704" strokeWidth="1" />
+                      <rect x="82.5" y="21" width="5" height="7" rx="1" fill="#FB8704" />
+                      {/* Mini Candlestick 3 (Green Expansion) */}
                       <line x1="135" y1="8" x2="135" y2="24" stroke="#16C784" strokeWidth="1" />
                       <rect x="132.5" y="11" width="5" height="10" rx="1" fill="#16C784" />
-                      {/* End Glowing Pulse Dot */}
-                      <circle cx="200" cy="4" r="5" fill="rgba(0, 240, 255, 0.3)" />
-                      <circle cx="200" cy="4" r="3" fill="#00F0FF" />
+                      {/* End Glowing Pulse Dot (Orange Accent) */}
+                      <circle cx="200" cy="4" r="5" fill="rgba(251, 135, 4, 0.3)" />
+                      <circle cx="200" cy="4" r="3" fill="#FB8704" />
                     </svg>
                   </div>
 
@@ -577,19 +579,19 @@ export default function Hero() {
                     <span style={{ color: '#94A3B8' }}>
                       {isAr ? 'منطقة طلب (OB) • دخول نشط' : 'Demand Zone (OB) • Active'}
                     </span>
-                    <span style={{ color: '#00F0FF', fontWeight: 600 }}>
+                    <span style={{ color: 'var(--primary)', fontWeight: 600 }}>
                       {isAr ? 'استعراض ←' : 'View →'}
                     </span>
                   </div>
                 </Link>
 
-                {/* ── Bento Widget 2: Live Trading Stream ── */}
+                {/* ── Bento Widget 2: Live Trading Stream (Orange Theme & Alternating Equalizer) ── */}
                 <Link
                   href="/live"
                   style={{
                     textDecoration: 'none',
-                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.85) 0%, rgba(10, 27, 61, 0.65) 100%)',
-                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.88) 0%, rgba(10, 27, 61, 0.65) 100%)',
+                    border: '1px solid rgba(251, 135, 4, 0.28)',
                     borderRadius: '12px',
                     padding: '12px 14px',
                     display: 'flex',
@@ -603,12 +605,12 @@ export default function Hero() {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.borderColor = '#00F0FF';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.22)';
+                    e.currentTarget.style.borderColor = 'var(--accent)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(251, 135, 4, 0.25)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'none';
-                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.25)';
+                    e.currentTarget.style.borderColor = 'rgba(251, 135, 4, 0.28)';
                     e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
                   }}
                 >
@@ -620,13 +622,13 @@ export default function Hero() {
                           width: '28px',
                           height: '28px',
                           borderRadius: '8px',
-                          background: 'rgba(4, 136, 248, 0.18)',
-                          border: '1px solid rgba(4, 136, 248, 0.3)',
+                          background: 'rgba(251, 135, 4, 0.16)',
+                          border: '1px solid rgba(251, 135, 4, 0.32)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          color: '#0488F8',
+                          color: 'var(--accent)',
                         }}
                       >
                         <FiVideo size={14} />
@@ -640,9 +642,9 @@ export default function Hero() {
                       style={{
                         fontSize: '10.5px',
                         fontWeight: 700,
-                        color: '#16C784',
-                        background: 'rgba(22, 199, 132, 0.12)',
-                        border: '1px solid rgba(22, 199, 132, 0.3)',
+                        color: 'var(--accent)',
+                        background: 'rgba(251, 135, 4, 0.14)',
+                        border: '1px solid rgba(251, 135, 4, 0.35)',
                         padding: '2px 7px',
                         borderRadius: '12px',
                         display: 'inline-flex',
@@ -655,8 +657,8 @@ export default function Hero() {
                           width: '5px',
                           height: '5px',
                           borderRadius: '50%',
-                          background: '#16C784',
-                          boxShadow: '0 0 6px #16C784',
+                          background: '#EF4444',
+                          boxShadow: '0 0 6px #EF4444',
                           animation: 'livePulse 1.4s infinite',
                         }}
                       />
@@ -664,28 +666,28 @@ export default function Hero() {
                     </span>
                   </div>
 
-                  {/* Animated Visual Soundwave / Broadcast Equalizer */}
+                  {/* Animated Visual Soundwave / Broadcast Equalizer (Orange & Blue) */}
                   <div
                     style={{
                       height: '38px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      background: 'rgba(4, 136, 248, 0.08)',
+                      background: 'rgba(251, 135, 4, 0.08)',
                       borderRadius: '6px',
                       padding: '0 12px',
-                      border: '1px solid rgba(4, 136, 248, 0.15)',
+                      border: '1px solid rgba(251, 135, 4, 0.18)',
                     }}
                   >
                     <span style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 500 }}>
                       {isAr ? 'جلسة نيويورك وتغطية الأخبار' : 'New York & News Session'}
                     </span>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '3px', height: '24px' }}>
-                      <span style={{ width: '3px', background: '#00F0FF', borderRadius: '2px', animation: 'soundWave1 1.2s infinite ease-in-out' }} />
-                      <span style={{ width: '3px', background: '#0488F8', borderRadius: '2px', animation: 'soundWave2 1.0s infinite ease-in-out 0.2s' }} />
-                      <span style={{ width: '3px', background: '#00F0FF', borderRadius: '2px', animation: 'soundWave3 1.4s infinite ease-in-out 0.4s' }} />
+                      <span style={{ width: '3px', background: 'var(--accent)', borderRadius: '2px', animation: 'soundWave1 1.2s infinite ease-in-out' }} />
+                      <span style={{ width: '3px', background: 'var(--primary)', borderRadius: '2px', animation: 'soundWave2 1.0s infinite ease-in-out 0.2s' }} />
+                      <span style={{ width: '3px', background: 'var(--accent)', borderRadius: '2px', animation: 'soundWave3 1.4s infinite ease-in-out 0.4s' }} />
                       <span style={{ width: '3px', background: '#16C784', borderRadius: '2px', animation: 'soundWave1 1.1s infinite ease-in-out 0.1s' }} />
-                      <span style={{ width: '3px', background: '#00F0FF', borderRadius: '2px', animation: 'soundWave2 1.3s infinite ease-in-out 0.3s' }} />
+                      <span style={{ width: '3px', background: 'var(--primary)', borderRadius: '2px', animation: 'soundWave2 1.3s infinite ease-in-out 0.3s' }} />
                     </div>
                   </div>
 
@@ -694,19 +696,19 @@ export default function Hero() {
                     <span style={{ color: '#94A3B8' }}>
                       {isAr ? 'تداول واقتناص صفقات حية' : 'Live Scalping & Q&A'}
                     </span>
-                    <span style={{ color: '#00F0FF', fontWeight: 600 }}>
+                    <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
                       {isAr ? 'انضم الآن ←' : 'Join Now →'}
                     </span>
                   </div>
                 </Link>
 
-                {/* ── Bento Widget 3: Certified Pro Academy Track ── */}
+                {/* ── Bento Widget 3: Certified Pro Academy Track (Blue to Orange Track) ── */}
                 <Link
                   href="/courses"
                   style={{
                     textDecoration: 'none',
-                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.85) 0%, rgba(10, 27, 61, 0.65) 100%)',
-                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.88) 0%, rgba(10, 27, 61, 0.65) 100%)',
+                    border: '1px solid rgba(4, 136, 248, 0.28)',
                     borderRadius: '12px',
                     padding: '12px 14px',
                     display: 'flex',
@@ -720,12 +722,12 @@ export default function Hero() {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.borderColor = '#00F0FF';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.22)';
+                    e.currentTarget.style.borderColor = 'var(--primary)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.25)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'none';
-                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.25)';
+                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.28)';
                     e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
                   }}
                 >
@@ -737,13 +739,13 @@ export default function Hero() {
                           width: '28px',
                           height: '28px',
                           borderRadius: '8px',
-                          background: 'rgba(4, 136, 248, 0.18)',
-                          border: '1px solid rgba(4, 136, 248, 0.3)',
+                          background: 'rgba(4, 136, 248, 0.16)',
+                          border: '1px solid rgba(4, 136, 248, 0.32)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          color: '#00F0FF',
+                          color: 'var(--primary)',
                         }}
                       >
                         <LuGraduationCap size={15} />
@@ -757,9 +759,9 @@ export default function Hero() {
                       style={{
                         fontSize: '10px',
                         fontWeight: 600,
-                        color: '#00F0FF',
-                        background: 'rgba(0, 240, 255, 0.1)',
-                        border: '1px solid rgba(0, 240, 255, 0.25)',
+                        color: 'var(--primary)',
+                        background: 'rgba(4, 136, 248, 0.1)',
+                        border: '1px solid rgba(4, 136, 248, 0.28)',
                         padding: '2px 7px',
                         borderRadius: '10px',
                       }}
@@ -768,11 +770,11 @@ export default function Hero() {
                     </span>
                   </div>
 
-                  {/* Visual Progress Bar Component */}
+                  {/* Visual Progress Bar Component (Blue to Orange Gradient) */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', height: '38px', justifyContent: 'center' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px' }}>
                       <span style={{ color: '#94A3B8' }}>{isAr ? 'مسار استراتيجيات SMC' : 'ICT & SMC Track'}</span>
-                      <span style={{ color: '#00F0FF', fontWeight: 700, fontFamily: 'monospace' }}>78%</span>
+                      <span style={{ color: 'var(--accent)', fontWeight: 700, fontFamily: 'monospace' }}>78%</span>
                     </div>
                     <div
                       style={{
@@ -787,8 +789,8 @@ export default function Hero() {
                         style={{
                           width: '78%',
                           height: '100%',
-                          background: 'linear-gradient(90deg, #0458EC 0%, #00F0FF 100%)',
-                          boxShadow: '0 0 8px rgba(0, 240, 255, 0.6)',
+                          background: 'linear-gradient(90deg, #0458EC 0%, #0488F8 50%, #FB8704 100%)',
+                          boxShadow: '0 0 10px rgba(251, 135, 4, 0.5)',
                           borderRadius: '4px',
                         }}
                       />
@@ -800,19 +802,19 @@ export default function Hero() {
                     <span style={{ color: '#94A3B8' }}>
                       {isAr ? 'شهادة إتمام معتمدة' : 'Official Certificate'}
                     </span>
-                    <span style={{ color: '#00F0FF', fontWeight: 600 }}>
+                    <span style={{ color: 'var(--primary)', fontWeight: 600 }}>
                       {isAr ? 'متابعة ←' : 'Resume →'}
                     </span>
                   </div>
                 </Link>
 
-                {/* ── Bento Widget 4: Smart Risk Management & Position Sizing ── */}
+                {/* ── Bento Widget 4: Smart Risk Management (Orange Security Theme) ── */}
                 <Link
                   href="/offers"
                   style={{
                     textDecoration: 'none',
-                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.85) 0%, rgba(10, 27, 61, 0.65) 100%)',
-                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.88) 0%, rgba(10, 27, 61, 0.65) 100%)',
+                    border: '1px solid rgba(251, 135, 4, 0.28)',
                     borderRadius: '12px',
                     padding: '12px 14px',
                     display: 'flex',
@@ -826,12 +828,12 @@ export default function Hero() {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.borderColor = '#00F0FF';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.22)';
+                    e.currentTarget.style.borderColor = 'var(--accent)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(251, 135, 4, 0.25)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'none';
-                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.25)';
+                    e.currentTarget.style.borderColor = 'rgba(251, 135, 4, 0.28)';
                     e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
                   }}
                 >
@@ -843,13 +845,13 @@ export default function Hero() {
                           width: '28px',
                           height: '28px',
                           borderRadius: '8px',
-                          background: 'rgba(22, 199, 132, 0.15)',
-                          border: '1px solid rgba(22, 199, 132, 0.3)',
+                          background: 'rgba(251, 135, 4, 0.16)',
+                          border: '1px solid rgba(251, 135, 4, 0.32)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          color: '#16C784',
+                          color: 'var(--accent)',
                         }}
                       >
                         <FiShield size={14} />
@@ -874,22 +876,22 @@ export default function Hero() {
                     </span>
                   </div>
 
-                  {/* Visual Risk/Reward Ratio & Drawdown Gauge */}
+                  {/* Visual Risk/Reward Ratio & Drawdown Gauge (Orange & Green) */}
                   <div
                     style={{
                       height: '38px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      background: 'rgba(4, 136, 248, 0.08)',
+                      background: 'rgba(251, 135, 4, 0.08)',
                       borderRadius: '6px',
                       padding: '0 10px',
-                      border: '1px solid rgba(4, 136, 248, 0.15)',
+                      border: '1px solid rgba(251, 135, 4, 0.18)',
                     }}
                   >
                     <div>
                       <div style={{ fontSize: '9.5px', color: '#94A3B8' }}>{isAr ? 'معدل العائد R:R' : 'Reward:Risk'}</div>
-                      <div style={{ fontSize: '12px', fontWeight: 700, color: '#00F0FF', fontFamily: 'monospace' }}>1 : 3.5</div>
+                      <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--accent)', fontFamily: 'monospace' }}>1 : 3.5</div>
                     </div>
                     <div style={{ height: '20px', width: '1px', background: 'rgba(255, 255, 255, 0.1)' }} />
                     <div>
@@ -903,7 +905,7 @@ export default function Hero() {
                     <span style={{ color: '#94A3B8' }}>
                       {isAr ? 'نماذج حماية رأس المال' : 'Position Sizing Models'}
                     </span>
-                    <span style={{ color: '#00F0FF', fontWeight: 600 }}>
+                    <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
                       {isAr ? 'الحاسبة ←' : 'Calculator →'}
                     </span>
                   </div>
@@ -925,7 +927,7 @@ export default function Hero() {
                 minHeight: '520px',
               }}
             >
-              {/* 1. Holographic Glass Mentorship Card (Seamless Dark Navy & Cyan Glass) */}
+              {/* 1. Holographic Glass Mentorship Card (Orange & Blue Accents) */}
               <div
                 className="expert-speech-bubble"
                 style={{
@@ -938,7 +940,7 @@ export default function Hero() {
                   border: '1px solid rgba(4, 136, 248, 0.35)',
                   borderRadius: '14px',
                   padding: '12px 16px',
-                  boxShadow: '0 16px 40px rgba(0, 3, 13, 0.85), 0 0 25px rgba(4, 136, 248, 0.18)',
+                  boxShadow: '0 16px 40px rgba(0, 3, 13, 0.85), 0 0 25px rgba(251, 135, 4, 0.15)',
                   backdropFilter: 'blur(16px)',
                   WebkitBackdropFilter: 'blur(16px)',
                   position: 'relative',
@@ -956,9 +958,9 @@ export default function Hero() {
                     style={{
                       fontSize: '10.5px',
                       fontWeight: 700,
-                      color: EXPERT_SLIDES[expertSlideIdx].badgeColor || '#00F0FF',
-                      background: 'rgba(4, 136, 248, 0.12)',
-                      border: `1px solid ${EXPERT_SLIDES[expertSlideIdx].badgeColor || '#00F0FF'}50`,
+                      color: EXPERT_SLIDES[expertSlideIdx].badgeColor || 'var(--primary)',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: `1px solid ${EXPERT_SLIDES[expertSlideIdx].badgeColor || 'var(--primary)'}50`,
                       padding: '2px 9px',
                       borderRadius: '16px',
                       display: 'inline-flex',
@@ -971,8 +973,8 @@ export default function Hero() {
                         width: '5px',
                         height: '5px',
                         borderRadius: '50%',
-                        background: EXPERT_SLIDES[expertSlideIdx].badgeColor || '#00F0FF',
-                        boxShadow: `0 0 6px ${EXPERT_SLIDES[expertSlideIdx].badgeColor || '#00F0FF'}`,
+                        background: EXPERT_SLIDES[expertSlideIdx].badgeColor || 'var(--primary)',
+                        boxShadow: `0 0 6px ${EXPERT_SLIDES[expertSlideIdx].badgeColor || 'var(--primary)'}`,
                       }}
                     />
                     {isAr ? EXPERT_SLIDES[expertSlideIdx].badgeAr : EXPERT_SLIDES[expertSlideIdx].badgeEn}
@@ -987,8 +989,8 @@ export default function Hero() {
                           width: i === expertSlideIdx ? '16px' : '6px',
                           height: '4px',
                           borderRadius: '2px',
-                          background: i === expertSlideIdx ? '#00F0FF' : 'rgba(255, 255, 255, 0.2)',
-                          boxShadow: i === expertSlideIdx ? '0 0 8px #00F0FF' : 'none',
+                          background: i === expertSlideIdx ? 'var(--accent)' : 'rgba(255, 255, 255, 0.2)',
+                          boxShadow: i === expertSlideIdx ? '0 0 8px var(--accent)' : 'none',
                           transition: 'all 0.3s ease',
                         }}
                       />
@@ -1019,23 +1021,23 @@ export default function Hero() {
                         display: 'inline-block',
                         width: '2px',
                         height: '12px',
-                        background: '#00F0FF',
+                        background: 'var(--accent)',
                         marginInlineStart: '4px',
                         verticalAlign: 'middle',
-                        boxShadow: '0 0 6px #00F0FF',
+                        boxShadow: '0 0 6px var(--accent)',
                         animation: 'cursorBlink 0.6s infinite',
                       }}
                     />
                   )}
                 </p>
 
-                {/* Bottom Highlight Chip (Cyan & Midnight Glass - Zero Gold) */}
+                {/* Bottom Highlight Chip (Brand Orange) */}
                 <div
                   style={{
                     fontSize: '10.5px',
-                    color: '#00F0FF',
-                    background: 'rgba(4, 136, 248, 0.12)',
-                    border: '1px solid rgba(0, 240, 255, 0.25)',
+                    color: 'var(--accent)',
+                    background: 'rgba(251, 135, 4, 0.1)',
+                    border: '1px solid rgba(251, 135, 4, 0.3)',
                     padding: '2px 8px',
                     borderRadius: '5px',
                     fontWeight: 600,
@@ -1061,7 +1063,7 @@ export default function Hero() {
                 />
               </div>
 
-              {/* 2. Expert Cutout Visual with Ambient Cyan Backlight & Floating Cockpit HUD */}
+              {/* 2. Expert Cutout Visual with Volumetric Orange & Blue Backlight + Floating Cockpit HUD */}
               <div
                 style={{
                   position: 'relative',
@@ -1074,28 +1076,28 @@ export default function Hero() {
                   marginTop: '8px',
                 }}
               >
-                {/* Ambient Cyan/Navy Backlight (Zero Gold) */}
+                {/* Dual Ambient Volumetric Lighting (Orange & Blue) */}
                 <div
                   aria-hidden
                   style={{
                     position: 'absolute',
                     inset: '15% 15% 0 15%',
-                    background: 'radial-gradient(circle, rgba(4, 136, 248, 0.28) 0%, rgba(0, 240, 255, 0.12) 50%, transparent 80%)',
+                    background: 'radial-gradient(circle, rgba(251, 135, 4, 0.22) 0%, rgba(4, 136, 248, 0.18) 55%, transparent 80%)',
                     borderRadius: '50%',
                     filter: 'blur(36px)',
                     pointerEvents: 'none',
                   }}
                 />
 
-                {/* Floating Holographic HUD Pill 1: Daily Winrate */}
+                {/* Floating Holographic HUD Pill 1: Daily Winrate (Orange Glow) */}
                 <div
                   style={{
                     position: 'absolute',
                     top: '25%',
                     [isAr ? 'left' : 'right']: '8px',
-                    background: 'rgba(6, 20, 47, 0.88)',
-                    border: '1px solid rgba(0, 240, 255, 0.35)',
-                    boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 14px rgba(0, 240, 255, 0.2)',
+                    background: 'rgba(6, 20, 47, 0.9)',
+                    border: '1px solid rgba(251, 135, 4, 0.45)',
+                    boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 16px rgba(251, 135, 4, 0.25)',
                     backdropFilter: 'blur(12px)',
                     WebkitBackdropFilter: 'blur(12px)',
                     borderRadius: '20px',
@@ -1110,20 +1112,20 @@ export default function Hero() {
                   <span style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 600 }}>
                     {isAr ? 'دقة الإشارات:' : 'Accuracy:'}
                   </span>
-                  <span style={{ fontSize: '11.5px', color: '#16C784', fontWeight: 800, fontFamily: 'monospace' }}>
+                  <span style={{ fontSize: '11.5px', color: 'var(--accent)', fontWeight: 800, fontFamily: 'monospace' }}>
                     +89.4% ▲
                   </span>
                 </div>
 
-                {/* Floating Holographic HUD Pill 2: Capital Protection */}
+                {/* Floating Holographic HUD Pill 2: Capital Protection (Blue Glow) */}
                 <div
                   style={{
                     position: 'absolute',
                     bottom: '22%',
                     [isAr ? 'right' : 'left']: '4px',
-                    background: 'rgba(6, 20, 47, 0.88)',
-                    border: '1px solid rgba(4, 136, 248, 0.35)',
-                    boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 14px rgba(4, 136, 248, 0.2)',
+                    background: 'rgba(6, 20, 47, 0.9)',
+                    border: '1px solid rgba(4, 136, 248, 0.45)',
+                    boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 16px rgba(4, 136, 248, 0.25)',
                     backdropFilter: 'blur(12px)',
                     WebkitBackdropFilter: 'blur(12px)',
                     borderRadius: '20px',
@@ -1135,8 +1137,8 @@ export default function Hero() {
                     animation: 'hudFloat 4s ease-in-out infinite 2s',
                   }}
                 >
-                  <FiShield size={12} color="#00F0FF" />
-                  <span style={{ fontSize: '11px', color: '#00F0FF', fontWeight: 700 }}>
+                  <FiShield size={12} color="var(--primary)" />
+                  <span style={{ fontSize: '11px', color: 'var(--primary)', fontWeight: 700 }}>
                     {isAr ? 'حماية رأس المال نشطة' : 'Capital Shield Active'}
                   </span>
                 </div>
