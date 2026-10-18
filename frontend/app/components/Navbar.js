@@ -266,6 +266,7 @@ export default function Navbar() {
               style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }}
             />
             <span
+              className="hide-mobile"
               style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 900,
@@ -347,6 +348,7 @@ export default function Navbar() {
               onClick={toggleLocale}
               aria-label="Toggle Language"
               title={t.navbar.langTitle}
+              className="hide-mobile"
               style={{
                 height: '2.5rem',
                 padding: '0 0.875rem',
