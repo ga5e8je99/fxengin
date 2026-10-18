@@ -681,19 +681,11 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
           }
         }
 
-        @media (min-width: 1050px) {
+        @media (min-width: 1024px) {
           .broker-card-col {
             width: calc((100% - 48px) / 3);
             max-width: calc((100% - 48px) / 3);
             flex: 0 0 calc((100% - 48px) / 3);
-          }
-        }
-
-        @media (min-width: 1380px) {
-          .broker-card-col {
-            width: calc((100% - 72px) / 4);
-            max-width: calc((100% - 72px) / 4);
-            flex: 0 0 calc((100% - 72px) / 4);
           }
         }
 
