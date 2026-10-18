@@ -59,6 +59,7 @@ export default function BrokersManagementPage() {
   // Auto-translation state
   const [autoTranslateEnabled, setAutoTranslateEnabled] = useState(true);
   const [translatingFields, setTranslatingFields] = useState({});
+  const [translatingAll, setTranslatingAll] = useState(false);
   const brokerDebounceTimers = useRef({});
 
   const handleBrokerArabicChange = (arField, enField, val) => {
@@ -96,6 +97,210 @@ export default function BrokersManagementPage() {
       }
     } finally {
       setTranslatingFields((prev) => ({ ...prev, [enField]: false }));
+    }
+  };
+
+  // Spec auto-translation handler (debounced)
+  const handleSpecArabicChange = (index, val) => {
+    setFormData((prev) => {
+      const newSpecs = (prev.specs || []).map((s, i) => (i === index ? { ...s, valueAr: val } : s));
+      return { ...prev, specs: newSpecs };
+    });
+
+    if (!autoTranslateEnabled || !val || !val.trim()) return;
+
+    const key = `spec_${index}`;
+    if (brokerDebounceTimers.current[key]) {
+      clearTimeout(brokerDebounceTimers.current[key]);
+    }
+
+    brokerDebounceTimers.current[key] = setTimeout(async () => {
+      setTranslatingFields((prev) => ({ ...prev, [key]: true }));
+      try {
+        const trans = await translateText(val);
+        if (trans) {
+          setFormData((prev) => {
+            const newSpecs = (prev.specs || []).map((s, i) => (i === index ? { ...s, valueEn: trans } : s));
+            return { ...prev, specs: newSpecs };
+          });
+        }
+      } finally {
+        setTranslatingFields((prev) => ({ ...prev, [key]: false }));
+      }
+    }, 750);
+  };
+
+  // Spec manual translate
+  const handleSpecManualTranslate = async (index) => {
+    const spec = formData.specs?.[index];
+    if (!spec?.valueAr || !spec.valueAr.trim()) {
+      toast.warn('يرجى كتابة القيمة بالعربية أولاً');
+      return;
+    }
+    const key = `spec_${index}`;
+    setTranslatingFields((prev) => ({ ...prev, [key]: true }));
+    try {
+      const trans = await translateText(spec.valueAr);
+      if (trans) {
+        setFormData((prev) => {
+          const newSpecs = (prev.specs || []).map((s, i) => (i === index ? { ...s, valueEn: trans } : s));
+          return { ...prev, specs: newSpecs };
+        });
+        toast.success('تمت ترجمة الخاصية بنجاح!');
+      }
+    } finally {
+      setTranslatingFields((prev) => ({ ...prev, [key]: false }));
+    }
+  };
+
+  // Feature auto-translation handler (debounced)
+  const handleFeatureArabicChange = (index, val) => {
+    setFormData((prev) => {
+      const newFeaturesAr = [...(prev.featuresAr || [])];
+      newFeaturesAr[index] = val;
+      return { ...prev, featuresAr: newFeaturesAr };
+    });
+
+    if (!autoTranslateEnabled || !val || !val.trim()) return;
+
+    const key = `feature_${index}`;
+    if (brokerDebounceTimers.current[key]) {
+      clearTimeout(brokerDebounceTimers.current[key]);
+    }
+
+    brokerDebounceTimers.current[key] = setTimeout(async () => {
+      setTranslatingFields((prev) => ({ ...prev, [key]: true }));
+      try {
+        const trans = await translateText(val);
+        if (trans) {
+          setFormData((prev) => {
+            const newFeaturesEn = [...(prev.featuresEn || [])];
+            newFeaturesEn[index] = trans;
+            return { ...prev, featuresEn: newFeaturesEn };
+          });
+        }
+      } finally {
+        setTranslatingFields((prev) => ({ ...prev, [key]: false }));
+      }
+    }, 750);
+  };
+
+  // Feature manual translate
+  const handleFeatureManualTranslate = async (index) => {
+    const val = formData.featuresAr?.[index];
+    if (!val || !val.trim()) {
+      toast.warn('يرجى كتابة الميزة بالعربية أولاً');
+      return;
+    }
+    const key = `feature_${index}`;
+    setTranslatingFields((prev) => ({ ...prev, [key]: true }));
+    try {
+      const trans = await translateText(val);
+      if (trans) {
+        setFormData((prev) => {
+          const newFeaturesEn = [...(prev.featuresEn || [])];
+          newFeaturesEn[index] = trans;
+          return { ...prev, featuresEn: newFeaturesEn };
+        });
+        toast.success('تمت ترجمة الميزة بنجاح!');
+      }
+    } finally {
+      setTranslatingFields((prev) => ({ ...prev, [key]: false }));
+    }
+  };
+
+  // Master Translate All Broker Fields to English
+  const handleTranslateAllBrokerFields = async () => {
+    setTranslatingAll(true);
+    const toastId = toast.loading('جاري ترجمة كافة بيانات الوسيط إلى الإنجليزية تلقائياً...');
+
+    try {
+      const promises = [];
+      const updates = {};
+
+      if (formData.badgeAr?.trim()) {
+        promises.push(
+          translateText(formData.badgeAr).then((res) => {
+            if (res) updates.badgeEn = res;
+          })
+        );
+      }
+
+      if (formData.descriptionAr?.trim()) {
+        promises.push(
+          translateText(formData.descriptionAr).then((res) => {
+            if (res) updates.descriptionEn = res;
+          })
+        );
+      }
+
+      if (formData.clientsCount?.trim()) {
+        promises.push(
+          translateText(formData.clientsCount).then((res) => {
+            if (res) updates.clientsCountEn = res;
+          })
+        );
+      }
+
+      if (formData.fxenginPerksAr?.trim()) {
+        promises.push(
+          translateText(formData.fxenginPerksAr).then((res) => {
+            if (res) updates.fxenginPerksEn = res;
+          })
+        );
+      }
+
+      const newSpecs = formData.specs ? formData.specs.map((s) => ({ ...s })) : [];
+      if (newSpecs.length > 0) {
+        newSpecs.forEach((spec, idx) => {
+          if (spec.valueAr?.trim()) {
+            promises.push(
+              translateText(spec.valueAr).then((res) => {
+                if (res) newSpecs[idx].valueEn = res;
+              })
+            );
+          }
+        });
+      }
+
+      const newFeaturesEn = formData.featuresEn ? [...formData.featuresEn] : [];
+      if (formData.featuresAr?.length > 0) {
+        formData.featuresAr.forEach((feat, idx) => {
+          if (feat?.trim()) {
+            promises.push(
+              translateText(feat).then((res) => {
+                if (res) newFeaturesEn[idx] = res;
+              })
+            );
+          }
+        });
+      }
+
+      await Promise.all(promises);
+
+      setFormData((prev) => ({
+        ...prev,
+        ...updates,
+        specs: newSpecs.length > 0 ? newSpecs : prev.specs,
+        featuresEn: newFeaturesEn.length > 0 ? newFeaturesEn : prev.featuresEn,
+      }));
+
+      toast.update(toastId, {
+        render: 'تمت ترجمة كافة بيانات الوسيط بنجاح إلى الإنجليزية! ✨',
+        type: 'success',
+        isLoading: false,
+        autoClose: 3000,
+      });
+    } catch (error) {
+      console.error('Error translating all broker fields:', error);
+      toast.update(toastId, {
+        render: 'حدث خطأ أثناء الترجمة الشاملة',
+        type: 'error',
+        isLoading: false,
+        autoClose: 3000,
+      });
+    } finally {
+      setTranslatingAll(false);
     }
   };
 
@@ -959,6 +1164,49 @@ export default function BrokersManagementPage() {
               </button>
             </div>
 
+            {/* AI Auto-Translation Toolbar */}
+            <div className="px-6 py-2.5 bg-[#050E21] border-b border-[#12315C] flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span
+                      className={`animate-ping absolute inline-flex h-full w-full rounded-full ${
+                        autoTranslateEnabled ? 'bg-emerald-400 opacity-75' : 'bg-slate-500 opacity-40'
+                      }`}
+                    ></span>
+                    <span
+                      className={`relative inline-flex rounded-full h-2 w-2 ${
+                        autoTranslateEnabled ? 'bg-emerald-500' : 'bg-slate-600'
+                      }`}
+                    ></span>
+                  </span>
+                  <span className="text-text-secondary font-medium">الترجمة التلقائية الفورية للإنجليزية:</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setAutoTranslateEnabled(!autoTranslateEnabled)}
+                  className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold cursor-pointer transition-all ${
+                    autoTranslateEnabled
+                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/30'
+                      : 'bg-surface-elevated text-text-muted border border-border-structural hover:text-text-primary'
+                  }`}
+                >
+                  {autoTranslateEnabled ? 'مفعلة (تترجم عند الكتابة)' : 'معطلة (يدوي فقط)'}
+                </button>
+              </div>
+
+              <button
+                type="button"
+                disabled={translatingAll}
+                onClick={handleTranslateAllBrokerFields}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-accent to-primary text-white text-xs font-bold shadow-md hover:brightness-110 active:scale-95 transition-all cursor-pointer disabled:opacity-50"
+                title="ترجمة كافة النصوص العربية (الوصف، الشارة، المزايا، المواصفات، عدد العملاء) إلى الإنجليزية دفعة واحدة"
+              >
+                <IoSparklesOutline className={translatingAll ? 'animate-spin' : ''} />
+                <span>{translatingAll ? 'جاري ترجمة كافة الحقول...' : '✨ ترجمة جميع الحقول تلقائياً للإنجليزية'}</span>
+              </button>
+            </div>
+
             {/* Modal Tabs */}
             <div className="flex border-b border-[#12315C] bg-[#0A1B3D] px-6 gap-2 pt-2 overflow-x-auto">
               {[
@@ -1225,27 +1473,44 @@ export default function BrokersManagementPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-text-secondary mb-1">
-                        عدد العملاء (عربي)
-                      </label>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="text-xs font-bold text-text-secondary">
+                          عدد العملاء (عربي - الأساسي)
+                        </label>
+                        <span className="text-[10px] text-primary font-bold">يكتب بالعربية</span>
+                      </div>
                       <input
                         type="text"
                         value={formData.clientsCount}
-                        onChange={(e) => setFormData({ ...formData, clientsCount: e.target.value })}
+                        onChange={(e) => handleBrokerArabicChange('clientsCount', 'clientsCountEn', e.target.value)}
                         placeholder="10M+ المتداولين"
                         className="w-full h-10 px-3 rounded-xl bg-surface-elevated border border-border-structural text-text-primary text-sm outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-text-secondary mb-1">
-                        عدد العملاء (إنجليزي)
-                      </label>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="text-xs font-bold text-text-secondary">
+                          عدد العملاء (إنجليزي - قابل للتعديل)
+                        </label>
+                        <div className="flex items-center gap-1.5">
+                          {translatingFields.clientsCountEn && (
+                            <span className="text-[10px] text-accent animate-pulse font-bold">جاري الترجمة...</span>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => handleBrokerManualTranslate(formData.clientsCount, 'clientsCountEn')}
+                            className="text-[10px] text-primary hover:underline font-bold cursor-pointer"
+                          >
+                            ترجمة
+                          </button>
+                        </div>
+                      </div>
                       <input
                         type="text"
                         value={formData.clientsCountEn}
                         onChange={(e) => setFormData({ ...formData, clientsCountEn: e.target.value })}
-                        placeholder="10M+ Traders Worldwide"
+                        placeholder="10M+ Active Traders Worldwide"
                         className="w-full h-10 px-3 rounded-xl bg-surface-elevated border border-border-structural text-text-primary text-sm outline-none dir-ltr"
                       />
                     </div>
@@ -1362,27 +1627,39 @@ export default function BrokersManagementPage() {
               {/* TAB 4: 6 SPECS */}
               {modalTab === 'specs' && (
                 <div className="space-y-4">
-                  <p className="text-xs text-text-muted">
-                    المواصفات الست المعروضة في شبكة بطاقة الوسيط:
-                  </p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-text-muted">
+                      المواصفات الست المعروضة في شبكة بطاقة الوسيط (تُترجم تلقائياً عند الكتابة بالعربية):
+                    </p>
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {formData.specs.map((spec, i) => (
                       <div
                         key={i}
                         className="p-3 bg-surface-elevated rounded-xl border border-border-structural space-y-2"
                       >
-                        <div className="text-xs font-bold text-primary">
-                          الخاصية #{i + 1}: {spec.labelAr}
+                        <div className="flex items-center justify-between">
+                          <div className="text-xs font-bold text-primary">
+                            الخاصية #{i + 1}: {spec.labelAr}
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            {translatingFields[`spec_${i}`] && (
+                              <span className="text-[10px] text-accent animate-pulse font-bold">جاري الترجمة...</span>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => handleSpecManualTranslate(i)}
+                              className="text-[10px] text-primary hover:underline font-bold cursor-pointer"
+                            >
+                              ترجمة
+                            </button>
+                          </div>
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                           <input
                             type="text"
                             value={spec.valueAr}
-                            onChange={(e) => {
-                              const newSpecs = [...formData.specs];
-                              newSpecs[i].valueAr = e.target.value;
-                              setFormData({ ...formData, specs: newSpecs });
-                            }}
+                            onChange={(e) => handleSpecArabicChange(i, e.target.value)}
                             placeholder="القيمة (عربي)"
                             className="h-8 px-2 rounded-lg bg-surface-container border border-border-structural text-xs text-text-primary outline-none"
                           />
@@ -1390,8 +1667,9 @@ export default function BrokersManagementPage() {
                             type="text"
                             value={spec.valueEn}
                             onChange={(e) => {
-                              const newSpecs = [...formData.specs];
-                              newSpecs[i].valueEn = e.target.value;
+                              const newSpecs = formData.specs.map((s, idx) =>
+                                idx === i ? { ...s, valueEn: e.target.value } : s
+                              );
                               setFormData({ ...formData, specs: newSpecs });
                             }}
                             placeholder="Value (EN)"
@@ -1407,28 +1685,59 @@ export default function BrokersManagementPage() {
               {/* TAB 5: FEATURES CHECKLIST */}
               {modalTab === 'features' && (
                 <div className="space-y-4">
-                  <p className="text-xs text-text-muted">
-                    النقاط الأربع الرئيسية المعروضة في النافذة المنبثقة للوسيط (Checkpoints):
-                  </p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-text-muted">
+                      النقاط الأربع الرئيسية المعروضة في النافذة المنبثقة للوسيط (تُترجم تلقائياً للإنجليزية):
+                    </p>
+                  </div>
                   {formData.featuresAr.map((feat, i) => (
                     <div
                       key={i}
                       className="p-3 bg-surface-elevated rounded-xl border border-border-structural space-y-2"
                     >
-                      <div className="text-xs font-bold text-bullish-up">
-                        ميزة رقم #{i + 1}
+                      <div className="flex items-center justify-between">
+                        <div className="text-xs font-bold text-bullish-up">
+                          ميزة رقم #{i + 1}
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          {translatingFields[`feature_${i}`] && (
+                            <span className="text-[10px] text-accent animate-pulse font-bold">جاري الترجمة...</span>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => handleFeatureManualTranslate(i)}
+                            className="text-[10px] text-primary hover:underline font-bold cursor-pointer"
+                          >
+                            ترجمة للإنجليزية
+                          </button>
+                        </div>
                       </div>
-                      <input
-                        type="text"
-                        value={feat}
-                        onChange={(e) => {
-                          const newFeatures = [...formData.featuresAr];
-                          newFeatures[i] = e.target.value;
-                          setFormData({ ...formData, featuresAr: newFeatures });
-                        }}
-                        placeholder="نص الميزة بالعربية"
-                        className="w-full h-8 px-2.5 rounded-lg bg-surface-container border border-border-structural text-xs text-text-primary outline-none"
-                      />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div>
+                          <label className="block text-[10px] text-text-secondary mb-1">بالعربية:</label>
+                          <input
+                            type="text"
+                            value={feat}
+                            onChange={(e) => handleFeatureArabicChange(i, e.target.value)}
+                            placeholder="نص الميزة بالعربية"
+                            className="w-full h-8 px-2.5 rounded-lg bg-surface-container border border-border-structural text-xs text-text-primary outline-none"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] text-text-secondary mb-1">بالإنجليزية (English):</label>
+                          <input
+                            type="text"
+                            value={formData.featuresEn?.[i] || ''}
+                            onChange={(e) => {
+                              const newFeaturesEn = [...(formData.featuresEn || [])];
+                              newFeaturesEn[i] = e.target.value;
+                              setFormData({ ...formData, featuresEn: newFeaturesEn });
+                            }}
+                            placeholder="Feature in English"
+                            className="w-full h-8 px-2.5 rounded-lg bg-surface-container border border-border-structural text-xs text-text-primary outline-none dir-ltr"
+                          />
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>

@@ -14,6 +14,7 @@ import {
   IoEyeOutline,
 } from 'react-icons/io5';
 import { uploadFileDirectToStorage } from '../../services/storageService';
+import { translateText } from '../../services/translationService';
 
 const POPULAR_BROKERS = ['XM Global', 'YWO Markets', 'DooPrime', 'Exness', 'PropXP Funding'];
 
@@ -50,6 +51,98 @@ export default function CreateEditOfferModal({
 
   const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [autoTranslateEnabled, setAutoTranslateEnabled] = useState(true);
+  const [translatingFields, setTranslatingFields] = useState({});
+  const [translatingAll, setTranslatingAll] = useState(false);
+  const offerDebounceTimers = useRef({});
+
+  const handleArabicChange = (arField, enField, val) => {
+    setFormData((prev) => ({ ...prev, [arField]: val }));
+    if (!autoTranslateEnabled || !val || !val.trim()) return;
+
+    if (offerDebounceTimers.current[enField]) {
+      clearTimeout(offerDebounceTimers.current[enField]);
+    }
+
+    offerDebounceTimers.current[enField] = setTimeout(async () => {
+      setTranslatingFields((prev) => ({ ...prev, [enField]: true }));
+      try {
+        const trans = await translateText(val);
+        if (trans) {
+          setFormData((prev) => ({ ...prev, [enField]: trans }));
+        }
+      } finally {
+        setTranslatingFields((prev) => ({ ...prev, [enField]: false }));
+      }
+    }, 750);
+  };
+
+  const handleManualTranslate = async (arText, enField) => {
+    if (!arText || !arText.trim()) {
+      toast.warn('يرجى كتابة النص العربي أولاً');
+      return;
+    }
+    setTranslatingFields((prev) => ({ ...prev, [enField]: true }));
+    try {
+      const trans = await translateText(arText);
+      if (trans) {
+        setFormData((prev) => ({ ...prev, [enField]: trans }));
+        toast.success('تمت الترجمة بنجاح!');
+      }
+    } finally {
+      setTranslatingFields((prev) => ({ ...prev, [enField]: false }));
+    }
+  };
+
+  const handleTranslateAllOfferFields = async () => {
+    setTranslatingAll(true);
+    const toastId = toast.loading('جاري ترجمة بيانات العرض للإنجليزية...');
+    try {
+      const promises = [];
+      const updates = {};
+
+      if (formData.titleAr?.trim()) {
+        promises.push(
+          translateText(formData.titleAr).then((res) => {
+            if (res) updates.titleEn = res;
+          })
+        );
+      }
+      if (formData.subtitleAr?.trim()) {
+        promises.push(
+          translateText(formData.subtitleAr).then((res) => {
+            if (res) updates.subtitleEn = res;
+          })
+        );
+      }
+      if (formData.badgeAr?.trim()) {
+        promises.push(
+          translateText(formData.badgeAr).then((res) => {
+            if (res) updates.badgeEn = res;
+          })
+        );
+      }
+
+      await Promise.all(promises);
+      setFormData((prev) => ({ ...prev, ...updates }));
+
+      toast.update(toastId, {
+        render: 'تمت ترجمة بيانات العرض للإنجليزية بنجاح! ✨',
+        type: 'success',
+        isLoading: false,
+        autoClose: 3000,
+      });
+    } catch {
+      toast.update(toastId, {
+        render: 'فشلت الترجمة الشاملة',
+        type: 'error',
+        isLoading: false,
+        autoClose: 3000,
+      });
+    } finally {
+      setTranslatingAll(false);
+    }
+  };
 
   useEffect(() => {
     if (initialData && mode === 'edit') {
@@ -212,6 +305,49 @@ export default function CreateEditOfferModal({
           </button>
         </div>
 
+        {/* AI Auto-Translation Toolbar */}
+        <div className="px-6 py-2.5 bg-[#050E21] border-b border-border-structural flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span
+                  className={`animate-ping absolute inline-flex h-full w-full rounded-full ${
+                    autoTranslateEnabled ? 'bg-emerald-400 opacity-75' : 'bg-slate-500 opacity-40'
+                  }`}
+                ></span>
+                <span
+                  className={`relative inline-flex rounded-full h-2 w-2 ${
+                    autoTranslateEnabled ? 'bg-emerald-500' : 'bg-slate-600'
+                  }`}
+                ></span>
+              </span>
+              <span className="text-text-secondary font-medium">الترجمة التلقائية الفورية للإنجليزية:</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setAutoTranslateEnabled(!autoTranslateEnabled)}
+              className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold cursor-pointer transition-all ${
+                autoTranslateEnabled
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/30'
+                  : 'bg-surface-elevated text-text-muted border border-border-structural hover:text-text-primary'
+              }`}
+            >
+              {autoTranslateEnabled ? 'مفعلة' : 'معطلة'}
+            </button>
+          </div>
+
+          <button
+            type="button"
+            disabled={translatingAll}
+            onClick={handleTranslateAllOfferFields}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-accent to-primary text-white text-xs font-bold shadow-md hover:brightness-110 active:scale-95 transition-all cursor-pointer disabled:opacity-50"
+            title="ترجمة العنوان والكابشن والشارة إلى الإنجليزية دفعة واحدة"
+          >
+            <IoSparklesOutline className={translatingAll ? 'animate-spin' : ''} />
+            <span>{translatingAll ? 'جاري ترجمة كافة الحقول...' : '✨ ترجمة بيانات العرض للإنجليزية'}</span>
+          </button>
+        </div>
+
         {/* Modal Body */}
         <form onSubmit={handleSubmit} className="p-6 overflow-y-auto flex-1 space-y-5">
           {/* 1. صورة العرض / البنر */}
@@ -327,52 +463,130 @@ export default function CreateEditOfferModal({
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                شارة العرض (Badge - اختياري)
-              </label>
-              <input
-                type="text"
-                name="badgeAr"
-                value={formData.badgeAr}
-                onChange={handleChange}
-                placeholder="مثال: بونص 100% 🔥 أو سبريد 0.0"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none"
-              />
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="text-xs font-bold text-text-primary">
+                  شارة العرض (Badge - عربي / إنجليزي)
+                </label>
+                <div className="flex items-center gap-1.5">
+                  {translatingFields.badgeEn && (
+                    <span className="text-[10px] text-accent animate-pulse font-bold">جاري الترجمة...</span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => handleManualTranslate(formData.badgeAr, 'badgeEn')}
+                    className="text-[10px] text-primary hover:underline font-bold cursor-pointer"
+                  >
+                    ترجمة
+                  </button>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  name="badgeAr"
+                  value={formData.badgeAr}
+                  onChange={(e) => handleArabicChange('badgeAr', 'badgeEn', e.target.value)}
+                  placeholder="مثال: بونص 100% 🔥"
+                  className="w-full px-3 py-2 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none"
+                />
+                <input
+                  type="text"
+                  name="badgeEn"
+                  value={formData.badgeEn}
+                  onChange={handleChange}
+                  placeholder="Badge (EN)"
+                  className="w-full px-3 py-2 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none dir-ltr"
+                />
+              </div>
             </div>
           </div>
 
-          {/* 3. عنوان العرض (Title) */}
-          <div>
-            <label className="block text-xs font-bold text-text-primary mb-1.5 flex items-center justify-between">
-              <span>عنوان العرض الرئيسي (Offer Title) *</span>
-              <span className="text-[10px] text-[#FB8704] font-normal">مطلوب</span>
-            </label>
+          {/* 3. عنوان العرض (Title) - عربي وإنجليزي */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-bold text-text-primary">
+                عنوان العرض الرئيسي (عربي) *
+              </label>
+              <div className="flex items-center gap-1.5">
+                {translatingFields.titleEn && (
+                  <span className="text-[10px] text-accent animate-pulse font-bold">جاري الترجمة للإنجليزية...</span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => handleManualTranslate(formData.titleAr, 'titleEn')}
+                  className="text-[10px] text-primary hover:underline font-bold cursor-pointer"
+                >
+                  ترجمة للإنجليزية
+                </button>
+              </div>
+            </div>
             <input
               type="text"
               name="titleAr"
               value={formData.titleAr}
-              onChange={handleChange}
+              onChange={(e) => handleArabicChange('titleAr', 'titleEn', e.target.value)}
               placeholder="مثال: بونص ترحيبي مضاعف 100% حتى 500$ مجاناً"
               className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs sm:text-sm font-bold text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none"
               required
             />
+
+            <div>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">
+                العنوان بالإنجليزية (English Title - يُترجم تلقائياً):
+              </label>
+              <input
+                type="text"
+                name="titleEn"
+                value={formData.titleEn}
+                onChange={handleChange}
+                placeholder="Offer title in English"
+                className="w-full px-3.5 py-2 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none dir-ltr"
+              />
+            </div>
           </div>
 
-          {/* 4. كابشن / وصف العرض (Caption / Description) */}
-          <div>
-            <label className="block text-xs font-bold text-text-primary mb-1.5 flex items-center justify-between">
-              <span>كابشن / تفاصيل العرض (Caption / Description) *</span>
-              <span className="text-[10px] text-[#FB8704] font-normal">مطلوب</span>
-            </label>
+          {/* 4. كابشن / وصف العرض (Caption / Description) - عربي وإنجليزي */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-bold text-text-primary">
+                كابشن / تفاصيل العرض (عربي) *
+              </label>
+              <div className="flex items-center gap-1.5">
+                {translatingFields.subtitleEn && (
+                  <span className="text-[10px] text-accent animate-pulse font-bold">جاري الترجمة للإنجليزية...</span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => handleManualTranslate(formData.subtitleAr, 'subtitleEn')}
+                  className="text-[10px] text-primary hover:underline font-bold cursor-pointer"
+                >
+                  ترجمة للإنجليزية
+                </button>
+              </div>
+            </div>
             <textarea
               name="subtitleAr"
-              rows={3}
+              rows={2}
               value={formData.subtitleAr}
-              onChange={handleChange}
+              onChange={(e) => handleArabicChange('subtitleAr', 'subtitleEn', e.target.value)}
               placeholder="اكتب هنا كابشن توضيحي لمميزات وتفاصيل العرض والشروط للمتداول..."
               className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none leading-relaxed resize-none"
               required
             />
+
+            <div>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">
+                الكابشن بالإنجليزية (English Caption - يُترجم تلقائياً):
+              </label>
+              <textarea
+                name="subtitleEn"
+                rows={2}
+                value={formData.subtitleEn}
+                onChange={handleChange}
+                placeholder="Offer details and terms caption in English..."
+                className="w-full px-3.5 py-2 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none leading-relaxed resize-none dir-ltr"
+              />
+            </div>
           </div>
 
           {/* 5. لينك العرض + الكود الترويجي */}
