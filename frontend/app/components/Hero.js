@@ -66,7 +66,7 @@ const EXPERT_SLIDES = [
     image: '/assets/Images/Main/expert-slide3.webp?v=20261005',
     badgeAr: 'الأنظمة الذكية والمؤشرات',
     badgeEn: 'Smart Systems & Indicators',
-    badgeColor: '#FB8704',
+    badgeColor: '#00F0FF',
     titleAr: 'مؤشرات فنية احترافية وإدارة المخاطر',
     titleEn: 'Smart Indicators & Risk Management',
     speechAr:
@@ -226,7 +226,7 @@ export default function Hero() {
         right: '5%',
         width: 'clamp(15rem, 30vw, 24rem)',
         height: 'clamp(15rem, 30vw, 24rem)',
-        background: 'radial-gradient(circle, rgba(251, 135, 4, 0.1) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(0, 194, 255, 0.12) 0%, transparent 70%)',
         borderRadius: '50%',
         filter: 'blur(50px)',
         pointerEvents: 'none',
@@ -263,9 +263,9 @@ export default function Hero() {
             LOGGED-IN USER PERSONALIZED HERO VIEW
         ═══════════════════════════════════════════════════════════════════ */}
         {isAuthenticated && user ? (
-          <div className="hero-grid" style={{ gridTemplateColumns: '0.94fr 1.06fr', gap: '32px', alignItems: 'center' }}>
-            {/* Right Column (in RTL): Personalized Greeting + Rich Platform Details + Feature Grid + Quick Actions */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div className="hero-grid" style={{ gridTemplateColumns: '1.08fr 0.92fr', gap: '32px', alignItems: 'center' }}>
+            {/* Right Column (in RTL): Personalized Cockpit Greeting + Bento Grid */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               
               {/* Top Greeting Badges */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
@@ -273,28 +273,38 @@ export default function Hero() {
                   style={{
                     fontSize: '11px',
                     fontWeight: 700,
-                    color: 'var(--accent)',
-                    background: 'rgba(251, 135, 4, 0.12)',
-                    border: '1px solid rgba(251, 135, 4, 0.3)',
-                    padding: '3px 10px',
+                    color: '#00F0FF',
+                    background: 'rgba(4, 136, 248, 0.12)',
+                    border: '1px solid rgba(0, 240, 255, 0.35)',
+                    padding: '4px 12px',
                     borderRadius: '20px',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '6px',
+                    boxShadow: '0 0 12px rgba(4, 136, 248, 0.2)',
                   }}
                 >
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 6px var(--accent)' }} />
-                  {isAr ? 'لوحة التحكم والمتابعة المباشرة' : 'Personal Trading Dashboard'}
+                  <span
+                    style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: '#00F0FF',
+                      boxShadow: '0 0 8px #00F0FF',
+                      animation: 'livePulse 1.8s infinite',
+                    }}
+                  />
+                  {isAr ? 'قمرة التداول الذكية والمتابعة اللحظية' : 'Smart Trading Cockpit & Live Feed'}
                 </span>
 
                 <span
                   style={{
                     fontSize: '11px',
                     fontWeight: 600,
-                    color: 'var(--primary)',
-                    background: 'rgba(4, 136, 248, 0.1)',
-                    border: '1px solid rgba(4, 136, 248, 0.25)',
-                    padding: '3px 10px',
+                    color: '#94A3B8',
+                    background: 'rgba(4, 136, 248, 0.08)',
+                    border: '1px solid rgba(4, 136, 248, 0.22)',
+                    padding: '4px 11px',
                     borderRadius: '20px',
                   }}
                 >
@@ -307,37 +317,58 @@ export default function Hero() {
                     fontWeight: 600,
                     color: '#16C784',
                     background: 'rgba(22, 199, 132, 0.1)',
-                    border: '1px solid rgba(22, 199, 132, 0.25)',
-                    padding: '3px 10px',
+                    border: '1px solid rgba(22, 199, 132, 0.28)',
+                    padding: '4px 11px',
                     borderRadius: '20px',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '5px',
                   }}
                 >
-                  <FiCheckCircle size={11} />
+                  <FiCheckCircle size={12} />
                   {isAr ? 'حساب نشط وموثق' : 'Verified Account'}
                 </span>
               </div>
 
-              {/* Main Welcome Headline & Rich Platform Introduction */}
+              {/* Main Welcome Headline & Subtitle */}
               <div>
                 <h1
                   style={{
-                    fontSize: 'clamp(22px, 2.4vw, 34px)',
+                    fontSize: 'clamp(24px, 2.5vw, 34px)',
                     fontWeight: 800,
                     lineHeight: 1.25,
                     margin: '0 0 8px 0',
                     color: 'var(--text-primary)',
+                    letterSpacing: '-0.02em',
                   }}
                 >
                   {isAr ? (
                     <>
-                      مرحباً بك، <span className="text-gradient-brand">{user.fullName || 'متداولنا العزيز'}</span>
+                      مرحباً بك،{' '}
+                      <span
+                        style={{
+                          background: 'linear-gradient(135deg, #FFFFFF 20%, #00F0FF 75%, #0488F8 100%)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          display: 'inline-block',
+                        }}
+                      >
+                        {user.fullName || 'متداولنا العزيز'}
+                      </span>
                     </>
                   ) : (
                     <>
-                      Welcome back, <span className="text-gradient-brand">{user.fullName || 'Trader'}</span>
+                      Welcome back,{' '}
+                      <span
+                        style={{
+                          background: 'linear-gradient(135deg, #FFFFFF 20%, #00F0FF 75%, #0488F8 100%)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          display: 'inline-block',
+                        }}
+                      >
+                        {user.fullName || 'Trader'}
+                      </span>
                     </>
                   )}
                 </h1>
@@ -347,181 +378,541 @@ export default function Hero() {
                     lineHeight: 1.65,
                     color: 'var(--text-secondary)',
                     margin: 0,
-                    maxWidth: '560px',
+                    maxWidth: '580px',
                   }}
                 >
                   {isAr
-                    ? 'أهلاً بك مجدداً في مركزك التداولي المتقدم على FXENGIN. منصتك المتكاملة لاحتراف الأسواق العالمية، ومتابعة التحليلات اللحظية، والانضمام لجلسات البث المباشر مع نخبة المحللين لتطبيق أقوى استراتيجيات إدارة رأس المال واقتناص أفضل الفرص الاستثمارية.'
-                    : 'Welcome back to your advanced trading command center on FXENGIN. Your comprehensive gateway to master global financial markets, follow real-time technical analysis, and join live trading rooms with veteran analysts.'}
+                    ? 'مركزك التداولي المتقدم لاقتناص الفرص الحية، ومتابعة سيولة الأسواق، والانضمام لجلسات البث المباشر مع نخبة المحللين لتطبيق أقوى استراتيجيات إدارة رأس المال.'
+                    : 'Your advanced trading command center to capture market liquidity, join live streaming rooms with top analysts, and execute pro capital management strategies.'}
                 </p>
+
+                {/* Quick Action CTAs */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '14px', flexWrap: 'wrap' }}>
+                  <Link
+                    href="/analyses"
+                    style={{
+                      background: 'linear-gradient(135deg, #0458EC 0%, #0488F8 60%, #00C2FF 100%)',
+                      color: '#FFFFFF',
+                      padding: '8px 18px',
+                      borderRadius: '8px',
+                      fontSize: '12.5px',
+                      fontWeight: 700,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      textDecoration: 'none',
+                      boxShadow: '0 6px 20px rgba(4, 136, 248, 0.35)',
+                      transition: 'all 0.25s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 194, 255, 0.45)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'none';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(4, 136, 248, 0.35)';
+                    }}
+                  >
+                    {isAr ? 'استعراض التحليلات المباشرة' : 'Explore Live Analyses'}
+                    <FiArrowLeft size={14} style={{ transform: isAr ? 'none' : 'rotate(180deg)' }} />
+                  </Link>
+
+                  <Link
+                    href="/live"
+                    style={{
+                      background: 'rgba(6, 20, 47, 0.75)',
+                      border: '1px solid rgba(4, 136, 248, 0.35)',
+                      color: 'var(--text-primary)',
+                      padding: '8px 16px',
+                      borderRadius: '8px',
+                      fontSize: '12.5px',
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      textDecoration: 'none',
+                      backdropFilter: 'blur(8px)',
+                      transition: 'all 0.25s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = '#00F0FF';
+                      e.currentTarget.style.background = 'rgba(10, 27, 61, 0.9)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.35)';
+                      e.currentTarget.style.background = 'rgba(6, 20, 47, 0.75)';
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: '7px',
+                        height: '7px',
+                        borderRadius: '50%',
+                        background: '#16C784',
+                        boxShadow: '0 0 8px #16C784',
+                        animation: 'livePulse 1.5s infinite',
+                      }}
+                    />
+                    <FiVideo size={14} color="#00F0FF" />
+                    {isAr ? 'غرفة البث المباشر' : 'Live Trading Room'}
+                  </Link>
+                </div>
               </div>
 
-              {/* 4-Card Feature Grid (2x2 or 1-col on mobile) */}
+              {/* ═══════════════════════════════════════════════════════════════
+                  FINTECH BENTO GRID (4 Advanced Micro-Interactive Widgets)
+              ═══════════════════════════════════════════════════════════════ */}
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
-                  gap: '10px',
-                  marginTop: '2px',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 230px), 1fr))',
+                  gap: '12px',
+                  marginTop: '4px',
                 }}
               >
-                {/* Feature 1 */}
-                <div
+                {/* ── Bento Widget 1: Live SMC Technical Analysis ── */}
+                <Link
+                  href="/analyses"
                   style={{
-                    background: 'rgba(10, 27, 61, 0.65)',
-                    border: '1px solid rgba(4, 136, 248, 0.2)',
-                    borderRadius: '10px',
-                    padding: '10px 12px',
+                    textDecoration: 'none',
+                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.85) 0%, rgba(10, 27, 61, 0.65) 100%)',
+                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    borderRadius: '12px',
+                    padding: '12px 14px',
                     display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '10px',
-                    backdropFilter: 'blur(8px)',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    backdropFilter: 'blur(12px)',
+                    boxShadow: '0 6px 20px rgba(0, 3, 13, 0.6)',
+                    transition: 'all 0.25s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.borderColor = '#00F0FF';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.22)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.25)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
                   }}
                 >
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '7px',
-                      background: 'rgba(4, 136, 248, 0.15)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      color: 'var(--primary)',
-                    }}
-                  >
-                    <FiActivity size={15} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
-                      {isAr ? 'تحليلات فنية لحظية' : 'Live Market Analysis'}
+                  {/* Top Bar: Icon + Title + Live Ticker */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div
+                        style={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '8px',
+                          background: 'rgba(4, 136, 248, 0.18)',
+                          border: '1px solid rgba(4, 136, 248, 0.3)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          color: '#00F0FF',
+                        }}
+                      >
+                        <FiTrendingUp size={14} />
+                      </div>
+                      <span style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)' }}>
+                        {isAr ? 'التحليلات والسيولة' : 'SMC & Liquidity'}
+                      </span>
                     </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                      {isAr ? 'قراءات يومية للسيولة ومناطق الدخول في العملات والذهب.' : 'Daily order flow & liquidity zones for FX and commodities.'}
-                    </div>
-                  </div>
-                </div>
 
-                {/* Feature 2 */}
-                <div
-                  style={{
-                    background: 'rgba(10, 27, 61, 0.65)',
-                    border: '1px solid rgba(22, 199, 132, 0.2)',
-                    borderRadius: '10px',
-                    padding: '10px 12px',
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '10px',
-                    backdropFilter: 'blur(8px)',
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '7px',
-                      background: 'rgba(22, 199, 132, 0.15)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      color: '#16C784',
-                    }}
-                  >
-                    <LuGraduationCap size={15} />
+                    <span
+                      style={{
+                        fontSize: '10.5px',
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                        color: '#16C784',
+                        background: 'rgba(22, 199, 132, 0.12)',
+                        border: '1px solid rgba(22, 199, 132, 0.25)',
+                        padding: '2px 6px',
+                        borderRadius: '4px',
+                      }}
+                    >
+                      EUR/USD ▲ +0.82%
+                    </span>
                   </div>
-                  <div>
-                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
-                      {isAr ? 'أكاديمية تدريب معتمدة' : 'Certified Academy'}
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                      {isAr ? 'مسارات تدريبية تطبيقية تؤهلك لشهادات التداول المعتمدة.' : 'Hands-on learning tracks leading to accredited certificates.'}
-                    </div>
-                  </div>
-                </div>
 
-                {/* Feature 3 */}
-                <div
-                  style={{
-                    background: 'rgba(10, 27, 61, 0.65)',
-                    border: '1px solid rgba(251, 135, 4, 0.2)',
-                    borderRadius: '10px',
-                    padding: '10px 12px',
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '10px',
-                    backdropFilter: 'blur(8px)',
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '7px',
-                      background: 'rgba(251, 135, 4, 0.15)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      color: 'var(--accent)',
-                    }}
-                  >
-                    <FiVideo size={15} />
+                  {/* Micro Candlestick & Sparkline Chart Vector */}
+                  <div style={{ position: 'relative', width: '100%', height: '38px', margin: '2px 0' }}>
+                    <svg viewBox="0 0 200 42" fill="none" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+                      <defs>
+                        <linearGradient id="bentoSparkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="rgba(0, 240, 255, 0.28)" />
+                          <stop offset="100%" stopColor="transparent" />
+                        </linearGradient>
+                      </defs>
+                      {/* Area Fill */}
+                      <path d="M 0 36 Q 30 28, 60 30 T 110 20 T 155 12 T 200 4 L 200 42 L 0 42 Z" fill="url(#bentoSparkGrad)" />
+                      {/* Trendline */}
+                      <path
+                        d="M 0 36 Q 30 28, 60 30 T 110 20 T 155 12 T 200 4"
+                        stroke="#00F0FF"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                      />
+                      {/* Mini Candlestick 1 */}
+                      <line x1="45" y1="22" x2="45" y2="36" stroke="#16C784" strokeWidth="1" />
+                      <rect x="42.5" y="25" width="5" height="8" rx="1" fill="#16C784" />
+                      {/* Mini Candlestick 2 (Bearish/Correction) */}
+                      <line x1="85" y1="18" x2="85" y2="32" stroke="#38BDF8" strokeWidth="1" />
+                      <rect x="82.5" y="21" width="5" height="7" rx="1" fill="#0488F8" />
+                      {/* Mini Candlestick 3 (Bullish Expansion) */}
+                      <line x1="135" y1="8" x2="135" y2="24" stroke="#16C784" strokeWidth="1" />
+                      <rect x="132.5" y="11" width="5" height="10" rx="1" fill="#16C784" />
+                      {/* End Glowing Pulse Dot */}
+                      <circle cx="200" cy="4" r="5" fill="rgba(0, 240, 255, 0.3)" />
+                      <circle cx="200" cy="4" r="3" fill="#00F0FF" />
+                    </svg>
                   </div>
-                  <div>
-                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
-                      {isAr ? 'جلسات بث حي تفاعلي' : 'Live Trading Rooms'}
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                      {isAr ? 'تداول مباشر واقتناص صفقات حية مع الخبراء في أوقات الذروة.' : 'Daily live trade setups & interactive Q&A during peak sessions.'}
-                    </div>
-                  </div>
-                </div>
 
-                {/* Feature 4 */}
-                <div
+                  {/* Micro Meta Tag */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px' }}>
+                    <span style={{ color: '#94A3B8' }}>
+                      {isAr ? 'منطقة طلب (OB) • دخول نشط' : 'Demand Zone (OB) • Active'}
+                    </span>
+                    <span style={{ color: '#00F0FF', fontWeight: 600 }}>
+                      {isAr ? 'استعراض ←' : 'View →'}
+                    </span>
+                  </div>
+                </Link>
+
+                {/* ── Bento Widget 2: Live Trading Stream ── */}
+                <Link
+                  href="/live"
                   style={{
-                    background: 'rgba(10, 27, 61, 0.65)',
-                    border: '1px solid rgba(168, 85, 247, 0.25)',
-                    borderRadius: '10px',
-                    padding: '10px 12px',
+                    textDecoration: 'none',
+                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.85) 0%, rgba(10, 27, 61, 0.65) 100%)',
+                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    borderRadius: '12px',
+                    padding: '12px 14px',
                     display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '10px',
-                    backdropFilter: 'blur(8px)',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    backdropFilter: 'blur(12px)',
+                    boxShadow: '0 6px 20px rgba(0, 3, 13, 0.6)',
+                    transition: 'all 0.25s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.borderColor = '#00F0FF';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.22)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.25)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
                   }}
                 >
+                  {/* Top Bar: Icon + Title + Live Pulse Badge */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div
+                        style={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '8px',
+                          background: 'rgba(4, 136, 248, 0.18)',
+                          border: '1px solid rgba(4, 136, 248, 0.3)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          color: '#0488F8',
+                        }}
+                      >
+                        <FiVideo size={14} />
+                      </div>
+                      <span style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)' }}>
+                        {isAr ? 'غرفة البث المباشر' : 'Live Trading Rooms'}
+                      </span>
+                    </div>
+
+                    <span
+                      style={{
+                        fontSize: '10.5px',
+                        fontWeight: 700,
+                        color: '#16C784',
+                        background: 'rgba(22, 199, 132, 0.12)',
+                        border: '1px solid rgba(22, 199, 132, 0.3)',
+                        padding: '2px 7px',
+                        borderRadius: '12px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: '5px',
+                          height: '5px',
+                          borderRadius: '50%',
+                          background: '#16C784',
+                          boxShadow: '0 0 6px #16C784',
+                          animation: 'livePulse 1.4s infinite',
+                        }}
+                      />
+                      {isAr ? 'مباشر الآن' : 'LIVE'}
+                    </span>
+                  </div>
+
+                  {/* Animated Visual Soundwave / Broadcast Equalizer */}
                   <div
                     style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '7px',
-                      background: 'rgba(168, 85, 247, 0.15)',
+                      height: '38px',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      color: '#a855f7',
+                      justifyContent: 'space-between',
+                      background: 'rgba(4, 136, 248, 0.08)',
+                      borderRadius: '6px',
+                      padding: '0 12px',
+                      border: '1px solid rgba(4, 136, 248, 0.15)',
                     }}
                   >
-                    <FiShield size={15} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
-                      {isAr ? 'إدارة مخاطر صارمة' : 'Risk Management'}
+                    <span style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 500 }}>
+                      {isAr ? 'جلسة نيويورك وتغطية الأخبار' : 'New York & News Session'}
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '3px', height: '24px' }}>
+                      <span style={{ width: '3px', background: '#00F0FF', borderRadius: '2px', animation: 'soundWave1 1.2s infinite ease-in-out' }} />
+                      <span style={{ width: '3px', background: '#0488F8', borderRadius: '2px', animation: 'soundWave2 1.0s infinite ease-in-out 0.2s' }} />
+                      <span style={{ width: '3px', background: '#00F0FF', borderRadius: '2px', animation: 'soundWave3 1.4s infinite ease-in-out 0.4s' }} />
+                      <span style={{ width: '3px', background: '#16C784', borderRadius: '2px', animation: 'soundWave1 1.1s infinite ease-in-out 0.1s' }} />
+                      <span style={{ width: '3px', background: '#00F0FF', borderRadius: '2px', animation: 'soundWave2 1.3s infinite ease-in-out 0.3s' }} />
                     </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                      {isAr ? 'نماذج دقيقة لحماية رأس المال وحساب أحجام الصفقات باحتراف.' : 'Capital preservation models and calculated position sizing.'}
+                  </div>
+
+                  {/* Micro Meta Tag */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px' }}>
+                    <span style={{ color: '#94A3B8' }}>
+                      {isAr ? 'تداول واقتناص صفقات حية' : 'Live Scalping & Q&A'}
+                    </span>
+                    <span style={{ color: '#00F0FF', fontWeight: 600 }}>
+                      {isAr ? 'انضم الآن ←' : 'Join Now →'}
+                    </span>
+                  </div>
+                </Link>
+
+                {/* ── Bento Widget 3: Certified Pro Academy Track ── */}
+                <Link
+                  href="/courses"
+                  style={{
+                    textDecoration: 'none',
+                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.85) 0%, rgba(10, 27, 61, 0.65) 100%)',
+                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    borderRadius: '12px',
+                    padding: '12px 14px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    backdropFilter: 'blur(12px)',
+                    boxShadow: '0 6px 20px rgba(0, 3, 13, 0.6)',
+                    transition: 'all 0.25s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.borderColor = '#00F0FF';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.22)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.25)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
+                  }}
+                >
+                  {/* Top Bar: Icon + Title + Accreditation Badge */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div
+                        style={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '8px',
+                          background: 'rgba(4, 136, 248, 0.18)',
+                          border: '1px solid rgba(4, 136, 248, 0.3)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          color: '#00F0FF',
+                        }}
+                      >
+                        <LuGraduationCap size={15} />
+                      </div>
+                      <span style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)' }}>
+                        {isAr ? 'الأكاديمية والشهادات' : 'Certified Academy'}
+                      </span>
+                    </div>
+
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        color: '#00F0FF',
+                        background: 'rgba(0, 240, 255, 0.1)',
+                        border: '1px solid rgba(0, 240, 255, 0.25)',
+                        padding: '2px 7px',
+                        borderRadius: '10px',
+                      }}
+                    >
+                      {isAr ? 'معتمد' : 'Accredited'}
+                    </span>
+                  </div>
+
+                  {/* Visual Progress Bar Component */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', height: '38px', justifyContent: 'center' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px' }}>
+                      <span style={{ color: '#94A3B8' }}>{isAr ? 'مسار استراتيجيات SMC' : 'ICT & SMC Track'}</span>
+                      <span style={{ color: '#00F0FF', fontWeight: 700, fontFamily: 'monospace' }}>78%</span>
+                    </div>
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '6px',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        borderRadius: '4px',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: '78%',
+                          height: '100%',
+                          background: 'linear-gradient(90deg, #0458EC 0%, #00F0FF 100%)',
+                          boxShadow: '0 0 8px rgba(0, 240, 255, 0.6)',
+                          borderRadius: '4px',
+                        }}
+                      />
                     </div>
                   </div>
-                </div>
+
+                  {/* Micro Meta Tag */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px' }}>
+                    <span style={{ color: '#94A3B8' }}>
+                      {isAr ? 'شهادة إتمام معتمدة' : 'Official Certificate'}
+                    </span>
+                    <span style={{ color: '#00F0FF', fontWeight: 600 }}>
+                      {isAr ? 'متابعة ←' : 'Resume →'}
+                    </span>
+                  </div>
+                </Link>
+
+                {/* ── Bento Widget 4: Smart Risk Management & Position Sizing ── */}
+                <Link
+                  href="/offers"
+                  style={{
+                    textDecoration: 'none',
+                    background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.85) 0%, rgba(10, 27, 61, 0.65) 100%)',
+                    border: '1px solid rgba(4, 136, 248, 0.25)',
+                    borderRadius: '12px',
+                    padding: '12px 14px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    backdropFilter: 'blur(12px)',
+                    boxShadow: '0 6px 20px rgba(0, 3, 13, 0.6)',
+                    transition: 'all 0.25s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.borderColor = '#00F0FF';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(4, 136, 248, 0.22)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(4, 136, 248, 0.25)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
+                  }}
+                >
+                  {/* Top Bar: Icon + Title + Shield Badge */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div
+                        style={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '8px',
+                          background: 'rgba(22, 199, 132, 0.15)',
+                          border: '1px solid rgba(22, 199, 132, 0.3)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          color: '#16C784',
+                        }}
+                      >
+                        <FiShield size={14} />
+                      </div>
+                      <span style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)' }}>
+                        {isAr ? 'إدارة رأس المال الصارمة' : 'Risk & Capital Engine'}
+                      </span>
+                    </div>
+
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        color: '#16C784',
+                        background: 'rgba(22, 199, 132, 0.1)',
+                        border: '1px solid rgba(22, 199, 132, 0.25)',
+                        padding: '2px 7px',
+                        borderRadius: '10px',
+                      }}
+                    >
+                      {isAr ? 'حماية 100%' : '100% Shield'}
+                    </span>
+                  </div>
+
+                  {/* Visual Risk/Reward Ratio & Drawdown Gauge */}
+                  <div
+                    style={{
+                      height: '38px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      background: 'rgba(4, 136, 248, 0.08)',
+                      borderRadius: '6px',
+                      padding: '0 10px',
+                      border: '1px solid rgba(4, 136, 248, 0.15)',
+                    }}
+                  >
+                    <div>
+                      <div style={{ fontSize: '9.5px', color: '#94A3B8' }}>{isAr ? 'معدل العائد R:R' : 'Reward:Risk'}</div>
+                      <div style={{ fontSize: '12px', fontWeight: 700, color: '#00F0FF', fontFamily: 'monospace' }}>1 : 3.5</div>
+                    </div>
+                    <div style={{ height: '20px', width: '1px', background: 'rgba(255, 255, 255, 0.1)' }} />
+                    <div>
+                      <div style={{ fontSize: '9.5px', color: '#94A3B8' }}>{isAr ? 'أقصى مخاطرة' : 'Max Risk'}</div>
+                      <div style={{ fontSize: '12px', fontWeight: 700, color: '#16C784', fontFamily: 'monospace' }}>1.5% Cap</div>
+                    </div>
+                  </div>
+
+                  {/* Micro Meta Tag */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px' }}>
+                    <span style={{ color: '#94A3B8' }}>
+                      {isAr ? 'نماذج حماية رأس المال' : 'Position Sizing Models'}
+                    </span>
+                    <span style={{ color: '#00F0FF', fontWeight: 600 }}>
+                      {isAr ? 'الحاسبة ←' : 'Calculator →'}
+                    </span>
+                  </div>
+                </Link>
               </div>
-
 
             </div>
 
-            {/* Left Column (in RTL): Expert Interactive Speech Bubble & Character Showcase */}
+            {/* Left Column (in RTL): Expert Holographic Mentorship HUD & Cutout Showcase */}
             <div
               className="expert-showcase-column"
               style={{
@@ -534,7 +925,7 @@ export default function Hero() {
                 minHeight: '520px',
               }}
             >
-              {/* 1. Speech Bubble with Constant Fixed Height (Zero Layout Shift, No Buttons) */}
+              {/* 1. Holographic Glass Mentorship Card (Seamless Dark Navy & Cyan Glass) */}
               <div
                 className="expert-speech-bubble"
                 style={{
@@ -543,11 +934,13 @@ export default function Hero() {
                   height: '160px',
                   minHeight: '160px',
                   maxHeight: '160px',
-                  background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.96) 0%, rgba(1, 7, 30, 0.98) 100%)',
+                  background: 'linear-gradient(135deg, rgba(6, 20, 47, 0.94) 0%, rgba(1, 7, 30, 0.98) 100%)',
                   border: '1px solid rgba(4, 136, 248, 0.35)',
                   borderRadius: '14px',
                   padding: '12px 16px',
-                  boxShadow: '0 14px 35px rgba(0, 3, 13, 0.85), 0 0 20px rgba(4, 136, 248, 0.15)',
+                  boxShadow: '0 16px 40px rgba(0, 3, 13, 0.85), 0 0 25px rgba(4, 136, 248, 0.18)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
                   position: 'relative',
                   display: 'flex',
                   flexDirection: 'column',
@@ -563,10 +956,10 @@ export default function Hero() {
                     style={{
                       fontSize: '10.5px',
                       fontWeight: 700,
-                      color: EXPERT_SLIDES[expertSlideIdx].badgeColor,
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      border: `1px solid ${EXPERT_SLIDES[expertSlideIdx].badgeColor}40`,
-                      padding: '2px 8px',
+                      color: EXPERT_SLIDES[expertSlideIdx].badgeColor || '#00F0FF',
+                      background: 'rgba(4, 136, 248, 0.12)',
+                      border: `1px solid ${EXPERT_SLIDES[expertSlideIdx].badgeColor || '#00F0FF'}50`,
+                      padding: '2px 9px',
                       borderRadius: '16px',
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -578,8 +971,8 @@ export default function Hero() {
                         width: '5px',
                         height: '5px',
                         borderRadius: '50%',
-                        background: EXPERT_SLIDES[expertSlideIdx].badgeColor,
-                        boxShadow: `0 0 6px ${EXPERT_SLIDES[expertSlideIdx].badgeColor}`,
+                        background: EXPERT_SLIDES[expertSlideIdx].badgeColor || '#00F0FF',
+                        boxShadow: `0 0 6px ${EXPERT_SLIDES[expertSlideIdx].badgeColor || '#00F0FF'}`,
                       }}
                     />
                     {isAr ? EXPERT_SLIDES[expertSlideIdx].badgeAr : EXPERT_SLIDES[expertSlideIdx].badgeEn}
@@ -594,7 +987,8 @@ export default function Hero() {
                           width: i === expertSlideIdx ? '16px' : '6px',
                           height: '4px',
                           borderRadius: '2px',
-                          background: i === expertSlideIdx ? EXPERT_SLIDES[expertSlideIdx].badgeColor : 'rgba(255, 255, 255, 0.2)',
+                          background: i === expertSlideIdx ? '#00F0FF' : 'rgba(255, 255, 255, 0.2)',
+                          boxShadow: i === expertSlideIdx ? '0 0 8px #00F0FF' : 'none',
                           transition: 'all 0.3s ease',
                         }}
                       />
@@ -625,23 +1019,23 @@ export default function Hero() {
                         display: 'inline-block',
                         width: '2px',
                         height: '12px',
-                        background: 'var(--accent)',
+                        background: '#00F0FF',
                         marginInlineStart: '4px',
                         verticalAlign: 'middle',
-                        boxShadow: '0 0 6px var(--accent)',
+                        boxShadow: '0 0 6px #00F0FF',
                         animation: 'cursorBlink 0.6s infinite',
                       }}
                     />
                   )}
                 </p>
 
-                {/* Bottom Highlight Chip (Statically placed with no layout movement) */}
+                {/* Bottom Highlight Chip (Cyan & Midnight Glass - Zero Gold) */}
                 <div
                   style={{
                     fontSize: '10.5px',
-                    color: 'var(--accent)',
-                    background: 'rgba(251, 135, 4, 0.08)',
-                    border: '1px solid rgba(251, 135, 4, 0.2)',
+                    color: '#00F0FF',
+                    background: 'rgba(4, 136, 248, 0.12)',
+                    border: '1px solid rgba(0, 240, 255, 0.25)',
                     padding: '2px 8px',
                     borderRadius: '5px',
                     fontWeight: 600,
@@ -667,7 +1061,7 @@ export default function Hero() {
                 />
               </div>
 
-              {/* 2. Enlarged Expert Cutout Visual with Smooth Cross-Fade & Zero Layout Drop */}
+              {/* 2. Expert Cutout Visual with Ambient Cyan Backlight & Floating Cockpit HUD */}
               <div
                 style={{
                   position: 'relative',
@@ -680,18 +1074,72 @@ export default function Hero() {
                   marginTop: '8px',
                 }}
               >
-                {/* Ambient Backlight Glow */}
+                {/* Ambient Cyan/Navy Backlight (Zero Gold) */}
                 <div
                   aria-hidden
                   style={{
                     position: 'absolute',
                     inset: '15% 15% 0 15%',
-                    background: 'radial-gradient(circle, rgba(251, 135, 4, 0.2) 0%, rgba(4, 136, 248, 0.14) 60%, transparent 80%)',
+                    background: 'radial-gradient(circle, rgba(4, 136, 248, 0.28) 0%, rgba(0, 240, 255, 0.12) 50%, transparent 80%)',
                     borderRadius: '50%',
                     filter: 'blur(36px)',
                     pointerEvents: 'none',
                   }}
                 />
+
+                {/* Floating Holographic HUD Pill 1: Daily Winrate */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '25%',
+                    [isAr ? 'left' : 'right']: '8px',
+                    background: 'rgba(6, 20, 47, 0.88)',
+                    border: '1px solid rgba(0, 240, 255, 0.35)',
+                    boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 14px rgba(0, 240, 255, 0.2)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    borderRadius: '20px',
+                    padding: '5px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    zIndex: 12,
+                    animation: 'hudFloat 4s ease-in-out infinite',
+                  }}
+                >
+                  <span style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 600 }}>
+                    {isAr ? 'دقة الإشارات:' : 'Accuracy:'}
+                  </span>
+                  <span style={{ fontSize: '11.5px', color: '#16C784', fontWeight: 800, fontFamily: 'monospace' }}>
+                    +89.4% ▲
+                  </span>
+                </div>
+
+                {/* Floating Holographic HUD Pill 2: Capital Protection */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '22%',
+                    [isAr ? 'right' : 'left']: '4px',
+                    background: 'rgba(6, 20, 47, 0.88)',
+                    border: '1px solid rgba(4, 136, 248, 0.35)',
+                    boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 14px rgba(4, 136, 248, 0.2)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    borderRadius: '20px',
+                    padding: '5px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    zIndex: 12,
+                    animation: 'hudFloat 4s ease-in-out infinite 2s',
+                  }}
+                >
+                  <FiShield size={12} color="#00F0FF" />
+                  <span style={{ fontSize: '11px', color: '#00F0FF', fontWeight: 700 }}>
+                    {isAr ? 'حماية رأس المال نشطة' : 'Capital Shield Active'}
+                  </span>
+                </div>
 
                 {/* Cutout Container with Soft Feathered Bottom Mask */}
                 <div

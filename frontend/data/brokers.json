@@ -389,7 +389,7 @@
     "badgeAr": "الأكثر موثوقية عالمياً • فئة أولى Tier-1",
     "badgeEn": "Most Trusted Globally • Tier-1 Regulated",
     "badgeColor": "#10B981",
-    "logo": "/assets/Images/brokers/dooprime.svg",
+    "logo": "https://fxengen.com/uploads/brokers/1792329026686_images.webp",
     "logoUrl": "/assets/Images/brokers/dooprime.svg",
     "logoBg": "#FFFFFF",
     "rating": 4.95,
@@ -467,7 +467,54 @@
     "liveUrl": "https://user.dooprime.com/register",
     "demoUrl": "https://user.dooprime.com/register",
     "status": "ACTIVE",
-    "order": 6
+    "order": 6,
+    "slug": "doo-prime",
+    "specsData": [
+      {
+        "labelAr": "الحد الأدنى للإيداع",
+        "labelEn": "Min Deposit",
+        "valueAr": "0 فقط",
+        "valueEn": "0 Only",
+        "val": "0"
+      },
+      {
+        "labelAr": "أقصى رافعة مالية",
+        "labelEn": "Max Leverage",
+        "valueAr": "تصل إلى 1:1000",
+        "valueEn": "Up to 1:1000",
+        "val": "1:1000"
+      },
+      {
+        "labelAr": "السبريد",
+        "labelEn": "Spread",
+        "valueAr": "يبدأ من 0.0 نقطة",
+        "valueEn": "From 0.0 pips",
+        "val": "0.0 Pip"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Platforms",
+        "valueAr": "MT4, MT5, TradingView, Web",
+        "valueEn": "MT4, MT5, TradingView, Web",
+        "val": "MT4 / MT5 / TV"
+      },
+      {
+        "labelAr": "الحساب الإسلامي",
+        "labelEn": "Islamic Account",
+        "valueAr": "متوفر 100% (Swap-Free)",
+        "valueEn": "100% Swap-Free Available",
+        "val": "Swap-Free"
+      },
+      {
+        "labelAr": "التراخيص الرقابية",
+        "labelEn": "Regulations",
+        "valueAr": "FCA, ASIC, FSA, FSC",
+        "valueEn": "FCA, ASIC, FSA, FSC",
+        "val": "FCA, ASIC"
+      }
+    ],
+    "categoryBadgeAr": "وسيط فوركس وعقود فروقات مرخص عالمياً",
+    "categoryBadgeEn": "Multi-Regulated Global Forex & CFD Broker"
   },
   {
     "id": "ingot",
@@ -478,7 +525,7 @@
     "badgeAr": "الأكثر موثوقية عالمياً • فئة أولى Tier-1",
     "badgeEn": "Most Trusted Globally • Tier-1 Regulated",
     "badgeColor": "#0488F8",
-    "logo": "/assets/Images/brokers/ingot.svg",
+    "logo": "https://fxengen.com/uploads/brokers/1792328948780_images.webp",
     "logoUrl": "/assets/Images/brokers/ingot.svg",
     "logoBg": "#FFFFFF",
     "rating": 4.95,
@@ -554,6 +601,55 @@
     "liveUrl": "https://www.ingotbrokers.com",
     "demoUrl": "https://www.ingotbrokers.com",
     "status": "ACTIVE",
-    "order": 7
+    "order": 7,
+    "slug": "ingot",
+    "specsData": [
+      {
+        "labelAr": "الحد الأدنى للإيداع",
+        "labelEn": "Min Deposit",
+        "valueAr": "$10 فقط",
+        "valueEn": "$10 Only",
+        "val": "$10"
+      },
+      {
+        "labelAr": "أقصى رافعة مالية",
+        "labelEn": "Max Leverage",
+        "valueAr": "تصل إلى 1:1000",
+        "valueEn": "Up to 1:1000",
+        "val": "1:1000"
+      },
+      {
+        "labelAr": "السبريد",
+        "labelEn": "Spread",
+        "valueAr": "من 0.0 نقطة",
+        "valueEn": "From 0.0 pips",
+        "val": "0.0 Pip"
+      },
+      {
+        "labelAr": "المنصات",
+        "labelEn": "Platforms",
+        "valueAr": "MT4, MT5, Web",
+        "valueEn": "MT4, MT5, Web",
+        "val": "MT4 / MT5"
+      },
+      {
+        "labelAr": "الحساب الإسلامي",
+        "labelEn": "Islamic Account",
+        "valueAr": "متوفر 100% (Swap-Free)",
+        "valueEn": "100% Swap-Free Available",
+        "val": "Swap-Free"
+      },
+      {
+        "labelAr": "التراخيص الرقابية",
+        "labelEn": "Regulations",
+        "valueAr": "مرخص فئة أولى Tier-1",
+        "valueEn": "Tier-1 Regulated",
+        "val": "Regulated"
+      }
+    ],
+    "tradersCount": "100K+ متداول",
+    "tradersCountEn": "100K+ Traders",
+    "categoryBadgeAr": "وسيط فوركس وعقود فروقات مرخص عالمياً",
+    "categoryBadgeEn": "Multi-Regulated Global Forex & CFD Broker"
   }
 ]
