@@ -344,13 +344,13 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                   className="broker-card-image-banner"
                   style={{
                     width: '100%',
-                    height: '142px',
+                    height: '190px',
                     position: 'relative',
                     background: broker.logoBg || 'var(--surface-container, #06142F)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '20px 24px',
+                    padding: '24px 20px',
                     borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
                     overflow: 'hidden',
                   }}
@@ -365,37 +365,7 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                     }}
                   />
 
-                  {/* Floating Category Badge (Top-Start) */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '12px',
-                      [isAr ? 'right' : 'left']: '12px',
-                      zIndex: 2,
-                    }}
-                  >
-                    <span
-                      suppressHydrationWarning
-                      style={{
-                        background: 'rgba(1, 7, 30, 0.88)',
-                        backdropFilter: 'blur(8px)',
-                        border: `1px solid ${broker.accentColor || 'var(--primary)'}`,
-                        color: broker.accentColor || 'var(--primary)',
-                        fontSize: '10.5px',
-                        fontWeight: 800,
-                        padding: '3.5px 9px',
-                        borderRadius: '20px',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.45)',
-                      }}
-                    >
-                      {isAr ? (broker.categoryBadgeAr || broker.badgeAr) : (broker.categoryBadgeEn || broker.badgeEn)}
-                    </span>
-                  </div>
-
-                  {/* Floating Rating Pill (Top-End) */}
+                  {/* Rating Pill (Kept at the Top in its Place) */}
                   <div
                     style={{
                       position: 'absolute',
@@ -411,9 +381,9 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                         backdropFilter: 'blur(8px)',
                         border: '1px solid rgba(255, 255, 255, 0.15)',
                         color: '#FFFFFF',
-                        fontSize: '10.5px',
+                        fontSize: '11px',
                         fontWeight: 800,
-                        padding: '3.5px 9px',
+                        padding: '4px 10px',
                         borderRadius: '20px',
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -431,17 +401,55 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                     alt={`${broker.name} Logo`}
                     className="broker-hero-logo"
                     style={{
-                      maxHeight: '66px',
-                      maxWidth: '78%',
+                      maxHeight: '78px',
+                      maxWidth: '80%',
                       width: 'auto',
                       height: 'auto',
                       objectFit: 'contain',
                       position: 'relative',
                       zIndex: 1,
-                      filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25))',
+                      filter: 'drop-shadow(0 4px 14px rgba(0, 0, 0, 0.25))',
                       transition: 'transform 0.3s ease',
                     }}
                   />
+
+                  {/* Category Text (Moved to the Bottom of Image Section) */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '12px',
+                      left: '12px',
+                      right: '12px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      zIndex: 2,
+                    }}
+                  >
+                    <span
+                      suppressHydrationWarning
+                      style={{
+                        background: 'rgba(1, 7, 30, 0.9)',
+                        backdropFilter: 'blur(8px)',
+                        border: `1px solid ${broker.accentColor || 'var(--primary)'}`,
+                        color: broker.accentColor || 'var(--primary)',
+                        fontSize: '11px',
+                        fontWeight: 800,
+                        padding: '4px 12px',
+                        borderRadius: '20px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        maxWidth: '100%',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        boxShadow: '0 4px 14px rgba(0, 0, 0, 0.5)',
+                      }}
+                    >
+                      {isAr ? (broker.categoryBadgeAr || broker.badgeAr) : (broker.categoryBadgeEn || broker.badgeEn)}
+                    </span>
+                  </div>
                 </div>
 
                 <div style={{ padding: '20px 22px', display: 'flex', flexDirection: 'column', gap: '14px', flex: 1 }}>
