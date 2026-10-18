@@ -3,6 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../Modal';
 import { toast } from 'react-toastify';
+import {
+  IoSparklesOutline,
+  IoRefreshOutline,
+  IoArrowUndoOutline,
+  IoLanguageOutline,
+} from 'react-icons/io5';
+import { translateText } from '../../services/translationService';
 
 const AVAILABLE_PERMISSIONS = [
   { key: 'GOLD_VIP_SIGNALS', label: 'إشارات الذهب VIP وMT5 الحية (Gold VIP)' },
@@ -45,6 +52,156 @@ export default function CreateEditPlanModal({ isOpen, onClose, plan, onSave }) {
   });
 
   const [loading, setLoading] = useState(false);
+
+  // Auto-Translation state
+  const [translatingFields, setTranslatingFields] = useState({});
+  const [translatingAll, setTranslatingAll] = useState(false);
+  const [autoTranslateEnabled, setAutoTranslateEnabled] = useState(true);
+  const [arabicBackup, setArabicBackup] = useState(null);
+
+  const handleTranslateField = async (field, targetLang = 'en') => {
+    const val = formData[field];
+    if (!val || !val.trim()) {
+      toast.warn('يرجى كتابة النص أولاً لترجمته');
+      return;
+    }
+
+    setTranslatingFields((prev) => ({ ...prev, [field]: true }));
+    try {
+      const from = targetLang === 'en' ? 'ar' : 'en';
+      const to = targetLang;
+      const trans = await translateText(val, from, to);
+      if (trans) {
+        setFormData((prev) => ({ ...prev, [field]: trans }));
+        toast.success(`تمت الترجمة إلى ${targetLang === 'en' ? 'الإنجليزية' : 'العربية'} بنجاح!`);
+      }
+    } catch {
+      toast.error('تعذر إجراء الترجمة التلقائية');
+    } finally {
+      setTranslatingFields((prev) => ({ ...prev, [field]: false }));
+    }
+  };
+
+  const handleTranslateFeatures = async (targetLang = 'en') => {
+    if (!formData.featuresText || !formData.featuresText.trim()) {
+      toast.warn('يرجى كتابة المميزات أولاً لترجمتها');
+      return;
+    }
+
+    setTranslatingFields((prev) => ({ ...prev, featuresText: true }));
+    try {
+      const from = targetLang === 'en' ? 'ar' : 'en';
+      const to = targetLang;
+      const lines = formData.featuresText.split('\n');
+      const translatedLines = await Promise.all(
+        lines.map(async (line) => {
+          if (!line.trim()) return '';
+          const res = await translateText(line, from, to);
+          return res || line;
+        })
+      );
+
+      setFormData((prev) => ({ ...prev, featuresText: translatedLines.join('\n') }));
+      toast.success(`تمت ترجمة كافة سطور المميزات إلى ${targetLang === 'en' ? 'الإنجليزية' : 'العربية'}! ✨`);
+    } catch {
+      toast.error('فشلت ترجمة المميزات');
+    } finally {
+      setTranslatingFields((prev) => ({ ...prev, featuresText: false }));
+    }
+  };
+
+  const handleTranslateAllFields = async (targetLang = 'en') => {
+    setTranslatingAll(true);
+    const toastId = toast.loading(`جاري ترجمة كافة الحقول إلى ${targetLang === 'en' ? 'الإنجليزية' : 'العربية'}...`);
+
+    // Backup current state if translating from Arabic
+    if (targetLang === 'en' && !arabicBackup) {
+      setArabicBackup({
+        name: formData.name,
+        badge: formData.badge,
+        description: formData.description,
+        featuresText: formData.featuresText,
+      });
+    }
+
+    try {
+      const from = targetLang === 'en' ? 'ar' : 'en';
+      const to = targetLang;
+      const promises = [];
+      const updates = {};
+
+      if (formData.name?.trim()) {
+        promises.push(
+          translateText(formData.name, from, to).then((res) => {
+            if (res) updates.name = res;
+          })
+        );
+      }
+
+      if (formData.badge?.trim()) {
+        promises.push(
+          translateText(formData.badge, from, to).then((res) => {
+            if (res) updates.badge = res;
+          })
+        );
+      }
+
+      if (formData.description?.trim()) {
+        promises.push(
+          translateText(formData.description, from, to).then((res) => {
+            if (res) updates.description = res;
+          })
+        );
+      }
+
+      if (formData.featuresText?.trim()) {
+        const lines = formData.featuresText.split('\n');
+        promises.push(
+          Promise.all(
+            lines.map(async (line) => {
+              if (!line.trim()) return '';
+              const res = await translateText(line, from, to);
+              return res || line;
+            })
+          ).then((translatedLines) => {
+            updates.featuresText = translatedLines.join('\n');
+          })
+        );
+      }
+
+      await Promise.all(promises);
+      setFormData((prev) => ({ ...prev, ...updates }));
+
+      toast.update(toastId, {
+        render: `تمت ترجمة كافة بيانات الباقة إلى ${targetLang === 'en' ? 'الإنجليزية' : 'العربية'} بنجاح! ✨`,
+        type: 'success',
+        isLoading: false,
+        autoClose: 3000,
+      });
+    } catch {
+      toast.update(toastId, {
+        render: 'فشلت الترجمة الشاملة',
+        type: 'error',
+        isLoading: false,
+        autoClose: 3000,
+      });
+    } finally {
+      setTranslatingAll(false);
+    }
+  };
+
+  const handleRestoreArabic = () => {
+    if (arabicBackup) {
+      setFormData((prev) => ({
+        ...prev,
+        name: arabicBackup.name,
+        badge: arabicBackup.badge,
+        description: arabicBackup.description,
+        featuresText: arabicBackup.featuresText,
+      }));
+      toast.info('تم استعادة النصوص الأصلية');
+    }
+  };
 
   useEffect(() => {
     if (plan) {
@@ -140,12 +297,84 @@ export default function CreateEditPlanModal({ isOpen, onClose, plan, onSave }) {
       maxWidth="max-w-2xl"
     >
       <form onSubmit={handleSubmit} className="space-y-4 text-sm text-right" dir="rtl">
+        {/* AI Auto-Translation Toolbar */}
+        <div className="p-3 bg-[#050E21] border border-[#12315C] rounded-xl flex flex-wrap items-center justify-between gap-3 text-xs mb-3">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span
+                  className={`animate-ping absolute inline-flex h-full w-full rounded-full ${
+                    autoTranslateEnabled ? 'bg-emerald-400 opacity-75' : 'bg-slate-500 opacity-40'
+                  }`}
+                ></span>
+                <span
+                  className={`relative inline-flex rounded-full h-2 w-2 ${
+                    autoTranslateEnabled ? 'bg-emerald-500' : 'bg-slate-600'
+                  }`}
+                ></span>
+              </span>
+              <span className="text-gray-300 font-medium">الترجمة التلقائية الفورية بالذكاء الاصطناعي:</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setAutoTranslateEnabled(!autoTranslateEnabled)}
+              className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold cursor-pointer transition-all ${
+                autoTranslateEnabled
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/30'
+                  : 'bg-[#0A1B3D] text-gray-400 border border-[#12315C] hover:text-white'
+              }`}
+            >
+              {autoTranslateEnabled ? 'مفعلة' : 'معطلة'}
+            </button>
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            {arabicBackup && (
+              <button
+                type="button"
+                onClick={handleRestoreArabic}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#0A1B3D] text-gray-300 border border-[#12315C] hover:text-white text-xs cursor-pointer transition-all"
+                title="استعادة النصوص العربية الأصلية"
+              >
+                <IoArrowUndoOutline />
+                <span>استعادة العربي</span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              disabled={translatingAll}
+              onClick={() => handleTranslateAllFields('en')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#FB8704] to-[#0488F8] text-white text-xs font-bold shadow-md hover:brightness-110 active:scale-95 transition-all cursor-pointer disabled:opacity-50"
+              title="ترجمة الاسم، الشارة، الوصف، والمميزات بالكامل إلى الإنجليزية"
+            >
+              <IoSparklesOutline className={translatingAll ? 'animate-spin' : ''} />
+              <span>{translatingAll ? 'جاري ترجمة كافة الحقول...' : '✨ ترجمة جميع الحقول تلقائياً للإنجليزية'}</span>
+            </button>
+          </div>
+        </div>
+
         {/* Basic Info */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-[#A7AFBF] mb-1">
-              اسم المجموعة <span className="text-red-400">*</span>
-            </label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="text-xs font-semibold text-[#A7AFBF]">
+                اسم المجموعة <span className="text-red-400">*</span>
+              </label>
+              <div className="flex items-center gap-1.5">
+                {translatingFields.name && (
+                  <span className="text-[10px] text-[#FB8704] animate-pulse font-bold">جاري الترجمة...</span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => handleTranslateField('name', 'en')}
+                  className="text-[10px] text-[#0488F8] hover:underline font-bold cursor-pointer inline-flex items-center gap-0.5"
+                >
+                  <IoSparklesOutline size={11} />
+                  <span>ترجمة للإنجليزية</span>
+                </button>
+              </div>
+            </div>
             <input
               type="text"
               required
@@ -226,9 +455,24 @@ export default function CreateEditPlanModal({ isOpen, onClose, plan, onSave }) {
         {/* Badge & Color */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-[#A7AFBF] mb-1">
-              شارة التميز (Badge نصي)
-            </label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="text-xs font-semibold text-[#A7AFBF]">
+                شارة التميز (Badge نصي)
+              </label>
+              <div className="flex items-center gap-1.5">
+                {translatingFields.badge && (
+                  <span className="text-[10px] text-[#FB8704] animate-pulse font-bold">جاري الترجمة...</span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => handleTranslateField('badge', 'en')}
+                  className="text-[10px] text-[#0488F8] hover:underline font-bold cursor-pointer inline-flex items-center gap-0.5"
+                >
+                  <IoSparklesOutline size={11} />
+                  <span>ترجمة للإنجليزية</span>
+                </button>
+              </div>
+            </div>
             <input
               type="text"
               placeholder="مثال: الأكثر طلباً • نشط على الـAPI الآن"
@@ -269,9 +513,24 @@ export default function CreateEditPlanModal({ isOpen, onClose, plan, onSave }) {
 
         {/* Description */}
         <div>
-          <label className="block text-xs font-semibold text-[#A7AFBF] mb-1">
-            وصف المجموعة
-          </label>
+          <div className="flex items-center justify-between mb-1">
+            <label className="text-xs font-semibold text-[#A7AFBF]">
+              وصف المجموعة
+            </label>
+            <div className="flex items-center gap-1.5">
+              {translatingFields.description && (
+                <span className="text-[10px] text-[#FB8704] animate-pulse font-bold">جاري الترجمة...</span>
+              )}
+              <button
+                type="button"
+                onClick={() => handleTranslateField('description', 'en')}
+                className="text-[10px] text-[#0488F8] hover:underline font-bold cursor-pointer inline-flex items-center gap-0.5"
+              >
+                <IoSparklesOutline size={11} />
+                <span>ترجمة للإنجليزية</span>
+              </button>
+            </div>
+          </div>
           <input
             type="text"
             placeholder="مثال: المجموعة الأكثر طلباً لتحليلات وإشارات الذهب اللحظية وشارتات MT5..."
@@ -287,9 +546,25 @@ export default function CreateEditPlanModal({ isOpen, onClose, plan, onSave }) {
             <label className="block text-xs font-semibold text-[#A7AFBF]">
               المميزات وصلاحيات الوصول (اكتب كل ميزة في سطر مستقل)
             </label>
-            <span className="text-[11px] text-gray-400">
-              سطر جديد = علامة صح خضراء منفصلة
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-gray-400">
+                سطر جديد = علامة صح خضراء منفصلة
+              </span>
+              <span className="text-gray-600">•</span>
+              <div className="flex items-center gap-1.5">
+                {translatingFields.featuresText && (
+                  <span className="text-[10px] text-[#FB8704] animate-pulse font-bold">جاري ترجمة السطور...</span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => handleTranslateFeatures('en')}
+                  className="text-[10px] text-[#0488F8] hover:underline font-bold cursor-pointer inline-flex items-center gap-0.5"
+                >
+                  <IoSparklesOutline size={11} />
+                  <span>ترجمة المميزات للإنجليزية</span>
+                </button>
+              </div>
+            </div>
           </div>
           <textarea
             rows={5}
