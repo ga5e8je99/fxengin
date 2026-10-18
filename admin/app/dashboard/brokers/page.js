@@ -1793,6 +1793,7 @@ export default function BrokersManagementPage() {
                         placeholder="10M+ Active Traders Worldwide"
                         className="w-full h-10 px-3 rounded-xl bg-surface-elevated border border-border-structural text-text-primary text-sm outline-none dir-ltr"
                       />
+                    </div>
                   </div>
                 </div>
               )}

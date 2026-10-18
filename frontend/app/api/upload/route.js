@@ -82,9 +82,9 @@ async function resolveImageBufferFromUrl(inputUrl) {
   ];
 
   for (const p of candidatePaths) {
-    if (fs.existsSync(p)) {
+    if (fs.existsSync(/*turbopackIgnore: true*/ p)) {
       try {
-        const buffer = await fs.promises.readFile(p);
+        const buffer = await fs.promises.readFile(/*turbopackIgnore: true*/ p);
         const ext = path.extname(p).toLowerCase() || '.png';
         const base = path.basename(p, ext) || 'logo';
         return { ok: true, buffer, ext, base };
