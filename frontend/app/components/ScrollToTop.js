@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { FiArrowUp } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function ScrollToTop() {
@@ -53,7 +52,7 @@ export default function ScrollToTop() {
     return null;
   }
 
-  // SVG Circular progress bar measurements
+  // SVG Circular progress bar measurements (Exact 50x50 coordinate system)
   const strokeWidth = 2.75;
   const radius = 21;
   const circumference = 2 * Math.PI * radius;
@@ -66,6 +65,7 @@ export default function ScrollToTop() {
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
         pointerEvents: isVisible ? 'auto' : 'none',
+        transition: 'opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1), transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)',
       }}
     >
       <button
@@ -77,8 +77,10 @@ export default function ScrollToTop() {
         title={isAr ? 'الرجوع للأعلى' : 'Back to top'}
         style={{
           position: 'relative',
-          width: '3.125rem',
-          height: '3.125rem',
+          width: '50px',
+          height: '50px',
+          minWidth: '50px',
+          minHeight: '50px',
           borderRadius: '50%',
           border: 'none',
           padding: 0,
@@ -91,20 +93,22 @@ export default function ScrollToTop() {
           alignItems: 'center',
           justifyContent: 'center',
           backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
           transition: 'transform 0.25s ease, box-shadow 0.25s ease',
           transform: isHovered ? 'translateY(-3px)' : 'none',
+          overflow: 'hidden',
         }}
       >
-        {/* SVG Progress Ring */}
+        {/* Unified SVG: Progress Ring and 100% Centered Arrow in Exact Same Coordinate System */}
         <svg
           width="50"
           height="50"
           viewBox="0 0 50 50"
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            transform: 'rotate(-90deg)',
+            inset: 0,
+            width: '100%',
+            height: '100%',
             pointerEvents: 'none',
           }}
         >
@@ -122,11 +126,11 @@ export default function ScrollToTop() {
             cy="25"
             r={radius}
             fill="none"
-            stroke="rgba(255, 255, 255, 0.1)"
+            stroke="rgba(255, 255, 255, 0.12)"
             strokeWidth={strokeWidth}
           />
 
-          {/* Animated Progress Circle */}
+          {/* Animated Progress Circle (Starts at 12 o'clock, rotates around exact center 25, 25) */}
           <circle
             cx="25"
             cy="25"
@@ -137,27 +141,28 @@ export default function ScrollToTop() {
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
+            transform="rotate(-90 25 25)"
             style={{
               transition: 'stroke-dashoffset 0.15s ease-out',
             }}
           />
-        </svg>
 
-        {/* Upward Arrow Icon */}
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 2,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: isHovered ? '#FB8704' : '#FFFFFF',
-            transition: 'color 0.2s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
-            transform: isHovered ? 'translateY(-2px)' : 'none',
-          }}
-        >
-          <FiArrowUp size={19} strokeWidth={2.5} />
-        </div>
+          {/* Mathematically & Optically Centered Upward Arrow (Center X=25.0, Center Y=25.0) */}
+          <g
+            stroke={isHovered ? '#FB8704' : '#FFFFFF'}
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              transition: 'stroke 0.2s ease',
+            }}
+          >
+            {/* Center vertical stem: from Y=16.5 to Y=33.5, midpoint = 25.0 */}
+            <line x1="25" y1="16.5" x2="25" y2="33.5" />
+            {/* Symmetrical chevron wings: Left (X=18, Y=23.5) -> Tip (X=25, Y=16.5) -> Right (X=32, Y=23.5) */}
+            <polyline points="18 23.5 25 16.5 32 23.5" fill="none" />
+          </g>
+        </svg>
       </button>
     </div>
   );
