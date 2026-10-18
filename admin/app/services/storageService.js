@@ -137,3 +137,51 @@ export async function uploadFileDirectToStorage(file, { folder = 'advertisements
     };
   }
 }
+
+/**
+ * Converts any image URL (local relative path or remote http/https) into a WebP image and stores it on the server
+ *
+ * @param {string} imageUrl - The image URL or path to convert
+ * @param {Object} options
+ * @param {string} [options.folder='brokers'] - Target subfolder
+ * @returns {Promise<{ ok: boolean, fileUrl?: string, error?: string }>}
+ */
+export async function convertImageUrlToWebp(imageUrl, { folder = 'brokers' } = {}) {
+  if (!imageUrl || typeof imageUrl !== 'string' || !imageUrl.trim()) {
+    return { ok: false, error: 'رابط الصورة فارغ' };
+  }
+
+  try {
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: imageUrl.trim(),
+        folder,
+      }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.ok && data.fileUrl) {
+      return {
+        ok: true,
+        fileUrl: data.fileUrl,
+        fileName: data.fileName,
+        convertedToWebp: data.convertedToWebp,
+      };
+    }
+
+    return {
+      ok: false,
+      error: data.error || `فشل تحويل الصورة إلى WebP (كود: ${res.status})`,
+    };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err.message || 'حدث خطأ أثناء الاتصال بالسيرفر لتحويل الصورة',
+    };
+  }
+}
+

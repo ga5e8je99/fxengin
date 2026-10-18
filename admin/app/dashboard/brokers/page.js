@@ -24,6 +24,9 @@ import {
   IoTimeOutline,
   IoRepeatOutline,
   IoFlameOutline,
+  IoCloudUploadOutline,
+  IoFlashOutline,
+  IoImageOutline,
 } from 'react-icons/io5';
 import {
   getBrokersList,
@@ -35,6 +38,10 @@ import {
   updateBrokerPopupConfig,
 } from '../../services/brokerService';
 import { translateText } from '../../services/translationService';
+import {
+  uploadFileDirectToStorage,
+  convertImageUrlToWebp,
+} from '../../services/storageService';
 import BrokerPopupControlModal from '../../components/brokers/BrokerPopupControlModal';
 
 export default function BrokersManagementPage() {
@@ -353,6 +360,103 @@ export default function BrokersManagementPage() {
 
   const [formData, setFormData] = useState(initialFormState);
 
+  // Logo Upload & WebP Conversion States
+  const [uploadingLogo, setUploadingLogo] = useState(false);
+  const [convertingLogo, setConvertingLogo] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [dragOverLogo, setDragOverLogo] = useState(false);
+  const logoFileInputRef = useRef(null);
+
+  // Upload logo file from user's device and auto-convert to WebP
+  const handleLogoFileUpload = async (file) => {
+    if (!file) return;
+
+    if (!file.type.startsWith('image/') && !file.name.match(/\.(png|jpe?g|webp|svg|gif|avif|bmp|tiff)$/i)) {
+      toast.error('يرجى اختيار ملف صورة صالح (PNG, JPG, SVG, WEBP, ...etc)');
+      return;
+    }
+
+    setUploadingLogo(true);
+    setUploadProgress(0);
+    const toastId = toast.loading('جاري رفع الشعار وتحويله تلقائياً إلى صيغة WebP...');
+
+    try {
+      const res = await uploadFileDirectToStorage(file, {
+        folder: 'brokers',
+        onProgress: (p) => setUploadProgress(p),
+      });
+
+      if (res.ok && res.fileUrl) {
+        setFormData((prev) => ({ ...prev, logo: res.fileUrl }));
+        toast.update(toastId, {
+          render: 'تم رفع الشعار وتحويله بنجاح إلى صيغة WebP فائقة الجودة! 🚀',
+          type: 'success',
+          isLoading: false,
+          autoClose: 3000,
+        });
+      } else {
+        toast.update(toastId, {
+          render: res.error || 'فشل رفع الشعار',
+          type: 'error',
+          isLoading: false,
+          autoClose: 4000,
+        });
+      }
+    } catch (err) {
+      toast.update(toastId, {
+        render: err.message || 'حدث خطأ أثناء رفع الشعار',
+        type: 'error',
+        isLoading: false,
+        autoClose: 4000,
+      });
+    } finally {
+      setUploadingLogo(false);
+      setUploadProgress(0);
+    }
+  };
+
+  // Convert existing or pasted URL/path to WebP
+  const handleConvertLogoUrlToWebp = async (urlToConvert) => {
+    const targetUrl = urlToConvert || formData.logo;
+    if (!targetUrl || !targetUrl.trim()) {
+      toast.warn('يرجى إدخال مسار أو رابط الشعار أولاً');
+      return;
+    }
+
+    setConvertingLogo(true);
+    const toastId = toast.loading('جاري جلب الصورة وتحويلها إلى صيغة WebP...');
+
+    try {
+      const res = await convertImageUrlToWebp(targetUrl.trim(), { folder: 'brokers' });
+
+      if (res.ok && res.fileUrl) {
+        setFormData((prev) => ({ ...prev, logo: res.fileUrl }));
+        toast.update(toastId, {
+          render: 'تم تحويل الشعار إلى صيغة WebP وحفظه بنجاح! ⚡',
+          type: 'success',
+          isLoading: false,
+          autoClose: 3000,
+        });
+      } else {
+        toast.update(toastId, {
+          render: res.error || 'تعذر تحويل الصورة إلى WebP',
+          type: 'error',
+          isLoading: false,
+          autoClose: 4000,
+        });
+      }
+    } catch (err) {
+      toast.update(toastId, {
+        render: err.message || 'حدث خطأ أثناء تحويل الصورة',
+        type: 'error',
+        isLoading: false,
+        autoClose: 4000,
+      });
+    } finally {
+      setConvertingLogo(false);
+    }
+  };
+
   // Load Brokers Data & Popup Config
   const loadData = async () => {
     setLoading(true);
@@ -506,22 +610,41 @@ export default function BrokersManagementPage() {
       return;
     }
 
+    let finalData = { ...formData };
+
+    // Auto-convert logo to WebP if user provided a non-webp URL/path
+    if (finalData.logo && typeof finalData.logo === 'string') {
+      const trimmedLogo = finalData.logo.trim();
+      const isWebP = trimmedLogo.toLowerCase().endsWith('.webp');
+      if (!isWebP && (trimmedLogo.startsWith('http') || trimmedLogo.startsWith('/') || trimmedLogo.startsWith('data:'))) {
+        try {
+          const convRes = await convertImageUrlToWebp(trimmedLogo, { folder: 'brokers' });
+          if (convRes.ok && convRes.fileUrl) {
+            finalData.logo = convRes.fileUrl;
+            setFormData((prev) => ({ ...prev, logo: convRes.fileUrl }));
+          }
+        } catch (e) {
+          console.warn('Auto convert on save error:', e);
+        }
+      }
+    }
+
     if (modalMode === 'add') {
-      const res = await createBroker(formData);
+      const res = await createBroker(finalData);
       if (res.success) {
         setBrokers((prev) => [...prev, res.data]);
-        toast.success(`تمت إضافة الوسيط (${formData.name}) بنجاح!`);
+        toast.success(`تمت إضافة الوسيط (${finalData.name}) بنجاح!`);
         setIsModalOpen(false);
       } else {
         toast.error('حدث خطأ أثناء إضافة الوسيط');
       }
     } else {
-      const res = await updateBroker(formData);
+      const res = await updateBroker(finalData);
       if (res.success) {
         setBrokers((prev) =>
-          prev.map((b) => (b.id === formData.id ? { ...b, ...formData } : b))
+          prev.map((b) => (b.id === finalData.id ? { ...b, ...finalData } : b))
         );
-        toast.success(`تم حفظ تعديلات الوسيط (${formData.name}) بنجاح!`);
+        toast.success(`تم حفظ تعديلات الوسيط (${finalData.name}) بنجاح!`);
         setIsModalOpen(false);
       } else {
         toast.error('حدث خطأ أثناء حفظ التعديلات');
@@ -1395,17 +1518,174 @@ export default function BrokersManagementPage() {
               {/* TAB 2: BRANDING & APPEARANCE */}
               {modalTab === 'branding' && (
                 <div className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-bold text-text-secondary mb-1">
-                      مسار أو رابط الشعار (Logo URL)
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.logo}
-                      onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
-                      placeholder="/assets/Images/brokers/xm.webp أو https://..."
-                      className="w-full h-10 px-3 rounded-xl bg-surface-elevated border border-border-structural text-text-primary text-sm font-mono outline-none dir-ltr"
-                    />
+                  {/* LOGO UPLOADER & WEBP CONVERTER CARD */}
+                  <div className="p-4 rounded-2xl bg-surface-container/60 border border-border-structural space-y-4">
+                    <div className="flex items-center justify-between flex-wrap gap-2">
+                      <div className="flex items-center gap-2">
+                        <IoImageOutline className="text-primary text-lg" />
+                        <div>
+                          <span className="text-xs font-bold text-text-primary block">
+                            شعار الوسيط (Broker Logo)
+                          </span>
+                          <span className="text-[11px] text-text-muted">
+                            يدعم رفع الصور من جهازك أو إدخال رابط مباشر، مع تحويل فوري وتلقائي إلى WebP
+                          </span>
+                        </div>
+                      </div>
+
+                      {formData.logo ? (
+                        formData.logo.toLowerCase().endsWith('.webp') ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <IoCheckmarkCircleOutline className="text-sm" />
+                            بصيغة WebP معتمدة
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                            صيغة غير WebP ({formData.logo.split('.').pop()?.slice(0, 4) || 'مخصصة'})
+                          </span>
+                        )
+                      ) : null}
+                    </div>
+
+                    {/* Method 1: Upload from Device */}
+                    <div>
+                      <input
+                        type="file"
+                        ref={logoFileInputRef}
+                        accept="image/*,.svg,.png,.jpg,.jpeg,.webp,.gif,.bmp"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) handleLogoFileUpload(file);
+                          e.target.value = '';
+                        }}
+                        className="hidden"
+                      />
+
+                      <div
+                        onClick={() => logoFileInputRef.current?.click()}
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                          setDragOverLogo(true);
+                        }}
+                        onDragLeave={() => setDragOverLogo(false)}
+                        onDrop={(e) => {
+                          e.preventDefault();
+                          setDragOverLogo(false);
+                          const file = e.dataTransfer.files?.[0];
+                          if (file) handleLogoFileUpload(file);
+                        }}
+                        className={`group relative flex flex-col items-center justify-center p-5 rounded-xl border-2 border-dashed transition-all cursor-pointer ${
+                          dragOverLogo
+                            ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20 scale-[1.01]'
+                            : 'border-border-structural hover:border-primary/60 bg-surface-elevated/40 hover:bg-surface-elevated'
+                        }`}
+                      >
+                        {uploadingLogo ? (
+                          <div className="flex flex-col items-center gap-2 py-2">
+                            <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+                            <span className="text-xs font-bold text-primary animate-pulse">
+                              جاري رفع الصورة وتحويلها تلقائياً إلى WebP ({uploadProgress}%)...
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col items-center text-center gap-1.5">
+                            <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                              <IoCloudUploadOutline className="text-xl" />
+                            </div>
+                            <div className="text-xs font-bold text-text-primary">
+                              اضغط هنا لرفع صورة الشعار من جهازك (أو اسحب الصورة وأفلتها هنا)
+                            </div>
+                            <p className="text-[11px] text-text-muted">
+                              PNG, JPG, JPEG, SVG, WEBP — يتم تحويل أي امتداد تلقائياً لصيغة WebP فائقة الجودة
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Method 2: Link / URL Input & 1-Click Convert */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="text-xs font-bold text-text-secondary">
+                          أو أدخل مسار أو رابط الشعار (Logo URL / Path):
+                        </label>
+                        {formData.logo && !formData.logo.toLowerCase().endsWith('.webp') && (
+                          <button
+                            type="button"
+                            onClick={() => handleConvertLogoUrlToWebp()}
+                            disabled={convertingLogo}
+                            className="text-[11px] font-bold text-amber-400 hover:underline flex items-center gap-1 cursor-pointer disabled:opacity-50"
+                          >
+                            <IoFlashOutline />
+                            {convertingLogo ? 'جاري التحويل...' : 'تحويل الرابط الحالي لـ WebP'}
+                          </button>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="text"
+                          value={formData.logo}
+                          onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
+                          placeholder="/assets/Images/brokers/ingot.svg أو https://..."
+                          className="flex-1 h-10 px-3 rounded-xl bg-surface-elevated border border-border-structural text-text-primary text-xs font-mono outline-none focus:border-primary dir-ltr"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleConvertLogoUrlToWebp()}
+                          disabled={convertingLogo || !formData.logo}
+                          className="h-10 px-4 rounded-xl bg-primary/15 hover:bg-primary/25 border border-primary/30 text-primary text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+                          title="تحويل الرابط أو المسار الحالي إلى WebP وحفظه على السيرفر"
+                        >
+                          <IoFlashOutline className={convertingLogo ? 'animate-spin' : ''} />
+                          <span>{convertingLogo ? 'جاري التحويل...' : 'تحويل لـ WebP'}</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Live Preview Box with Format Status */}
+                    {formData.logo && (
+                      <div className="p-3 bg-surface-elevated rounded-xl border border-border-structural flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div
+                            style={{ background: formData.logoBg || '#000000' }}
+                            className="w-20 h-12 rounded-lg border border-border-structural flex items-center justify-center p-1.5 shrink-0 overflow-hidden shadow-inner"
+                          >
+                            <img
+                              src={formData.logo}
+                              alt="Logo Preview"
+                              className="max-h-full max-w-full object-contain"
+                              onError={(e) => {
+                                e.currentTarget.src = '/assets/Images/brokers/xm.webp';
+                              }}
+                            />
+                          </div>
+                          <div className="min-w-0">
+                            <span className="block text-[10px] text-text-muted font-bold">معاينة الشعار الحالي:</span>
+                            <span className="block text-xs font-mono text-text-primary truncate dir-ltr max-w-xs sm:max-w-md">
+                              {formData.logo}
+                            </span>
+                          </div>
+                        </div>
+
+                        {formData.logo.toLowerCase().endsWith('.webp') ? (
+                          <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 shrink-0">
+                            <IoCheckmarkCircleOutline className="text-xs" />
+                            محفوظ كـ WebP
+                          </span>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => handleConvertLogoUrlToWebp()}
+                            disabled={convertingLogo}
+                            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 cursor-pointer shrink-0"
+                          >
+                            <IoFlashOutline />
+                            اضغط للتحويل لـ WebP
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -1513,25 +1793,6 @@ export default function BrokersManagementPage() {
                         placeholder="10M+ Active Traders Worldwide"
                         className="w-full h-10 px-3 rounded-xl bg-surface-elevated border border-border-structural text-text-primary text-sm outline-none dir-ltr"
                       />
-                    </div>
-                  </div>
-
-                  {/* Logo Preview */}
-                  <div className="p-4 bg-surface-elevated rounded-xl border border-border-structural flex items-center gap-4">
-                    <span className="text-xs text-text-muted">معاينة الشعار:</span>
-                    <div
-                      style={{ background: formData.logoBg || '#000000' }}
-                      className="w-24 h-14 rounded-xl border border-border-structural flex items-center justify-center p-2"
-                    >
-                      <img
-                        src={formData.logo}
-                        alt="Preview"
-                        className="max-h-full max-w-full object-contain"
-                        onError={(e) => {
-                          e.currentTarget.src = '/assets/Images/brokers/xm.webp';
-                        }}
-                      />
-                    </div>
                   </div>
                 </div>
               )}
