@@ -1002,17 +1002,52 @@ export default function ProfilePage() {
 
         {/* ══════════════ TAB 4: SECURITY & PASSWORD ══════════════ */}
         {activeTab === 'security' && (
-          <div className="card" style={{ padding: '24px', background: 'var(--surface-elevated)', borderRadius: '16px', border: '1px solid var(--border)', maxWidth: '600px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>
-              {isAr ? 'أمان الحساب وكلمة المرور' : 'Account Security & Password'}
-            </h3>
-            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
-              {isAr ? 'قم بتحديث كلمة المرور لحماية حسابك وبياناتك الشخصية' : 'Update your password to keep your account safe'}
-            </p>
-
-            <form onSubmit={handleChangePassword} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div
+            className="card"
+            style={{
+              padding: 'clamp(28px, 4vw, 40px)',
+              background: 'var(--surface-elevated)',
+              borderRadius: '20px',
+              border: '1px solid var(--border)',
+              maxWidth: '760px',
+              margin: '10px auto 40px auto',
+              boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04)',
+            }}
+          >
+            {/* Header with Shield Icon Badge */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '28px' }}>
+              <div
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '14px',
+                  background: 'linear-gradient(135deg, rgba(4, 136, 248, 0.22), rgba(4, 136, 248, 0.06))',
+                  border: '1px solid rgba(4, 136, 248, 0.35)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--primary)',
+                  boxShadow: '0 0 20px rgba(4, 136, 248, 0.2)',
+                  flexShrink: 0,
+                }}
+              >
+                <FiShield size={24} />
+              </div>
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', margin: '0 0 4px 0' }}>
+                  {isAr ? 'أمان الحساب وكلمة المرور' : 'Account Security & Password'}
+                </h3>
+                <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
+                  {isAr
+                    ? 'قم بتحديث كلمة المرور بانتظام لحماية حسابك واستثماراتك وبياناتك الشخصية'
+                    : 'Update your password regularly to protect your account, trading data, and personal information.'}
+                </p>
+              </div>
+            </div>
+
+            <form onSubmit={handleChangePassword} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px' }}>
                   {isAr ? 'كلمة المرور الحالية' : 'Current Password'}
                 </label>
                 <input
@@ -1023,18 +1058,28 @@ export default function ProfilePage() {
                   required
                   style={{
                     width: '100%',
-                    height: '42px',
-                    padding: '0 12px',
-                    background: 'var(--bg-primary)',
+                    height: '46px',
+                    padding: '0 16px',
+                    background: 'rgba(255, 255, 255, 0.03)',
                     border: '1px solid var(--border)',
-                    borderRadius: '8px',
+                    borderRadius: '10px',
                     color: 'var(--text-primary)',
+                    fontSize: '14px',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--primary)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(4, 136, 248, 0.15)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--border)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px' }}>
                   {isAr ? 'كلمة المرور الجديدة' : 'New Password'}
                 </label>
                 <input
@@ -1045,18 +1090,28 @@ export default function ProfilePage() {
                   required
                   style={{
                     width: '100%',
-                    height: '42px',
-                    padding: '0 12px',
-                    background: 'var(--bg-primary)',
+                    height: '46px',
+                    padding: '0 16px',
+                    background: 'rgba(255, 255, 255, 0.03)',
                     border: '1px solid var(--border)',
-                    borderRadius: '8px',
+                    borderRadius: '10px',
                     color: 'var(--text-primary)',
+                    fontSize: '14px',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--primary)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(4, 136, 248, 0.15)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--border)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px' }}>
                   {isAr ? 'تأكيد كلمة المرور الجديدة' : 'Confirm New Password'}
                 </label>
                 <input
@@ -1067,12 +1122,22 @@ export default function ProfilePage() {
                   required
                   style={{
                     width: '100%',
-                    height: '42px',
-                    padding: '0 12px',
-                    background: 'var(--bg-primary)',
+                    height: '46px',
+                    padding: '0 16px',
+                    background: 'rgba(255, 255, 255, 0.03)',
                     border: '1px solid var(--border)',
-                    borderRadius: '8px',
+                    borderRadius: '10px',
                     color: 'var(--text-primary)',
+                    fontSize: '14px',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--primary)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(4, 136, 248, 0.15)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--border)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 />
               </div>
@@ -1082,15 +1147,20 @@ export default function ProfilePage() {
                 className="btn-primary"
                 disabled={passLoading}
                 style={{
-                  height: '42px',
-                  marginTop: '10px',
+                  height: '46px',
+                  marginTop: '8px',
                   justifyContent: 'center',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
+                  gap: '10px',
+                  borderRadius: '10px',
+                  fontSize: '14.5px',
+                  fontWeight: 700,
+                  cursor: passLoading ? 'not-allowed' : 'pointer',
+                  width: '100%',
                 }}
               >
-                <FiLock size={15} />
+                <FiLock size={16} />
                 <span>{passLoading ? (isAr ? 'جاري التحديث...' : 'Updating...') : (isAr ? 'تحديث كلمة المرور' : 'Update Password')}</span>
               </button>
             </form>
@@ -1098,23 +1168,42 @@ export default function ProfilePage() {
             {/* Global Logout / Revoke All Sessions */}
             <div
               style={{
-                marginTop: '28px',
-                paddingTop: '20px',
+                marginTop: '32px',
+                paddingTop: '24px',
                 borderTop: '1px solid var(--border)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '12px',
+                gap: '16px',
               }}
             >
-              <div>
-                <h4 style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 4px 0' }}>
-                  {isAr ? 'جلسات التداول النشطة والأجهزة' : 'Active Trader Sessions'}
-                </h4>
-                <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', margin: 0 }}>
-                  {isAr
-                    ? 'تسجيل الخروج وإنهاء صلاحية الوصول لجميع الجلسات المفتوحة على كافة الأجهزة والمتصفحات.'
-                    : 'Revoke all active trader sessions across all devices and browsers.'}
-                </p>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                <div
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    background: 'rgba(246, 70, 93, 0.1)',
+                    border: '1px solid rgba(246, 70, 93, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--error)',
+                    flexShrink: 0,
+                    marginTop: '2px',
+                  }}
+                >
+                  <FiLogOut size={18} />
+                </div>
+                <div>
+                  <h4 style={{ fontSize: '15.5px', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 4px 0' }}>
+                    {isAr ? 'جلسات التداول النشطة والأجهزة' : 'Active Trader Sessions'}
+                  </h4>
+                  <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
+                    {isAr
+                      ? 'تسجيل الخروج وإنهاء صلاحية الوصول لجميع الجلسات المفتوحة على كافة الأجهزة والمتصفحات فوراً.'
+                      : 'Revoke all active trader sessions across all devices and browsers immediately.'}
+                  </p>
+                </div>
               </div>
 
               <div>
@@ -1125,19 +1214,29 @@ export default function ProfilePage() {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     gap: '8px',
                     background: 'rgba(246, 70, 93, 0.12)',
                     border: '1px solid rgba(246, 70, 93, 0.35)',
                     color: 'var(--error)',
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    fontSize: '13px',
+                    padding: '10px 20px',
+                    borderRadius: '10px',
+                    fontSize: '13.5px',
                     fontWeight: 600,
-                    cursor: 'pointer',
-                    transition: 'all 0.15s ease',
+                    cursor: revokeLoading ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.2s ease',
+                    width: '100%',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(246, 70, 93, 0.2)';
+                    e.currentTarget.style.borderColor = 'rgba(246, 70, 93, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(246, 70, 93, 0.12)';
+                    e.currentTarget.style.borderColor = 'rgba(246, 70, 93, 0.35)';
                   }}
                 >
-                  <FiLogOut size={14} />
+                  <FiLogOut size={15} />
                   <span>
                     {revokeLoading
                       ? (isAr ? 'جاري إنهاء الجلسات...' : 'Revoking sessions...')
