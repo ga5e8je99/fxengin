@@ -281,6 +281,36 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
                   transition: 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
                 }}
               >
+                {/* Offer Image / Broker Banner */}
+                {(offer.image || offer.logo) && (
+                  <div
+                    style={{
+                      width: 'calc(100% + 48px)',
+                      margin: '-24px -24px 18px -24px',
+                      height: '180px',
+                      overflow: 'hidden',
+                      background: 'rgba(1, 7, 30, 0.9)',
+                      borderBottom: '1px solid rgba(18, 49, 92, 0.6)',
+                      position: 'relative',
+                    }}
+                  >
+                    <img
+                      src={offer.image || offer.logo}
+                      alt={isAr ? offer.titleAr : (offer.titleEn || offer.titleAr)}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                      }}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.parentElement.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+
                 {/* Top Badge Strip */}
                 <div
                   style={{
@@ -419,36 +449,39 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
                   </div>
                 )}
 
-                {/* Features Checklist */}
-                <div style={{ flex: 1, marginBottom: '20px' }}>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {((isAr ? offer.featuresAr : offer.featuresEn) || []).slice(0, 4).map((feat, fIdx) => (
-                      <li
-                        key={fIdx}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: '8px',
-                          fontSize: '0.8rem',
-                          color: '#E2E8F0',
-                          lineHeight: 1.45,
-                        }}
-                      >
-                        <span
-                          style={{
-                            color: '#16C784',
-                            marginTop: '2px',
-                            display: 'inline-flex',
-                            flexShrink: 0,
-                          }}
-                        >
-                          <FiCheck size={14} />
-                        </span>
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {/* Features Checklist (Optional) */}
+                {Array.isArray(isAr ? offer.featuresAr : offer.featuresEn) &&
+                  (isAr ? offer.featuresAr : offer.featuresEn).filter(Boolean).length > 0 && (
+                    <div style={{ flex: 1, marginBottom: '20px' }}>
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        {((isAr ? offer.featuresAr : offer.featuresEn) || []).filter(Boolean).slice(0, 4).map((feat, fIdx) => (
+                          <li
+                            key={fIdx}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                              gap: '8px',
+                              fontSize: '0.8rem',
+                              color: '#E2E8F0',
+                              lineHeight: 1.45,
+                            }}
+                          >
+                            <span
+                              style={{
+                                color: '#16C784',
+                                marginTop: '2px',
+                                display: 'inline-flex',
+                                flexShrink: 0,
+                              }}
+                            >
+                              <FiCheck size={14} />
+                            </span>
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                 {/* Action CTA Button */}
                 <div style={{ marginTop: 'auto' }}>

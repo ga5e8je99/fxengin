@@ -468,6 +468,36 @@ export default function OffersPage() {
                       transition: 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
                     }}
                   >
+                    {/* Offer Image / Broker Banner */}
+                    {(offer.image || offer.logo) && (
+                      <div
+                        style={{
+                          width: 'calc(100% + 52px)',
+                          margin: '-26px -26px 20px -26px',
+                          height: '200px',
+                          overflow: 'hidden',
+                          background: 'rgba(1, 7, 30, 0.9)',
+                          borderBottom: '1px solid rgba(18, 49, 92, 0.65)',
+                          position: 'relative',
+                        }}
+                      >
+                        <img
+                          src={offer.image || offer.logo}
+                          alt={isAr ? offer.titleAr : (offer.titleEn || offer.titleAr)}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            display: 'block',
+                          }}
+                          loading="lazy"
+                          onError={(e) => {
+                            e.target.parentElement.style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    )}
+
                     {/* Top Badge Strip */}
                     <div
                       style={{
@@ -612,45 +642,48 @@ export default function OffersPage() {
                       </div>
                     )}
 
-                    {/* Features Checklist */}
-                    <div style={{ flex: 1, marginBottom: '22px' }}>
-                      <ul
-                        style={{
-                          listStyle: 'none',
-                          padding: 0,
-                          margin: 0,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '9px',
-                        }}
-                      >
-                        {(isAr ? offer.featuresAr : offer.featuresEn || []).map((feat, fIdx) => (
-                          <li
-                            key={fIdx}
+                    {/* Features Checklist (Optional) */}
+                    {Array.isArray(isAr ? offer.featuresAr : offer.featuresEn) &&
+                      (isAr ? offer.featuresAr : offer.featuresEn).filter(Boolean).length > 0 && (
+                        <div style={{ flex: 1, marginBottom: '22px' }}>
+                          <ul
                             style={{
+                              listStyle: 'none',
+                              padding: 0,
+                              margin: 0,
                               display: 'flex',
-                              alignItems: 'flex-start',
-                              gap: '8px',
-                              fontSize: '0.82rem',
-                              color: '#E2E8F0',
-                              lineHeight: 1.45,
+                              flexDirection: 'column',
+                              gap: '9px',
                             }}
                           >
-                            <span
-                              style={{
-                                color: '#16C784',
-                                marginTop: '2px',
-                                display: 'inline-flex',
-                                flexShrink: 0,
-                              }}
-                            >
-                              <FiCheck size={14} />
-                            </span>
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                            {(isAr ? offer.featuresAr : offer.featuresEn || []).filter(Boolean).map((feat, fIdx) => (
+                              <li
+                                key={fIdx}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'flex-start',
+                                  gap: '8px',
+                                  fontSize: '0.82rem',
+                                  color: '#E2E8F0',
+                                  lineHeight: 1.45,
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    color: '#16C784',
+                                    marginTop: '2px',
+                                    display: 'inline-flex',
+                                    flexShrink: 0,
+                                  }}
+                                >
+                                  <FiCheck size={14} />
+                                </span>
+                                <span>{feat}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
                     {/* Action CTA Button */}
                     <div style={{ marginTop: 'auto' }}>

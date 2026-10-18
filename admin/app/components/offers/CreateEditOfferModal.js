@@ -1,31 +1,21 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import {
   IoCloseOutline,
   IoSparklesOutline,
-  IoCheckmarkCircle,
-  IoAddCircleOutline,
+  IoCloudUploadOutline,
+  IoImageOutline,
   IoTrashOutline,
+  IoCheckmarkCircle,
+  IoLinkOutline,
+  IoPricetagOutline,
+  IoEyeOutline,
 } from 'react-icons/io5';
+import { uploadFileDirectToStorage } from '../../services/storageService';
 
-const CATEGORIES = [
-  { id: 'bonus', labelAr: 'بونص تداول وإيداع', labelEn: 'Deposit Bonus' },
-  { id: 'signals', labelAr: 'باقات التحليلات وإشارات VIP', labelEn: 'VIP Analytics & Signals' },
-  { id: 'prop-firm', labelAr: 'شركات التمويل وتقييم الحسابات', labelEn: 'Prop Trading Firms' },
-  { id: 'spread', labelAr: 'سبريد خام ECN وحسابات إسلامية', labelEn: 'ECN Raw Spreads' },
-  { id: 'academy', labelAr: 'كورسات وأكاديمية FXENGIN', labelEn: 'Academy Courses' },
-];
-
-const COLOR_PRESETS = [
-  { name: 'ذهبي / برتقالي', color: '#FB8704' },
-  { name: 'أخضر زمردي', color: '#10B981' },
-  { name: 'أزرق سماوي', color: '#00A3FF' },
-  { name: 'أرجواني VIP', color: '#8B5CF6' },
-  { name: 'أزرق المنصة', color: '#0488F8' },
-  { name: 'أحمر عاجل', color: '#EF4444' },
-];
+const POPULAR_BROKERS = ['XM Global', 'YWO Markets', 'DooPrime', 'Exness', 'PropXP Funding'];
 
 export default function CreateEditOfferModal({
   isOpen,
@@ -34,84 +24,79 @@ export default function CreateEditOfferModal({
   initialData = null,
   mode = 'create',
 }) {
+  const fileInputRef = useRef(null);
   const [formData, setFormData] = useState({
     id: '',
+    image: '',
+    partnerName: 'XM Global',
     titleAr: '',
     titleEn: '',
     subtitleAr: '',
     subtitleEn: '',
-    category: 'bonus',
+    ctaLink: '',
+    code: '',
     badgeAr: 'عرض حصري 🔥',
     badgeEn: 'Exclusive Offer 🔥',
-    badgeColor: '#10B981',
-    discount: 'بونص 100%',
-    discountEn: '100% BONUS',
-    code: '',
-    partnerName: 'XM Global',
-    ctaTextAr: 'تفعيل العرض',
-    ctaTextEn: 'Claim Offer',
-    ctaLink: '/register',
-    isExternal: false,
+    badgeColor: '#FB8704',
+    ctaTextAr: 'فتح حساب وتفعيل العرض',
+    ctaTextEn: 'Claim Broker Offer',
+    category: 'bonus',
+    categoryLabelAr: 'عروض وسطاء التداول',
+    categoryLabelEn: 'Broker Offers',
+    isExternal: true,
     isFeatured: false,
     isActive: true,
-    featuresAr: [''],
-    featuresEn: [''],
   });
 
+  const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (initialData && mode === 'edit') {
       setFormData({
         id: initialData.id || '',
+        image: initialData.image || initialData.logo || '',
+        partnerName: initialData.partnerName || 'XM Global',
         titleAr: initialData.titleAr || '',
         titleEn: initialData.titleEn || '',
         subtitleAr: initialData.subtitleAr || '',
         subtitleEn: initialData.subtitleEn || '',
-        category: initialData.category || 'bonus',
+        ctaLink: initialData.ctaLink || '',
+        code: initialData.code || '',
         badgeAr: initialData.badgeAr || 'عرض حصري 🔥',
         badgeEn: initialData.badgeEn || 'Exclusive Offer 🔥',
-        badgeColor: initialData.badgeColor || '#10B981',
-        discount: initialData.discount || '',
-        discountEn: initialData.discountEn || '',
-        code: initialData.code || '',
-        partnerName: initialData.partnerName || 'FXENGIN',
-        ctaTextAr: initialData.ctaTextAr || 'تفعيل العرض',
-        ctaTextEn: initialData.ctaTextEn || 'Claim Offer',
-        ctaLink: initialData.ctaLink || '/register',
-        isExternal: Boolean(initialData.isExternal),
+        badgeColor: initialData.badgeColor || '#FB8704',
+        ctaTextAr: initialData.ctaTextAr || 'فتح حساب وتفعيل العرض',
+        ctaTextEn: initialData.ctaTextEn || 'Claim Broker Offer',
+        category: initialData.category || 'bonus',
+        categoryLabelAr: initialData.categoryLabelAr || 'عروض وسطاء التداول',
+        categoryLabelEn: initialData.categoryLabelEn || 'Broker Offers',
+        isExternal: initialData.isExternal !== false,
         isFeatured: Boolean(initialData.isFeatured),
         isActive: initialData.isActive !== false,
-        featuresAr: Array.isArray(initialData.featuresAr) && initialData.featuresAr.length > 0
-          ? initialData.featuresAr
-          : [''],
-        featuresEn: Array.isArray(initialData.featuresEn) && initialData.featuresEn.length > 0
-          ? initialData.featuresEn
-          : [''],
       });
     } else {
       setFormData({
         id: '',
+        image: '',
+        partnerName: 'XM Global',
         titleAr: '',
         titleEn: '',
         subtitleAr: '',
         subtitleEn: '',
-        category: 'bonus',
+        ctaLink: '',
+        code: '',
         badgeAr: 'عرض حصري 🔥',
         badgeEn: 'Exclusive Offer 🔥',
-        badgeColor: '#10B981',
-        discount: 'بونص 100%',
-        discountEn: '100% BONUS',
-        code: '',
-        partnerName: 'XM Global',
-        ctaTextAr: 'تفعيل العرض',
-        ctaTextEn: 'Claim Offer',
-        ctaLink: '/register',
-        isExternal: false,
+        badgeColor: '#FB8704',
+        ctaTextAr: 'فتح حساب وتفعيل العرض',
+        ctaTextEn: 'Claim Broker Offer',
+        category: 'bonus',
+        categoryLabelAr: 'عروض وسطاء التداول',
+        categoryLabelEn: 'Broker Offers',
+        isExternal: true,
         isFeatured: false,
         isActive: true,
-        featuresAr: ['ميزة حصرية أولى', 'ميزة حصرية ثانية'],
-        featuresEn: ['First exclusive perk', 'Second exclusive perk'],
       });
     }
   }, [initialData, mode, isOpen]);
@@ -126,48 +111,63 @@ export default function CreateEditOfferModal({
     }));
   };
 
-  const handleFeatureChange = (lang, index, value) => {
-    const key = lang === 'ar' ? 'featuresAr' : 'featuresEn';
-    setFormData((prev) => {
-      const arr = [...prev[key]];
-      arr[index] = value;
-      return { ...prev, [key]: arr };
-    });
-  };
+  const handleFileUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-  const addFeature = (lang) => {
-    const key = lang === 'ar' ? 'featuresAr' : 'featuresEn';
-    setFormData((prev) => ({
-      ...prev,
-      [key]: [...prev[key], ''],
-    }));
-  };
+    if (!file.type.startsWith('image/')) {
+      toast.error('يرجى اختيار ملف صورة صالح (PNG, JPG, WEBP)');
+      return;
+    }
 
-  const removeFeature = (lang, index) => {
-    const key = lang === 'ar' ? 'featuresAr' : 'featuresEn';
-    setFormData((prev) => ({
-      ...prev,
-      [key]: prev[key].filter((_, i) => i !== index),
-    }));
+    setUploading(true);
+    try {
+      const res = await uploadFileDirectToStorage(file, { folder: 'offers' });
+      if (res.ok && res.fileUrl) {
+        setFormData((prev) => ({
+          ...prev,
+          image: res.fileUrl,
+        }));
+        toast.success('تم رفع صورة العرض بنجاح');
+      } else {
+        toast.error(res.error || 'فشل رفع الصورة');
+      }
+    } catch {
+      toast.error('حدث خطأ أثناء رفع الصورة');
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!formData.titleAr.trim()) {
-      toast.error('يرجى إدخال عنوان العرض باللغة العربية');
+      toast.error('يرجى إدخال عنوان العرض');
+      return;
+    }
+
+    if (!formData.subtitleAr.trim()) {
+      toast.error('يرجى إدخال كابشن / وصف العرض');
+      return;
+    }
+
+    if (!formData.ctaLink.trim()) {
+      toast.error('يرجى إدخال رابط العرض لدى البروكر');
       return;
     }
 
     setSubmitting(true);
     try {
-      const selectedCat = CATEGORIES.find((c) => c.id === formData.category);
+      const cleanCode = formData.code ? formData.code.toUpperCase().trim() : '';
       const payload = {
         ...formData,
-        code: formData.code ? formData.code.toUpperCase().trim() : '',
-        categoryLabelAr: selectedCat?.labelAr || 'عروض ترويجية',
-        categoryLabelEn: selectedCat?.labelEn || 'Special Offers',
-        featuresAr: formData.featuresAr.filter((f) => f && f.trim()),
-        featuresEn: formData.featuresEn.filter((f) => f && f.trim()),
+        code: cleanCode,
+        titleEn: formData.titleEn.trim() || formData.titleAr.trim(),
+        subtitleEn: formData.subtitleEn.trim() || formData.subtitleAr.trim(),
+        logo: formData.image, // backwards compatibility
+        isExternal: true,
       };
 
       await onSubmit(payload);
@@ -179,326 +179,344 @@ export default function CreateEditOfferModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-canvas-deep/80 backdrop-blur-md overflow-y-auto animate-in fade-in">
-      <div className="relative w-full max-w-3xl bg-surface-container border border-border-structural rounded-2xl shadow-2xl overflow-hidden my-8 select-none">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/75 backdrop-blur-md overflow-y-auto"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-2xl bg-surface-container rounded-2xl border border-border-structural/80 shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-border-structural/60 flex items-center justify-between bg-surface-container-low">
+        <div className="px-6 py-4 border-b border-border-structural/60 flex items-center justify-between shrink-0 bg-surface-container-low">
           <div className="flex items-center gap-2.5">
-            <span className="p-2 rounded-xl bg-[#FB8704]/10 text-[#FB8704]">
-              <IoSparklesOutline size={20} />
-            </span>
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FB8704]/25 to-[#0488F8]/25 border border-[#FB8704]/40 flex items-center justify-center text-[#FB8704]">
+              <IoSparklesOutline size={18} />
+            </div>
             <div>
-              <h3 className="text-base sm:text-lg font-bold text-text-primary">
-                {mode === 'create' ? 'إضافة عرض ترويجي جديد' : 'تعديل بيانات العرض'}
-              </h3>
-              <p className="text-xs text-text-muted">
-                سيظهر هذا العرض في سيكشن الصفحة الرئيسية وصفحة العروض الترويجية (/offers).
+              <h2 className="text-sm sm:text-base font-bold text-text-primary">
+                {mode === 'edit' ? 'تعديل عرض البروكر' : 'إضافة عرض بروكر جديد'}
+              </h2>
+              <p className="text-[11px] text-text-muted">
+                أدخل صورة العرض، العنوان، الكابشن، رابط البروكر، والكود الترويجي إن وجد.
               </p>
             </div>
           </div>
+
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-elevated transition-colors"
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-surface-container transition-colors cursor-pointer"
           >
             <IoCloseOutline size={22} />
           </button>
         </div>
 
-        {/* Modal Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
-          {/* Row 1: Titles */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                عنوان العرض (عربي) *
-              </label>
+        {/* Modal Body */}
+        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto flex-1 space-y-5">
+          {/* 1. صورة العرض / البنر */}
+          <div>
+            <label className="block text-xs font-bold text-text-primary mb-1.5 flex items-center gap-1.5">
+              <IoImageOutline className="text-[#FB8704]" size={15} />
+              <span>صورة العرض / بنر البروكر (Image / Banner)</span>
+            </label>
+
+            <div className="space-y-3">
+              {/* Image Preview or Upload placeholder */}
+              {formData.image ? (
+                <div className="relative rounded-xl overflow-hidden border border-border-structural bg-surface-container-lowest max-h-48 flex items-center justify-center group">
+                  <img
+                    src={formData.image}
+                    alt="معاينة صورة العرض"
+                    className="w-full h-44 object-cover object-center"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="px-3 py-1.5 rounded-lg bg-primary text-white text-xs font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <IoCloudUploadOutline size={14} />
+                      <span>تغيير الصورة</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFormData((p) => ({ ...p, image: '' }))}
+                      className="px-3 py-1.5 rounded-lg bg-red-600 text-white text-xs font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <IoTrashOutline size={14} />
+                      <span>حذف</span>
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="p-6 rounded-xl border-2 border-dashed border-border-structural hover:border-[#FB8704] bg-surface-container-lowest text-center cursor-pointer transition-colors"
+                >
+                  <IoCloudUploadOutline className="mx-auto text-text-muted mb-2" size={32} />
+                  <p className="text-xs font-bold text-text-primary mb-0.5">
+                    {uploading ? 'جاري رفع الصورة...' : 'اضغط لاختيار صورة من جهازك'}
+                  </p>
+                  <p className="text-[11px] text-text-muted">يدعم صور البنرات وشعارات الوسطاء (PNG, JPG, WEBP)</p>
+                </div>
+              )}
+
               <input
-                type="text"
-                name="titleAr"
-                value={formData.titleAr}
-                onChange={handleChange}
-                placeholder="مثال: بونص ترحيبي مضاعف 100% حتى $500"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs sm:text-sm focus:border-primary focus:outline-none"
-                required
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                className="hidden"
               />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                عنوان العرض (إنجليزي)
-              </label>
-              <input
-                type="text"
-                name="titleEn"
-                value={formData.titleEn}
-                onChange={handleChange}
-                placeholder="100% Deposit Match Bonus Up to $500"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs sm:text-sm focus:border-primary focus:outline-none dir-ltr"
-              />
+
+              {/* Or Direct Image URL */}
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  name="image"
+                  value={formData.image}
+                  onChange={handleChange}
+                  placeholder="أو الصق رابط الصورة مباشرة هنا (https://...)"
+                  className="flex-1 px-3.5 py-2 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none dir-ltr"
+                />
+                {formData.image && (
+                  <span className="text-[11px] text-emerald-400 flex items-center gap-1 shrink-0 font-bold">
+                    <IoCheckmarkCircle size={14} />
+                    <span>تم تحديد الصورة</span>
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
-          {/* Row 2: Subtitle */}
+          {/* 2. اسم البروكر + الشارة الترويجية */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold text-text-primary mb-1.5">
-                وصف موجز للعرض (عربي)
-              </label>
-              <textarea
-                name="subtitleAr"
-                value={formData.subtitleAr}
-                onChange={handleChange}
-                rows={2}
-                placeholder="احصل على ضعف رصيدك وتداول برأس مال أكبر مع دخول حصري..."
-                className="w-full px-3.5 py-2 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs focus:border-primary focus:outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                وصف موجز (إنجليزي)
-              </label>
-              <textarea
-                name="subtitleEn"
-                value={formData.subtitleEn}
-                onChange={handleChange}
-                rows={2}
-                placeholder="Double your trading capital upon deposit with lifetime entry..."
-                className="w-full px-3.5 py-2 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs focus:border-primary focus:outline-none dir-ltr"
-              />
-            </div>
-          </div>
-
-          {/* Row 3: Category & Partner */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                تصنيف العرض *
-              </label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary text-xs sm:text-sm focus:border-primary focus:outline-none"
-              >
-                {CATEGORIES.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.labelAr}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                اسم الشريك / الجهة المقدمة
+                اسم البروكر / الشريك (Broker Name)
               </label>
               <input
                 type="text"
                 name="partnerName"
                 value={formData.partnerName}
                 onChange={handleChange}
-                placeholder="XM Global, FXENGIN VIP..."
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs sm:text-sm focus:border-primary focus:outline-none"
+                placeholder="مثال: XM Global أو YWO Markets"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none"
               />
+              {/* Quick broker tags */}
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {POPULAR_BROKERS.map((b) => (
+                  <button
+                    key={b}
+                    type="button"
+                    onClick={() => setFormData((p) => ({ ...p, partnerName: b }))}
+                    className={`px-2 py-0.5 rounded-md text-[10px] font-bold border transition-colors cursor-pointer ${
+                      formData.partnerName === b
+                        ? 'bg-primary/20 border-primary text-primary'
+                        : 'bg-surface-container-lowest border-border-structural/60 text-text-muted hover:text-text-primary'
+                    }`}
+                  >
+                    {b}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div>
               <label className="block text-xs font-bold text-text-primary mb-1.5">
-                الكود الترويجي (Coupon Code)
-              </label>
-              <input
-                type="text"
-                name="code"
-                value={formData.code}
-                onChange={handleChange}
-                placeholder="KTW63, GOLD30..."
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-[#00F0FF] font-mono font-bold placeholder:text-text-muted/60 text-xs sm:text-sm focus:border-primary focus:outline-none uppercase dir-ltr"
-              />
-            </div>
-          </div>
-
-          {/* Row 4: Badge & Discount */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                نص الشارة (Badge)
+                شارة العرض (Badge - اختياري)
               </label>
               <input
                 type="text"
                 name="badgeAr"
                 value={formData.badgeAr}
                 onChange={handleChange}
-                placeholder="الأكثر طلباً 🔥 • بونص 100%"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs sm:text-sm focus:border-primary focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                لون الشارة
-              </label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="color"
-                  name="badgeColor"
-                  value={formData.badgeColor}
-                  onChange={handleChange}
-                  className="w-9 h-9 rounded-xl bg-transparent border border-border-structural cursor-pointer"
-                />
-                <div className="flex items-center gap-1">
-                  {COLOR_PRESETS.map((p) => (
-                    <button
-                      key={p.color}
-                      type="button"
-                      onClick={() => setFormData((prev) => ({ ...prev, badgeColor: p.color }))}
-                      style={{ backgroundColor: p.color }}
-                      className="w-5 h-5 rounded-full border border-canvas-deep cursor-pointer"
-                      title={p.name}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                نسبة أو قيمة الخصم
-              </label>
-              <input
-                type="text"
-                name="discount"
-                value={formData.discount}
-                onChange={handleChange}
-                placeholder="بونص 100% أو خصم 30%"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs sm:text-sm focus:border-primary focus:outline-none"
+                placeholder="مثال: بونص 100% 🔥 أو سبريد 0.0"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none"
               />
             </div>
           </div>
 
-          {/* Row 5: CTA Action */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {/* 3. عنوان العرض (Title) */}
+          <div>
+            <label className="block text-xs font-bold text-text-primary mb-1.5 flex items-center justify-between">
+              <span>عنوان العرض الرئيسي (Offer Title) *</span>
+              <span className="text-[10px] text-[#FB8704] font-normal">مطلوب</span>
+            </label>
+            <input
+              type="text"
+              name="titleAr"
+              value={formData.titleAr}
+              onChange={handleChange}
+              placeholder="مثال: بونص ترحيبي مضاعف 100% حتى 500$ مجاناً"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs sm:text-sm font-bold text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none"
+              required
+            />
+          </div>
+
+          {/* 4. كابشن / وصف العرض (Caption / Description) */}
+          <div>
+            <label className="block text-xs font-bold text-text-primary mb-1.5 flex items-center justify-between">
+              <span>كابشن / تفاصيل العرض (Caption / Description) *</span>
+              <span className="text-[10px] text-[#FB8704] font-normal">مطلوب</span>
+            </label>
+            <textarea
+              name="subtitleAr"
+              rows={3}
+              value={formData.subtitleAr}
+              onChange={handleChange}
+              placeholder="اكتب هنا كابشن توضيحي لمميزات وتفاصيل العرض والشروط للمتداول..."
+              className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none leading-relaxed resize-none"
+              required
+            />
+          </div>
+
+          {/* 5. لينك العرض + الكود الترويجي */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-text-primary mb-1.5 flex items-center gap-1.5">
+                <IoLinkOutline className="text-primary" size={15} />
+                <span>رابط العرض لدى البروكر (Broker Link) *</span>
+              </label>
+              <input
+                type="url"
+                name="ctaLink"
+                value={formData.ctaLink}
+                onChange={handleChange}
+                placeholder="https://portal.broker.com/register?ref=..."
+                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary placeholder:text-text-muted/60 focus:border-primary focus:outline-none dir-ltr"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-text-primary mb-1.5 flex items-center gap-1.5">
+                <IoPricetagOutline className="text-[#00F0FF]" size={15} />
+                <span>الكود الترويجي (Promo Code - اختياري)</span>
+              </label>
+              <input
+                type="text"
+                name="code"
+                value={formData.code}
+                onChange={handleChange}
+                placeholder="مثال: KTW63 (اتركه فارغاً إن لم يوجد)"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs font-mono font-bold text-[#00F0FF] placeholder:text-text-muted/60 focus:border-primary focus:outline-none dir-ltr uppercase"
+              />
+            </div>
+          </div>
+
+          {/* نص الزر والخيارات الإضافية */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             <div>
               <label className="block text-xs font-bold text-text-primary mb-1.5">
-                نص الزر (عربي)
+                نص زر التفعيل (CTA Button Text)
               </label>
               <input
                 type="text"
                 name="ctaTextAr"
                 value={formData.ctaTextAr}
                 onChange={handleChange}
-                placeholder="تفعيل العرض وفتح الحساب"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs sm:text-sm focus:border-primary focus:outline-none"
+                placeholder="فتح حساب وتفعيل العرض"
+                className="w-full px-3.5 py-2 rounded-xl bg-surface-container-lowest border border-border-structural text-xs text-text-primary focus:border-primary focus:outline-none"
               />
             </div>
 
-            <div>
-              <label className="block text-xs font-bold text-text-primary mb-1.5">
-                رابط الزر (URL) *
-              </label>
-              <input
-                type="text"
-                name="ctaLink"
-                value={formData.ctaLink}
-                onChange={handleChange}
-                placeholder="https://... أو /register أو /analyses"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural/80 text-text-primary placeholder:text-text-muted/60 text-xs sm:text-sm focus:border-primary focus:outline-none dir-ltr"
-                required
-              />
-            </div>
-
-            <div className="flex flex-col justify-end gap-2 pt-1">
-              <label className="flex items-center gap-2 cursor-pointer text-xs text-text-secondary">
-                <input
-                  type="checkbox"
-                  name="isExternal"
-                  checked={formData.isExternal}
-                  onChange={handleChange}
-                  className="rounded text-primary focus:ring-0"
-                />
-                <span>رابط خارجي (يفتح في تبويب جديد)</span>
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer text-xs text-text-secondary">
+            <div className="flex items-center gap-4 self-end pb-1">
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-text-secondary select-none">
                 <input
                   type="checkbox"
                   name="isFeatured"
                   checked={formData.isFeatured}
                   onChange={handleChange}
-                  className="rounded text-accent-hover focus:ring-0"
+                  className="rounded border-border-structural text-[#FB8704] focus:ring-0 w-4 h-4 cursor-pointer"
                 />
-                <span>عرض مميز وبارز (Featured)</span>
+                <span>عرض مميز 🔥</span>
               </label>
-              <label className="flex items-center gap-2 cursor-pointer text-xs text-text-secondary">
+
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-text-secondary select-none">
                 <input
                   type="checkbox"
                   name="isActive"
                   checked={formData.isActive}
                   onChange={handleChange}
-                  className="rounded text-bullish-up focus:ring-0"
+                  className="rounded border-border-structural text-emerald-500 focus:ring-0 w-4 h-4 cursor-pointer"
                 />
-                <span>العرض نشط ومفعل للزوار</span>
+                <span>تفعيل ونشر فوراً</span>
               </label>
             </div>
           </div>
 
-          {/* Row 6: Features Checklist (Arabic) */}
-          <div className="space-y-2 border-t border-border-structural/60 pt-4">
-            <div className="flex items-center justify-between">
-              <label className="text-xs font-bold text-text-primary">
-                مميزات وبنود العرض (باللغة العربية)
-              </label>
-              <button
-                type="button"
-                onClick={() => addFeature('ar')}
-                className="text-xs text-primary font-bold flex items-center gap-1 hover:underline"
-              >
-                <IoAddCircleOutline size={16} />
-                <span>إضافة بند</span>
-              </button>
+          {/* ── Live Card Preview ── */}
+          <div className="p-4 rounded-xl bg-surface-container-lowest border border-border-structural/60">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-text-muted mb-3">
+              <IoEyeOutline size={15} />
+              <span>معاينة فورية لشكل البطاقة في الموقع:</span>
             </div>
-            {formData.featuresAr.map((feat, idx) => (
-              <div key={idx} className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={feat}
-                  onChange={(e) => handleFeatureChange('ar', idx, e.target.value)}
-                  placeholder={`بند الميزة #${idx + 1}`}
-                  className="flex-1 px-3 py-1.5 rounded-lg bg-surface-container-lowest border border-border-structural text-xs text-text-primary"
-                />
-                {formData.featuresAr.length > 1 && (
-                  <button
-                    type="button"
-                    onClick={() => removeFeature('ar', idx)}
-                    className="p-1.5 text-text-muted hover:text-bearish-down"
-                  >
-                    <IoTrashOutline size={16} />
-                  </button>
-                )}
+
+            <div className="p-4 rounded-2xl bg-[#06142F] border border-[#12315C] max-w-sm mx-auto shadow-xl">
+              {formData.image && (
+                <div className="w-full h-32 rounded-xl overflow-hidden mb-3 bg-[#01071E]">
+                  <img
+                    src={formData.image}
+                    alt="معاينة"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                </div>
+              )}
+
+              <div className="flex items-center justify-between mb-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#FB8704]/20 border border-[#FB8704]/40 text-[#FB8704]">
+                  {formData.badgeAr || 'عرض حصري'}
+                </span>
+                <span className="text-[11px] font-mono text-[#687287] font-bold">
+                  {formData.partnerName || 'Broker'}
+                </span>
               </div>
-            ))}
+
+              <h4 className="text-sm font-black text-white mb-1.5 leading-snug">
+                {formData.titleAr || 'عنوان العرض الترويجي'}
+              </h4>
+
+              <p className="text-xs text-[#A7AFBF] mb-3 line-clamp-3 leading-relaxed">
+                {formData.subtitleAr || 'هنا يظهر كابشن وتفاصيل العرض الخاصة بالبروكر والشروط...'}
+              </p>
+
+              {formData.code && (
+                <div className="mb-3 p-2 rounded-lg bg-[#01071E] border border-dashed border-[#FB8704]/40 flex items-center justify-between text-xs">
+                  <span className="text-[10px] text-[#687287] font-bold">الكود الترويجي:</span>
+                  <span className="font-mono font-black text-[#00F0FF]">{formData.code}</span>
+                </div>
+              )}
+
+              <div className="w-full py-2 rounded-lg bg-gradient-to-r from-[#FB8704] to-[#FA5A04] text-white text-xs font-bold text-center">
+                {formData.ctaTextAr || 'فتح حساب وتفعيل العرض'}
+              </div>
+            </div>
           </div>
 
           {/* Modal Footer */}
-          <div className="border-t border-border-structural/60 pt-4 flex items-center justify-end gap-3">
+          <div className="pt-3 border-t border-border-structural/60 flex items-center justify-end gap-2.5">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-text-secondary hover:bg-surface-elevated transition-colors"
+              className="px-4 py-2 rounded-xl text-xs font-bold text-text-secondary hover:text-text-primary bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer"
             >
               إلغاء
             </button>
             <button
               type="submit"
-              disabled={submitting}
-              className="px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#FB8704] to-[#FA5A04] hover:from-[#FA5A04] hover:to-[#FB8704] shadow-lg shadow-[#FB8704]/25 transition-all flex items-center gap-2"
+              disabled={submitting || uploading}
+              className="px-6 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#FB8704] to-[#FA5A04] hover:from-[#FA5A04] hover:to-[#FB8704] shadow-md shadow-[#FB8704]/20 flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
             >
-              {submitting ? (
-                <span>جاري الحفظ...</span>
-              ) : (
-                <>
-                  <IoCheckmarkCircle size={17} />
-                  <span>{mode === 'create' ? 'إضافة العرض الآن' : 'حفظ التعديلات'}</span>
-                </>
-              )}
+              <IoCheckmarkCircle size={16} />
+              <span>{submitting ? 'جاري الحفظ...' : mode === 'edit' ? 'حفظ التعديلات' : 'إضافة العرض الآن'}</span>
             </button>
           </div>
         </form>

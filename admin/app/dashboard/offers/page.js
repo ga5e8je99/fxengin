@@ -406,6 +406,20 @@ export default function OffersManagementPage() {
                     : 'border-border-structural/70 hover:border-border-structural'
                 } ${offer.isActive === false ? 'opacity-65' : ''}`}
               >
+                {/* Offer Image / Banner */}
+                {(offer.image || offer.logo) && (
+                  <div className="w-full h-36 bg-surface-container-lowest overflow-hidden border-b border-border-structural/40 relative">
+                    <img
+                      src={offer.image || offer.logo}
+                      alt={offer.titleAr}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+
                 {/* Top Strip */}
                 <div className="p-5 pb-3 flex items-center justify-between gap-2 border-b border-border-structural/40">
                   <span
@@ -571,8 +585,20 @@ export default function OffersManagementPage() {
                         {offer.badgeAr || 'عرض حصري'}
                       </span>
                     </td>
-                    <td className="p-3.5 font-bold max-w-xs truncate">
-                      {offer.titleAr}
+                    <td className="p-3.5 font-bold max-w-xs">
+                      <div className="flex items-center gap-2.5">
+                        {(offer.image || offer.logo) && (
+                          <img
+                            src={offer.image || offer.logo}
+                            alt=""
+                            className="w-10 h-8 rounded-lg object-cover bg-surface-container-lowest shrink-0 border border-border-structural/60"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                            }}
+                          />
+                        )}
+                        <span className="truncate">{offer.titleAr}</span>
+                      </div>
                     </td>
                     <td className="p-3.5 whitespace-nowrap text-text-muted font-mono">
                       {offer.partnerName || 'FXENGIN'}
