@@ -339,57 +339,125 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                   }}
                 />
 
-                <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
-                  {/* Top Row: Logo & Category Badge */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
-                    <div
+                {/* Full-width Product Image Showcase Banner at the Top */}
+                <div
+                  className="broker-card-image-banner"
+                  style={{
+                    width: '100%',
+                    height: '142px',
+                    position: 'relative',
+                    background: broker.logoBg || 'var(--surface-container, #06142F)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px 24px',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {/* Subtle radial glow */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: `radial-gradient(circle at center, ${broker.glowColor || 'rgba(255,255,255,0.06)'} 0%, transparent 75%)`,
+                      pointerEvents: 'none',
+                    }}
+                  />
+
+                  {/* Floating Category Badge (Top-Start) */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      [isAr ? 'right' : 'left']: '12px',
+                      zIndex: 2,
+                    }}
+                  >
+                    <span
                       suppressHydrationWarning
                       style={{
-                        background: broker.logoBg,
-                        border: broker.id === 'multibank' ? '1px solid rgba(255, 255, 255, 0.35)' : '1px solid var(--border)',
-                        borderRadius: '12px',
-                        padding: '6px 12px',
-                        display: 'flex',
+                        background: 'rgba(1, 7, 30, 0.88)',
+                        backdropFilter: 'blur(8px)',
+                        border: `1px solid ${broker.accentColor || 'var(--primary)'}`,
+                        color: broker.accentColor || 'var(--primary)',
+                        fontSize: '10.5px',
+                        fontWeight: 800,
+                        padding: '3.5px 9px',
+                        borderRadius: '20px',
+                        display: 'inline-flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        minHeight: '56px',
-                        width: '145px',
-                        overflow: 'hidden',
+                        gap: '4px',
+                        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.45)',
                       }}
                     >
-                      <img
-                        src={broker.logo || broker.logoUrl || '/assets/Images/brokers/xm.webp'}
-                        alt={`${broker.name} Logo`}
-                        style={{ height: '44px', maxWidth: '100%', objectFit: 'contain', display: 'block' }}
-                      />
-                    </div>
+                      {isAr ? (broker.categoryBadgeAr || broker.badgeAr) : (broker.categoryBadgeEn || broker.badgeEn)}
+                    </span>
+                  </div>
 
-                    <div style={{ textAlign: isAr ? 'left' : 'right' }}>
-                      <span
-                        suppressHydrationWarning
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.05)',
-                          border: `1px solid ${broker.accentColor}`,
-                          color: broker.accentColor,
-                          fontSize: '10.5px',
-                          fontWeight: 800,
-                          padding: '3px 8px',
-                          borderRadius: '6px',
-                          display: 'inline-block',
-                          marginBottom: '4px',
-                        }}
-                      >
-                        {isAr ? broker.categoryBadgeAr : broker.categoryBadgeEn}
-                      </span>
-                      <div suppressHydrationWarning style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
-                        <span style={{ color: 'var(--accent)', fontWeight: 800 }}>★ {broker.rating}</span> • {isAr ? broker.tradersCount : broker.tradersCountEn}
-                      </div>
+                  {/* Floating Rating Pill (Top-End) */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      [isAr ? 'left' : 'right']: '12px',
+                      zIndex: 2,
+                    }}
+                  >
+                    <span
+                      suppressHydrationWarning
+                      style={{
+                        background: 'rgba(1, 7, 30, 0.88)',
+                        backdropFilter: 'blur(8px)',
+                        border: '1px solid rgba(255, 255, 255, 0.15)',
+                        color: '#FFFFFF',
+                        fontSize: '10.5px',
+                        fontWeight: 800,
+                        padding: '3.5px 9px',
+                        borderRadius: '20px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.45)',
+                      }}
+                    >
+                      <span style={{ color: 'var(--accent)' }}>★ {broker.rating}</span>
+                    </span>
+                  </div>
+
+                  {/* Centered Product / Broker Logo */}
+                  <img
+                    src={broker.logo || broker.logoUrl || '/assets/Images/brokers/xm.webp'}
+                    alt={`${broker.name} Logo`}
+                    className="broker-hero-logo"
+                    style={{
+                      maxHeight: '66px',
+                      maxWidth: '78%',
+                      width: 'auto',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      position: 'relative',
+                      zIndex: 1,
+                      filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25))',
+                      transition: 'transform 0.3s ease',
+                    }}
+                  />
+                </div>
+
+                <div style={{ padding: '20px 22px', display: 'flex', flexDirection: 'column', gap: '14px', flex: 1 }}>
+                  {/* Broker Name & Clients Count Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px' }}>
+                    <h3 style={{ fontSize: '17px', fontWeight: 900, color: 'var(--text-primary)', margin: 0 }}>
+                      {broker.name}
+                    </h3>
+                    <div suppressHydrationWarning style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 700 }}>
+                      {isAr ? (broker.tradersCount || broker.clientsCount) : (broker.tradersCountEn || broker.clientsCountEn)}
                     </div>
                   </div>
 
                   {/* Description */}
                   <p suppressHydrationWarning style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
-                    {isAr ? broker.descAr : broker.descEn}
+                    {isAr ? (broker.descAr || broker.descriptionAr) : (broker.descEn || broker.descriptionEn)}
                   </p>
 
                   {/* Specs 2x2 Pills Grid */}
@@ -628,9 +696,13 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
         }
 
         .broker-home-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(4, 136, 248, 0.35) !important;
-          box-shadow: 0 20px 48px rgba(0, 3, 13, 0.9), 0 0 24px rgba(4, 136, 248, 0.15) !important;
+          transform: translateY(-5px);
+          border-color: rgba(4, 136, 248, 0.4) !important;
+          box-shadow: 0 20px 48px rgba(0, 3, 13, 0.9), 0 0 24px rgba(4, 136, 248, 0.2) !important;
+        }
+
+        .broker-home-card:hover .broker-hero-logo {
+          transform: scale(1.08);
         }
       `}</style>
     </section>
