@@ -125,10 +125,20 @@ export async function GET(request) {
       list = list.filter((item) => item.category === category);
     }
 
+    const now = new Date();
+
     if (status === 'active') {
-      list = list.filter((item) => item.isActive !== false);
+      list = list.filter((item) => {
+        if (item.isActive === false) return false;
+        if (item.endDate && new Date(item.endDate) <= now) return false;
+        return true;
+      });
     } else if (status === 'inactive') {
       list = list.filter((item) => item.isActive === false);
+    } else if (status === 'expired') {
+      list = list.filter((item) => item.endDate && new Date(item.endDate) <= now);
+    } else if (status === 'scheduled') {
+      list = list.filter((item) => item.startDate && new Date(item.startDate) > now);
     }
 
     if (search && search.trim()) {
@@ -146,7 +156,9 @@ export async function GET(request) {
 
     // Calculate metrics
     const totalOffers = list.length;
-    const activeOffers = list.filter((o) => o.isActive !== false).length;
+    const activeOffers = list.filter((o) => o.isActive !== false && (!o.endDate || new Date(o.endDate) > now)).length;
+    const expiredOffers = list.filter((o) => o.endDate && new Date(o.endDate) <= now).length;
+    const scheduledOffers = list.filter((o) => o.startDate && new Date(o.startDate) > now).length;
     const totalCoupons = list.filter((o) => Boolean(o.code)).length;
 
     return NextResponse.json(
@@ -156,6 +168,8 @@ export async function GET(request) {
         metrics: {
           totalOffers,
           activeOffers,
+          expiredOffers,
+          scheduledOffers,
           totalCoupons,
         },
       },
@@ -196,6 +210,9 @@ export async function POST(request) {
       logo: body.logo || '/assets/Images/Logo/logo.webp',
       isFeatured: Boolean(body.isFeatured),
       isActive: body.isActive !== false,
+      hasExpiry: Boolean(body.hasExpiry || body.endDate),
+      startDate: body.startDate || null,
+      endDate: body.endDate || null,
       featuresAr: Array.isArray(body.featuresAr) ? body.featuresAr : [],
       featuresEn: Array.isArray(body.featuresEn) ? body.featuresEn : [],
       ctaTextAr: body.ctaTextAr || 'تفعيل العرض',

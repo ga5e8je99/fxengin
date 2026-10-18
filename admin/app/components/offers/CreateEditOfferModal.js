@@ -12,6 +12,9 @@ import {
   IoLinkOutline,
   IoPricetagOutline,
   IoEyeOutline,
+  IoTimeOutline,
+  IoCalendarOutline,
+  IoHourglassOutline,
 } from 'react-icons/io5';
 import { uploadFileDirectToStorage } from '../../services/storageService';
 import { translateText } from '../../services/translationService';
@@ -47,6 +50,9 @@ export default function CreateEditOfferModal({
     isExternal: true,
     isFeatured: false,
     isActive: true,
+    hasExpiry: false,
+    startDate: '',
+    endDate: '',
   });
 
   const [uploading, setUploading] = useState(false);
@@ -144,6 +150,55 @@ export default function CreateEditOfferModal({
     }
   };
 
+  const applyPresetDuration = (hours) => {
+    const now = new Date();
+    const end = new Date(now.getTime() + hours * 60 * 60 * 1000);
+    const toLocalISO = (d) => {
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    };
+    setFormData((prev) => ({
+      ...prev,
+      hasExpiry: true,
+      startDate: prev.startDate || toLocalISO(now),
+      endDate: toLocalISO(end),
+    }));
+  };
+
+  const applyEndOfMonth = () => {
+    const now = new Date();
+    const end = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+    const toLocalISO = (d) => {
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    };
+    setFormData((prev) => ({
+      ...prev,
+      hasExpiry: true,
+      startDate: prev.startDate || toLocalISO(now),
+      endDate: toLocalISO(end),
+    }));
+  };
+
+  const calculateRemainingTime = (endDateStr) => {
+    if (!endDateStr) return null;
+    const end = new Date(endDateStr);
+    if (isNaN(end.getTime())) return null;
+    const now = new Date();
+    const diffMs = end.getTime() - now.getTime();
+    if (diffMs <= 0) {
+      return { isExpired: true, text: 'منتهي الصلاحية (مخفي حالياً من الموقع)' };
+    }
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    let text = '';
+    if (days > 0) text += `${days} يوم `;
+    if (hours > 0) text += `و ${hours} ساعة `;
+    if (days === 0 && minutes > 0) text += `و ${minutes} دقيقة`;
+    return { isExpired: false, text: text.trim() };
+  };
+
   useEffect(() => {
     if (initialData && mode === 'edit') {
       setFormData({
@@ -167,6 +222,9 @@ export default function CreateEditOfferModal({
         isExternal: initialData.isExternal !== false,
         isFeatured: Boolean(initialData.isFeatured),
         isActive: initialData.isActive !== false,
+        hasExpiry: Boolean(initialData.hasExpiry || initialData.endDate),
+        startDate: initialData.startDate || '',
+        endDate: initialData.endDate || '',
       });
     } else {
       setFormData({
@@ -190,6 +248,9 @@ export default function CreateEditOfferModal({
         isExternal: true,
         isFeatured: false,
         isActive: true,
+        hasExpiry: false,
+        startDate: '',
+        endDate: '',
       });
     }
   }, [initialData, mode, isOpen]);
@@ -251,14 +312,34 @@ export default function CreateEditOfferModal({
       return;
     }
 
+    if (formData.hasExpiry && !formData.endDate) {
+      toast.error('يرجى تحديد تاريخ ووقت انتهاء العرض');
+      return;
+    }
+
     setSubmitting(true);
     try {
       const cleanCode = formData.code ? formData.code.toUpperCase().trim() : '';
+
+      let validUntilAr = formData.validUntilAr;
+      let validUntilEn = formData.validUntilEn;
+      if (formData.hasExpiry && formData.endDate) {
+        const endDateObj = new Date(formData.endDate);
+        if (!isNaN(endDateObj.getTime())) {
+          const dateStrAr = endDateObj.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' });
+          const dateStrEn = endDateObj.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+          validUntilAr = `ينتهي في ${dateStrAr}`;
+          validUntilEn = `Valid until ${dateStrEn}`;
+        }
+      }
+
       const payload = {
         ...formData,
         code: cleanCode,
         titleEn: formData.titleEn.trim() || formData.titleAr.trim(),
         subtitleEn: formData.subtitleEn.trim() || formData.subtitleAr.trim(),
+        validUntilAr: validUntilAr || formData.validUntilAr,
+        validUntilEn: validUntilEn || formData.validUntilEn,
         logo: formData.image, // backwards compatibility
         isExternal: true,
       };
@@ -621,6 +702,157 @@ export default function CreateEditOfferModal({
                 className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest border border-border-structural text-xs font-mono font-bold text-[#00F0FF] placeholder:text-text-muted/60 focus:border-primary focus:outline-none dir-ltr uppercase"
               />
             </div>
+          </div>
+
+          {/* ═══════ 6. تحديد فترة صلاحية العرض وموعد الانتهاء ═══════ */}
+          <div className="p-4 rounded-xl bg-surface-container-lowest border border-border-structural/80 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-[#FB8704]/15 border border-[#FB8704]/30 flex items-center justify-center text-[#FB8704] shrink-0">
+                  <IoTimeOutline size={18} />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-text-primary">
+                    ربط العرض بمدة زمنية وتاريخ انتهاء (مؤقت)
+                  </h4>
+                  <p className="text-[11px] text-text-muted">
+                    عند انتهاء الفترة المحددة، يُحذف العرض تلقائياً من الموقع دون الحاجة لتدخل يدوي
+                  </p>
+                </div>
+              </div>
+
+              <label className="flex items-center gap-2 cursor-pointer select-none text-xs font-bold text-text-primary">
+                <input
+                  type="checkbox"
+                  name="hasExpiry"
+                  checked={formData.hasExpiry}
+                  onChange={(e) => {
+                    const checked = e.target.checked;
+                    setFormData((prev) => ({
+                      ...prev,
+                      hasExpiry: checked,
+                      ...(!checked ? { endDate: '', startDate: '' } : {}),
+                    }));
+                    if (checked && !formData.endDate) {
+                      applyPresetDuration(72); // Default to 3 days if turning on
+                    }
+                  }}
+                  className="rounded border-border-structural text-[#FB8704] focus:ring-0 w-4 h-4 cursor-pointer"
+                />
+                <span className={formData.hasExpiry ? 'text-[#FB8704]' : 'text-text-muted'}>
+                  تحديد مدة زمنية
+                </span>
+              </label>
+            </div>
+
+            {formData.hasExpiry && (
+              <div className="pt-2 space-y-3 border-t border-border-structural/50">
+                {/* أزرار سريعة لاختيار المدة */}
+                <div>
+                  <span className="block text-[11px] font-bold text-text-muted mb-1.5">
+                    خيارات سريعة للمدة من تاريخ اليوم:
+                  </span>
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => applyPresetDuration(24)}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-surface-container border border-border-structural text-text-secondary hover:text-text-primary hover:border-[#FB8704] transition-colors cursor-pointer"
+                    >
+                      + 24 ساعة
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyPresetDuration(72)}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-surface-container border border-border-structural text-text-secondary hover:text-text-primary hover:border-[#FB8704] transition-colors cursor-pointer"
+                    >
+                      + 3 أيام
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyPresetDuration(168)}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-surface-container border border-border-structural text-text-secondary hover:text-text-primary hover:border-[#FB8704] transition-colors cursor-pointer"
+                    >
+                      + أسبوع (7 أيام)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyPresetDuration(336)}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-surface-container border border-border-structural text-text-secondary hover:text-text-primary hover:border-[#FB8704] transition-colors cursor-pointer"
+                    >
+                      + أسبوعين (14 يوم)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyPresetDuration(720)}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-surface-container border border-border-structural text-text-secondary hover:text-text-primary hover:border-[#FB8704] transition-colors cursor-pointer"
+                    >
+                      + شهر (30 يوم)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={applyEndOfMonth}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-surface-container border border-border-structural text-text-secondary hover:text-text-primary hover:border-[#FB8704] transition-colors cursor-pointer"
+                    >
+                      نهاية الشهر الحالي
+                    </button>
+                  </div>
+                </div>
+
+                {/* حقول التواريخ */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-[11px] font-bold text-text-primary mb-1 flex items-center gap-1">
+                      <IoCalendarOutline size={13} className="text-text-muted" />
+                      <span>تاريخ ووقت بدء العرض (اختياري)</span>
+                    </label>
+                    <input
+                      type="datetime-local"
+                      name="startDate"
+                      value={formData.startDate}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 rounded-xl bg-surface-container border border-border-structural text-xs text-text-primary focus:border-primary focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-text-primary mb-1 flex items-center gap-1">
+                      <IoHourglassOutline size={13} className="text-[#FB8704]" />
+                      <span>تاريخ ووقت انتهاء العرض (إجباري) *</span>
+                    </label>
+                    <input
+                      type="datetime-local"
+                      name="endDate"
+                      value={formData.endDate}
+                      onChange={handleChange}
+                      required={formData.hasExpiry}
+                      className="w-full px-3 py-2 rounded-xl bg-surface-container border border-[#FB8704]/60 text-xs font-bold text-[#FB8704] focus:border-[#FB8704] focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* مؤشر الوقت المتبقي الحي */}
+                {formData.endDate && (() => {
+                  const rem = calculateRemainingTime(formData.endDate);
+                  if (!rem) return null;
+                  return (
+                    <div
+                      className={`p-2.5 rounded-lg text-xs font-bold flex items-center gap-2 border ${
+                        rem.isExpired
+                          ? 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+                          : 'bg-[#FB8704]/10 border-[#FB8704]/30 text-[#FB8704]'
+                      }`}
+                    >
+                      <span className="shrink-0">{rem.isExpired ? '⚠️' : '⏱️'}</span>
+                      <span>
+                        {rem.isExpired
+                          ? 'تنبيه: هذا التاريخ في الماضي! سيكون العرض مخفياً تلقائياً من الموقع.'
+                          : `المدة المتبقية للعرض: ${rem.text} (يختفي من الموقع فوراً عند انتهاء الوقت).`}
+                      </span>
+                    </div>
+                  );
+                })()}
+              </div>
+            )}
           </div>
 
           {/* نص الزر والخيارات الإضافية */}

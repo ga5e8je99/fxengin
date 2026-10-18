@@ -17,6 +17,7 @@ import {
   FiShield,
   FiAward,
   FiZap,
+  FiClock,
 } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
@@ -25,6 +26,36 @@ import { showToast } from '../utils/toast';
 import Anim from '../components/Anim';
 import PageHeroBackground from '../components/PageHeroBackground';
 import offersData from '../../data/offers.json';
+
+function isOfferLive(o) {
+  if (!o || o.isActive === false) return false;
+  const now = new Date();
+  if (o.startDate) {
+    const s = new Date(o.startDate);
+    if (!isNaN(s.getTime()) && now < s) return false;
+  }
+  if (o.endDate) {
+    const e = new Date(o.endDate);
+    if (!isNaN(e.getTime()) && now > e) return false;
+  }
+  return true;
+}
+
+function getExpiryLabel(endDateStr, isAr) {
+  if (!endDateStr) return null;
+  const end = new Date(endDateStr);
+  if (isNaN(end.getTime())) return null;
+  const now = new Date();
+  const diffMs = end.getTime() - now.getTime();
+  if (diffMs <= 0) return null;
+  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  if (days > 0) {
+    return isAr ? `متبقي: ${days} يوم و ${hours} س` : `${days}d ${hours}h left`;
+  }
+  const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+  return isAr ? `متبقي: ${hours} س و ${mins} د` : `${hours}h ${mins}m left`;
+}
 
 export default function OffersPage() {
   const { isAr } = useLanguage();
@@ -49,15 +80,16 @@ export default function OffersPage() {
   }, []);
 
   const categories = useMemo(() => {
+    const liveOffers = (Array.isArray(offers) ? offers : []).filter(isOfferLive);
     return [
-      { id: 'all', labelAr: `جميع العروض (${offers.length})`, labelEn: `All Offers (${offers.length})` },
+      { id: 'all', labelAr: `جميع العروض (${liveOffers.length})`, labelEn: `All Offers (${liveOffers.length})` },
       { id: 'bonus', labelAr: 'بونص تداول', labelEn: 'Deposit Bonus' },
       { id: 'signals', labelAr: 'باقات التحليلات', labelEn: 'VIP Analytics' },
       { id: 'prop-firm', labelAr: 'شركات التمويل', labelEn: 'Prop Firms' },
       { id: 'spread', labelAr: 'سبريد خام ECN', labelEn: 'Raw Spreads' },
       { id: 'academy', labelAr: 'الأكاديمية', labelEn: 'Academy' },
     ];
-  }, [offers.length]);
+  }, [offers]);
 
   const handleCopyCode = (code, e) => {
     e.preventDefault();
@@ -76,7 +108,7 @@ export default function OffersPage() {
   };
 
   const filteredOffers = useMemo(() => {
-    let list = Array.isArray(offers) ? offers : [];
+    let list = (Array.isArray(offers) ? offers : []).filter(isOfferLive);
 
     if (selectedCategory !== 'all') {
       list = list.filter((item) => item.category === selectedCategory);
@@ -506,24 +538,47 @@ export default function OffersPage() {
                         justifyContent: 'space-between',
                         gap: '10px',
                         marginBottom: '16px',
+                        flexWrap: 'wrap',
                       }}
                     >
-                      <span
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '6px',
-                          padding: '5px 12px',
-                          borderRadius: '8px',
-                          background: 'rgba(251, 135, 4, 0.15)',
-                          border: '1px solid rgba(251, 135, 4, 0.38)',
-                          color: offer.badgeColor || '#FB8704',
-                          fontSize: '0.75rem',
-                          fontWeight: 800,
-                        }}
-                      >
-                        {isAr ? offer.badgeAr : offer.badgeEn}
-                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                        <span
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            padding: '5px 12px',
+                            borderRadius: '8px',
+                            background: 'rgba(251, 135, 4, 0.15)',
+                            border: '1px solid rgba(251, 135, 4, 0.38)',
+                            color: offer.badgeColor || '#FB8704',
+                            fontSize: '0.75rem',
+                            fontWeight: 800,
+                          }}
+                        >
+                          {isAr ? offer.badgeAr : offer.badgeEn}
+                        </span>
+
+                        {offer.endDate && getExpiryLabel(offer.endDate, isAr) && (
+                          <span
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              padding: '5px 10px',
+                              borderRadius: '8px',
+                              background: 'rgba(251, 135, 4, 0.18)',
+                              border: '1px solid rgba(251, 135, 4, 0.5)',
+                              color: '#FB8704',
+                              fontSize: '0.72rem',
+                              fontWeight: 800,
+                            }}
+                          >
+                            <FiClock size={12} />
+                            <span>{getExpiryLabel(offer.endDate, isAr)}</span>
+                          </span>
+                        )}
+                      </div>
 
                       {offer.partnerName && (
                         <span

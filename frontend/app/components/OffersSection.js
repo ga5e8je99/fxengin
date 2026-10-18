@@ -14,6 +14,7 @@ import {
   FiAward,
   FiShield,
   FiTrendingUp,
+  FiClock,
 } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
@@ -21,6 +22,36 @@ import { getAppRoute } from '../utils/routes';
 import { showToast } from '../utils/toast';
 import Anim from './Anim';
 import offersData from '../../data/offers.json';
+
+function isOfferLive(o) {
+  if (!o || o.isActive === false) return false;
+  const now = new Date();
+  if (o.startDate) {
+    const s = new Date(o.startDate);
+    if (!isNaN(s.getTime()) && now < s) return false;
+  }
+  if (o.endDate) {
+    const e = new Date(o.endDate);
+    if (!isNaN(e.getTime()) && now > e) return false;
+  }
+  return true;
+}
+
+function getExpiryLabel(endDateStr, isAr) {
+  if (!endDateStr) return null;
+  const end = new Date(endDateStr);
+  if (isNaN(end.getTime())) return null;
+  const now = new Date();
+  const diffMs = end.getTime() - now.getTime();
+  if (diffMs <= 0) return null;
+  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  if (days > 0) {
+    return isAr ? `متبقي: ${days} يوم و ${hours} س` : `${days}d ${hours}h left`;
+  }
+  const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+  return isAr ? `متبقي: ${hours} س و ${mins} د` : `${hours}h ${mins}m left`;
+}
 
 export default function OffersSection({ limit = 3, showViewAll = true }) {
   const { isAr } = useLanguage();
@@ -69,7 +100,7 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
   };
 
   const displayedOffers = useMemo(() => {
-    let list = Array.isArray(offers) ? offers : [];
+    let list = (Array.isArray(offers) ? offers : []).filter(isOfferLive);
     if (selectedCategory !== 'all') {
       list = list.filter((item) => item.category === selectedCategory);
     }
@@ -319,24 +350,47 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
                     justifyContent: 'space-between',
                     gap: '10px',
                     marginBottom: '16px',
+                    flexWrap: 'wrap',
                   }}
                 >
-                  <span
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px',
-                      padding: '4px 10px',
-                      borderRadius: '8px',
-                      background: 'rgba(251, 135, 4, 0.14)',
-                      border: '1px solid rgba(251, 135, 4, 0.35)',
-                      color: offer.badgeColor || '#FB8704',
-                      fontSize: '0.72rem',
-                      fontWeight: 800,
-                    }}
-                  >
-                    {isAr ? offer.badgeAr : offer.badgeEn}
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        padding: '4px 10px',
+                        borderRadius: '8px',
+                        background: 'rgba(251, 135, 4, 0.14)',
+                        border: '1px solid rgba(251, 135, 4, 0.35)',
+                        color: offer.badgeColor || '#FB8704',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                      }}
+                    >
+                      {isAr ? offer.badgeAr : offer.badgeEn}
+                    </span>
+
+                    {offer.endDate && getExpiryLabel(offer.endDate, isAr) && (
+                      <span
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          padding: '4px 8px',
+                          borderRadius: '8px',
+                          background: 'rgba(251, 135, 4, 0.18)',
+                          border: '1px solid rgba(251, 135, 4, 0.5)',
+                          color: '#FB8704',
+                          fontSize: '0.7rem',
+                          fontWeight: 800,
+                        }}
+                      >
+                        <FiClock size={11} />
+                        <span>{getExpiryLabel(offer.endDate, isAr)}</span>
+                      </span>
+                    )}
+                  </div>
 
                   {offer.partnerName && (
                     <span

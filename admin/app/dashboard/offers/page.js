@@ -22,6 +22,7 @@ import {
   IoShieldCheckmarkOutline,
   IoLayersOutline,
   IoOpenOutline,
+  IoTimeOutline,
 } from 'react-icons/io5';
 import {
   fetchAdminOffers,
@@ -221,7 +222,7 @@ export default function OffersManagementPage() {
       </div>
 
       {/* ── KPI Metrics Cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3.5 my-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 my-6">
         {[
           {
             label: 'إجمالي العروض',
@@ -231,11 +232,18 @@ export default function OffersManagementPage() {
             bg: 'rgba(4, 136, 248, 0.12)',
           },
           {
-            label: 'العروض النشطة',
+            label: 'العروض النشطة السارية',
             value: stats ? stats.activeOffers : '...',
             icon: IoCheckmarkCircleOutline,
             color: '#16C784',
             bg: 'rgba(22, 199, 132, 0.12)',
+          },
+          {
+            label: 'منتهية الصلاحية (مخفية)',
+            value: stats ? (stats.expiredOffers ?? 0) : '0',
+            icon: IoTimeOutline,
+            color: '#F43F5E',
+            bg: 'rgba(244, 63, 94, 0.12)',
           },
           {
             label: 'أكواد الخصم الترويجية',
@@ -263,19 +271,19 @@ export default function OffersManagementPage() {
           return (
             <div
               key={idx}
-              className="p-4 rounded-2xl bg-surface-container-low border border-border-structural/70 flex items-center justify-between shadow-sm"
+              className="p-3.5 rounded-2xl bg-surface-container-low border border-border-structural/70 flex items-center justify-between shadow-sm"
             >
               <div>
-                <span className="text-xs text-text-muted block mb-1 font-bold">{card.label}</span>
-                <span className="text-xl sm:text-2xl font-black text-text-primary font-mono">
+                <span className="text-[11px] text-text-muted block mb-1 font-bold">{card.label}</span>
+                <span className="text-lg sm:text-xl font-black text-text-primary font-mono">
                   {card.value}
                 </span>
               </div>
               <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
                 style={{ backgroundColor: card.bg, color: card.color }}
               >
-                <Icon size={20} />
+                <Icon size={18} />
               </div>
             </div>
           );
@@ -329,8 +337,9 @@ export default function OffersManagementPage() {
             className="px-3 py-2 rounded-xl bg-surface-container-lowest border border-border-structural/70 text-xs font-bold text-text-secondary focus:border-primary focus:outline-none cursor-pointer"
           >
             <option value="all">كافة الحالات</option>
-            <option value="active">النشطة فقط</option>
-            <option value="inactive">المعطلة فقط</option>
+            <option value="active">النشطة والجارية فقط</option>
+            <option value="expired">منتهية الصلاحية (مخفية تلقائياً)</option>
+            <option value="inactive">المعطلة يدوياً</option>
           </select>
 
           {/* View Mode Toggle */}
@@ -421,17 +430,42 @@ export default function OffersManagementPage() {
                 )}
 
                 {/* Top Strip */}
-                <div className="p-5 pb-3 flex items-center justify-between gap-2 border-b border-border-structural/40">
-                  <span
-                    style={{
-                      color: offer.badgeColor || '#FB8704',
-                      borderColor: `${offer.badgeColor || '#FB8704'}40`,
-                      backgroundColor: `${offer.badgeColor || '#FB8704'}15`,
-                    }}
-                    className="px-2.5 py-1 rounded-lg text-[11px] font-black border tracking-wide"
-                  >
-                    {offer.badgeAr || 'عرض حصري'}
-                  </span>
+                <div className="p-5 pb-3 flex items-center justify-between gap-2 border-b border-border-structural/40 flex-wrap">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span
+                      style={{
+                        color: offer.badgeColor || '#FB8704',
+                        borderColor: `${offer.badgeColor || '#FB8704'}40`,
+                        backgroundColor: `${offer.badgeColor || '#FB8704'}15`,
+                      }}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-black border tracking-wide"
+                    >
+                      {offer.badgeAr || 'عرض حصري'}
+                    </span>
+
+                    {/* Expiry Badge */}
+                    {offer.endDate ? (
+                      (() => {
+                        const isExpired = new Date(offer.endDate) <= new Date();
+                        return (
+                          <span
+                            className={`px-2 py-0.5 rounded-lg text-[10px] font-bold border flex items-center gap-1 ${
+                              isExpired
+                                ? 'bg-rose-500/15 border-rose-500/35 text-rose-400'
+                                : 'bg-[#FB8704]/15 border-[#FB8704]/35 text-[#FB8704]'
+                            }`}
+                          >
+                            <span>{isExpired ? '⚠️' : '⏱️'}</span>
+                            <span>{isExpired ? 'منتهي (مخفي)' : `ينتهي: ${new Date(offer.endDate).toLocaleDateString('ar-EG', { day: 'numeric', month: 'short' })}`}</span>
+                          </span>
+                        );
+                      })()
+                    ) : (
+                      <span className="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-blue-500/10 border border-blue-500/25 text-blue-400">
+                        مستمر ♾️
+                      </span>
+                    )}
+                  </div>
 
                   <span className="text-xs font-mono font-bold text-text-muted">
                     {offer.partnerName || 'FXENGIN'}
@@ -566,6 +600,7 @@ export default function OffersManagementPage() {
                   <th className="p-3.5">عنوان العرض</th>
                   <th className="p-3.5">الشريك / الجهة</th>
                   <th className="p-3.5">كود الخصم</th>
+                  <th className="p-3.5">صلاحية العرض</th>
                   <th className="p-3.5">الحالة</th>
                   <th className="p-3.5 text-center">إجراءات</th>
                 </tr>
@@ -605,6 +640,33 @@ export default function OffersManagementPage() {
                     </td>
                     <td className="p-3.5 whitespace-nowrap font-mono font-bold text-[#00F0FF]">
                       {offer.code || '—'}
+                    </td>
+                    <td className="p-3.5 whitespace-nowrap">
+                      {offer.endDate ? (
+                        (() => {
+                          const isExpired = new Date(offer.endDate) <= new Date();
+                          return (
+                            <span
+                              className={`px-2 py-0.5 rounded text-[10px] font-bold border flex items-center gap-1 ${
+                                isExpired
+                                  ? 'bg-rose-500/15 border-rose-500/35 text-rose-400'
+                                  : 'bg-[#FB8704]/15 border-[#FB8704]/35 text-[#FB8704]'
+                              }`}
+                            >
+                              <span>{isExpired ? '⚠️' : '⏱️'}</span>
+                              <span>
+                                {isExpired
+                                  ? 'منتهي (مخفي)'
+                                  : `ينتهي: ${new Date(offer.endDate).toLocaleDateString('ar-EG', { day: 'numeric', month: 'short' })}`}
+                              </span>
+                            </span>
+                          );
+                        })()
+                      ) : (
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                          مستمر ♾️
+                        </span>
+                      )}
                     </td>
                     <td className="p-3.5 whitespace-nowrap">
                       <button

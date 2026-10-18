@@ -44,8 +44,26 @@ export async function GET(request) {
       }
     }
 
-    // Only return active offers on public website
-    offers = (Array.isArray(offers) ? offers : []).filter((o) => o.isActive !== false);
+    // Only return active and currently valid (unexpired) offers on public website
+    const now = new Date();
+    offers = (Array.isArray(offers) ? offers : []).filter((o) => {
+      // Must not be explicitly inactive
+      if (o.isActive === false) return false;
+
+      // If scheduled with a future start date, do not show yet
+      if (o.startDate) {
+        const start = new Date(o.startDate);
+        if (!isNaN(start.getTime()) && now < start) return false;
+      }
+
+      // If tied to an expiration period, automatically remove from website once expired
+      if (o.endDate) {
+        const end = new Date(o.endDate);
+        if (!isNaN(end.getTime()) && now > end) return false;
+      }
+
+      return true;
+    });
 
     if (category && category !== 'all') {
       offers = offers.filter((o) => o.category === category);
