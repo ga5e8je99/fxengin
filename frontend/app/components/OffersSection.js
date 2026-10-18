@@ -16,12 +16,15 @@ import {
   FiTrendingUp,
 } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
+import { getAppRoute } from '../utils/routes';
 import { showToast } from '../utils/toast';
 import Anim from './Anim';
 import offersData from '../../data/offers.json';
 
 export default function OffersSection({ limit = 3, showViewAll = true }) {
   const { isAr } = useLanguage();
+  const { user } = useAuth();
   const [copiedCode, setCopiedCode] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -453,7 +456,7 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
                     </a>
                   ) : (
                     <Link
-                      href={offer.ctaLink}
+                      href={offer.ctaLink.startsWith('/') ? getAppRoute(offer.ctaLink, user) : offer.ctaLink}
                       className="btn-primary"
                       style={{
                         width: '100%',
@@ -481,7 +484,7 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
         {showViewAll && (
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
             <Link
-              href="/offers"
+              href={getAppRoute('/offers', user)}
               className="btn-secondary"
               style={{
                 display: 'inline-flex',

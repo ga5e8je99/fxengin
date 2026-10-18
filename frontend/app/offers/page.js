@@ -19,6 +19,8 @@ import {
   FiZap,
 } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
+import { getAppRoute } from '../utils/routes';
 import { showToast } from '../utils/toast';
 import Anim from '../components/Anim';
 import PageHeroBackground from '../components/PageHeroBackground';
@@ -26,6 +28,7 @@ import offersData from '../../data/offers.json';
 
 export default function OffersPage() {
   const { isAr } = useLanguage();
+  const { user } = useAuth();
   const [copiedCode, setCopiedCode] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -656,7 +659,7 @@ export default function OffersPage() {
                         </a>
                       ) : (
                         <Link
-                          href={offer.ctaLink}
+                          href={offer.ctaLink.startsWith('/') ? getAppRoute(offer.ctaLink, user) : offer.ctaLink}
                           className="btn-primary"
                           style={{
                             width: '100%',

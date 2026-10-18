@@ -5,6 +5,7 @@ import JoinUsSection from '../components/JoinUsSection';
 import CoursesSection from '../components/CoursesSection';
 import MarketOverview from '../components/MarketOverview';
 import CTABanner from '../components/CTABanner';
+import OffersSection from '../components/OffersSection';
 import AnalysesSection from '../components/AnalysesSection';
 import BlogSection from '../components/BlogSection';
 import EnrollCTA from '../components/EnrollCTA';
@@ -62,7 +63,7 @@ export default function UserHomePage() {
 
       <CTABanner />
 
-      {/* 5. CTA Banner -> Analyses */}
+      {/* 5. CTA Banner -> Offers / Analyses */}
       <SectionSeparator
         variant="diagonal"
         bgColor="surface"
@@ -70,6 +71,9 @@ export default function UserHomePage() {
         accentColor="orange"
         height={38}
       />
+
+      {/* ── Exclusive Offers & Discounts Section (سيكشن العروض الحصرية) ── */}
+      <OffersSection limit={3} showViewAll={true} />
 
       <AnalysesSection />
 
