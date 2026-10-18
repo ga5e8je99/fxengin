@@ -344,13 +344,13 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                   className="broker-card-image-banner"
                   style={{
                     width: '100%',
-                    height: '190px',
+                    height: '205px',
                     position: 'relative',
                     background: broker.logoBg || 'var(--surface-container, #06142F)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '24px 20px',
+                    padding: '24px 16px 42px 16px',
                     borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
                     overflow: 'hidden',
                   }}
@@ -401,8 +401,8 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                     alt={`${broker.name} Logo`}
                     className="broker-hero-logo"
                     style={{
-                      maxHeight: '78px',
-                      maxWidth: '80%',
+                      maxHeight: '70px',
+                      maxWidth: '78%',
                       width: 'auto',
                       height: 'auto',
                       objectFit: 'contain',
@@ -413,13 +413,13 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                     }}
                   />
 
-                  {/* Category Text (Moved to the Bottom of Image Section) */}
+                  {/* Category Text (At the bottom of image section - 100% visible, fully wrapped, zero cut-off) */}
                   <div
                     style={{
                       position: 'absolute',
-                      bottom: '12px',
-                      left: '12px',
-                      right: '12px',
+                      bottom: '8px',
+                      left: '8px',
+                      right: '8px',
                       display: 'flex',
                       justifyContent: 'center',
                       zIndex: 2,
@@ -428,23 +428,21 @@ export default function BrokersSection({ onlyLoggedIn = false }) {
                     <span
                       suppressHydrationWarning
                       style={{
-                        background: 'rgba(1, 7, 30, 0.9)',
-                        backdropFilter: 'blur(8px)',
+                        background: 'rgba(1, 7, 30, 0.94)',
+                        backdropFilter: 'blur(10px)',
                         border: `1px solid ${broker.accentColor || 'var(--primary)'}`,
                         color: broker.accentColor || 'var(--primary)',
                         fontSize: '11px',
                         fontWeight: 800,
-                        padding: '4px 12px',
-                        borderRadius: '20px',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        lineHeight: 1.35,
+                        padding: '5px 12px',
+                        borderRadius: '10px',
+                        display: 'block',
                         textAlign: 'center',
-                        maxWidth: '100%',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        boxShadow: '0 4px 14px rgba(0, 0, 0, 0.5)',
+                        width: '100%',
+                        whiteSpace: 'normal',
+                        wordBreak: 'break-word',
+                        boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)',
                       }}
                     >
                       {isAr ? (broker.categoryBadgeAr || broker.badgeAr) : (broker.categoryBadgeEn || broker.badgeEn)}
