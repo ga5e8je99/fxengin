@@ -30,13 +30,12 @@ export async function GET(request) {
       try {
         const content = fs.readFileSync(filePath, 'utf-8');
         const parsed = JSON.parse(content);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           offers = parsed;
         }
       } catch (_) {}
-    }
-
-    if (!offers || offers.length === 0) {
+    } else {
+      // Only fallback if the file does not exist on disk at all
       const fallbackPath = path.join(process.cwd(), 'data', 'offers.json');
       if (fs.existsSync(fallbackPath)) {
         try {
@@ -44,6 +43,9 @@ export async function GET(request) {
         } catch (_) {}
       }
     }
+
+    // Only return active offers on public website
+    offers = (Array.isArray(offers) ? offers : []).filter((o) => o.isActive !== false);
 
     if (category && category !== 'all') {
       offers = offers.filter((o) => o.category === category);

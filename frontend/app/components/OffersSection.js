@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import {
   FiTag,
@@ -27,6 +27,20 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
   const { user } = useAuth();
   const [copiedCode, setCopiedCode] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [offers, setOffers] = useState(offersData || []);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/offers', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.success && Array.isArray(res.data)) {
+          setOffers(res.data);
+        }
+      })
+      .catch((err) => console.warn('Offers fetch error:', err))
+      .finally(() => setLoaded(true));
+  }, []);
 
   const categories = useMemo(() => {
     return [
@@ -55,7 +69,7 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
   };
 
   const displayedOffers = useMemo(() => {
-    let list = Array.isArray(offersData) ? offersData : [];
+    let list = Array.isArray(offers) ? offers : [];
     if (selectedCategory !== 'all') {
       list = list.filter((item) => item.category === selectedCategory);
     }
@@ -63,7 +77,12 @@ export default function OffersSection({ limit = 3, showViewAll = true }) {
       return list.slice(0, limit);
     }
     return list;
-  }, [selectedCategory, limit]);
+  }, [offers, selectedCategory, limit]);
+
+  // If offers were deleted in admin dashboard, do not display the section
+  if (loaded && offers.length === 0) {
+    return null;
+  }
 
   return (
     <section

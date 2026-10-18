@@ -33,17 +33,31 @@ export default function OffersPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
+  const [offers, setOffers] = useState(offersData || []);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/offers', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.success && Array.isArray(res.data)) {
+          setOffers(res.data);
+        }
+      })
+      .catch((err) => console.warn('Offers fetch error:', err))
+      .finally(() => setLoading(false));
+  }, []);
 
   const categories = useMemo(() => {
     return [
-      { id: 'all', labelAr: 'جميع العروض (6)', labelEn: 'All Offers (6)' },
+      { id: 'all', labelAr: `جميع العروض (${offers.length})`, labelEn: `All Offers (${offers.length})` },
       { id: 'bonus', labelAr: 'بونص تداول', labelEn: 'Deposit Bonus' },
       { id: 'signals', labelAr: 'باقات التحليلات', labelEn: 'VIP Analytics' },
       { id: 'prop-firm', labelAr: 'شركات التمويل', labelEn: 'Prop Firms' },
       { id: 'spread', labelAr: 'سبريد خام ECN', labelEn: 'Raw Spreads' },
       { id: 'academy', labelAr: 'الأكاديمية', labelEn: 'Academy' },
     ];
-  }, []);
+  }, [offers.length]);
 
   const handleCopyCode = (code, e) => {
     e.preventDefault();
@@ -62,7 +76,7 @@ export default function OffersPage() {
   };
 
   const filteredOffers = useMemo(() => {
-    let list = Array.isArray(offersData) ? offersData : [];
+    let list = Array.isArray(offers) ? offers : [];
 
     if (selectedCategory !== 'all') {
       list = list.filter((item) => item.category === selectedCategory);
@@ -85,7 +99,7 @@ export default function OffersPage() {
     }
 
     return list;
-  }, [selectedCategory, searchQuery, isAr]);
+  }, [offers, selectedCategory, searchQuery, isAr]);
 
   const faqs = [
     {
@@ -401,24 +415,28 @@ export default function OffersPage() {
             >
               <FiGift size={40} color="var(--text-muted)" style={{ margin: '0 auto 1rem auto' }} />
               <h3 style={{ color: 'var(--text-primary)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>
-                {isAr ? 'لم يتم العثور على عروض مطابقة' : 'No matching offers found'}
+                {offers.length === 0
+                  ? (isAr ? 'لا توجد عروض ترويجية نشطة حالياً' : 'No active promotional offers currently')
+                  : (isAr ? 'لم يتم العثور على عروض مطابقة' : 'No matching offers found')}
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
-                {isAr
-                  ? 'جرب البحث بكلمة أخرى أو اختر تصنيفاً مختلفاً'
-                  : 'Try adjusting your search query or selecting a different category'}
+                {offers.length === 0
+                  ? (isAr ? 'ترقبوا باقات وعروض FXENGIN الحصرية الجديدة قريباً، أو تواصلوا مع الدعم للاستفسار.' : 'Stay tuned for upcoming exclusive bonuses, or contact support for tailored promotions.')
+                  : (isAr ? 'جرب البحث بكلمة أخرى أو اختر تصنيفاً مختلفاً' : 'Try adjusting your search query or selecting a different category')}
               </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedCategory('all');
-                  setSearchQuery('');
-                }}
-                className="btn-secondary"
-                style={{ padding: '8px 20px', fontSize: '0.85rem' }}
-              >
-                {isAr ? 'إعادة ضبط الفلاتر' : 'Reset Filters'}
-              </button>
+              {offers.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedCategory('all');
+                    setSearchQuery('');
+                  }}
+                  className="btn-secondary"
+                  style={{ padding: '8px 20px', fontSize: '0.85rem' }}
+                >
+                  {isAr ? 'إعادة ضبط الفلاتر' : 'Reset Filters'}
+                </button>
+              )}
             </div>
           ) : (
             <div
