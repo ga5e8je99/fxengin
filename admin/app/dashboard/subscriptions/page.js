@@ -395,39 +395,71 @@ export default function SubscriptionsPage() {
                     <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                       {/* Header info */}
                       <div>
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <span
-                            className="text-xs font-bold px-2.5 py-1 rounded-full inline-block"
-                            style={{
-                              backgroundColor: `${color}20`,
-                              color: color,
-                              border: `1px solid ${color}40`,
-                            }}
-                          >
-                            {plan.badge || plan.slug}
-                          </span>
+                        {(() => {
+                          const [nameAr, nameEn] = (plan.name || '').includes(':::')
+                            ? plan.name.split(':::').map((s) => s.trim())
+                            : [plan.name, ''];
+                          const [badgeAr, badgeEn] = (plan.badge || '').includes(':::')
+                            ? plan.badge.split(':::').map((s) => s.trim())
+                            : [plan.badge, ''];
+                          const [descAr, descEn] = (plan.description || '').includes(':::')
+                            ? plan.description.split(':::').map((s) => s.trim())
+                            : [plan.description, ''];
 
-                          <div className="flex items-center gap-1.5">
-                            <span
-                              className={`w-2.5 h-2.5 rounded-full ${
-                                plan.isActive ? 'bg-emerald-400' : 'bg-gray-500'
-                              }`}
-                              title={plan.isActive ? 'نشطة' : 'معطلة'}
-                            />
-                            <span className="text-[11px] text-gray-400">
-                              {plan.isActive ? 'معروضة بالموقع' : 'معطلة'}
-                            </span>
-                          </div>
-                        </div>
+                          return (
+                            <>
+                              <div className="flex items-start justify-between gap-2 mb-2">
+                                <span
+                                  className="text-xs font-bold px-2.5 py-1 rounded-full inline-flex items-center gap-1.5"
+                                  style={{
+                                    backgroundColor: `${color}20`,
+                                    color: color,
+                                    border: `1px solid ${color}40`,
+                                  }}
+                                >
+                                  <span>{badgeAr || plan.badge || plan.slug}</span>
+                                  {badgeEn && (
+                                    <span className="text-[10px] opacity-80 border-r border-current pr-1.5 mr-0.5 dir-ltr">
+                                      {badgeEn}
+                                    </span>
+                                  )}
+                                </span>
 
-                        <h3 className="font-headline-sm text-lg font-bold text-text-primary mb-1">
-                          {plan.name}
-                        </h3>
-                        {plan.description && (
-                          <p className="text-xs text-text-muted leading-relaxed line-clamp-2">
-                            {plan.description}
-                          </p>
-                        )}
+                                <div className="flex items-center gap-1.5">
+                                  <span
+                                    className={`w-2.5 h-2.5 rounded-full ${
+                                      plan.isActive ? 'bg-emerald-400' : 'bg-gray-500'
+                                    }`}
+                                    title={plan.isActive ? 'نشطة' : 'معطلة'}
+                                  />
+                                  <span className="text-[11px] text-gray-400">
+                                    {plan.isActive ? 'معروضة بالموقع' : 'معطلة'}
+                                  </span>
+                                </div>
+                              </div>
+
+                              <h3 className="font-headline-sm text-lg font-bold text-text-primary mb-1">
+                                <div>{nameAr || plan.name}</div>
+                                {nameEn && (
+                                  <div className="text-xs font-medium text-gray-400 dir-ltr text-right mt-0.5">
+                                    {nameEn}
+                                  </div>
+                                )}
+                              </h3>
+
+                              {descAr && (
+                                <p className="text-xs text-text-muted leading-relaxed line-clamp-2 mb-1">
+                                  {descAr}
+                                </p>
+                              )}
+                              {descEn && (
+                                <p className="text-[11px] text-gray-400/90 leading-relaxed line-clamp-1 italic dir-ltr text-right">
+                                  {descEn}
+                                </p>
+                              )}
+                            </>
+                          );
+                        })()}
                       </div>
 
                       {/* Price display */}
@@ -460,17 +492,29 @@ export default function SubscriptionsPage() {
                         </div>
                         <div className="space-y-1.5 max-h-36 overflow-y-auto pr-1">
                           {Array.isArray(plan.features) && plan.features.length > 0 ? (
-                            plan.features.map((feat, idx) => (
-                              <div key={idx} className="flex items-start gap-2">
-                                <span
-                                  className="material-symbols-outlined text-[16px] shrink-0 mt-0.5"
-                                  style={{ color }}
-                                >
-                                  check_circle
-                                </span>
-                                <span className="leading-tight text-gray-300">{feat}</span>
-                              </div>
-                            ))
+                            plan.features.map((feat, idx) => {
+                              const [fAr, fEn] = typeof feat === 'string' && feat.includes(':::')
+                                ? feat.split(':::').map((s) => s.trim())
+                                : [feat, ''];
+                              return (
+                                <div key={idx} className="flex items-start gap-2">
+                                  <span
+                                    className="material-symbols-outlined text-[16px] shrink-0 mt-0.5"
+                                    style={{ color }}
+                                  >
+                                    check_circle
+                                  </span>
+                                  <div className="leading-tight">
+                                    <span className="text-gray-300">{fAr}</span>
+                                    {fEn && (
+                                      <span className="block text-[10px] text-gray-400 dir-ltr text-right">
+                                        {fEn}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })
                           ) : (
                             <span className="text-gray-500 italic text-[11px]">
                               لم يتم إدخال نقاط مميزات

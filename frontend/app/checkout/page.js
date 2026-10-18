@@ -265,35 +265,92 @@ function CheckoutContent() {
 
     // Default: VIP Package (Dynamic from DB / Seeded Plans)
     const pkg = ANALYSIS_PACKAGES.find((p) => p.id === packageKey) || ANALYSIS_PACKAGES[1];
-    const planName = dbPlanData?.name || (isAr ? pkg.nameAr : pkg.nameEn);
+
+    let nameAr = pkg.nameAr;
+    let nameEn = pkg.nameEn;
+    if (dbPlanData?.name) {
+      if (typeof dbPlanData.name === 'string' && dbPlanData.name.includes(':::')) {
+        const [ar, en] = dbPlanData.name.split(':::').map((s) => s.trim());
+        nameAr = ar || pkg.nameAr;
+        nameEn = en || pkg.nameEn || ar;
+      } else {
+        nameAr = dbPlanData.name;
+        nameEn = pkg.nameEn || dbPlanData.name;
+      }
+    }
+
+    let badgeAr = pkg.badgeAr;
+    let badgeEn = pkg.badgeEn;
+    if (dbPlanData?.badge) {
+      if (typeof dbPlanData.badge === 'string' && dbPlanData.badge.includes(':::')) {
+        const [ar, en] = dbPlanData.badge.split(':::').map((s) => s.trim());
+        badgeAr = ar || pkg.badgeAr;
+        badgeEn = en || pkg.badgeEn || ar;
+      } else {
+        badgeAr = dbPlanData.badge;
+        badgeEn = pkg.badgeEn || dbPlanData.badge;
+      }
+    }
+
+    let descAr = pkg.descAr;
+    let descEn = pkg.descEn;
+    if (dbPlanData?.description) {
+      if (typeof dbPlanData.description === 'string' && dbPlanData.description.includes(':::')) {
+        const [ar, en] = dbPlanData.description.split(':::').map((s) => s.trim());
+        descAr = ar || pkg.descAr;
+        descEn = en || pkg.descEn || ar;
+      } else {
+        descAr = dbPlanData.description;
+        descEn = pkg.descEn || dbPlanData.description;
+      }
+    }
+
     const planPrice = dbPlanData?.price !== undefined ? Number(dbPlanData.price) : (pkg.priceVal || 49);
-    const planBadge = dbPlanData?.badge || (isAr ? pkg.badgeAr : pkg.badgeEn);
     const planColor = dbPlanData?.highlightColor || pkg.color || '#FB8704';
-    const planDesc = dbPlanData?.description || (isAr ? pkg.descAr : pkg.descEn);
-    const perks = Array.isArray(dbPlanData?.features) && dbPlanData.features.length > 0
-      ? dbPlanData.features
-      : [
-          'وصول فوري وشامل لكافة تحليلات وإشارات هذه المجموعة',
-          'تنبيهات تيليجرام VIP فورية على مدار 24/5',
-          'نقاط دخول وخروج محددة بدقة مع إدارة المخاطر',
-          'جلسات بث صوتي ومتابعة حية خلال الأخبار الاقتصادية القوية',
-        ];
+
+    let perksAr = [
+      'وصول فوري وشامل لكافة تحليلات وإشارات هذه المجموعة',
+      'تنبيهات تيليجرام VIP فورية على مدار 24/5',
+      'نقاط دخول وخروج محددة بدقة مع إدارة المخاطر',
+      'جلسات بث صوتي ومتابعة حية خلال الأخبار الاقتصادية القوية',
+    ];
+    let perksEn = [
+      'Instant institutional access to all setups in this analysis group',
+      'Real-time 24/5 VIP Telegram alerts and notifications',
+      'Precise entry, stop loss, and multiple target levels (TP1, TP2)',
+      'Live voice and text coverage during high-impact economic news',
+    ];
+
+    if (Array.isArray(dbPlanData?.features) && dbPlanData.features.length > 0) {
+      perksAr = dbPlanData.features.map((f) => {
+        if (typeof f === 'string' && f.includes(':::')) {
+          return f.split(':::')[0].trim();
+        }
+        return f;
+      });
+      perksEn = dbPlanData.features.map((f) => {
+        if (typeof f === 'string' && f.includes(':::')) {
+          return f.split(':::')[1]?.trim() || f.split(':::')[0].trim();
+        }
+        return f;
+      });
+    }
 
     return {
       kind: 'package',
       packageKey,
       planId: dbPlanData?.id || packageKey,
-      titleAr: planName,
-      titleEn: planName,
-      subtitleAr: `${planDesc} • اشتراك شهري متجدد`,
-      subtitleEn: `${planDesc} • Monthly recurring subscription`,
+      titleAr: nameAr,
+      titleEn: nameEn,
+      subtitleAr: `${descAr} • اشتراك شهري متجدد`,
+      subtitleEn: `${descEn} • Monthly recurring subscription`,
       priceVal: planPrice,
       priceStr: isAr ? `${planPrice} USDT / شهرياً` : `${planPrice} USDT / Month`,
-      badgeAr: planBadge,
-      badgeEn: planBadge,
+      badgeAr,
+      badgeEn,
       badgeColor: planColor,
-      perksAr: perks,
-      perksEn: perks,
+      perksAr,
+      perksEn,
       redirectUrl: '/analyses',
       ctaLabelAr: 'تصفح كافة تحليلات المجموعة',
       ctaLabelEn: 'Explore Group Setups',

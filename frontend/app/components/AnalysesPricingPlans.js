@@ -149,10 +149,41 @@ export default function AnalysesPricingPlans() {
       const isIndices = p.slug === 'indices';
       const isForex = p.slug === 'forex';
 
+      // Parse bilingual Name
+      let nameAr = p.name;
+      let nameEn = defaultMatch.nameEn || p.name;
+      if (p.name && typeof p.name === 'string' && p.name.includes(':::')) {
+        const [ar, en] = p.name.split(':::').map((s) => s.trim());
+        nameAr = ar || p.name;
+        nameEn = en || defaultMatch.nameEn || ar;
+      }
+
+      // Parse bilingual Badge
+      let badgeAr = p.badge || (isGold ? 'الأكثر طلباً • مجموعة الذهب' : isIndices ? 'المؤشرات والسلع' : 'أزواج العملات');
+      let badgeEn = defaultMatch.badgeEn || (isGold ? 'Most Popular • Live on API' : isIndices ? 'Energy & Indices' : 'Currency Pairs');
+      if (p.badge && typeof p.badge === 'string' && p.badge.includes(':::')) {
+        const [ar, en] = p.badge.split(':::').map((s) => s.trim());
+        badgeAr = ar || badgeAr;
+        badgeEn = en || defaultMatch.badgeEn || ar;
+      }
+
+      // Parse bilingual Description
+      let descAr = p.description || defaultMatch.descAr || '';
+      let descEn = defaultMatch.descEn || p.description || '';
+      if (p.description && typeof p.description === 'string' && p.description.includes(':::')) {
+        const [ar, en] = p.description.split(':::').map((s) => s.trim());
+        descAr = ar || descAr;
+        descEn = en || defaultMatch.descEn || ar;
+      }
+
       let mappedFeatures = defaultMatch.features;
       if (Array.isArray(p.features) && p.features.length > 0) {
         mappedFeatures = p.features.map((feat) => {
           if (typeof feat === 'string') {
+            if (feat.includes(':::')) {
+              const [ar, en] = feat.split(':::').map((s) => s.trim());
+              return { textAr: ar, textEn: en || ar, included: true };
+            }
             return { textAr: feat, textEn: feat, included: true };
           }
           return feat;
@@ -163,18 +194,18 @@ export default function AnalysesPricingPlans() {
 
       return {
         id: p.slug || p.id,
-        nameEn: p.name,
-        nameAr: p.name,
-        badgeEn: p.badge || (isGold ? 'Most Popular' : isIndices ? 'Energy & Indices' : 'Currency Pairs'),
-        badgeAr: p.badge || (isGold ? 'الأكثر طلباً • مجموعة الذهب' : isIndices ? 'المؤشرات والسلع' : 'أزواج العملات'),
+        nameEn,
+        nameAr,
+        badgeEn,
+        badgeAr,
         badgeColor: defaultMatch.badgeColor || themeColor,
-        descEn: p.description || defaultMatch.descEn || '',
-        descAr: p.description || defaultMatch.descAr || '',
+        descEn,
+        descAr,
         priceVal: Number(p.price) || defaultMatch.priceVal,
         priceStr: `${p.price || defaultMatch.priceVal} USDT`,
         isFeatured: Boolean(isGold),
-        ctaTextEn: defaultMatch.ctaTextEn || (isAr ? `الانضمام إلى ${p.name}` : `Join ${p.name}`),
-        ctaTextAr: defaultMatch.ctaTextAr || (isGold ? 'الانضمام لمجموعة الذهب الان' : isIndices ? 'الانضمام إلى مجموعة Index' : `الانضمام إلى ${p.name}`),
+        ctaTextEn: defaultMatch.ctaTextEn || `Join ${nameEn}`,
+        ctaTextAr: defaultMatch.ctaTextAr || (isGold ? 'الانضمام لمجموعة الذهب الان' : isIndices ? 'الانضمام إلى مجموعة Index' : `الانضمام إلى ${nameAr}`),
         features: mappedFeatures || defaultMatch.features || [],
         btnGradient: defaultMatch.btnGradient,
         btnHoverGradient: defaultMatch.btnHoverGradient,
