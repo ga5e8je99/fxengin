@@ -50,11 +50,36 @@ function readOffers() {
     if (fs.existsSync(filePath)) {
       const content = fs.readFileSync(filePath, 'utf-8');
       const parsed = JSON.parse(content);
-      return Array.isArray(parsed) ? parsed : [];
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
     }
   } catch (err) {
     console.error('Error reading offers.json:', err);
   }
+
+  // Fallback to bundled data if shared file is missing or empty []
+  const fallbackCandidates = [
+    path.join(process.cwd(), 'data', 'offers.json'),
+    path.resolve(process.cwd(), '..', 'shared-data', 'offers.json'),
+    path.resolve(process.cwd(), '..', 'frontend', 'data', 'offers.json'),
+  ];
+
+  for (const fp of fallbackCandidates) {
+    try {
+      if (fs.existsSync(fp)) {
+        const parsed = JSON.parse(fs.readFileSync(fp, 'utf-8'));
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Self-heal: seed back to shared volume file
+          try {
+            fs.writeFileSync(filePath, JSON.stringify(parsed, null, 2), 'utf-8');
+          } catch (_) {}
+          return parsed;
+        }
+      }
+    } catch (_) {}
+  }
+
   return [];
 }
 
