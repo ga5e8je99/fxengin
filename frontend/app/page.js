@@ -67,25 +67,16 @@ export default function Home() {
 
       <PlatformSection />
 
-      {/* 2. Platform (bg-primary: #01071E) -> Courses (surface: #06142F) (Ascending Laser Trend Wave) */}
+      {/* 2. Platform (bg-primary: #01071E) -> Courses / Market Overview (Ascending Laser Trend Wave) */}
       <SectionSeparator
         variant="trend-wave"
         bgColor="bg-primary"
-        fillColor="surface"
+        fillColor="bg-primary"
         accentColor="blue"
         height={44}
       />
 
       <CoursesSection />
-
-      {/* 3. Courses (surface: #06142F) -> Market Overview (bg-primary: #01071E) (FinTech Diagonal Edge) */}
-      <SectionSeparator
-        variant="diagonal"
-        bgColor="surface"
-        fillColor="bg-primary"
-        accentColor="gold"
-        height={36}
-      />
 
       <MarketOverview />
 

@@ -39,3 +39,10 @@ backend/.env.production
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Documents & Artifacts
+*.pdf
+generate_pdf_plan.js
+parent_hub_preview.jpg
+*.html
+Binance---pay/

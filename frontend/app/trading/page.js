@@ -543,7 +543,7 @@ export default function TradingTerminalPage() {
               <div className="flex items-center gap-2">
                 <FiAward className="w-5 h-5 text-[#FB8704]" />
                 <h3 className="text-sm sm:text-base font-extrabold text-white">
-                  مكان شروط التأهل لمسابقة FXENGIN الكبرى
+                  بوابة شروط التأهل لمسابقة FXENGIN الكبرى
                 </h3>
               </div>
               <button

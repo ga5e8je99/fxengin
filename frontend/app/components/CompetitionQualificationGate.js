@@ -113,22 +113,6 @@ export default function CompetitionQualificationGate({
     >
       <div className="relative z-10 w-full max-w-5xl space-y-6">
         
-        {/* Modal Top Bar Return Button */}
-        {onClose && (
-          <div className="flex items-center justify-between pb-3 border-b border-[#12315C] mb-2">
-            <div className="flex items-center gap-2">
-              <FaTrophy className="w-5 h-5 text-[#FB8704]" />
-              <span className="font-bold text-white text-sm sm:text-base">بوابة شروط التأهل لمسابقة FXENGIN</span>
-            </div>
-            <button
-              onClick={onClose}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0A1B3D] hover:bg-[#12315C] text-[#A7AFBF] hover:text-white border border-[#12315C] text-xs font-bold transition-all shadow-sm"
-            >
-              <span>العودة للشارت</span>
-              <span>✕</span>
-            </button>
-          </div>
-        )}
 
         {/* ── 1. Header Banner ────────────────────────────────────────── */}
         <div className="text-center space-y-2">

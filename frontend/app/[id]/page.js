@@ -38,25 +38,16 @@ export default function UserHomePage() {
       {/* ── Affiliate & Referral Section (انضم إلينا - 10% عمولة) ── */}
       <JoinUsSection onlyLoggedIn={false} />
 
-      {/* 2. Brokers -> Courses */}
+      {/* 2. Brokers -> Courses / Market Overview */}
       <SectionSeparator
         variant="trend-wave"
         bgColor="surface"
-        fillColor="surface"
+        fillColor="bg-primary"
         accentColor="blue"
         height={44}
       />
 
       <CoursesSection />
-
-      {/* 3. Courses -> Market Overview */}
-      <SectionSeparator
-        variant="diagonal"
-        bgColor="surface"
-        fillColor="bg-primary"
-        accentColor="gold"
-        height={36}
-      />
 
       <MarketOverview />
 
