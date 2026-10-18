@@ -34,47 +34,47 @@ const EXPERT_SLIDES = [
   {
     id: 'ecosystem',
     image: '/assets/Images/Main/expert-slide1.webp?v=20261005',
-    badgeAr: 'المنظومة المالية المتكاملة',
-    badgeEn: 'All-in-One Trading Hub',
+    badgeAr: 'رؤية المنظومة والتداول',
+    badgeEn: 'Market Vision & Strategy',
     badgeColor: '#0488f8',
-    titleAr: 'منصة FXENGIN للحلول المالية والتداول',
-    titleEn: 'FXENGIN Financial & Trading Platform',
+    titleAr: 'التداول المؤسسي القائم على الانضباط والسيولة',
+    titleEn: 'Institutional Trading Built on Liquidity & Discipline',
     speechAr:
-      'منصة FXENGIN هي بوابتك المالية الشاملة لاحتراف أسواق التداول العالمية، تجمع بين أحدث التقنيات التحليلية اللحظية والبيانات المباشرة لتمكينك من اتخاذ قرارات تداول مدروسة بدقة عالية.',
+      'في FXENGIN نركز على تمكينك من قراءة حركة السيولة الحقيقية وتدفق أوامر البنوك بدقة، مع الالتزام الصارم بقواعد إدارة رأس المال لحماية محفظتك وضمان استمراريتك في الأسواق.',
     speechEn:
-      'FXENGIN is your premier financial gateway to master global trading markets, combining real-time analytical technology and live market data to empower your high-precision trading decisions.',
-    highlightAr: 'منظومة تداول متكاملة • تحليلات حية • دقة تنفيذية',
-    highlightEn: 'Complete Ecosystem • Live Market Data • Precision Execution',
+      'At FXENGIN, we empower you to track authentic market liquidity and institutional order flow with precision, while upholding strict risk parameters to safeguard your capital.',
+    highlightAr: 'تحليلات يومية للذهب والعملات • إدارة رأس مال صارمة',
+    highlightEn: 'Daily Gold & FX Analytics • Strict Risk Control',
   },
   {
     id: 'academy',
     image: '/assets/Images/Main/expert-slide2.webp?v=20261005',
-    badgeAr: 'الأكاديمية والتدريب الحي',
-    badgeEn: 'Academy & Live Mentorship',
+    badgeAr: 'الأكاديمية والتدريب التطبيقي',
+    badgeEn: 'Accredited Academy',
     badgeColor: '#16C784',
-    titleAr: 'أكاديمية معتمدة وبث مباشر مع الخبراء',
-    titleEn: 'Certified Academy & Live Streaming',
+    titleAr: 'مسارات تعليمية متدرجة من الصفر إلى الاحتراف',
+    titleEn: 'Structured Curriculums: Beginner to Pro',
     speechAr:
-      'تمنحك FXENGIN مسارات تعليمية معتمدة تمتد من أساسيات التحليل حتى استراتيجيات السيولة المتقدمة، مع جلسات بث حي وتداول تفاعلي يومي لمتابعة الفرص الحية خطوة بخطوة مع نخبة المحللين.',
+      'صممنا دورات الأكاديمية لتمنحك المعرفة العملية في التحليل الفني، سلوك السعر، والتحليل الأساسي، مدعومة باختبارات وتطبيقات مباشرة وشهادات إتمام موثقة.',
     speechEn:
-      'FXENGIN delivers certified learning tracks ranging from market fundamentals to advanced liquidity strategies, backed by daily live trading rooms with top market analysts.',
-    highlightAr: 'شهادات معتمدة • جلسات بث مباشر • مجتمع تفاعلي',
-    highlightEn: 'Certified Paths • Live Daily Rooms • Active Community',
+      'Our structured academy curriculums deliver hands-on technical, price action, and macroeconomic training, reinforced by practical assessments and verified certificates.',
+    highlightAr: 'دورات شاملة • شهادات معتمدة • تطبيق عملي مباشر',
+    highlightEn: 'Comprehensive Tracks • Verified Certificates • Hands-on Practice',
   },
   {
     id: 'smart-tools',
     image: '/assets/Images/Main/expert-slide3.webp?v=20261005',
-    badgeAr: 'الأنظمة الذكية والمؤشرات',
-    badgeEn: 'Smart Systems & Indicators',
+    badgeAr: 'البث المباشر والشركاء',
+    badgeEn: 'Live Streaming & Partners',
     badgeColor: '#FB8704',
-    titleAr: 'مؤشرات فنية احترافية وإدارة المخاطر',
-    titleEn: 'Smart Indicators & Risk Management',
+    titleAr: 'جلسات تداول حي يومية وشركاء وساطة مرخصون',
+    titleEn: 'Daily Live Trading Rooms & Regulated Brokers',
     speechAr:
-      'تزودك FXENGIN بخوارزميات ذكية ومؤشرات فنية متطورة مخصصة لرصد مناطق السيولة وتحديد نقاط الدخول والخروج، مع أدوات إدارة مخاطر صارمة تضمن حماية رأس مالك واستدامة أرباحك.',
+      'انضم يومياً لجلسات البث المباشر لمتابعة افتتاح جلستي لندن ونيويورك والأخبار الاقتصادية لحظياً، واستفد من عروض شركات الوساطة المرخصة والحسابات الإسلامية.',
     speechEn:
-      'FXENGIN equips you with smart algorithms and custom indicators to track institutional liquidity and execution zones, paired with robust risk management to protect your capital.',
-    highlightAr: 'مؤشرات ذكية • إدارة رأس المال • مجتمع المتداولين',
-    highlightEn: 'Smart Indicators • Capital Protection • Elite Community',
+      'Join daily live trading rooms covering London and New York market opens and high-impact economic data, backed by regulated broker partnerships and swap-free Islamic accounts.',
+    highlightAr: 'بث حي تفاعلي • وسطاء مرخصون • حسابات إسلامية',
+    highlightEn: 'Interactive Live Rooms • Regulated Brokers • Swap-Free Accounts',
   },
 ];
 
@@ -294,7 +294,11 @@ export default function Hero() {
                       animation: 'livePulse 1.8s infinite',
                     }}
                   />
-                  {isAr ? 'قمرة التداول الذكية والمتابعة اللحظية' : 'Smart Trading Cockpit & Live Feed'}
+                  {user.role === 'ADMIN' || user.role === 'SUPER_ADMIN'
+                    ? (isAr ? 'الإدارة العليا • FXENGIN' : 'Executive Command • FXENGIN')
+                    : user.role === 'VIP'
+                    ? (isAr ? 'مركز التداول المتقدم VIP' : 'VIP Trading Cockpit')
+                    : (isAr ? 'مركز المتداول الذكي' : 'Smart Trader Cockpit')}
                 </span>
 
                 <span
@@ -308,7 +312,11 @@ export default function Hero() {
                     borderRadius: '20px',
                   }}
                 >
-                  {isAr ? `المستوى: ${getLevelLabel(user.experienceLevel)}` : `Level: ${getLevelLabel(user.experienceLevel)}`}
+                  {user.role === 'ADMIN' || user.role === 'SUPER_ADMIN'
+                    ? (isAr ? 'محلل مالي معتمد' : 'Certified Market Analyst')
+                    : user.role === 'VIP'
+                    ? (isAr ? 'عضوية VIP الماسية' : 'VIP Diamond Member')
+                    : (isAr ? `المستوى: ${getLevelLabel(user.experienceLevel)}` : `Level: ${getLevelLabel(user.experienceLevel)}`)}
                 </span>
 
                 <span
@@ -326,7 +334,9 @@ export default function Hero() {
                   }}
                 >
                   <FiCheckCircle size={12} />
-                  {isAr ? 'حساب نشط وموثق' : 'Verified Account'}
+                  {user.role === 'ADMIN' || user.role === 'SUPER_ADMIN'
+                    ? (isAr ? 'حساب رسمي موثق' : 'Official Verified Admin')
+                    : (isAr ? 'حساب نشط وموثق' : 'Verified Account')}
                 </span>
               </div>
 
@@ -384,8 +394,8 @@ export default function Hero() {
                   }}
                 >
                   {isAr
-                    ? 'مركزك التداولي المتقدم لاقتناص الفرص الحية، ومتابعة سيولة الأسواق، والانضمام لجلسات البث المباشر مع نخبة المحللين لتطبيق أقوى استراتيجيات إدارة رأس المال.'
-                    : 'Your advanced trading command center to capture market liquidity, join live streaming rooms with top analysts, and execute pro capital management strategies.'}
+                    ? 'منصتك المركزية للوصول المباشر إلى تحليلات أسواق الذهب والعملات اليومية، غرف البث الحي، الدورات التدريبية المعتمدة، وعروض شركات الوساطة المرخصة.'
+                    : 'Your central hub for instant access to daily Gold & FX analyses, interactive live trading rooms, certified curriculums, and regulated broker partnerships.'}
                 </p>
 
                 {/* Quick Action CTAs (Orange Primary Glow + Blue Glass Outline) */}
@@ -462,7 +472,7 @@ export default function Hero() {
               </div>
 
               {/* ═══════════════════════════════════════════════════════════════
-                  FINTECH BENTO GRID (4 Advanced Widgets: Orange & Blue Palette)
+                  FINTECH BENTO GRID (4 Authentic FXENGIN Services: Orange & Blue)
               ═══════════════════════════════════════════════════════════════ */}
               <div
                 style={{
@@ -472,7 +482,7 @@ export default function Hero() {
                   marginTop: '4px',
                 }}
               >
-                {/* ── Bento Widget 1: Live SMC Technical Analysis (Blue & Orange Accent) ── */}
+                {/* ── Bento Widget 1: Daily Market Analyses (Blue & Orange Accent) ── */}
                 <Link
                   href="/analyses"
                   style={{
@@ -501,7 +511,7 @@ export default function Hero() {
                     e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
                   }}
                 >
-                  {/* Top Bar: Icon + Title + Live Ticker */}
+                  {/* Top Bar: Icon + Title + Update Badge */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <div
@@ -521,7 +531,7 @@ export default function Hero() {
                         <FiTrendingUp size={14} />
                       </div>
                       <span style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                        {isAr ? 'التحليلات والسيولة' : 'SMC & Liquidity'}
+                        {isAr ? 'تحليلات الأسواق والسيولة' : 'Daily Market Analyses'}
                       </span>
                     </div>
 
@@ -537,7 +547,7 @@ export default function Hero() {
                         borderRadius: '4px',
                       }}
                     >
-                      EUR/USD ▲ +0.82%
+                      {isAr ? 'تحديث يومي' : 'Daily Updates'}
                     </span>
                   </div>
 
@@ -550,25 +560,19 @@ export default function Hero() {
                           <stop offset="100%" stopColor="transparent" />
                         </linearGradient>
                       </defs>
-                      {/* Area Fill */}
                       <path d="M 0 36 Q 30 28, 60 30 T 110 20 T 155 12 T 200 4 L 200 42 L 0 42 Z" fill="url(#bentoSparkGradOrange)" />
-                      {/* Trendline */}
                       <path
                         d="M 0 36 Q 30 28, 60 30 T 110 20 T 155 12 T 200 4"
                         stroke="#0488F8"
                         strokeWidth="2.2"
                         strokeLinecap="round"
                       />
-                      {/* Mini Candlestick 1 (Green) */}
                       <line x1="45" y1="22" x2="45" y2="36" stroke="#16C784" strokeWidth="1" />
                       <rect x="42.5" y="25" width="5" height="8" rx="1" fill="#16C784" />
-                      {/* Mini Candlestick 2 (Orange Brand Retracement) */}
                       <line x1="85" y1="18" x2="85" y2="32" stroke="#FB8704" strokeWidth="1" />
                       <rect x="82.5" y="21" width="5" height="7" rx="1" fill="#FB8704" />
-                      {/* Mini Candlestick 3 (Green Expansion) */}
                       <line x1="135" y1="8" x2="135" y2="24" stroke="#16C784" strokeWidth="1" />
                       <rect x="132.5" y="11" width="5" height="10" rx="1" fill="#16C784" />
-                      {/* End Glowing Pulse Dot (Orange Accent) */}
                       <circle cx="200" cy="4" r="5" fill="rgba(251, 135, 4, 0.3)" />
                       <circle cx="200" cy="4" r="3" fill="#FB8704" />
                     </svg>
@@ -577,10 +581,10 @@ export default function Hero() {
                   {/* Micro Meta Tag */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px' }}>
                     <span style={{ color: '#94A3B8' }}>
-                      {isAr ? 'منطقة طلب (OB) • دخول نشط' : 'Demand Zone (OB) • Active'}
+                      {isAr ? 'الذهب XAU/USD والعملات الرئيسية' : 'Gold & Major FX Pairs'}
                     </span>
                     <span style={{ color: 'var(--primary)', fontWeight: 600 }}>
-                      {isAr ? 'استعراض ←' : 'View →'}
+                      {isAr ? 'استعراض التحليلات ←' : 'View Analyses →'}
                     </span>
                   </div>
                 </Link>
@@ -634,7 +638,7 @@ export default function Hero() {
                         <FiVideo size={14} />
                       </div>
                       <span style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                        {isAr ? 'غرفة البث المباشر' : 'Live Trading Rooms'}
+                        {isAr ? 'غرفة التداول والبث الحي' : 'Live Trading Rooms'}
                       </span>
                     </div>
 
@@ -662,7 +666,7 @@ export default function Hero() {
                           animation: 'livePulse 1.4s infinite',
                         }}
                       />
-                      {isAr ? 'مباشر الآن' : 'LIVE'}
+                      {isAr ? 'جلسات مباشرة' : 'LIVE'}
                     </span>
                   </div>
 
@@ -679,8 +683,8 @@ export default function Hero() {
                       border: '1px solid rgba(251, 135, 4, 0.18)',
                     }}
                   >
-                    <span style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 500 }}>
-                      {isAr ? 'جلسة نيويورك وتغطية الأخبار' : 'New York & News Session'}
+                    <span style={{ fontSize: '11px', color: '#CBD5E1', fontWeight: 500 }}>
+                      {isAr ? 'جلسات افتتاح لندن ونيويورك' : 'London & New York Sessions'}
                     </span>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '3px', height: '24px' }}>
                       <span style={{ width: '3px', background: 'var(--accent)', borderRadius: '2px', animation: 'soundWave1 1.2s infinite ease-in-out' }} />
@@ -694,10 +698,10 @@ export default function Hero() {
                   {/* Micro Meta Tag */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px' }}>
                     <span style={{ color: '#94A3B8' }}>
-                      {isAr ? 'تداول واقتناص صفقات حية' : 'Live Scalping & Q&A'}
+                      {isAr ? 'تغطية حية مع كبار المحللين' : 'Real-time Expert Sessions'}
                     </span>
                     <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
-                      {isAr ? 'انضم الآن ←' : 'Join Now →'}
+                      {isAr ? 'دخول الغرفة ←' : 'Join Room →'}
                     </span>
                   </div>
                 </Link>
@@ -751,7 +755,7 @@ export default function Hero() {
                         <LuGraduationCap size={15} />
                       </div>
                       <span style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                        {isAr ? 'الأكاديمية والشهادات' : 'Certified Academy'}
+                        {isAr ? 'الأكاديمية والتدريب المالي' : 'FXENGIN Academy'}
                       </span>
                     </div>
 
@@ -766,20 +770,20 @@ export default function Hero() {
                         borderRadius: '10px',
                       }}
                     >
-                      {isAr ? 'معتمد' : 'Accredited'}
+                      {isAr ? 'شهادات معتمدة' : 'Accredited'}
                     </span>
                   </div>
 
-                  {/* Visual Progress Bar Component (Blue to Orange Gradient) */}
+                  {/* Visual Curriculum Path Component (Blue to Orange Gradient) */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', height: '38px', justifyContent: 'center' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px' }}>
-                      <span style={{ color: '#94A3B8' }}>{isAr ? 'مسار استراتيجيات SMC' : 'ICT & SMC Track'}</span>
-                      <span style={{ color: 'var(--accent)', fontWeight: 700, fontFamily: 'monospace' }}>78%</span>
+                      <span style={{ color: '#CBD5E1', fontWeight: 500 }}>{isAr ? 'مسارات من الصفر حتى الاحتراف' : 'Beginner to Pro Curriculums'}</span>
+                      <span style={{ color: 'var(--accent)', fontWeight: 700, fontSize: '10.5px' }}>{isAr ? 'دورات تطبيقية' : 'Curriculums'}</span>
                     </div>
                     <div
                       style={{
                         width: '100%',
-                        height: '6px',
+                        height: '5px',
                         background: 'rgba(255, 255, 255, 0.08)',
                         borderRadius: '4px',
                         overflow: 'hidden',
@@ -787,10 +791,10 @@ export default function Hero() {
                     >
                       <div
                         style={{
-                          width: '78%',
+                          width: '100%',
                           height: '100%',
                           background: 'linear-gradient(90deg, #0458EC 0%, #0488F8 50%, #FB8704 100%)',
-                          boxShadow: '0 0 10px rgba(251, 135, 4, 0.5)',
+                          boxShadow: '0 0 10px rgba(251, 135, 4, 0.4)',
                           borderRadius: '4px',
                         }}
                       />
@@ -800,15 +804,15 @@ export default function Hero() {
                   {/* Micro Meta Tag */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px' }}>
                     <span style={{ color: '#94A3B8' }}>
-                      {isAr ? 'شهادة إتمام معتمدة' : 'Official Certificate'}
+                      {isAr ? 'سلوك السعر، التحليل الفني والأساسي' : 'Price Action, Technical & Macro'}
                     </span>
                     <span style={{ color: 'var(--primary)', fontWeight: 600 }}>
-                      {isAr ? 'متابعة ←' : 'Resume →'}
+                      {isAr ? 'استكشاف الدورات ←' : 'Explore Courses →'}
                     </span>
                   </div>
                 </Link>
 
-                {/* ── Bento Widget 4: Smart Risk Management (Orange Security Theme) ── */}
+                {/* ── Bento Widget 4: Licensed Brokers & Exclusive Offers (Orange Theme) ── */}
                 <Link
                   href="/offers"
                   style={{
@@ -837,7 +841,7 @@ export default function Hero() {
                     e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 3, 13, 0.6)';
                   }}
                 >
-                  {/* Top Bar: Icon + Title + Shield Badge */}
+                  {/* Top Bar: Icon + Title + Regulated Badge */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <div
@@ -854,10 +858,10 @@ export default function Hero() {
                           color: 'var(--accent)',
                         }}
                       >
-                        <FiShield size={14} />
+                        <FiAward size={14} />
                       </div>
                       <span style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                        {isAr ? 'إدارة رأس المال الصارمة' : 'Risk & Capital Engine'}
+                        {isAr ? 'شركاء الوساطة والعروض' : 'Licensed Brokers & Offers'}
                       </span>
                     </div>
 
@@ -872,11 +876,11 @@ export default function Hero() {
                         borderRadius: '10px',
                       }}
                     >
-                      {isAr ? 'حماية 100%' : '100% Shield'}
+                      {isAr ? 'مرخص وموثوق' : 'Regulated'}
                     </span>
                   </div>
 
-                  {/* Visual Risk/Reward Ratio & Drawdown Gauge (Orange & Green) */}
+                  {/* Dual Highlight Box: Islamic Accounts & Deposit Bonus */}
                   <div
                     style={{
                       height: '38px',
@@ -890,23 +894,23 @@ export default function Hero() {
                     }}
                   >
                     <div>
-                      <div style={{ fontSize: '9.5px', color: '#94A3B8' }}>{isAr ? 'معدل العائد R:R' : 'Reward:Risk'}</div>
-                      <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--accent)', fontFamily: 'monospace' }}>1 : 3.5</div>
+                      <div style={{ fontSize: '9.5px', color: '#94A3B8' }}>{isAr ? 'حسابات التداول' : 'Trading Accounts'}</div>
+                      <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#16C784' }}>{isAr ? 'إسلامية 100%' : '100% Islamic'}</div>
                     </div>
                     <div style={{ height: '20px', width: '1px', background: 'rgba(255, 255, 255, 0.1)' }} />
                     <div>
-                      <div style={{ fontSize: '9.5px', color: '#94A3B8' }}>{isAr ? 'أقصى مخاطرة' : 'Max Risk'}</div>
-                      <div style={{ fontSize: '12px', fontWeight: 700, color: '#16C784', fontFamily: 'monospace' }}>1.5% Cap</div>
+                      <div style={{ fontSize: '9.5px', color: '#94A3B8' }}>{isAr ? 'عروض التداول' : 'Exclusive Deals'}</div>
+                      <div style={{ fontSize: '11.5px', fontWeight: 700, color: 'var(--accent)' }}>{isAr ? 'بونص إيداع مضاعف' : 'Deposit Match'}</div>
                     </div>
                   </div>
 
                   {/* Micro Meta Tag */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px' }}>
                     <span style={{ color: '#94A3B8' }}>
-                      {isAr ? 'نماذج حماية رأس المال' : 'Position Sizing Models'}
+                      {isAr ? 'أفضل الشركات المعتمدة' : 'Regulated Partner Brokers'}
                     </span>
                     <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
-                      {isAr ? 'الحاسبة ←' : 'Calculator →'}
+                      {isAr ? 'استعراض العروض ←' : 'View Offers →'}
                     </span>
                   </div>
                 </Link>
@@ -1089,15 +1093,15 @@ export default function Hero() {
                   }}
                 />
 
-                {/* Floating Holographic HUD Pill 1: Daily Winrate (Orange Glow) */}
+                {/* Floating Holographic HUD Pill 1: Certified Analyst (Green Pulse Glow) */}
                 <div
                   style={{
                     position: 'absolute',
                     top: '25%',
                     [isAr ? 'left' : 'right']: '8px',
-                    background: 'rgba(6, 20, 47, 0.9)',
-                    border: '1px solid rgba(251, 135, 4, 0.45)',
-                    boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 16px rgba(251, 135, 4, 0.25)',
+                    background: 'rgba(6, 20, 47, 0.92)',
+                    border: '1px solid rgba(22, 199, 132, 0.45)',
+                    boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 16px rgba(22, 199, 132, 0.25)',
                     backdropFilter: 'blur(12px)',
                     WebkitBackdropFilter: 'blur(12px)',
                     borderRadius: '20px',
@@ -1109,11 +1113,18 @@ export default function Hero() {
                     animation: 'hudFloat 4s ease-in-out infinite',
                   }}
                 >
-                  <span style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 600 }}>
-                    {isAr ? 'دقة الإشارات:' : 'Accuracy:'}
-                  </span>
-                  <span style={{ fontSize: '11.5px', color: 'var(--accent)', fontWeight: 800, fontFamily: 'monospace' }}>
-                    +89.4% ▲
+                  <span
+                    style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: '#16C784',
+                      boxShadow: '0 0 8px #16C784',
+                      animation: 'livePulse 1.6s infinite',
+                    }}
+                  />
+                  <span style={{ fontSize: '11px', color: '#E2E8F0', fontWeight: 700 }}>
+                    {isAr ? 'محلل أسواق معتمد' : 'Certified Market Analyst'}
                   </span>
                 </div>
 
@@ -1123,7 +1134,7 @@ export default function Hero() {
                     position: 'absolute',
                     bottom: '22%',
                     [isAr ? 'right' : 'left']: '4px',
-                    background: 'rgba(6, 20, 47, 0.9)',
+                    background: 'rgba(6, 20, 47, 0.92)',
                     border: '1px solid rgba(4, 136, 248, 0.45)',
                     boxShadow: '0 8px 24px rgba(0, 3, 13, 0.8), 0 0 16px rgba(4, 136, 248, 0.25)',
                     backdropFilter: 'blur(12px)',
@@ -1139,7 +1150,7 @@ export default function Hero() {
                 >
                   <FiShield size={12} color="var(--primary)" />
                   <span style={{ fontSize: '11px', color: 'var(--primary)', fontWeight: 700 }}>
-                    {isAr ? 'حماية رأس المال نشطة' : 'Capital Shield Active'}
+                    {isAr ? 'إدارة مخاطر صارمة' : 'Strict Risk Management'}
                   </span>
                 </div>
 
