@@ -170,6 +170,7 @@ export default function Navbar() {
     { key: 'analyses', label: t.navbar.analyses, rawHref: '/analyses', href: getAppRoute('/analyses', activeUser) },
     { key: 'live', label: locale === 'ar' ? 'البث المباشر' : 'Live Streams', rawHref: '/live', href: getAppRoute('/live', activeUser) },
     { key: 'blog', label: t.navbar.blog, rawHref: '/blog', href: getAppRoute('/blog', activeUser) },
+    { key: 'offers', label: t.navbar.offers || (locale === 'ar' ? 'عروض' : 'Offers'), rawHref: '/offers', href: getAppRoute('/offers', activeUser) },
     { key: 'openAccount', label: t.navbar.openAccount, rawHref: '/open-account', href: getAppRoute('/open-account', activeUser) },
     ...(isPartner ? [{ key: 'affiliate', label: locale === 'ar' ? 'برنامج الشركاء' : 'Partner Program', rawHref: '/join-us', href: getAppRoute('/join-us', activeUser) }] : []),
     { key: 'contact', label: t.navbar.contact, rawHref: '/contact', href: getAppRoute('/contact', activeUser) },
@@ -187,7 +188,7 @@ export default function Navbar() {
       const segments = (pathname || '').split('/').filter(Boolean);
       return (
         segments.length === 1 &&
-        !['courses', 'markets', 'analyses', 'live', 'blog', 'contact', 'login', 'register', 'profile', 'open-account', 'checkout', 'brokers', 'join-us', 'trading'].includes(segments[0])
+        !['courses', 'markets', 'analyses', 'live', 'blog', 'offers', 'contact', 'login', 'register', 'profile', 'open-account', 'checkout', 'brokers', 'join-us', 'trading'].includes(segments[0])
       );
     }
     return (

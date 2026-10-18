@@ -380,29 +380,6 @@ function ShellContent({ children }) {
               maxWidth: '100%',
             }}
           >
-            {/* Desktop Floating Side Ad Banners (Absolute/Fixed overlay on section gutters without dedicated layout columns) */}
-            <div
-              className="desktop-floating-ad desktop-floating-ad-right"
-              aria-label="Sponsored Right"
-            >
-              <AdBanner
-                type={isAr ? "skyscraper-right" : "skyscraper-left"}
-                imgSrc="/assets/Images/test/leftAds.webp"
-                alt="FXENGIN Sponsor Right"
-              />
-            </div>
-
-            <div
-              className="desktop-floating-ad desktop-floating-ad-left"
-              aria-label="Sponsored Left"
-            >
-              <AdBanner
-                type={isAr ? "skyscraper-left" : "skyscraper-right"}
-                imgSrc="/assets/Images/test/leftAds.webp"
-                alt="FXENGIN Sponsor Left"
-              />
-            </div>
-
             <main
               className="site-main-content w-full"
               style={{

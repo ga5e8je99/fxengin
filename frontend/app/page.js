@@ -14,6 +14,7 @@ import ForexEngineerSeoSection from './components/ForexEngineerSeoSection';
 import EnrollCTA from './components/EnrollCTA';
 import Newsletter from './components/Newsletter';
 import AdBanner from './components/AdBanner';
+import OffersSection from './components/OffersSection';
 import SectionSeparator from './components/SectionSeparator';
 
 export const metadata = {
@@ -91,7 +92,7 @@ export default function Home() {
 
       <CTABanner />
 
-      {/* 5. CTA Banner (surface: #06142F) -> Analyses (bg-primary: #01071E) (Smooth Parabolic Horizon Arc) */}
+      {/* 5. CTA Banner (surface: #06142F) -> Offers / Analyses (bg-primary: #01071E) (Smooth Parabolic Horizon Arc) */}
       <SectionSeparator
         variant="smooth-arc"
         bgColor="surface"
@@ -99,6 +100,9 @@ export default function Home() {
         accentColor="cyan"
         height={38}
       />
+
+      {/* ── Exclusive Offers & Discounts Section (سيكشن العروض الحصرية) ── */}
+      <OffersSection limit={3} showViewAll={true} />
 
       <AnalysesSection />
 
