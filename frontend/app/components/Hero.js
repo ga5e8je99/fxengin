@@ -670,7 +670,7 @@ export default function Hero() {
                     </span>
                   </div>
 
-                  {/* Animated Visual Soundwave / Broadcast Equalizer (Orange & Blue) */}
+                  {/* General Static Live Coverage Display (No Animation) */}
                   <div
                     style={{
                       height: '38px',
@@ -679,20 +679,54 @@ export default function Hero() {
                       justifyContent: 'space-between',
                       background: 'rgba(251, 135, 4, 0.08)',
                       borderRadius: '6px',
-                      padding: '0 12px',
+                      padding: '0 10px',
                       border: '1px solid rgba(251, 135, 4, 0.18)',
                     }}
                   >
-                    <span style={{ fontSize: '11px', color: '#CBD5E1', fontWeight: 500 }}>
-                      {isAr ? 'جلسات افتتاح لندن ونيويورك' : 'London & New York Sessions'}
-                    </span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '3px', height: '24px' }}>
-                      <span style={{ width: '3px', background: 'var(--accent)', borderRadius: '2px', animation: 'soundWave1 1.2s infinite ease-in-out' }} />
-                      <span style={{ width: '3px', background: 'var(--primary)', borderRadius: '2px', animation: 'soundWave2 1.0s infinite ease-in-out 0.2s' }} />
-                      <span style={{ width: '3px', background: 'var(--accent)', borderRadius: '2px', animation: 'soundWave3 1.4s infinite ease-in-out 0.4s' }} />
-                      <span style={{ width: '3px', background: '#16C784', borderRadius: '2px', animation: 'soundWave1 1.1s infinite ease-in-out 0.1s' }} />
-                      <span style={{ width: '3px', background: 'var(--primary)', borderRadius: '2px', animation: 'soundWave2 1.3s infinite ease-in-out 0.3s' }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '7px', minWidth: 0 }}>
+                      <div
+                        style={{
+                          width: '20px',
+                          height: '20px',
+                          borderRadius: '5px',
+                          background: 'rgba(251, 135, 4, 0.16)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <FiPlayCircle size={12} color="var(--accent)" />
+                      </div>
+                      <span
+                        style={{
+                          fontSize: '11px',
+                          color: '#E2E8F0',
+                          fontWeight: 600,
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {isAr ? 'جلسات تداول وتغطية شاملة للأسواق' : 'Live Trading & Market Coverage'}
+                      </span>
                     </div>
+
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        color: 'var(--accent)',
+                        background: 'rgba(251, 135, 4, 0.12)',
+                        border: '1px solid rgba(251, 135, 4, 0.25)',
+                        padding: '2px 7px',
+                        borderRadius: '4px',
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
+                      }}
+                    >
+                      {isAr ? 'بث تفاعلي' : 'Interactive'}
+                    </span>
                   </div>
 
                   {/* Micro Meta Tag */}
