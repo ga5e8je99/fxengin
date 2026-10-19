@@ -214,10 +214,11 @@ export default function Hero() {
         width: '100%',
         maxWidth: '100%',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'stretch',
         position: 'relative',
         overflow: 'hidden',
-        padding: 'calc(var(--ticker-height, 2.75rem) + clamp(1.25rem, 2.2vw, 1.75rem)) 0 clamp(2.5rem, 5vw, 3.75rem)',
+        padding: 0,
+        paddingTop: 'var(--ticker-height, 2.75rem)',
         background: 'radial-gradient(ellipse 80% 60% at 50% 10%, rgba(4, 136, 248, 0.1) 0%, transparent 70%), #010A19',
       }}
     >
@@ -259,12 +260,11 @@ export default function Hero() {
         WebkitMask: 'radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 80%)',
       }} />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%', paddingTop: 'clamp(0.75rem, 2vw, 1.25rem)' }}>
-        
-        {/* ═══════════════════════════════════════════════════════════════════
-            LOGGED-IN USER PERSONALIZED HERO VIEW
-        ═══════════════════════════════════════════════════════════════════ */}
-        {isAuthenticated && user ? (
+      {/* ═══════════════════════════════════════════════════════════════════
+          LOGGED-IN USER PERSONALIZED HERO VIEW
+      ═══════════════════════════════════════════════════════════════════ */}
+      {isAuthenticated && user ? (
+        <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%', paddingTop: 'clamp(0.75rem, 2vw, 1.25rem)', paddingBottom: 'clamp(2rem, 3.5vw, 3rem)' }}>
           <div className="hero-grid" style={{ gridTemplateColumns: '1.08fr 0.92fr', gap: '32px', alignItems: 'center' }}>
             {/* Right Column (in RTL): Personalized Cockpit Greeting + Bento Grid */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -1244,33 +1244,38 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        ) : (
-          /* ═══════════════════════════════════════════════════════════════════
-             GUEST / UNAUTHENTICATED HERO VIEW
-          ═══════════════════════════════════════════════════════════════════ */
+        </div>
+      ) : (
+        /* ═══════════════════════════════════════════════════════════════════
+           GUEST / UNAUTHENTICATED HERO VIEW (FULL BLEED SCREEN WIDTH & HEIGHT)
+        ═══════════════════════════════════════════════════════════════════ */
+        <div
+          className="hero-reference-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1.05fr) minmax(0, 0.95fr)',
+            width: '100%',
+            minHeight: 'calc(100dvh - var(--header-height, 4.5rem) - var(--ticker-height, 2.75rem))',
+            alignItems: 'stretch',
+            position: 'relative',
+            zIndex: 2,
+          }}
+        >
+          {/* ── Right Column (in RTL): Content ──────── */}
           <div
-            className="hero-reference-grid"
+            className="hero-reference-content"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(0, 1.05fr) minmax(0, 0.95fr)',
-              gap: 'clamp(2rem, 3.5vw, 4rem)',
-              alignItems: 'center',
-              width: '100%',
-              position: 'relative',
-              zIndex: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: 'clamp(1rem, 1.8vw, 1.5rem)',
+              textAlign: isAr ? 'right' : 'left',
+              paddingInlineEnd: 'clamp(1.5rem, 5vw, 5rem)',
+              paddingInlineStart: 'clamp(1rem, 2.5vw, 3rem)',
+              paddingBlock: 'clamp(2rem, 3.5vw, 4rem)',
+              zIndex: 3,
             }}
           >
-            {/* ── Right Column (in RTL): Content ──────── */}
-            <div
-              className="hero-reference-content"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'clamp(1rem, 1.8vw, 1.5rem)',
-                textAlign: isAr ? 'right' : 'left',
-                zIndex: 3,
-              }}
-            >
               {/* Main Headline matching reference exactly */}
               <h1
                 style={{
@@ -1494,50 +1499,58 @@ export default function Hero() {
               style={{
                 position: 'relative',
                 display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                justifyContent: isAr ? 'flex-start' : 'flex-end',
+                alignItems: 'flex-end',
                 width: '100%',
+                height: '100%',
+                minHeight: 'calc(100dvh - var(--header-height, 4.5rem) - var(--ticker-height, 2.75rem))',
+                overflow: 'hidden',
                 zIndex: 2,
               }}
             >
-              {/* Ambient atmospheric backlighting (Cyan & Blue Glow) */}
+              {/* Atmospheric cyan/blue glow backdrop across the visual frame */}
               <div
                 aria-hidden
                 style={{
                   position: 'absolute',
-                  inset: '-10% -8% -8% -8%',
-                  background: 'radial-gradient(ellipse 70% 60% at 48% 50%, rgba(0, 242, 254, 0.14) 0%, rgba(4, 136, 248, 0.09) 45%, transparent 75%)',
-                  borderRadius: '50%',
-                  filter: 'blur(55px)',
+                  inset: 0,
+                  background: 'radial-gradient(ellipse 90% 70% at 30% 65%, rgba(0, 242, 254, 0.12) 0%, rgba(4, 136, 248, 0.08) 40%, transparent 75%)',
                   pointerEvents: 'none',
                   zIndex: 1,
                 }}
               />
 
-              {/* Main Visual Image seamlessly integrated with radial edge dissolution */}
+              {/* Main Visual Image spanning from start of section to end of div and full section height */}
               <div
                 style={{
                   position: 'relative',
                   width: '100%',
-                  maxWidth: '820px',
+                  height: '100%',
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  alignItems: 'flex-end',
+                  justifyContent: isAr ? 'flex-start' : 'flex-end',
                   zIndex: 2,
-                  WebkitMaskImage: 'radial-gradient(ellipse 92% 88% at 48% 50%, #000000 60%, rgba(0, 0, 0, 0.75) 78%, transparent 100%)',
-                  maskImage: 'radial-gradient(ellipse 92% 88% at 48% 50%, #000000 60%, rgba(0, 0, 0, 0.75) 78%, transparent 100%)',
                 }}
               >
-                <picture style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                  <source srcSet="/assets/Images/Main/hero_fintech_visual@2x.webp?v=3" type="image/webp" />
+                <picture
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: isAr ? 'flex-start' : 'flex-end',
+                  }}
+                >
+                  <source srcSet="/assets/Images/Main/hero_fintech_visual@2x.webp?v=4" type="image/webp" />
                   <img
-                    src="/assets/Images/Main/hero_fintech_visual.png?v=3"
+                    src="/assets/Images/Main/hero_fintech_visual.png?v=4"
                     alt="FXENGIN - مهندس الفوركس Gamal Ahmed SMC Trading Platform"
                     style={{
                       width: '100%',
-                      height: 'auto',
-                      maxHeight: 'clamp(480px, 55vw, 680px)',
-                      objectFit: 'contain',
+                      height: '100%',
+                      maxHeight: 'calc(100dvh - var(--header-height, 4.5rem) - var(--ticker-height, 2.75rem))',
+                      objectFit: 'cover',
+                      objectPosition: isAr ? 'left bottom' : 'right bottom',
                       display: 'block',
                       userSelect: 'none',
                       pointerEvents: 'none',
@@ -1548,8 +1561,7 @@ export default function Hero() {
             </div>
           </div>
         )}
+      </section>
+    );
+  }
 
-      </div>
-    </section>
-  );
-}
