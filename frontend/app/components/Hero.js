@@ -247,18 +247,6 @@ export default function Hero() {
         pointerEvents: 'none',
       }} />
 
-      {/* Subtle grid pattern */}
-      <div aria-hidden style={{
-        position: 'absolute',
-        inset: 0,
-        pointerEvents: 'none',
-        backgroundImage:
-          'linear-gradient(rgba(18, 49, 92, 0.25) 1px, transparent 1px),' +
-          'linear-gradient(90deg, rgba(18, 49, 92, 0.25) 1px, transparent 1px)',
-        backgroundSize: '3rem 3rem',
-        mask: 'radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 80%)',
-        WebkitMask: 'radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 80%)',
-      }} />
 
       {/* ═══════════════════════════════════════════════════════════════════
           LOGGED-IN USER PERSONALIZED HERO VIEW
