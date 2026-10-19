@@ -21,6 +21,75 @@ const INITIAL_PAIRS = [
   { pair: 'ETH/USD', price: '2,686.84',  change: '-0.18%', pos: false },
 ];
 
+function getPairIcon(pair) {
+  const clean = (pair || '').replace('/', '').toUpperCase();
+  if (clean.includes('XAU') || clean.includes('GOLD')) {
+    return (
+      <span style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '17px',
+        height: '17px',
+        borderRadius: '3px',
+        background: 'linear-gradient(135deg, #FFE066 0%, #FB8704 100%)',
+        fontSize: '10px',
+        color: '#1a0d00',
+        fontWeight: 900,
+        boxShadow: '0 0 6px rgba(251, 135, 4, 0.45)',
+        flexShrink: 0,
+      }}>
+        ✦
+      </span>
+    );
+  }
+  if (clean.includes('BTC')) {
+    return (
+      <span style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '17px',
+        height: '17px',
+        borderRadius: '50%',
+        background: '#F7931A',
+        color: '#FFFFFF',
+        fontSize: '10px',
+        fontWeight: 900,
+        flexShrink: 0,
+      }}>
+        ₿
+      </span>
+    );
+  }
+  if (clean.includes('ETH')) {
+    return (
+      <span style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '17px',
+        height: '17px',
+        borderRadius: '50%',
+        background: '#627EEA',
+        color: '#FFFFFF',
+        fontSize: '10px',
+        fontWeight: 800,
+        flexShrink: 0,
+      }}>
+        Ξ
+      </span>
+    );
+  }
+  if (clean.startsWith('EUR')) return <span style={{ fontSize: '13px', lineHeight: 1 }}>🇪🇺</span>;
+  if (clean.startsWith('GBP')) return <span style={{ fontSize: '13px', lineHeight: 1 }}>🇬🇧</span>;
+  if (clean.startsWith('USD')) return <span style={{ fontSize: '13px', lineHeight: 1 }}>🇺🇸</span>;
+  if (clean.startsWith('AUD')) return <span style={{ fontSize: '13px', lineHeight: 1 }}>🇦🇺</span>;
+  if (clean.startsWith('CAD')) return <span style={{ fontSize: '13px', lineHeight: 1 }}>🇨🇦</span>;
+  if (clean.startsWith('CHF')) return <span style={{ fontSize: '13px', lineHeight: 1 }}>🇨🇭</span>;
+  return null;
+}
+
 function TickerItem({ pair, price, change, pos }) {
   const [flash, setFlash] = useState(null);
   const prevPriceRef = useRef(price);
@@ -38,22 +107,28 @@ function TickerItem({ pair, price, change, pos }) {
     prevPriceRef.current = price;
   }, [price]);
 
+  const displaySymbol = (pair || '').replace('/', '');
+  const icon = getPairIcon(pair);
+
   return (
     <Link
       href="/markets"
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '0.625rem',
-        padding: '0 1.5rem',
+        gap: '0.55rem',
+        padding: '0 1.25rem',
         whiteSpace: 'nowrap',
-        borderLeft: '1px solid var(--border)',
+        borderLeft: '1px solid rgba(18, 49, 92, 0.45)',
         flexShrink: 0,
         textDecoration: 'none',
         cursor: 'pointer',
       }}
     >
-      <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--text-primary)' }}>{pair}</span>
+      {icon}
+      <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '0.02em' }}>
+        {displaySymbol}
+      </span>
       <span
         style={{
           fontSize: '0.8125rem',

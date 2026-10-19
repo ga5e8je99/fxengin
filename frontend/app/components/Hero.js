@@ -17,6 +17,8 @@ import {
   FiCalendar,
   FiLock,
   FiCreditCard,
+  FiStar,
+  FiUsers,
 } from 'react-icons/fi';
 import { LuGraduationCap } from 'react-icons/lu';
 import { useLanguage } from '../context/LanguageContext';
@@ -1246,395 +1248,301 @@ export default function Hero() {
           /* ═══════════════════════════════════════════════════════════════════
              GUEST / UNAUTHENTICATED HERO VIEW
           ═══════════════════════════════════════════════════════════════════ */
-          <div className="hero-grid">
-            {/* ── Text Column ──────── */}
-            <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-
-              {/* Badge */}
-              <div style={{ animation: 'heroFadeUp 0.6s ease both' }}>
-                <span className="badge badge-blue" style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '6px 14px',
-                  fontSize: '13px',
-                  fontWeight: 600,
-                }}>
-                  <span style={{
-                    width: '7px',
-                    height: '7px',
-                    borderRadius: '50%',
-                    background: 'var(--primary)',
-                    boxShadow: '0 0 8px var(--primary)',
-                  }} />
-                  {t.hero.badge}
+          <div
+            className="hero-reference-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 1.05fr) minmax(0, 0.95fr)',
+              gap: 'clamp(2rem, 3.5vw, 4rem)',
+              alignItems: 'center',
+              width: '100%',
+              position: 'relative',
+              zIndex: 2,
+            }}
+          >
+            {/* ── Right Column (in RTL): Content ──────── */}
+            <div
+              className="hero-reference-content"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'clamp(1rem, 1.8vw, 1.5rem)',
+                textAlign: isAr ? 'right' : 'left',
+                zIndex: 3,
+              }}
+            >
+              {/* Main Headline matching reference exactly */}
+              <h1
+                style={{
+                  fontSize: 'clamp(2.35rem, 4.4vw, 4.25rem)',
+                  fontWeight: 900,
+                  lineHeight: 1.18,
+                  margin: 0,
+                  letterSpacing: '-0.025em',
+                  fontFamily: isAr ? "'Alyama', sans-serif" : "'Montserrat', sans-serif",
+                }}
+              >
+                <span
+                  style={{
+                    display: 'block',
+                    color: '#FFFFFF',
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                  }}
+                >
+                  {isAr ? 'افهم السوق.' : (t.hero.titleLine1 || 'Understand the Market.')}
                 </span>
-              </div>
-
-              {/* Main Headline */}
-              <h1 style={{
-                fontSize: 'clamp(1.85rem, 4vw + 0.5rem, 3.25rem)',
-                fontWeight: 800,
-                lineHeight: 1.18,
-                margin: 0,
-                color: 'var(--text-primary)',
-                letterSpacing: '-0.03rem',
-                animation: 'heroFadeUp 0.7s ease 0.1s both',
-              }}>
-                {t.hero.titlePart1}{' '}
-                <span className="text-gradient-brand" style={{ display: 'inline-block' }}>
-                  {t.hero.titleHighlight}
+                <span
+                  style={{
+                    display: 'block',
+                    color: '#FB8704',
+                    marginTop: '0.12em',
+                    textShadow: '0 0 35px rgba(251, 135, 4, 0.4), 0 2px 10px rgba(0, 0, 0, 0.5)',
+                  }}
+                >
+                  {isAr ? 'أتقن استراتيجيتك.' : (t.hero.titleLine2 || 'Master Your Strategy.')}
                 </span>
               </h1>
 
-              {/* Subtext */}
-              <p style={{
-                fontSize: 'clamp(0.9375rem, 1.2vw + 0.5rem, 1.125rem)',
-                lineHeight: 1.75,
-                color: 'var(--text-secondary)',
-                margin: 0,
-                maxWidth: '38rem',
-                animation: 'heroFadeUp 0.7s ease 0.2s both',
-              }}>
+              {/* Supporting Copy */}
+              <p
+                style={{
+                  fontSize: 'clamp(1rem, 1.2vw, 1.15rem)',
+                  lineHeight: 1.85,
+                  color: 'rgba(245, 247, 250, 0.82)',
+                  maxWidth: '38rem',
+                  margin: 0,
+                  fontWeight: 400,
+                }}
+              >
                 {t.hero.desc}
               </p>
 
-              {/* CTAs: Primary (Orange) + Secondary (Blue Outline) */}
-              <div style={{
-                display: 'flex',
-                gap: '0.875rem',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                animation: 'heroFadeUp 0.7s ease 0.25s both',
-              }}>
-                <Link href="/register" className="btn-primary" style={{ fontSize: '0.9375rem', textDecoration: 'none' }}>
-                  {t.hero.startFree}
-                  <FiArrowLeft size={16} style={{ transform: isAr ? 'none' : 'rotate(180deg)' }} />
+              {/* Two Prominent CTA Buttons */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  flexWrap: 'wrap',
+                  marginTop: '0.5rem',
+                  marginBottom: '0.5rem',
+                }}
+              >
+                {/* 1. Primary Orange CTA Button */}
+                <Link
+                  href="/register"
+                  style={{
+                    background: '#FB8704',
+                    color: '#FFFFFF',
+                    padding: '0.875rem 1.85rem',
+                    borderRadius: '0.625rem',
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.65rem',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 20px rgba(251, 135, 4, 0.45)',
+                    transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 28px rgba(251, 135, 4, 0.65)';
+                    e.currentTarget.style.background = '#FA5A04';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'none';
+                    e.currentTarget.style.boxShadow = '0 4px 20px rgba(251, 135, 4, 0.45)';
+                    e.currentTarget.style.background = '#FB8704';
+                  }}
+                >
+                  <span>{t.hero.startFree}</span>
+                  <FiArrowLeft size={18} style={{ transform: isAr ? 'none' : 'rotate(180deg)' }} />
                 </Link>
-                <a href="#courses" className="btn-secondary" style={{ fontSize: '0.9375rem', textDecoration: 'none' }}>
-                  {t.hero.exploreCourses}
-                  <FiBookOpen size={16} />
+
+                {/* 2. Secondary Cyan Outline CTA Button */}
+                <a
+                  href="#courses"
+                  style={{
+                    background: 'rgba(0, 242, 254, 0.04)',
+                    border: '1.5px solid #00F2FE',
+                    color: '#00F2FE',
+                    padding: '0.85rem 1.75rem',
+                    borderRadius: '0.625rem',
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.65rem',
+                    textDecoration: 'none',
+                    boxShadow: '0 0 16px rgba(0, 242, 254, 0.15)',
+                    transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(0, 242, 254, 0.12)';
+                    e.currentTarget.style.boxShadow = '0 0 24px rgba(0, 242, 254, 0.35)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(0, 242, 254, 0.04)';
+                    e.currentTarget.style.boxShadow = '0 0 16px rgba(0, 242, 254, 0.15)';
+                    e.currentTarget.style.transform = 'none';
+                  }}
+                >
+                  <FiBookOpen size={18} color="#00F2FE" />
+                  <span>{t.hero.exploreCourses}</span>
                 </a>
               </div>
 
-              {/* Key Statistics Row */}
-              <div className="hero-stats" style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '1.25rem',
-                paddingTop: '1.25rem',
-                marginTop: '0.25rem',
-                animation: 'heroFadeUp 0.7s ease 0.35s both',
-              }}>
-                {[
-                  { num: t.hero.stat1Val, label: t.hero.stat1Label, color: 'var(--accent)' },
-                  { num: t.hero.stat2Val, label: t.hero.stat2Label, color: 'var(--primary)' },
-                  { num: t.hero.stat3Val, label: t.hero.stat3Label, color: 'var(--accent)' },
-                ].map(({ num, label, color }) => (
-                  <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                    <span style={{
-                      fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 1.75rem)',
-                      fontWeight: 700,
-                      color: color,
-                      fontFamily: 'monospace',
-                      lineHeight: 1.1,
-                    }}>
-                      {num}
+              {/* Three Horizontally Aligned Statistics */}
+              <div
+                className="hero-reference-stats"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'clamp(1rem, 2.2vw, 2.5rem)',
+                  paddingTop: '1.75rem',
+                  borderTop: '1px solid rgba(18, 49, 92, 0.55)',
+                  marginTop: '0.5rem',
+                  flexWrap: 'wrap',
+                }}
+              >
+                {/* Stat 1: 98% */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span
+                      style={{
+                        fontSize: 'clamp(1.5rem, 2.2vw, 2.1rem)',
+                        fontWeight: 800,
+                        color: '#FB8704',
+                        fontFamily: 'monospace',
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {t.hero.stat1Val}
                     </span>
-                    <span style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
-                      {label}
-                    </span>
+                    <FiStar size={19} color="#00F2FE" style={{ filter: 'drop-shadow(0 0 6px rgba(0, 242, 254, 0.6))' }} />
                   </div>
-                ))}
+                  <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
+                    {t.hero.stat1Label}
+                  </span>
+                </div>
+
+                {/* Subtle vertical separator */}
+                <div
+                  aria-hidden
+                  className="hide-mobile"
+                  style={{ width: '1px', height: '2.5rem', background: 'rgba(18, 49, 92, 0.8)' }}
+                />
+
+                {/* Stat 2: 50,000+ */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span
+                      style={{
+                        fontSize: 'clamp(1.5rem, 2.2vw, 2.1rem)',
+                        fontWeight: 800,
+                        color: '#FB8704',
+                        fontFamily: 'monospace',
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {t.hero.stat2Val}
+                    </span>
+                    <FiUsers size={19} color="#00F2FE" style={{ filter: 'drop-shadow(0 0 6px rgba(0, 242, 254, 0.6))' }} />
+                  </div>
+                  <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
+                    {t.hero.stat2Label}
+                  </span>
+                </div>
+
+                {/* Subtle vertical separator */}
+                <div
+                  aria-hidden
+                  className="hide-mobile"
+                  style={{ width: '1px', height: '2.5rem', background: 'rgba(18, 49, 92, 0.8)' }}
+                />
+
+                {/* Stat 3: 120+ */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span
+                      style={{
+                        fontSize: 'clamp(1.5rem, 2.2vw, 2.1rem)',
+                        fontWeight: 800,
+                        color: '#FB8704',
+                        fontFamily: 'monospace',
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {t.hero.stat3Val}
+                    </span>
+                    <LuGraduationCap size={21} color="#00F2FE" style={{ filter: 'drop-shadow(0 0 6px rgba(0, 242, 254, 0.6))' }} />
+                  </div>
+                  <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
+                    {t.hero.stat3Label}
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* ── Visual Column with Interactive FXENGIN Trading Vector System ─────── */}
-            <div className="hero-visual" style={{
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              animation: 'heroFadeIn 0.9s ease 0.25s both',
-            }}>
-              {/* Ambient Backlight Glow */}
-              <div aria-hidden style={{
-                position: 'absolute',
-                inset: '-4% 2% 4% 2%',
-                background: 'radial-gradient(circle, rgba(251, 135, 4, 0.18) 0%, rgba(4, 136, 248, 0.14) 50%, transparent 75%)',
-                borderRadius: '50%',
-                filter: 'blur(42px)',
-                pointerEvents: 'none',
-              }} />
-
-              {/* ═══════════════════════════════════════════════════════════════════
-                  FXENGIN BRAND TRADING VECTOR SYSTEM (Candlesticks, Laser Trendline, Fibonacci Radar)
-              ═══════════════════════════════════════════════════════════════════ */}
-              <svg
-                className="hero-trading-vector-svg"
-                viewBox="0 0 580 520"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                        {/* ── Left Column (in RTL): Visual Composition ─────── */}
+            <div
+              className="hero-reference-visual"
+              style={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                zIndex: 2,
+              }}
+            >
+              {/* Backlight Ambient Glow (Cyan & Electric Blue) */}
+              <div
+                aria-hidden
                 style={{
                   position: 'absolute',
-                  inset: '-10% -12% -6% -12%',
-                  width: '124%',
-                  height: '118%',
+                  inset: '-10% -5% 0% -5%',
+                  background: 'radial-gradient(ellipse 65% 55% at 50% 50%, rgba(0, 242, 254, 0.16) 0%, rgba(4, 136, 248, 0.12) 42%, transparent 75%)',
+                  borderRadius: '50%',
+                  filter: 'blur(50px)',
                   pointerEvents: 'none',
+                  zIndex: 1,
+                }}
+              />
+
+              {/* Main Visual Image matching reference exactly */}
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  maxWidth: '660px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   zIndex: 2,
-                  overflow: 'visible',
                 }}
               >
-                <defs>
-                  {/* Laser Trend Line Gradient (Cyan -> Blue -> Brand Orange) */}
-                  <linearGradient id="fxHeroTrendGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.85" />
-                    <stop offset="45%" stopColor="#0488F8" stopOpacity="0.95" />
-                    <stop offset="85%" stopColor="#FB8704" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#FFA033" stopOpacity="1" />
-                  </linearGradient>
-
-                  {/* Area Fill Gradient under Chart */}
-                  <linearGradient id="fxHeroAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="rgba(4, 136, 248, 0.18)" />
-                    <stop offset="55%" stopColor="rgba(4, 136, 248, 0.04)" />
-                    <stop offset="100%" stopColor="transparent" />
-                  </linearGradient>
-
-                  {/* Candlestick Green & Orange Gradients */}
-                  <linearGradient id="fxBullishCandle" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#22C55E" />
-                    <stop offset="100%" stopColor="#16A34A" />
-                  </linearGradient>
-                  <linearGradient id="fxBearishCandle" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#FB8704" />
-                    <stop offset="100%" stopColor="#EA580C" />
-                  </linearGradient>
-
-                  {/* Radial Glow Filter */}
-                  <filter id="fxHeroGlow" x="-30%" y="-30%" width="160%" height="160%">
-                    <feGaussianBlur stdDeviation="5" result="blur" />
-                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                  </filter>
-                </defs>
-
-                {/* 1. Concentric Fibonacci & Orbital Technical Radar Rings */}
-                <g opacity="0.45">
-                  {/* Outer Dashed Orbit */}
-                  <circle
-                    cx="290"
-                    cy="255"
-                    r="235"
-                    stroke="#0488F8"
-                    strokeWidth="1.2"
-                    strokeDasharray="6 8"
-                    strokeOpacity="0.35"
-                  />
-                  {/* Mid Orbit */}
-                  <circle
-                    cx="290"
-                    cy="255"
-                    r="180"
-                    stroke="#38BDF8"
-                    strokeWidth="1"
-                    strokeDasharray="4 6"
-                    strokeOpacity="0.25"
-                  />
-                  {/* Inner Subtle Radar */}
-                  <circle
-                    cx="290"
-                    cy="255"
-                    r="125"
-                    stroke="#FB8704"
-                    strokeWidth="0.8"
-                    strokeDasharray="3 5"
-                    strokeOpacity="0.25"
-                  />
-
-                  {/* Crosshair Coordinate Axis Lines */}
-                  <line x1="40" y1="255" x2="540" y2="255" stroke="#0488F8" strokeWidth="0.8" strokeDasharray="3 6" strokeOpacity="0.25" />
-                  <line x1="290" y1="20" x2="290" y2="490" stroke="#0488F8" strokeWidth="0.8" strokeDasharray="3 6" strokeOpacity="0.25" />
-
-                  {/* Coordinate Markers */}
-                  <text x="546" y="259" fill="#0488F8" fontSize="8" fontFamily="monospace" opacity="0.7">360°</text>
-                  <text x="290" y="14" fill="#38BDF8" fontSize="8" fontFamily="monospace" textAnchor="middle" opacity="0.7">90° N</text>
-                  <text x="290" y="506" fill="#FB8704" fontSize="8" fontFamily="monospace" textAnchor="middle" opacity="0.7">270° S</text>
-                  <text x="28" y="259" fill="#0488F8" fontSize="8" fontFamily="monospace" textAnchor="end" opacity="0.7">180°</text>
-                </g>
-
-                {/* 2. Harmonic Wave Grid (X-A-B-C-D Retracement Geometric Lines) */}
-                <g opacity="0.6">
-                  <path
-                    d="M 50 370 L 135 250 L 210 320 L 330 190 L 470 115"
-                    stroke="rgba(4, 136, 248, 0.45)"
-                    strokeWidth="1.2"
-                    strokeDasharray="4 4"
-                    fill="none"
-                  />
-                  {/* Harmonic Ratios */}
-                  <text x="92" y="295" fill="#38BDF8" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.75">0.618</text>
-                  <text x="175" y="300" fill="#FB8704" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.75">0.786</text>
-                  <text x="280" y="240" fill="#00F0FF" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.85">1.272</text>
-                  <text x="400" y="135" fill="#16C784" fontSize="9" fontFamily="monospace" fontWeight="700" opacity="0.95">1.618</text>
-                </g>
-
-                {/* 3. Floating Forex Candlestick Formations (Flanking Cutout) */}
-                <g opacity="0.85">
-                  {/* Left Flank Candles (Accumulation Phase) */}
-                  <line x1="38" y1="320" x2="38" y2="400" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.75" />
-                  <rect x="33" y="340" width="10" height="38" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.9" />
-
-                  <line x1="62" y1="305" x2="62" y2="380" stroke="#FB8704" strokeWidth="1.2" strokeOpacity="0.75" />
-                  <rect x="57" y="320" width="10" height="25" rx="2" fill="url(#fxBearishCandle)" fillOpacity="0.9" />
-
-                  <line x1="86" y1="265" x2="86" y2="355" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.85" />
-                  <rect x="81" y="280" width="10" height="52" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.95" />
-
-                  <line x1="110" y1="240" x2="110" y2="315" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.75" />
-                  <rect x="105" y="255" width="10" height="36" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.9" />
-
-                  {/* Right Flank Candles (Expansion Phase) */}
-                  <line x1="455" y1="125" x2="455" y2="215" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.85" />
-                  <rect x="450" y="140" width="10" height="50" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.95" />
-
-                  <line x1="479" y1="110" x2="479" y2="180" stroke="#FB8704" strokeWidth="1.2" strokeOpacity="0.75" />
-                  <rect x="474" y="125" width="10" height="24" rx="2" fill="url(#fxBearishCandle)" fillOpacity="0.9" />
-
-                  <line x1="503" y1="75" x2="503" y2="165" stroke="#16C784" strokeWidth="1.2" strokeOpacity="0.95" />
-                  <rect x="498" y="90" width="10" height="58" rx="2" fill="url(#fxBullishCandle)" fillOpacity="0.98" />
-
-                  <line x1="527" y1="55" x2="527" y2="135" stroke="#00F0FF" strokeWidth="1.5" strokeOpacity="0.9" />
-                  <rect x="522" y="70" width="10" height="36" rx="2" fill="#0488F8" fillOpacity="0.95" />
-                </g>
-
-                {/* 4. Ascending Laser Trend Wave & Volatility Corridor */}
-                {/* Area under curve */}
-                <path
-                  d="M 15 425 Q 115 385, 175 325 T 315 235 T 435 145 T 545 65 L 545 490 L 15 490 Z"
-                  fill="url(#fxHeroAreaGrad)"
-                />
-
-                {/* Main Laser Trend Stroke with Glow Filter */}
-                <path
-                  d="M 15 425 Q 115 385, 175 325 T 315 235 T 435 145 T 545 65"
-                  stroke="url(#fxHeroTrendGrad)"
-                  strokeWidth="4.2"
-                  strokeLinecap="round"
-                  fill="none"
-                  filter="url(#fxHeroGlow)"
-                />
-
-                {/* 5. Glowing Precision Data Nodes along the Laser Trend */}
-                <g>
-                  <circle cx="15" cy="425" r="8" fill="rgba(0, 240, 255, 0.2)" />
-                  <circle cx="15" cy="425" r="4.5" fill="#01071E" stroke="#00F0FF" strokeWidth="2.5" />
-                </g>
-                <g>
-                  <circle cx="175" cy="325" r="9" fill="rgba(4, 136, 248, 0.25)" />
-                  <circle cx="175" cy="325" r="5" fill="#01071E" stroke="#0488F8" strokeWidth="2.5" />
-                </g>
-                <g>
-                  <circle cx="315" cy="235" r="9" fill="rgba(251, 135, 4, 0.25)" />
-                  <circle cx="315" cy="235" r="5" fill="#01071E" stroke="#FB8704" strokeWidth="2.5" />
-                </g>
-                <g>
-                  <circle cx="435" cy="145" r="10" fill="rgba(22, 199, 132, 0.3)" />
-                  <circle cx="435" cy="145" r="5.5" fill="#01071E" stroke="#16C784" strokeWidth="2.5" />
-                </g>
-                <g>
-                  <circle cx="545" cy="65" r="12" fill="rgba(0, 240, 255, 0.35)" />
-                  <circle cx="545" cy="65" r="6" fill="#01071E" stroke="#00F0FF" strokeWidth="3" />
-                </g>
-
-                {/* 6. Technical Price Levels (Dashed Horizontal Grid Tags) */}
-                <g opacity="0.6">
-                  <line x1="15" y1="425" x2="545" y2="425" stroke="#12315C" strokeWidth="1" strokeDasharray="3 5" />
-                  <text x="552" y="428" fill="#687287" fontSize="8" fontFamily="monospace">1.0820</text>
-
-                  <line x1="15" y1="325" x2="545" y2="325" stroke="#12315C" strokeWidth="1" strokeDasharray="3 5" />
-                  <text x="552" y="328" fill="#687287" fontSize="8" fontFamily="monospace">1.0940</text>
-
-                  <line x1="15" y1="235" x2="545" y2="235" stroke="#12315C" strokeWidth="1" strokeDasharray="3 5" />
-                  <text x="552" y="238" fill="#687287" fontSize="8" fontFamily="monospace">1.1060</text>
-
-                  <line x1="15" y1="145" x2="545" y2="145" stroke="#12315C" strokeWidth="1" strokeDasharray="3 5" />
-                  <text x="552" y="148" fill="#16C784" fontSize="8" fontFamily="monospace" fontWeight="700">1.1180 ▲</text>
-                </g>
-              </svg>
-
-              {/* Floating StatBadge: Top-End */}
-              <div className="hero-stat-badge-top" style={{ zIndex: 12 }}>
-                <StatBadge
-                  label={t.hero.goldRate}
-                  value="2,341.50"
-                  change="+1.24%"
-                  positive
-                  icon={<FiTrendingUp size={13} color="var(--accent)" />}
-                />
-              </div>
-
-              {/* Floating StatBadge: Bottom-Start */}
-              <div className="hero-stat-badge-bottom" style={{ zIndex: 12 }}>
-                <StatBadge
-                  label={t.hero.activeTrades}
-                  value="128,490"
-                  change="+8.3%"
-                  positive
-                  icon={<FiActivity size={13} color="var(--primary)" />}
-                />
-              </div>
-
-              {/* Person Image Container with Soft Feathered Bottom Fade (No Sharp Cut) */}
-              <div style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: '560px',
-                height: 'clamp(360px, 42vw, 530px)',
-                display: 'flex',
-                alignItems: 'flex-end',
-                justifyContent: 'center',
-                zIndex: 5,
-                maskImage: 'linear-gradient(to bottom, black 0%, black 72%, transparent 98%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 72%, transparent 98%)',
-              }}>
-                {HERO_IMAGES.map((img, idx) => (
+                <picture>
+                  <source srcSet="/assets/Images/Main/hero_fintech_visual@2x.webp" type="image/webp" />
                   <img
-                    key={img.src}
-                    src={img.src}
-                    alt={img.alt}
+                    src="/assets/Images/Main/hero_fintech_visual.png"
+                    alt="FXENGIN - مهندس الفوركس Gamal Ahmed SMC Trading Platform"
                     style={{
-                      position: 'absolute',
-                      inset: 0,
                       width: '100%',
-                      height: '100%',
+                      height: 'auto',
+                      maxHeight: 'clamp(380px, 48vw, 560px)',
                       objectFit: 'contain',
-                      opacity: idx === currentImgIdx ? 1 : 0,
-                      transform: idx === currentImgIdx
-                        ? (isAr ? 'scaleX(-1) scale(1)' : 'scale(1)')
-                        : (isAr ? 'scaleX(-1) scale(1.03)' : 'scale(1.03)'),
-                      transition: 'opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1)',
-                      willChange: 'opacity, transform',
-                      filter: 'drop-shadow(0 20px 40px rgba(0, 3, 13, 0.9)) drop-shadow(0 0 20px rgba(4, 136, 248, 0.2))',
+                      display: 'block',
+                      filter: 'drop-shadow(0 15px 40px rgba(0, 3, 13, 0.95)) drop-shadow(0 0 25px rgba(0, 242, 254, 0.2))',
+                      transition: 'transform 0.4s ease',
                     }}
                   />
-                ))}
-
-                {/* Soft bottom vignette shadow fade */}
-                <div
-                  aria-hidden
-                  style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '90px',
-                    background: 'linear-gradient(to top, var(--bg-dark) 0%, rgba(0, 3, 13, 0.8) 45%, transparent 100%)',
-                    pointerEvents: 'none',
-                    zIndex: 6,
-                  }}
-                />
+                </picture>
               </div>
-
             </div>
           </div>
         )}

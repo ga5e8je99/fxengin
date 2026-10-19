@@ -329,10 +329,11 @@ export default function Navbar() {
                     <span style={{
                       position: 'absolute',
                       bottom: '0',
-                      insetInline: '0.875rem',
-                      height: '0.125rem',
-                      background: 'var(--primary)',
-                      borderRadius: '0.125rem',
+                      insetInline: '0.625rem',
+                      height: '0.15rem',
+                      background: '#00F2FE',
+                      borderRadius: '9999px',
+                      boxShadow: '0 0 10px rgba(0, 242, 254, 0.85), 0 0 20px rgba(4, 136, 248, 0.5)',
                     }} />
                   )}
                 </Link>
