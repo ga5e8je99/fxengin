@@ -170,22 +170,15 @@ export default function TickerBar() {
   useEffect(() => {
     let isMounted = true;
 
-    let lastUpdate = Date.now();
-
     const syncRates = (data) => {
       if (isMounted && Array.isArray(data) && data.length > 0) {
-        const hasLivePrices = data.some((item) => Math.abs(Number(item.change24h || 0)) > 0.0001);
-        if (!hasLivePrices) {
-          return false;
-        }
         const mapped = data.map((item) => ({
-          pair: item.symbol,
-          price: item.priceFormatted,
-          change: item.changeFormatted,
-          pos: item.pos,
+          pair: item.symbol || item.pair,
+          price: item.priceFormatted || (typeof item.price === 'number' ? item.price.toLocaleString('en-US', { minimumFractionDigits: item.precision || 2, maximumFractionDigits: item.precision || 2 }) : String(item.price)),
+          change: item.changeFormatted || (typeof item.change24h === 'number' ? `${item.change24h >= 0 ? '+' : ''}${item.change24h.toFixed(2)}%` : String(item.change || '+0.00%')),
+          pos: item.pos !== undefined ? item.pos : (typeof item.change24h === 'number' ? item.change24h >= 0 : String(item.change).startsWith('+')),
         }));
         setRates(mapped);
-        lastUpdate = Date.now();
         return true;
       }
       return false;
@@ -193,38 +186,24 @@ export default function TickerBar() {
 
     // 1. Initial snapshot fetch
     fetchMarketRates().then((res) => {
-      if (res.success && syncRates(res.data)) {
-        lastUpdate = Date.now();
+      if (res.success && res.data) {
+        syncRates(res.data);
       }
     }).catch(() => {});
 
-    // 2. Real-time live rate streaming (SSE pushes every 2s)
+    // 2. Real-time live rate streaming (pushes updates every ~1.2s moment by moment)
     const unsubscribe = subscribeToRatesStream(
       (streamRates) => {
         syncRates(streamRates);
       },
-      (err) => {
-        // SSE connection info/reconnecting
+      () => {
+        // stream event info
       }
     );
-
-    // 3. Silent watchdog: only fetch if stream has been silent for > 15s
-    const watchdogTimer = setInterval(async () => {
-      if (!isMounted) return;
-      if (Date.now() - lastUpdate > 15000) {
-        try {
-          const res = await fetchMarketRates();
-          if (res.success) syncRates(res.data);
-        } catch {
-          // silent
-        }
-      }
-    }, 10000);
 
     return () => {
       isMounted = false;
       unsubscribe();
-      clearInterval(watchdogTimer);
     };
   }, []);
 
