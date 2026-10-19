@@ -83,13 +83,21 @@ export default function JsonLd() {
     name: 'FXENGIN | مهندس الفوركس',
     alternateName: [
       'FXENGIN',
+      'FXengin',
+      'fxengin',
+      'FX engin',
+      'fx engin',
+      'FX Enfin',
+      'مهندس الفوركس',
+      'مهندس الفوريكس',
+      'مهندس الفركس',
       'منصة مهندس الفوركس',
       'منصة FXENGIN للتعليم المالي والتداول',
       'Forex Engineer Trading Academy',
     ],
     headline: 'FXENGIN | مهندس الفوركس — المنصة الأولى لتعليم واحتراف التداول والفوركس',
     keywords:
-      'FXENGIN, fxengin, مهندس الفوركس, مهندس الفوريكس, التداول, تداول, الفوركس, الفوريكس, تعليم التداول, دورات فوركس, تداول الذهب, Smart Money Concepts, أفضل وسيط فوركس',
+      'FXENGIN, FXengin, fxengin, FX engin, fx engin, FX Enfin, مهندس الفوركس, مهندس الفوريكس, مهندس الفركس, التداول, تداول, الفوركس, الفوريكس, تعليم التداول, دورات فوركس, تداول الذهب, Smart Money Concepts, أفضل وسيط فوركس',
     publisher: {
       '@id': `${siteUrl}/#organization`,
     },
