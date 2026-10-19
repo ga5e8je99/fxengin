@@ -1358,9 +1358,9 @@ export default function Hero() {
                 <a
                   href="#courses"
                   style={{
-                    background: 'rgba(0, 242, 254, 0.04)',
-                    border: '1.5px solid #00F2FE',
-                    color: '#00F2FE',
+                    background: 'rgba(4, 136, 248, 0.08)',
+                    border: '1.5px solid #0488F8',
+                    color: '#0488F8',
                     padding: '0.85rem 1.75rem',
                     borderRadius: '0.625rem',
                     fontSize: '1.05rem',
@@ -1369,22 +1369,26 @@ export default function Hero() {
                     alignItems: 'center',
                     gap: '0.65rem',
                     textDecoration: 'none',
-                    boxShadow: '0 0 16px rgba(0, 242, 254, 0.15)',
+                    boxShadow: '0 0 18px rgba(4, 136, 248, 0.22)',
                     transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
                     cursor: 'pointer',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(0, 242, 254, 0.12)';
-                    e.currentTarget.style.boxShadow = '0 0 24px rgba(0, 242, 254, 0.35)';
+                    e.currentTarget.style.background = 'rgba(4, 136, 248, 0.18)';
+                    e.currentTarget.style.borderColor = '#38A2FF';
+                    e.currentTarget.style.color = '#38A2FF';
+                    e.currentTarget.style.boxShadow = '0 0 24px rgba(4, 136, 248, 0.45)';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(0, 242, 254, 0.04)';
-                    e.currentTarget.style.boxShadow = '0 0 16px rgba(0, 242, 254, 0.15)';
+                    e.currentTarget.style.background = 'rgba(4, 136, 248, 0.08)';
+                    e.currentTarget.style.borderColor = '#0488F8';
+                    e.currentTarget.style.color = '#0488F8';
+                    e.currentTarget.style.boxShadow = '0 0 18px rgba(4, 136, 248, 0.22)';
                     e.currentTarget.style.transform = 'none';
                   }}
                 >
-                  <FiBookOpen size={18} color="#00F2FE" />
+                  <FiBookOpen size={18} color="currentColor" />
                   <span>{t.hero.exploreCourses}</span>
                 </a>
               </div>
@@ -1416,7 +1420,7 @@ export default function Hero() {
                     >
                       {t.hero.stat1Val}
                     </span>
-                    <FiStar size={19} color="#00F2FE" style={{ filter: 'drop-shadow(0 0 6px rgba(0, 242, 254, 0.6))' }} />
+                    <FiStar size={19} color="#0488F8" style={{ filter: 'drop-shadow(0 0 6px rgba(4, 136, 248, 0.65))' }} />
                   </div>
                   <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
                     {t.hero.stat1Label}
@@ -1444,7 +1448,7 @@ export default function Hero() {
                     >
                       {t.hero.stat2Val}
                     </span>
-                    <FiUsers size={19} color="#00F2FE" style={{ filter: 'drop-shadow(0 0 6px rgba(0, 242, 254, 0.6))' }} />
+                    <FiUsers size={19} color="#0488F8" style={{ filter: 'drop-shadow(0 0 6px rgba(4, 136, 248, 0.65))' }} />
                   </div>
                   <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
                     {t.hero.stat2Label}
@@ -1472,7 +1476,7 @@ export default function Hero() {
                     >
                       {t.hero.stat3Val}
                     </span>
-                    <LuGraduationCap size={21} color="#00F2FE" style={{ filter: 'drop-shadow(0 0 6px rgba(0, 242, 254, 0.6))' }} />
+                    <LuGraduationCap size={21} color="#0488F8" style={{ filter: 'drop-shadow(0 0 6px rgba(4, 136, 248, 0.65))' }} />
                   </div>
                   <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
                     {t.hero.stat3Label}
@@ -1505,7 +1509,7 @@ export default function Hero() {
                 style={{
                   position: 'absolute',
                   inset: '-10% -15% -10% -15%',
-                  background: 'radial-gradient(ellipse 75% 65% at 38% 65%, rgba(0, 242, 254, 0.12) 0%, rgba(4, 136, 248, 0.07) 42%, transparent 70%)',
+                  background: 'radial-gradient(ellipse 75% 65% at 38% 65%, rgba(4, 136, 248, 0.16) 0%, rgba(4, 88, 236, 0.08) 42%, transparent 70%)',
                   borderRadius: '50%',
                   filter: 'blur(50px)',
                   pointerEvents: 'none',
