@@ -1504,56 +1504,68 @@ export default function Hero() {
                 width: '100%',
                 height: '100%',
                 minHeight: 'calc(100dvh - var(--header-height, 4.5rem) - var(--ticker-height, 2.75rem))',
-                overflow: 'hidden',
+                overflow: 'visible',
+                background: 'transparent',
+                border: 'none',
+                boxShadow: 'none',
                 zIndex: 2,
               }}
             >
-              {/* Atmospheric cyan/blue glow backdrop across the visual frame */}
+              {/* Atmospheric cyan/blue ambient glow */}
               <div
                 aria-hidden
                 style={{
                   position: 'absolute',
-                  inset: 0,
-                  background: 'radial-gradient(ellipse 90% 70% at 30% 65%, rgba(0, 242, 254, 0.12) 0%, rgba(4, 136, 248, 0.08) 40%, transparent 75%)',
+                  inset: '-10% -15% -10% -15%',
+                  background: 'radial-gradient(ellipse 75% 65% at 38% 65%, rgba(0, 242, 254, 0.12) 0%, rgba(4, 136, 248, 0.07) 42%, transparent 70%)',
+                  borderRadius: '50%',
+                  filter: 'blur(50px)',
                   pointerEvents: 'none',
                   zIndex: 1,
                 }}
               />
 
-              {/* Main Visual Image spanning from start of section to end of div and full section height */}
+              {/* Main Visual Image container with radial gradient mask */}
               <div
                 style={{
                   position: 'relative',
                   width: '100%',
-                  height: '100%',
+                  maxWidth: '740px',
                   display: 'flex',
                   alignItems: 'flex-end',
                   justifyContent: isAr ? 'flex-start' : 'flex-end',
                   zIndex: 2,
+                  background: 'transparent',
+                  border: 'none',
+                  boxShadow: 'none',
+                  WebkitMaskImage: 'radial-gradient(ellipse 90% 86% at 40% 62%, #000 52%, rgba(0, 0, 0, 0.65) 74%, transparent 97%)',
+                  maskImage: 'radial-gradient(ellipse 90% 86% at 40% 62%, #000 52%, rgba(0, 0, 0, 0.65) 74%, transparent 97%)',
                 }}
               >
                 <picture
                   style={{
                     width: '100%',
-                    height: '100%',
                     display: 'flex',
                     alignItems: 'flex-end',
                     justifyContent: isAr ? 'flex-start' : 'flex-end',
+                    background: 'transparent',
                   }}
                 >
-                  <source srcSet="/assets/Images/Main/hero_fintech_visual@2x.webp?v=4" type="image/webp" />
+                  <source srcSet="/assets/Images/Main/hero_fintech_visual@2x.webp?v=6" type="image/webp" />
                   <img
-                    src="/assets/Images/Main/hero_fintech_visual.png?v=4"
+                    src="/assets/Images/Main/hero_fintech_visual.png?v=6"
                     alt="FXENGIN - مهندس الفوركس Gamal Ahmed SMC Trading Platform"
                     style={{
                       width: '100%',
-                      height: '100%',
+                      height: 'auto',
                       maxHeight: 'calc(100dvh - var(--header-height, 4.5rem) - var(--ticker-height, 2.75rem))',
-                      objectFit: 'cover',
+                      objectFit: 'contain',
                       objectPosition: isAr ? 'left bottom' : 'right bottom',
                       display: 'block',
                       userSelect: 'none',
                       pointerEvents: 'none',
+                      border: 'none',
+                      boxShadow: 'none',
                     }}
                   />
                 </picture>
