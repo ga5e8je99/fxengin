@@ -759,7 +759,10 @@ export class AuthService {
       where: { email },
     });
 
+    let isNewUser = false;
+
     if (!user) {
+      isNewUser = true;
       const randomPassword = crypto.randomBytes(32).toString('hex');
       const passwordHash = await bcrypt.hash(randomPassword, 10);
 
@@ -786,7 +789,10 @@ export class AuthService {
 
     return {
       success: true,
-      message: `تم تسجيل الدخول بنجاح عبر ${dto.provider === SocialAuthProvider.GOOGLE ? 'Google' : 'Apple'}`,
+      isNewUser,
+      message: isNewUser
+        ? `تم إنشاء الحساب والتسجيل بنجاح عبر ${dto.provider === SocialAuthProvider.GOOGLE ? 'Google' : 'Apple'}`
+        : `تم تسجيل الدخول بنجاح عبر ${dto.provider === SocialAuthProvider.GOOGLE ? 'Google' : 'Apple'}`,
       accessToken,
       refreshToken,
       expiresIn: 3600,

@@ -174,7 +174,11 @@ export default function LoginPage() {
               });
               if (res.success) {
                 if (res.user) syncAffiliateLead(res.user);
-                showToast.success(isAr ? `مرحباً ${res.user?.fullName || ''}! تم تسجيل الدخول عبر Google` : `Welcome! Logged in with Google`);
+                if (res.isNewUser) {
+                  showToast.success(isAr ? `مرحباً ${res.user?.fullName || ''}! تم إنشاء حسابك الجديد وتسجيل الدخول عبر Google` : `Welcome! Account created with Google`);
+                } else {
+                  showToast.success(isAr ? `مرحباً بعودتك ${res.user?.fullName || ''}! تم تسجيل الدخول عبر Google` : `Welcome back! Logged in with Google`);
+                }
                 const dest = getDestinationUrl();
                 router.push(dest);
               } else {

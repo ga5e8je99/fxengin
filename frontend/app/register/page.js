@@ -164,28 +164,32 @@ export default function RegisterPage() {
                 email: uData.email,
                 fullName: uData.name || uData.given_name,
               });
-              if (res.success) {
-                try {
-                  let refCode = typeof window !== 'undefined' ? localStorage.getItem('fxengin_affiliate_ref') : null;
-                  if (!refCode && typeof document !== 'undefined') {
-                    const m = document.cookie.match(/fxengin_affiliate_ref=([^;]+)/);
-                    if (m) refCode = decodeURIComponent(m[1]);
-                  }
-                  if (refCode && refCode.trim()) {
-                    fetch('/api/affiliate', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({
-                        action: 'track_registration',
-                        referralCode: refCode.trim().toUpperCase(),
-                        userId: res.user?.id || '',
-                        fullName: uData.name || uData.given_name || '',
-                        email: uData.email || '',
-                      }),
-                    }).catch(() => {});
-                  }
-                } catch (e) {}
-                showToast.success(isAr ? `مرحباً ${res.user?.fullName || ''}! تم التسجيل بنجاح عبر Google` : `Welcome! Registered with Google`);
+                const isNew = res.isNewUser !== false;
+                if (isNew) {
+                  try {
+                    let refCode = typeof window !== 'undefined' ? localStorage.getItem('fxengin_affiliate_ref') : null;
+                    if (!refCode && typeof document !== 'undefined') {
+                      const m = document.cookie.match(/fxengin_affiliate_ref=([^;]+)/);
+                      if (m) refCode = decodeURIComponent(m[1]);
+                    }
+                    if (refCode && refCode.trim()) {
+                      fetch('/api/affiliate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          action: 'track_registration',
+                          referralCode: refCode.trim().toUpperCase(),
+                          userId: res.user?.id || '',
+                          fullName: uData.name || uData.given_name || '',
+                          email: uData.email || '',
+                        }),
+                      }).catch(() => {});
+                    }
+                  } catch (e) {}
+                  showToast.success(isAr ? `مرحباً ${res.user?.fullName || ''}! تم إنشاء حسابك الجديد والتسجيل بنجاح عبر Google` : `Welcome! Account created with Google`);
+                } else {
+                  showToast.info(isAr ? `مرحباً بعودتك ${res.user?.fullName || ''}! تم تسجيل الدخول إلى حسابك الحالي عبر Google` : `Welcome back! Logged in to your existing Google account`);
+                }
                 const dest = getDestinationUrl();
                 router.push(dest);
               } else {
