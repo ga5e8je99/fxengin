@@ -242,9 +242,9 @@ export default function Navbar() {
             alignItems: 'center',
             justifyContent: 'space-between',
             width: '100%',
-            maxWidth: 'var(--container-wide-max, 108rem)',
+            maxWidth: '100%',
             marginInline: 'auto',
-            paddingInline: 'clamp(1rem, 2.5vw, 2.5rem)',
+            paddingInline: 'clamp(1rem, 2.8vw, 3.5rem)',
           }}
         >
 

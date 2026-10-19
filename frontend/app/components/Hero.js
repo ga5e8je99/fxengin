@@ -1519,7 +1519,7 @@ export default function Hero() {
                 style={{
                   position: 'relative',
                   width: '100%',
-                  maxWidth: '740px',
+                  maxWidth: '820px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -1536,7 +1536,7 @@ export default function Hero() {
                     style={{
                       width: '100%',
                       height: 'auto',
-                      maxHeight: 'clamp(440px, 52vw, 620px)',
+                      maxHeight: 'clamp(480px, 55vw, 680px)',
                       objectFit: 'contain',
                       display: 'block',
                       userSelect: 'none',
