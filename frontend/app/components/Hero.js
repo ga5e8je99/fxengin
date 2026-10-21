@@ -210,15 +210,11 @@ export default function Hero() {
     <section
       className="hero-section"
       style={{
-        minHeight: 'calc(100dvh - var(--header-height, 4.5rem))',
         width: '100%',
         maxWidth: '100%',
-        display: 'flex',
-        alignItems: 'stretch',
         position: 'relative',
         overflow: 'hidden',
         padding: 0,
-        paddingTop: 'var(--ticker-height, 2.75rem)',
         background: 'radial-gradient(ellipse 80% 60% at 50% 10%, rgba(4, 136, 248, 0.1) 0%, transparent 70%), #010A19',
       }}
     >
@@ -1237,41 +1233,13 @@ export default function Hero() {
         /* ═══════════════════════════════════════════════════════════════════
            GUEST / UNAUTHENTICATED HERO VIEW (FULL BLEED SCREEN WIDTH & HEIGHT)
         ═══════════════════════════════════════════════════════════════════ */
-        <div
-          className="hero-reference-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.05fr) minmax(0, 0.95fr)',
-            width: '100%',
-            minHeight: 'calc(100dvh - var(--header-height, 4.5rem) - var(--ticker-height, 2.75rem))',
-            alignItems: 'stretch',
-            position: 'relative',
-            zIndex: 2,
-          }}
-        >
+        <div className="hero-reference-grid">
           {/* ── Right Column (in RTL): Content ──────── */}
-          <div
-            className="hero-reference-content"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              gap: 'clamp(1rem, 1.8vw, 1.5rem)',
-              textAlign: isAr ? 'right' : 'left',
-              paddingInlineEnd: 'clamp(1.5rem, 5vw, 5rem)',
-              paddingInlineStart: 'clamp(1rem, 2.5vw, 3rem)',
-              paddingBlock: 'clamp(2rem, 3.5vw, 4rem)',
-              zIndex: 3,
-            }}
-          >
-              {/* Main Headline matching reference exactly */}
+          <div className="hero-reference-content">
+              {/* Main Headline matching reference */}
               <h1
+                className="hero-reference-headline"
                 style={{
-                  fontSize: 'clamp(2.35rem, 4.4vw, 4.25rem)',
-                  fontWeight: 900,
-                  lineHeight: 1.18,
-                  margin: 0,
-                  letterSpacing: '-0.025em',
                   fontFamily: isAr ? "'Alyama', sans-serif" : "'Montserrat', sans-serif",
                 }}
               >
@@ -1297,30 +1265,12 @@ export default function Hero() {
               </h1>
 
               {/* Supporting Copy */}
-              <p
-                style={{
-                  fontSize: 'clamp(1rem, 1.2vw, 1.15rem)',
-                  lineHeight: 1.85,
-                  color: 'rgba(245, 247, 250, 0.82)',
-                  maxWidth: '38rem',
-                  margin: 0,
-                  fontWeight: 400,
-                }}
-              >
+              <p className="hero-reference-desc">
                 {t.hero.desc}
               </p>
 
               {/* Two Prominent CTA Buttons */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  flexWrap: 'wrap',
-                  marginTop: '0.5rem',
-                  marginBottom: '0.5rem',
-                }}
-              >
+              <div className="hero-reference-ctas">
                 {/* 1. Primary Orange CTA Button */}
                 <Link
                   href="/register"
@@ -1394,22 +1344,12 @@ export default function Hero() {
               </div>
 
               {/* Three Horizontally Aligned Statistics */}
-              <div
-                className="hero-reference-stats"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'clamp(1rem, 2.2vw, 2.5rem)',
-                  paddingTop: '1.75rem',
-                  borderTop: '1px solid rgba(18, 49, 92, 0.55)',
-                  marginTop: '0.5rem',
-                  flexWrap: 'wrap',
-                }}
-              >
+              <div className="hero-reference-stats">
                 {/* Stat 1: 98% */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span
+                      className="stat-value"
                       style={{
                         fontSize: 'clamp(1.5rem, 2.2vw, 2.1rem)',
                         fontWeight: 800,
@@ -1422,7 +1362,7 @@ export default function Hero() {
                     </span>
                     <FiStar size={19} color="#0488F8" style={{ filter: 'drop-shadow(0 0 6px rgba(4, 136, 248, 0.65))' }} />
                   </div>
-                  <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
+                  <span className="stat-label" style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
                     {t.hero.stat1Label}
                   </span>
                 </div>
@@ -1438,6 +1378,7 @@ export default function Hero() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span
+                      className="stat-value"
                       style={{
                         fontSize: 'clamp(1.5rem, 2.2vw, 2.1rem)',
                         fontWeight: 800,
@@ -1450,7 +1391,7 @@ export default function Hero() {
                     </span>
                     <FiUsers size={19} color="#0488F8" style={{ filter: 'drop-shadow(0 0 6px rgba(4, 136, 248, 0.65))' }} />
                   </div>
-                  <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
+                  <span className="stat-label" style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
                     {t.hero.stat2Label}
                   </span>
                 </div>
@@ -1466,6 +1407,7 @@ export default function Hero() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span
+                      className="stat-value"
                       style={{
                         fontSize: 'clamp(1.5rem, 2.2vw, 2.1rem)',
                         fontWeight: 800,
@@ -1478,31 +1420,15 @@ export default function Hero() {
                     </span>
                     <LuGraduationCap size={21} color="#0488F8" style={{ filter: 'drop-shadow(0 0 6px rgba(4, 136, 248, 0.65))' }} />
                   </div>
-                  <span style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
+                  <span className="stat-label" style={{ fontSize: '0.875rem', color: '#FFFFFF', fontWeight: 500 }}>
                     {t.hero.stat3Label}
                   </span>
                 </div>
               </div>
             </div>
 
-                        {/* ── Left Column (in RTL): Visual Composition ─────── */}
-            <div
-              className="hero-reference-visual"
-              style={{
-                position: 'relative',
-                display: 'flex',
-                justifyContent: isAr ? 'flex-start' : 'flex-end',
-                alignItems: 'flex-end',
-                width: '100%',
-                height: '100%',
-                minHeight: 'calc(100dvh - var(--header-height, 4.5rem) - var(--ticker-height, 2.75rem))',
-                overflow: 'visible',
-                background: 'transparent',
-                border: 'none',
-                boxShadow: 'none',
-                zIndex: 2,
-              }}
-            >
+            {/* ── Left Column (in RTL): Visual Composition ─────── */}
+            <div className="hero-reference-visual">
               {/* Atmospheric cyan/blue ambient glow */}
               <div
                 aria-hidden
@@ -1517,48 +1443,13 @@ export default function Hero() {
                 }}
               />
 
-              {/* Main Visual Image container with radial gradient mask */}
-              <div
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  maxWidth: '740px',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  justifyContent: isAr ? 'flex-start' : 'flex-end',
-                  zIndex: 2,
-                  background: 'transparent',
-                  border: 'none',
-                  boxShadow: 'none',
-                  WebkitMaskImage: 'radial-gradient(ellipse 90% 86% at 40% 62%, #000 52%, rgba(0, 0, 0, 0.65) 74%, transparent 97%)',
-                  maskImage: 'radial-gradient(ellipse 90% 86% at 40% 62%, #000 52%, rgba(0, 0, 0, 0.65) 74%, transparent 97%)',
-                }}
-              >
-                <picture
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    justifyContent: isAr ? 'flex-start' : 'flex-end',
-                    background: 'transparent',
-                  }}
-                >
+              {/* Main Visual Image container */}
+              <div className="hero-reference-visual-inner">
+                <picture>
                   <source srcSet="/assets/Images/Main/hero_fintech_visual@2x.webp?v=6" type="image/webp" />
                   <img
                     src="/assets/Images/Main/hero_fintech_visual.png?v=6"
                     alt="FXENGIN - مهندس الفوركس Gamal Ahmed SMC Trading Platform"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      maxHeight: 'calc(100dvh - var(--header-height, 4.5rem) - var(--ticker-height, 2.75rem))',
-                      objectFit: 'contain',
-                      objectPosition: isAr ? 'left bottom' : 'right bottom',
-                      display: 'block',
-                      userSelect: 'none',
-                      pointerEvents: 'none',
-                      border: 'none',
-                      boxShadow: 'none',
-                    }}
                   />
                 </picture>
               </div>

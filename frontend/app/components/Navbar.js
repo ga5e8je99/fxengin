@@ -236,7 +236,7 @@ export default function Navbar() {
         }}
       >
         <div
-          className="container-wide"
+          className="container-wide navbar-container-layout"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -244,53 +244,42 @@ export default function Navbar() {
             width: '100%',
             maxWidth: '100%',
             marginInline: 'auto',
-            paddingInline: 'clamp(1rem, 2.8vw, 3.5rem)',
+            paddingInline: 'clamp(0.85rem, 2vw, 3rem)',
           }}
         >
 
           {/* ── Brand / Logo ─────────────────────────────── */}
-          <Link
-            href={getAppRoute('/', activeUser)}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.625rem',
-              textDecoration: 'none',
-              direction: 'ltr',
-              flexShrink: 0,
-            }}
-          >
-            <img
-              src="/assets/Images/Logo/logo.webp"
-              alt="FXENGIN Logo"
-              style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }}
-            />
-            <span
-              className="hide-mobile"
+          <div style={{ display: 'inline-flex', alignItems: 'center', flexShrink: 0 }}>
+            <Link
+              href={getAppRoute('/', activeUser)}
+              aria-label="FXENGIN"
               style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 900,
-                fontSize: '1.25rem',
-                letterSpacing: '1px',
-                background: 'var(--accent-gradient, linear-gradient(135deg, #FA5A04 0%, #FB8704 100%))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                display: 'inline-block',
+                display: 'inline-flex',
+                alignItems: 'center',
+                textDecoration: 'none',
+                direction: 'ltr',
+                flexShrink: 0,
               }}
             >
-              FXENGIN
-            </span>
-          </Link>
+              <img
+                src="/assets/Images/Logo/logo.webp"
+                alt="FXENGIN"
+                style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }}
+              />
+            </Link>
+          </div>
 
-          {/* ── Desktop Navigation Links ───────────────── */}
+          {/* ── Desktop Navigation Links (Centered with Equal Gaps) ──────── */}
           <nav
-            className="hide-mobile"
+            className="hide-mobile navbar-center-nav"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 'clamp(0.2rem, 0.45vw, 0.5rem)',
+              justifyContent: 'center',
+              marginInline: 'auto',
+              gap: 'clamp(0.15rem, 0.38vw, 0.45rem)',
               flexWrap: 'nowrap',
+              flexShrink: 0,
             }}
           >
             {NAV.map(({ key, label, href, rawHref }) => {
@@ -299,50 +288,37 @@ export default function Navbar() {
                 <Link
                   key={key}
                   href={href}
+                  className={`navbar-nav-link ${isActive ? 'is-active' : ''}`}
                   style={{
                     color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                     textDecoration: 'none',
                     fontSize: 'clamp(0.8125rem, 0.85vw, 0.9375rem)',
                     fontWeight: isActive ? 600 : 500,
-                    padding: '0.5rem clamp(0.5rem, 0.65vw, 0.875rem)',
+                    padding: '0.45rem clamp(0.45rem, 0.6vw, 0.75rem)',
                     borderRadius: '0.375rem',
                     background: isActive ? 'rgba(4, 136, 248, 0.08)' : 'transparent',
                     position: 'relative',
                     whiteSpace: 'nowrap',
-                    transition: 'color 0.15s ease, background 0.15s ease',
-                  }}
-                  onMouseEnter={e => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = 'var(--text-primary)';
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
-                    }
-                  }}
-                  onMouseLeave={e => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = 'var(--text-secondary)';
-                      e.currentTarget.style.background = 'transparent';
-                    }
                   }}
                 >
                   {label}
-                  {isActive && (
-                    <span style={{
-                      position: 'absolute',
-                      bottom: '0',
-                      insetInline: '0.625rem',
-                      height: '0.15rem',
-                      background: '#00F2FE',
-                      borderRadius: '9999px',
-                      boxShadow: '0 0 10px rgba(0, 242, 254, 0.85), 0 0 20px rgba(4, 136, 248, 0.5)',
-                    }} />
-                  )}
+                  <span className="navbar-link-indicator" />
                 </Link>
               );
             })}
           </nav>
 
           {/* ── CTAs & Language Switcher ─────────────────── */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', flexShrink: 0 }}>
+          <div
+            className="navbar-ctas-col"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              gap: '0.5rem',
+              flexShrink: 0,
+            }}
+          >
             {/* Language Switcher Toggle */}
             <button
               type="button"
@@ -1026,23 +1002,13 @@ export default function Navbar() {
                   </Link>
                 )}
 
-                {/* Login Link */}
-                <Link
-                  href={`/login${authRedirectQuery}`}
-                  onClick={handleAuthNav}
-                  className="btn-ghost hide-mobile"
-                  style={{ fontSize: '0.875rem', textDecoration: 'none' }}
-                >
-                  <FiLogIn size={15} />
-                  {t.navbar.login}
-                </Link>
 
                 {/* Register Primary CTA */}
                 <Link
                   href={`/register${authRedirectQuery}`}
                   onClick={handleAuthNav}
                   className="btn-primary"
-                  style={{ fontSize: '0.875rem', padding: '0 1.25rem', minHeight: '2.5rem', textDecoration: 'none' }}
+                  style={{ fontSize: '0.875rem', padding: '0 1.25rem', minHeight: '2.5rem', textDecoration: 'none', whiteSpace: 'nowrap' }}
                 >
                   {t.navbar.register}
                   <FiArrowLeft size={15} />
