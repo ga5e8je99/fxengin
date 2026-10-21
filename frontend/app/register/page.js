@@ -164,6 +164,7 @@ export default function RegisterPage() {
                 email: uData.email,
                 fullName: uData.name || uData.given_name,
               });
+              if (res.success) {
                 const isNew = res.isNewUser !== false;
                 if (isNew) {
                   try {
