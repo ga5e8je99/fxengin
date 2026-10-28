@@ -180,7 +180,7 @@ export default function PartnersPage() {
               {commissionHighlight}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
               <Link
                 href={getAppRoute('/contact', user)}
                 className="btn-primary"
@@ -189,6 +189,26 @@ export default function PartnersPage() {
                 <span>{isAr ? 'قدم طلب الانضمام كشريك' : 'Apply for Partnership'}</span>
                 <ArrowIcon size={16} />
               </Link>
+              <Link
+                href="/brokers/portal/login"
+                style={{
+                  fontSize: '0.9375rem',
+                  padding: '0.75rem 1.5rem',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  borderRadius: '0.75rem',
+                  background: 'linear-gradient(135deg, rgba(251, 135, 4, 0.2) 0%, rgba(251, 135, 4, 0.1) 100%)',
+                  border: '1.5px solid #FB8704',
+                  color: '#FB8704',
+                  fontWeight: 800,
+                  boxShadow: '0 4px 20px rgba(251, 135, 4, 0.2)',
+                }}
+              >
+                <FiBriefcase size={16} />
+                <span>{isAr ? 'بوابة الوسطاء والشركاء (تسجيل دخول)' : 'Partner Broker Portal Login'}</span>
+              </Link>
               <a
                 href="mailto:partners@fxengin.com"
                 className="btn-secondary"
@@ -196,6 +216,68 @@ export default function PartnersPage() {
               >
                 <span>partners@fxengin.com</span>
               </a>
+            </div>
+
+            {/* Contracted Broker Portal Banner */}
+            <div
+              style={{
+                maxWidth: '44rem',
+                margin: '0 auto',
+                padding: '1rem 1.5rem',
+                borderRadius: '1rem',
+                background: 'linear-gradient(90deg, rgba(6, 20, 47, 0.9) 0%, rgba(10, 30, 63, 0.9) 100%)',
+                border: '1px solid rgba(4, 136, 248, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '1rem',
+                textAlign: isAr ? 'right' : 'left',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '0.5rem',
+                    background: 'rgba(4, 136, 248, 0.15)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#0488F8',
+                    flexShrink: 0,
+                  }}
+                >
+                  <FiZap size={20} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 800, color: '#FFFFFF' }}>
+                    {isAr ? 'للوسطاء وشركاء التداول المتعاقدين مع FXENGIN' : 'For Official Contracted Partner Brokers'}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: '#94A3B8' }}>
+                    {isAr
+                      ? 'إدارة عقود الإعلانات، العروض الترويجية، وطلب تنظيم الإيفينتات والمؤتمرات'
+                      : 'Manage ad packages, launch offers, and book sponsored summit events'}
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href="/brokers/portal/login"
+                style={{
+                  fontSize: '0.8125rem',
+                  fontWeight: 800,
+                  padding: '0.5rem 1.15rem',
+                  borderRadius: '0.5rem',
+                  background: 'linear-gradient(135deg, #0488F8 0%, #0056B3 100%)',
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {isAr ? 'دخول لوحة تحكم الوسيط' : 'Enter Broker Portal'}
+              </Link>
             </div>
           </Anim>
         </div>

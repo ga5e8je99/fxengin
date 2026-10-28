@@ -43,8 +43,12 @@ import {
   convertImageUrlToWebp,
 } from '../../services/storageService';
 import BrokerPopupControlModal from '../../components/brokers/BrokerPopupControlModal';
+import BrokerEventsManager from '../../components/brokers/BrokerEventsManager';
+import BrokerContractsManager from '../../components/brokers/BrokerContractsManager';
+import BrokerAccountsManager from '../../components/brokers/BrokerAccountsManager';
 
 export default function BrokersManagementPage() {
+  const [mainTab, setMainTab] = useState('directory'); // 'directory' | 'events' | 'contracts' | 'accounts'
   const [brokers, setBrokers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -720,7 +724,62 @@ export default function BrokersManagementPage() {
         </div>
       </div>
 
-      {/* 1.5. Broker Promotional Popup Master Control Card */}
+      {/* ── Top Level Navigation Tabs ── */}
+      <div className="flex items-center gap-2 border-b border-border-structural/60 pb-3 overflow-x-auto">
+        <button
+          onClick={() => setMainTab('directory')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            mainTab === 'directory'
+              ? 'bg-primary text-white shadow-lg shadow-primary/25'
+              : 'bg-surface-elevated text-text-secondary hover:text-text-primary'
+          }`}
+        >
+          <span>دليل الوسطاء المعتمدين</span>
+          <span className="px-1.5 py-0.5 rounded-full bg-white/20 text-[10px]">{brokers.length}</span>
+        </button>
+
+        <button
+          onClick={() => setMainTab('events')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            mainTab === 'events'
+              ? 'bg-accent text-white shadow-lg shadow-accent/25'
+              : 'bg-surface-elevated text-text-secondary hover:text-text-primary'
+          }`}
+        >
+          <span>طلبات الإيفينتات والمؤتمرات</span>
+          <span className="px-1.5 py-0.5 rounded-full bg-accent/20 text-accent text-[10px] font-black">جديد VIP</span>
+        </button>
+
+        <button
+          onClick={() => setMainTab('contracts')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            mainTab === 'contracts'
+              ? 'bg-bullish-up text-white shadow-lg shadow-bullish-up/25'
+              : 'bg-surface-elevated text-text-secondary hover:text-text-primary'
+          }`}
+        >
+          <span>عقود الإعلانات والعروض</span>
+        </button>
+
+        <button
+          onClick={() => setMainTab('accounts')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            mainTab === 'accounts'
+              ? 'bg-primary text-white shadow-lg shadow-primary/25'
+              : 'bg-surface-elevated text-text-secondary hover:text-text-primary'
+          }`}
+        >
+          <span>حسابات دخول الوسطاء</span>
+        </button>
+      </div>
+
+      {mainTab === 'events' && <BrokerEventsManager />}
+      {mainTab === 'contracts' && <BrokerContractsManager />}
+      {mainTab === 'accounts' && <BrokerAccountsManager />}
+
+      {mainTab === 'directory' && (
+        <>
+          {/* 1.5. Broker Promotional Popup Master Control Card */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-surface-container via-surface-elevated to-surface-container border-2 border-primary/30 shadow-xl p-5 sm:p-6 transition-all">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
           {/* Info Side */}
@@ -1256,6 +1315,8 @@ export default function BrokersManagementPage() {
             </table>
           </div>
         </div>
+      )}
+        </>
       )}
 
       {/* ══════════════ 5. ADD / EDIT BROKER MODAL ══════════════ */}

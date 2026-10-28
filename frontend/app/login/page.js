@@ -1313,6 +1313,31 @@ export default function LoginPage() {
               {t.login.signUpLink}
             </Link>
           </div>
+
+          {/* Broker Partner Portal Link */}
+          <div
+            style={{
+              marginTop: '12px',
+              textAlign: 'center',
+              fontSize: '12px',
+              paddingTop: '12px',
+              borderTop: '1px solid rgba(18, 49, 92, 0.4)',
+            }}
+          >
+            <span style={{ color: '#64748B' }}>
+              {isAr ? 'هل أنت وسيط شريك متعاقد؟ ' : 'Contracted Broker Partner? '}
+            </span>
+            <Link
+              href="/brokers/portal/login"
+              style={{
+                color: '#FB8704',
+                textDecoration: 'none',
+                fontWeight: 800,
+              }}
+            >
+              {isAr ? 'دخول بوابة الوسطاء (Broker Portal)' : 'Broker Partner Login'}
+            </Link>
+          </div>
         </div>
       </div>
 
